@@ -1,0 +1,41 @@
+<?php
+namespace Slothsoft\Savegame\Node;
+
+use Slothsoft\Savegame\EditorElement;
+declare(ticks = 1000);
+
+class EventInstruction extends AbstractInstructionContent
+{
+
+    private $size;
+
+    private $stepSize;
+
+    protected function getInstructionType(): string
+    {
+        return 'event';
+    }
+
+    protected function loadStruc(EditorElement $strucElement)
+    {
+        parent::loadStruc($strucElement);
+        
+        $this->size = (int) $strucElement->getAttribute('size');
+        $this->stepSize = (int) $strucElement->getAttribute('step-size');
+    }
+
+    protected function loadInstruction(EditorElement $strucElement)
+    {
+        $instructionList = [];
+        
+        for ($i = 0; $i < $this->size; $i += $this->stepSize) {
+            $strucData = [];
+            $strucData['position'] = $i;
+            // $strucData['size'] = $this->stepSize;
+            
+            $instructionList[] = new EditorElement(EditorElement::NODE_TYPES['event-step'], $strucData, $strucElement->getChildren());
+        }
+        
+        return $instructionList;
+    }
+}
