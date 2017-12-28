@@ -2,7 +2,7 @@
 namespace Slothsoft\Savegame;
 
 use Ds\Vector;
-use Slothsoft\CMS\HTTPFile;
+use Slothsoft\Farah\HTTPFile;
 use Slothsoft\Core\DOMHelper;
 use Slothsoft\Savegame\Build\XmlBuilder;
 use DOMDocument;
