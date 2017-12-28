@@ -161,7 +161,7 @@ class Editor
     
     /**
      *
-     * @return \Slothsoft\CMS\HTTPFile
+     * @return \Slothsoft\Farah\HTTPFile
      */
     public function asFile() : HTTPFile
     {
