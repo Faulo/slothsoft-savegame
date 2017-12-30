@@ -1,4 +1,4 @@
-Files and Resources and Hypertext
-=================================
+Savegame
+========
 
-A Farah module.
+A Farah module for editing arbitrary savegame files.

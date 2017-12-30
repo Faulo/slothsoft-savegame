@@ -1,26 +1,23 @@
 {
-    "name": "slothsoft/savegame",
-    "description": "",
-    "keywords": [],
-    "license": "WTFPL",
-    "authors": [
-        {
-            "name": "Daniel Schulz",
-            "email": "info.slothsoft@gmail.com"
-        }
-    ],
-    "type": "library",
-    "require": {
+	"name" : "slothsoft/savegame",
+	"description" : "A Farah module for editing arbitrary savegame files.",
+	"license" : "WTFPL",
+	"authors" : [{
+			"name" : "Daniel Schulz",
+			"email" : "info.slothsoft@gmail.com"
+		}
+	],
+	"type" : "library",
+	"require" : {
 		"slothsoft/core" : "*",
-		
-		"php": ">=7.0"
-    },
-	"require-dev": {
-		"phpunit/phpunit": ">=6.0"
-    },
-	"autoload": {
-        "psr-4": {
-            "Slothsoft\\Savegame\\": "php/"
-        }
-    }
+		"php" : ">=7.0"
+	},
+	"require-dev" : {
+		"phpunit/phpunit" : ">=6.0"
+	},
+	"autoload" : {
+		"psr-4" : {
+			"Slothsoft\\Savegame\\" : "php/"
+		}
+	}
 }
