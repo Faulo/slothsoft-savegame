@@ -2,8 +2,9 @@
 namespace Slothsoft\Savegame;
 
 use Ds\Vector;
-use Slothsoft\Farah\HTTPFile;
 use Slothsoft\Core\DOMHelper;
+use Slothsoft\Farah\HTTPFile;
+use Slothsoft\Farah\Module\AssetUses\DOMWriterInterface;
 use Slothsoft\Savegame\Build\XmlBuilder;
 use DOMDocument;
 use DOMElement;
@@ -13,7 +14,7 @@ use RuntimeException;
 use UnexpectedValueException;
 declare(ticks = 1000);
 
-class Editor
+class Editor implements DOMWriterInterface
 {
 
     private $config = [
@@ -269,4 +270,18 @@ class Editor
         }
         return null;
     }
+    
+    
+    
+    
+    public function toElement(DOMDocument $targetDoc) : DOMElement
+    {
+        return $this->asNode($targetDoc)->firstChild;
+    }
+
+    public function toDocument() : DOMDocument
+    {
+        return $this->asDocument();
+    }
+
 }
