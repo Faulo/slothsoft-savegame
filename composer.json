@@ -17,7 +17,7 @@
 	},
 	"autoload" : {
 		"psr-4" : {
-			"Slothsoft\\Savegame\\" : "php/"
+			"Slothsoft\\Savegame\\": "src/Slothsoft/Savegame/"
 		}
 	}
 }
