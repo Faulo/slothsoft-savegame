@@ -1,1 +1,25 @@
-{"name":"slothsoft\/savegame","description":"A Farah module for editing arbitrary savegame files.","license":"WTFPL","authors":[{"name":"Daniel Schulz","email":"info.slothsoft@gmail.com"}],"type":"library","require":{"php":">=7.0","slothsoft\/core":"*"},"require-dev":{"phpunit\/phpunit":">=6.0","slothsoft\/core":"dev-master"},"autoload":{"psr-4":{"Slothsoft\\Savegame\\":"src\/Slothsoft\/Savegame\/"}}}
+{
+    "name": "slothsoft\/savegame",
+    "description": "A Farah module for editing arbitrary savegame files.",
+    "license": "WTFPL",
+    "authors": [
+        {
+            "name": "Daniel Schulz",
+            "email": "info.slothsoft@gmail.com"
+        }
+    ],
+    "type": "library",
+    "require": {
+        "php": ">=7.0",
+        "slothsoft\/core": "*"
+    },
+    "require-dev": {
+        "phpunit\/phpunit": ">=6.0",
+        "slothsoft\/core": "dev-master"
+    },
+    "autoload": {
+        "psr-4": {
+            "Slothsoft\\Savegame\\": "src\/Slothsoft\/Savegame\/"
+        }
+    }
+}
