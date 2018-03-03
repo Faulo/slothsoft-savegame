@@ -19,7 +19,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Slothsoft\\Savegame\\": "src\/Slothsoft\/Savegame\/"
+            "Slothsoft\\Savegame\\": "src\/"
         }
     }
 }
