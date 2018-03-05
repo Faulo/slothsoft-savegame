@@ -1,5 +1,5 @@
 <?php
-namespace Slothsoft\Savegame\Node\ArchiveExtractor;
+namespace Slothsoft\Savegame\Node\ArchiveParser;
 
 interface ArchiveExtractorInterface
 {
