@@ -1,25 +1,16 @@
 <?php
 namespace Slothsoft\Savegame\Node;
 
-use Slothsoft\Amber\ArchiveManager;
 use Slothsoft\Core\FileSystem;
 use Slothsoft\Savegame\EditorElement;
-use DomainException;
 use Slothsoft\Savegame\Build\BuildableInterface;
 use Slothsoft\Savegame\Build\BuilderInterface;
+use Slothsoft\Savegame\Node\ArchiveExtractor\ArchiveBuilderInterface;
+use Slothsoft\Savegame\Node\ArchiveExtractor\ArchiveExtractorInterface;
 declare(ticks = 1000);
 
 class ArchiveNode extends AbstractNode implements BuildableInterface
 {
-
-    const ARCHIVE_TYPE_RAW = 'Raw';
-
-    const ARCHIVE_TYPE_AM2 = 'AM2';
-
-    const ARCHIVE_TYPE_AMBR = 'AMBR';
-
-    const ARCHIVE_TYPE_JH = 'JH';
-
     private $path;
 
     private $name;
@@ -105,21 +96,7 @@ class ArchiveNode extends AbstractNode implements BuildableInterface
 
     protected function loadArchive()
     {
-        $ambtoolPath = $this->getOwnerEditor()->getConfigValue('ambtoolPath');
-        
-        switch ($this->type) {
-            case self::ARCHIVE_TYPE_AMBR:
-            case self::ARCHIVE_TYPE_JH:
-                $manager = new ArchiveManager($ambtoolPath);
-                $manager->extractArchive($this->archivePath, $this->fileDirectory);
-                break;
-            case self::ARCHIVE_TYPE_AM2:
-            case self::ARCHIVE_TYPE_RAW:
-                copy($this->archivePath, $this->fileDirectory . DIRECTORY_SEPARATOR . '1');
-                break;
-            default:
-                throw new DomainException(sprintf('unknown archive type "%s"!', $this->type));
-        }
+        $this->getArchiveExtractor()->extractArchive($this->archivePath, $this->fileDirectory);
     }
 
     public function writeArchive()
@@ -136,44 +113,7 @@ class ArchiveNode extends AbstractNode implements BuildableInterface
     {
         $ret = null;
 		if ($childList = $this->getBuildChildren()) {
-			switch ($this->type) {
-				case self::ARCHIVE_TYPE_AMBR:
-					$header = [];
-					$body = [];
-					$maxId = 0;
-					foreach ($childList as $child) {
-						$id = (int) $child->getFileName();
-						if ($id > $maxId) {
-							$maxId = $id;
-						}
-						$val = $child->getContent();
-						$header[$id] = pack('N', strlen($val));
-						$body[$id] = $val;
-					}
-					for ($id = 1; $id < $maxId; $id ++) {
-						if (! isset($header[$id])) {
-							$header[$id] = pack('N', 0);
-							$body[$id] = '';
-						}
-					}
-					ksort($header);
-					ksort($body);
-					
-					array_unshift($header, 'AMBR' . pack('n', count($body)));
-					
-					$ret = implode('', $header) . implode('', $body);
-					break;
-				case self::ARCHIVE_TYPE_JH:
-				case self::ARCHIVE_TYPE_AM2:
-				case self::ARCHIVE_TYPE_RAW:
-					$ret = '';
-					foreach ($childList as $child) {
-						$ret .= $child->getContent();
-					}
-					break;
-				default:
-					throw new DomainException(sprintf('unknown archive type "%s"!', $this->type));
-			}
+		    $ret = $this->getArchiveBuilder()->buildArchive($childList);
 		}
         return $ret;
     }
@@ -221,5 +161,12 @@ class ArchiveNode extends AbstractNode implements BuildableInterface
         assert($childNode instanceof FileContainer);
         
         parent::appendBuildChild($childNode);
+    }
+    
+    private function getArchiveBuilder() : ArchiveBuilderInterface {
+        return $this->getOwnerEditor()->getArchiveBuilder($this->type);
+    }
+    private function getArchiveExtractor() : ArchiveExtractorInterface {
+        return $this->getOwnerEditor()->getArchiveExtractor($this->type);
     }
 }

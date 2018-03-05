@@ -3,8 +3,8 @@ namespace Slothsoft\Savegame;
 
 use Ds\Vector;
 use Slothsoft\Core\DOMHelper;
-use Slothsoft\Farah\HTTPFile;
-use Slothsoft\Farah\Module\AssetUses\DOMWriterInterface;
+use Slothsoft\Core\IO\HTTPFile;
+use Slothsoft\Core\IO\Writable\DOMWriterInterface;
 use Slothsoft\Savegame\Build\XmlBuilder;
 use DOMDocument;
 use DOMElement;
@@ -12,6 +12,8 @@ use DOMNode;
 use DomainException;
 use RuntimeException;
 use UnexpectedValueException;
+use Slothsoft\Savegame\Node\ArchiveExtractor\ArchiveBuilderInterface;
+use Slothsoft\Savegame\Node\ArchiveExtractor\ArchiveExtractorInterface;
 declare(ticks = 1000);
 
 class Editor implements DOMWriterInterface
@@ -23,11 +25,11 @@ class Editor implements DOMWriterInterface
         'tempDir' => '',
         'id' => '',
         'mode' => '',
-        'ambtoolPath' => '',
-        'ambgfxPath' => '',
         'loadAllArchives' => false,
         'selectedArchives' => [],
-        'uploadedArchives' => []
+        'uploadedArchives' => [],
+        'archiveExtractors' => [],
+        'archiveBuilders' => [],
     ];
 
     private $dom;
@@ -107,10 +109,25 @@ class Editor implements DOMWriterInterface
     {
         return sprintf('%s%s%s.%s', $this->config['tempDir'], DIRECTORY_SEPARATOR, $this->config['id'], $name);
     }
-
+    
     public function getConfigValue($key)
     {
         return isset($this->config[$key]) ? $this->config[$key] : null;
+    }
+    
+    public function getArchiveExtractor(string $type) : ArchiveExtractorInterface
+    {
+        if (!isset($this->config['archiveExtractors'][$this->type])) {
+            throw new DomainException(sprintf('unknown archiveExtractor type "%s"! currently available: %s', $this->type, implode(', ', array_keys($this->config['archiveExtractors']))));
+        }
+        return $this->config['archiveExtractors'][$this->type];
+    }
+    public function getArchiveBuilder(string $type) : ArchiveBuilderInterface
+    {
+        if (!isset($this->config['archiveBuilders'][$this->type])) {
+            throw new DomainException(sprintf('unknown archiveBuilder type "%s"! currently available: %s', $this->type, implode(', ', array_keys($this->config['archiveExtractors']))));
+        }
+        return $this->config['archiveBuilders'][$this->type];
     }
 
     public function shouldLoadArchive($name)
@@ -162,7 +179,7 @@ class Editor implements DOMWriterInterface
     
     /**
      *
-     * @return \Slothsoft\Farah\HTTPFile
+     * @return HTTPFile
      */
     public function asFile() : HTTPFile
     {
