@@ -6,14 +6,14 @@ use Slothsoft\Core\DOMHelper;
 use Slothsoft\Core\IO\HTTPFile;
 use Slothsoft\Core\IO\Writable\DOMWriterInterface;
 use Slothsoft\Savegame\Build\XmlBuilder;
+use Slothsoft\Savegame\Node\ArchiveParser\ArchiveBuilderInterface;
+use Slothsoft\Savegame\Node\ArchiveParser\ArchiveExtractorInterface;
 use DOMDocument;
 use DOMElement;
 use DOMNode;
 use DomainException;
 use RuntimeException;
 use UnexpectedValueException;
-use Slothsoft\Savegame\Node\ArchiveExtractor\ArchiveBuilderInterface;
-use Slothsoft\Savegame\Node\ArchiveExtractor\ArchiveExtractorInterface;
 declare(ticks = 1000);
 
 class Editor implements DOMWriterInterface
@@ -117,17 +117,17 @@ class Editor implements DOMWriterInterface
     
     public function getArchiveExtractor(string $type) : ArchiveExtractorInterface
     {
-        if (!isset($this->config['archiveExtractors'][$this->type])) {
-            throw new DomainException(sprintf('unknown archiveExtractor type "%s"! currently available: %s', $this->type, implode(', ', array_keys($this->config['archiveExtractors']))));
+        if (!isset($this->config['archiveExtractors'][$type])) {
+            throw new DomainException(sprintf('unknown archiveExtractor type "%s"! currently available: %s', $type, implode(', ', array_keys($this->config['archiveExtractors']))));
         }
-        return $this->config['archiveExtractors'][$this->type];
+        return $this->config['archiveExtractors'][$type];
     }
     public function getArchiveBuilder(string $type) : ArchiveBuilderInterface
     {
-        if (!isset($this->config['archiveBuilders'][$this->type])) {
-            throw new DomainException(sprintf('unknown archiveBuilder type "%s"! currently available: %s', $this->type, implode(', ', array_keys($this->config['archiveExtractors']))));
+        if (!isset($this->config['archiveBuilders'][$type])) {
+            throw new DomainException(sprintf('unknown archiveBuilder type "%s"! currently available: %s', $type, implode(', ', array_keys($this->config['archiveExtractors']))));
         }
-        return $this->config['archiveBuilders'][$this->type];
+        return $this->config['archiveBuilders'][$type];
     }
 
     public function shouldLoadArchive($name)
@@ -293,7 +293,8 @@ class Editor implements DOMWriterInterface
     
     public function toElement(DOMDocument $targetDoc) : DOMElement
     {
-        return $this->asNode($targetDoc)->firstChild;
+        $fragment = $this->asNode($targetDoc);
+        return $fragment->removeChild($fragment->firstChild);
     }
 
     public function toDocument() : DOMDocument

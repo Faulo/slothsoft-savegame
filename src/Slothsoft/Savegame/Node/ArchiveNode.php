@@ -5,8 +5,8 @@ use Slothsoft\Core\FileSystem;
 use Slothsoft\Savegame\EditorElement;
 use Slothsoft\Savegame\Build\BuildableInterface;
 use Slothsoft\Savegame\Build\BuilderInterface;
-use Slothsoft\Savegame\Node\ArchiveExtractor\ArchiveBuilderInterface;
-use Slothsoft\Savegame\Node\ArchiveExtractor\ArchiveExtractorInterface;
+use Slothsoft\Savegame\Node\ArchiveParser\ArchiveBuilderInterface;
+use Slothsoft\Savegame\Node\ArchiveParser\ArchiveExtractorInterface;
 declare(ticks = 1000);
 
 class ArchiveNode extends AbstractNode implements BuildableInterface
