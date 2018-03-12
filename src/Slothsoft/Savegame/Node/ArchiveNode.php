@@ -11,6 +11,8 @@ declare(ticks = 1000);
 
 class ArchiveNode extends AbstractNode implements BuildableInterface
 {
+    const NAMESPACE_SEPARATOR = '\\';
+
     private $path;
 
     private $name;
@@ -129,12 +131,12 @@ class ArchiveNode extends AbstractNode implements BuildableInterface
         
         if (file_exists($this->archivePath)) {
             $this->size = FileSystem::size($this->archivePath);
-            $this->timestamp = date(DATE_DATETIME, FileSystem::changetime($this->archivePath));
+            $this->timestamp = date(DateTimeFormatter::FORMAT_DATETIME, FileSystem::changetime($this->archivePath));
             $this->md5 = md5_file($this->archivePath);
             
             $dir = [];
             $dir[] = sys_get_temp_dir();
-            $dir[] = str_replace(NAMESPACE_SEPARATOR, DIRECTORY_SEPARATOR, __CLASS__);
+            $dir[] = str_replace(self::NAMESPACE_SEPARATOR, DIRECTORY_SEPARATOR, __CLASS__);
             $dir[] = $this->name;
             $dir[] = $this->md5;
             

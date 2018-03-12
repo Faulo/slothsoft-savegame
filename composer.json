@@ -11,6 +11,7 @@
     "type": "library",
     "require": {
         "php": ">=7.0",
+        "php-ds\/php-ds": "~1",
         "slothsoft\/core": "*"
     },
     "require-dev": {
@@ -18,7 +19,7 @@
         "slothsoft\/core": "dev-master"
     },
     "autoload": {
-        "psr-4": {
+        "psr-0": {
             "Slothsoft\\Savegame\\": "src\/"
         }
     }

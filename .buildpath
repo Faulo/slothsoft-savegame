@@ -34,6 +34,11 @@
 			<attribute name="composer" value="vendor"/>
 		</attributes>
 	</buildpathentry>
+	<buildpathentry kind="src" path="vendor/php-ds/php-ds/src">
+		<attributes>
+			<attribute name="composer" value="vendor"/>
+		</attributes>
+	</buildpathentry>
 	<buildpathentry kind="src" path="vendor/phpdocumentor/reflection-common/src">
 		<attributes>
 			<attribute name="composer" value="vendor"/>
