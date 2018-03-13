@@ -20,14 +20,14 @@ abstract class AbstractInstructionContent extends AbstractContentNode implements
     {
         return 'instruction';
     }
-	
-	public function getBuildAttributes(BuilderInterface $builder): array
+
+    public function getBuildAttributes(BuilderInterface $builder): array
     {
-		return parent::getBuildAttributes($builder) + [
-			'type' 				=> $this->getInstructionType(),
-			'dictionary-ref' 	=> $this->dictionaryRef,
-		];
-	}
+        return parent::getBuildAttributes($builder) + [
+            'type' => $this->getInstructionType(),
+            'dictionary-ref' => $this->dictionaryRef
+        ];
+    }
 
     protected function loadStruc(EditorElement $strucElement)
     {

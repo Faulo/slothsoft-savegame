@@ -19,13 +19,13 @@ abstract class AbstractContentNode extends AbstractNode
     protected $contentOffset;
 
     abstract protected function loadContent(EditorElement $strucElement);
-	
-	public function getBuildAttributes(BuilderInterface $builder): array
+
+    public function getBuildAttributes(BuilderInterface $builder): array
     {
-		return [
-			'name' 		=> $this->name,
-		];
-	}
+        return [
+            'name' => $this->name
+        ];
+    }
 
     protected function loadStruc(EditorElement $strucElement)
     {

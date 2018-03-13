@@ -57,7 +57,7 @@ class Converter
         return $parser->code2binary($val);
     }
 
-    public function decodeInteger(string $val, int $size = 1) : int
+    public function decodeInteger(string $val, int $size = 1): int
     {
         static $unpackList = [
             [],
@@ -95,7 +95,7 @@ class Converter
         return $unpackList[$size][$key];
     }
 
-    public function decodeSignedInteger(string $val, int $size = 1) : int
+    public function decodeSignedInteger(string $val, int $size = 1): int
     {
         $ret = $this->decodeInteger($val, $size);
         if ($ret > $this->pow256($size) / 2) {
@@ -104,7 +104,7 @@ class Converter
         return $ret;
     }
 
-    public function decodeString(string $val, int $size = 1, string $encoding = '') : string
+    public function decodeString(string $val, int $size = 1, string $encoding = ''): string
     {
         $ret = '';
         $size = min($size, strlen($val));
@@ -125,7 +125,7 @@ class Converter
         return $parser->binary2code($val);
     }
 
-    public function pow2(int $size) : int
+    public function pow2(int $size): int
     {
         static $powList = [];
         if (! isset($powList[$size])) {
@@ -134,7 +134,7 @@ class Converter
         return $powList[$size];
     }
 
-    public function pow256(int $size) : int
+    public function pow256(int $size): int
     {
         static $powList = [];
         if (! isset($powList[$size])) {

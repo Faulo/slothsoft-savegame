@@ -14,20 +14,20 @@ class SelectValue extends AbstractValueContent
     {
         return 'select';
     }
-	
-	public function getBuildAttributes(BuilderInterface $builder): array
+
+    public function getBuildAttributes(BuilderInterface $builder): array
     {
-		return parent::getBuildAttributes($builder) + [
-			'value' => $this->value,
-			'dictionary-ref' 	=> $this->dictionaryRef,
-		];
-	}
+        return parent::getBuildAttributes($builder) + [
+            'value' => $this->value,
+            'dictionary-ref' => $this->dictionaryRef
+        ];
+    }
 
     protected function loadStruc(EditorElement $strucElement)
     {
         parent::loadStruc($strucElement);
         
-		$this->value = 0;
+        $this->value = 0;
         $this->dictionaryRef = (string) $strucElement->getAttribute('dictionary-ref');
     }
 

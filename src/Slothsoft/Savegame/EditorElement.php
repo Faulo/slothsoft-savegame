@@ -32,7 +32,7 @@ class EditorElement
         'event' => 33,
         'event-step' => 34,
         'repeat-group' => 35,
-        'use-global' => 36,
+        'use-global' => 36
     ];
 
     public static function getNodeTag(int $val)
@@ -121,11 +121,8 @@ class EditorElement
         if ($evaluator === null) {
             return $this->attributes[$key] ?? $default;
         } else {
-            return isset($this->attributes[$key])
-            ? $evaluator->evaluate($this->attributes[$key])
-            : $default;
+            return isset($this->attributes[$key]) ? $evaluator->evaluate($this->attributes[$key]) : $default;
         }
-        
     }
 
     /**

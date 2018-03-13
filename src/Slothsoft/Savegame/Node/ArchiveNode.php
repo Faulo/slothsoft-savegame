@@ -2,6 +2,7 @@
 namespace Slothsoft\Savegame\Node;
 
 use Slothsoft\Core\FileSystem;
+use Slothsoft\Core\Calendar\DateTimeFormatter;
 use Slothsoft\Savegame\EditorElement;
 use Slothsoft\Savegame\Build\BuildableInterface;
 use Slothsoft\Savegame\Build\BuilderInterface;
@@ -11,6 +12,7 @@ declare(ticks = 1000);
 
 class ArchiveNode extends AbstractNode implements BuildableInterface
 {
+
     const NAMESPACE_SEPARATOR = '\\';
 
     private $path;
@@ -36,17 +38,17 @@ class ArchiveNode extends AbstractNode implements BuildableInterface
         return 'archive';
     }
 
-	public function getBuildAttributes(BuilderInterface $builder): array
+    public function getBuildAttributes(BuilderInterface $builder): array
     {
-		return [
-			'name' 		=> $this->name,
-			'type'		=> $this->type,
-			'path'		=> $this->path,
-			'md5'		=> $this->md5,
-			'size'		=> $this->size,
-			'timestamp'	=> $this->timestamp,
-		];
-	}
+        return [
+            'name' => $this->name,
+            'type' => $this->type,
+            'path' => $this->path,
+            'md5' => $this->md5,
+            'size' => $this->size,
+            'timestamp' => $this->timestamp
+        ];
+    }
 
     public function loadStruc(EditorElement $strucElement)
     {
@@ -114,9 +116,9 @@ class ArchiveNode extends AbstractNode implements BuildableInterface
     public function getArchive()
     {
         $ret = null;
-		if ($childList = $this->getBuildChildren()) {
-		    $ret = $this->getArchiveBuilder()->buildArchive($childList);
-		}
+        if ($childList = $this->getBuildChildren()) {
+            $ret = $this->getArchiveBuilder()->buildArchive($childList);
+        }
         return $ret;
     }
 
@@ -164,11 +166,14 @@ class ArchiveNode extends AbstractNode implements BuildableInterface
         
         parent::appendBuildChild($childNode);
     }
-    
-    private function getArchiveBuilder() : ArchiveBuilderInterface {
+
+    private function getArchiveBuilder(): ArchiveBuilderInterface
+    {
         return $this->getOwnerEditor()->getArchiveBuilder($this->type);
     }
-    private function getArchiveExtractor() : ArchiveExtractorInterface {
+
+    private function getArchiveExtractor(): ArchiveExtractorInterface
+    {
         return $this->getOwnerEditor()->getArchiveExtractor($this->type);
     }
 }

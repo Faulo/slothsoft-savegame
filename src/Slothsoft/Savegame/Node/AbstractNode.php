@@ -85,9 +85,10 @@ abstract class AbstractNode
     {
         return $this->parentNode;
     }
-	
-	public function appendBuildChild(BuildableInterface $childNode) {
-		if ($this instanceof BuildableInterface) {
+
+    public function appendBuildChild(BuildableInterface $childNode)
+    {
+        if ($this instanceof BuildableInterface) {
             if ($this->childNodeList === null) {
                 $this->childNodeList = new Vector();
             }
@@ -95,8 +96,9 @@ abstract class AbstractNode
         } else {
             $this->parentNode->appendBuildChild($childNode);
         }
-	}
-	public function getBuildChildren()
+    }
+
+    public function getBuildChildren()
     {
         return $this->childNodeList;
     }

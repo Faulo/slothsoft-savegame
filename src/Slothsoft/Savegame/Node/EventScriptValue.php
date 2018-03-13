@@ -2,7 +2,6 @@
 namespace Slothsoft\Savegame\Node;
 
 use Slothsoft\Savegame\Build\BuilderInterface;
-
 declare(ticks = 1000);
 
 class EventScriptValue extends AbstractValueContent
@@ -12,12 +11,13 @@ class EventScriptValue extends AbstractValueContent
     {
         return 'event-script';
     }
-	public function getBuildAttributes(BuilderInterface $builder): array
+
+    public function getBuildAttributes(BuilderInterface $builder): array
     {
-		return parent::getBuildAttributes($builder) + [
-			'value' 	=> $builder->escapeAttribute($this->value),
-		];
-	}
+        return parent::getBuildAttributes($builder) + [
+            'value' => $builder->escapeAttribute($this->value)
+        ];
+    }
 
     protected function loadContent()
     {

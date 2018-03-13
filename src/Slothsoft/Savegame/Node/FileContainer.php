@@ -34,12 +34,13 @@ class FileContainer extends AbstractNode implements NodeEvaluatorInterface, Buil
     {
         return 'file';
     }
-	public function getBuildAttributes(BuilderInterface $builder): array
+
+    public function getBuildAttributes(BuilderInterface $builder): array
     {
-		return [
-			'file-name' => $this->fileName
-		];
-	}
+        return [
+            'file-name' => $this->fileName
+        ];
+    }
 
     protected function loadStruc(EditorElement $strucElement)
     {
@@ -140,10 +141,11 @@ class FileContainer extends AbstractNode implements NodeEvaluatorInterface, Buil
             }
         }
     }
-	
-	public function getValueList() : Vector {
-		return $this->valueList;
-	}
+
+    public function getValueList(): Vector
+    {
+        return $this->valueList;
+    }
 
     public function evaluate($expression)
     {

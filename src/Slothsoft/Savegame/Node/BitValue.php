@@ -14,20 +14,20 @@ class BitValue extends AbstractValueContent
     {
         return 'bit';
     }
-	
-	public function getBuildAttributes(BuilderInterface $builder): array
+
+    public function getBuildAttributes(BuilderInterface $builder): array
     {
-		return parent::getBuildAttributes($builder) + [
-			'value' => $this->value ? '1' : '',
-			'bit' 	=> $this->bit,
-		];
-	}
+        return parent::getBuildAttributes($builder) + [
+            'value' => $this->value ? '1' : '',
+            'bit' => $this->bit
+        ];
+    }
 
     protected function loadStruc(EditorElement $strucElement)
     {
         parent::loadStruc($strucElement);
         
-		$this->value = false;
+        $this->value = false;
         $this->bit = (int) $strucElement->getAttribute('bit');
     }
 

@@ -17,17 +17,17 @@ class StringValue extends AbstractValueContent
 
     public function getBuildAttributes(BuilderInterface $builder): array
     {
-		return parent::getBuildAttributes($builder) + [
-			'value' 	=> $builder->escapeAttribute($this->value),
-			'encoding' 	=> $this->encoding,
-		];
-	}
+        return parent::getBuildAttributes($builder) + [
+            'value' => $builder->escapeAttribute($this->value),
+            'encoding' => $this->encoding
+        ];
+    }
 
     protected function loadStruc(EditorElement $strucElement)
     {
         parent::loadStruc($strucElement);
         
-		$this->value = '';
+        $this->value = '';
         $this->encoding = (string) $strucElement->getAttribute('encoding');
     }
 

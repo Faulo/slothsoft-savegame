@@ -29,7 +29,7 @@ class Editor implements DOMWriterInterface
         'selectedArchives' => [],
         'uploadedArchives' => [],
         'archiveExtractors' => [],
-        'archiveBuilders' => [],
+        'archiveBuilders' => []
     ];
 
     private $dom;
@@ -109,22 +109,23 @@ class Editor implements DOMWriterInterface
     {
         return sprintf('%s%s%s.%s', $this->config['tempDir'], DIRECTORY_SEPARATOR, $this->config['id'], $name);
     }
-    
+
     public function getConfigValue($key)
     {
         return isset($this->config[$key]) ? $this->config[$key] : null;
     }
-    
-    public function getArchiveExtractor(string $type) : ArchiveExtractorInterface
+
+    public function getArchiveExtractor(string $type): ArchiveExtractorInterface
     {
-        if (!isset($this->config['archiveExtractors'][$type])) {
+        if (! isset($this->config['archiveExtractors'][$type])) {
             throw new DomainException(sprintf('unknown archiveExtractor type "%s"! currently available: %s', $type, implode(', ', array_keys($this->config['archiveExtractors']))));
         }
         return $this->config['archiveExtractors'][$type];
     }
-    public function getArchiveBuilder(string $type) : ArchiveBuilderInterface
+
+    public function getArchiveBuilder(string $type): ArchiveBuilderInterface
     {
-        if (!isset($this->config['archiveBuilders'][$type])) {
+        if (! isset($this->config['archiveBuilders'][$type])) {
             throw new DomainException(sprintf('unknown archiveBuilder type "%s"! currently available: %s', $type, implode(', ', array_keys($this->config['archiveExtractors']))));
         }
         return $this->config['archiveBuilders'][$type];
@@ -156,7 +157,7 @@ class Editor implements DOMWriterInterface
     public function parseRequest(array $req)
     {
         if (isset($req['data'])) {
-			$valueMap = $this->savegame->getValueMap();
+            $valueMap = $this->savegame->getValueMap();
             foreach ($req['data'] as $id => $val) {
                 if ($val === '_checkbox') {
                     $val = isset($req['data'][$id . $val]);
@@ -168,49 +169,49 @@ class Editor implements DOMWriterInterface
             }
         }
     }
-	public function getSavegame() {
-		return $this->savegame;
-	}
-	public function getArchiveById(string $id) : Node\ArchiveNode
-    {
-		return $this->savegame->getArchiveById($id);
-	}
 
-    
+    public function getSavegame()
+    {
+        return $this->savegame;
+    }
+
+    public function getArchiveById(string $id): Node\ArchiveNode
+    {
+        return $this->savegame->getArchiveById($id);
+    }
+
     /**
      *
      * @return HTTPFile
      */
-    public function asFile() : HTTPFile
+    public function asFile(): HTTPFile
     {
-		$builder = new XmlBuilder();
-		$handle = $builder->buildStream($this->savegame);
-        $ret = HTTPFile::createFromStream(
-			$handle,
-			sprintf('savegame.%s.xml', $this->config['id'])
-		);
-		fclose($handle);
-		return $ret;
-    }
-    
-    public function asString() : string {
-		$builder = new XmlBuilder();
-		$builder->registerAttributeBlacklist([
-			'position',
-			'bit',
-			'encoding',
-		]);
-		return $builder->buildString($this->savegame);
+        $builder = new XmlBuilder();
+        $handle = $builder->buildStream($this->savegame);
+        $ret = HTTPFile::createFromStream($handle, sprintf('savegame.%s.xml', $this->config['id']));
+        fclose($handle);
+        return $ret;
     }
 
-    public function asDocument() : DOMDocument
+    public function asString(): string
+    {
+        $builder = new XmlBuilder();
+        $builder->registerAttributeBlacklist([
+            'position',
+            'bit',
+            'encoding'
+        ]);
+        return $builder->buildString($this->savegame);
+    }
+
+    public function asDocument(): DOMDocument
     {
         $ret = new DOMDocument('1.0', 'UTF-8');
         $ret->appendChild($this->asNode($ret));
         return $ret;
     }
 
-    public function asNode(DOMDocument $dataDoc) : DOMNode
+    public function asNode(DOMDocument $dataDoc): DOMNode
     {
         $retFragment = $dataDoc->createDocumentFragment();
         $retFragment->appendXML($this->asString());
@@ -287,19 +288,15 @@ class Editor implements DOMWriterInterface
         }
         return null;
     }
-    
-    
-    
-    
-    public function toElement(DOMDocument $targetDoc) : DOMElement
+
+    public function toElement(DOMDocument $targetDoc): DOMElement
     {
         $fragment = $this->asNode($targetDoc);
         return $fragment->removeChild($fragment->firstChild);
     }
 
-    public function toDocument() : DOMDocument
+    public function toDocument(): DOMDocument
     {
         return $this->asDocument();
     }
-
 }

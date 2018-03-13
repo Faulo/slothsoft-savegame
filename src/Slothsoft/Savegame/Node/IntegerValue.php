@@ -24,21 +24,21 @@ class IntegerValue extends AbstractValueContent
     {
         return 'integer';
     }
-	
-	public function getBuildAttributes(BuilderInterface $builder): array
+
+    public function getBuildAttributes(BuilderInterface $builder): array
     {
-		return parent::getBuildAttributes($builder) + [
-			'value' => $this->value,
-			'min' 	=> $this->min,
-			'max' 	=> $this->max,
-		];
-	}
+        return parent::getBuildAttributes($builder) + [
+            'value' => $this->value,
+            'min' => $this->min,
+            'max' => $this->max
+        ];
+    }
 
     protected function loadStruc(EditorElement $strucElement)
     {
         parent::loadStruc($strucElement);
         
-		$this->value = 0;
+        $this->value = 0;
         $this->min = (int) $strucElement->getAttribute('min');
         $this->max = (int) $strucElement->getAttribute('max', self::MAX_VALUES[$this->size]);
     }

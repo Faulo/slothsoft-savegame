@@ -84,31 +84,31 @@ class SavegameNode extends AbstractNode implements BuildableInterface
         parent::appendBuildChild($node);
     }
 
-
     public function getArchiveById(string $id): ArchiveNode
     {
-		if ($nodeList = $this->getBuildChildren()) {
-			foreach ($nodeList as $node) {
-				if ($node->getArchiveId() === $id) {
-					return $node;
-				}
-			}
-		}
+        if ($nodeList = $this->getBuildChildren()) {
+            foreach ($nodeList as $node) {
+                if ($node->getArchiveId() === $id) {
+                    return $node;
+                }
+            }
+        }
     }
-	
+
     public function getBuildTag(): string
     {
         return 'savegame.editor';
     }
-	public function getBuildAttributes(BuilderInterface $builder): array
+
+    public function getBuildAttributes(BuilderInterface $builder): array
     {
-		return [
-			'xmlns' 		=> 'http://schema.slothsoft.net/savegame/editor',
-			'schemaVersion' => '0.3',
-			'save-id' 		=> $builder->escapeAttribute($this->saveId),
-		];
-	}
-	
+        return [
+            'xmlns' => 'http://schema.slothsoft.net/savegame/editor',
+            'schemaVersion' => '0.3',
+            'save-id' => $builder->escapeAttribute($this->saveId)
+        ];
+    }
+
     public function getGlobalElementsById(string $id)
     {
         return $this->globalElements[$id] ?? null;
@@ -118,22 +118,23 @@ class SavegameNode extends AbstractNode implements BuildableInterface
     {
         return ++ $this->valueIdCounter;
     }
-	
-	public function getValueMap() : array {
-		$ret = [];
-		if ($archiveList = $this->getBuildChildren()) {
-			foreach ($archiveList as $archive) {
-				if ($fileList = $archive->getBuildChildren()) {
-					foreach ($fileList as $file) {
-						if ($valueList = $file->getValueList()) {
-							foreach ($valueList as $value) {
-								$ret[$value->getValueId()] = $value;
-							}
-						}
-					}
-				}
-			}
-		}
-		return $ret;
-	}
+
+    public function getValueMap(): array
+    {
+        $ret = [];
+        if ($archiveList = $this->getBuildChildren()) {
+            foreach ($archiveList as $archive) {
+                if ($fileList = $archive->getBuildChildren()) {
+                    foreach ($fileList as $file) {
+                        if ($valueList = $file->getValueList()) {
+                            foreach ($valueList as $value) {
+                                $ret[$value->getValueId()] = $value;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return $ret;
+    }
 }

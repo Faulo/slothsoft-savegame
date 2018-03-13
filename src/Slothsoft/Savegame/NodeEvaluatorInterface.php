@@ -8,7 +8,9 @@ namespace Slothsoft\Savegame;
  */
 interface NodeEvaluatorInterface
 {
+
     public function evaluate($expression);
-    public function evaluateMath(string $expression) : int;
+
+    public function evaluateMath(string $expression): int;
 }
 
