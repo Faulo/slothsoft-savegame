@@ -1,9 +1,10 @@
 <?php
+declare(strict_types = 1);
 namespace Slothsoft\Savegame\Node;
 
 use Slothsoft\Savegame\EditorElement;
 use DomainException;
-declare(ticks = 1000);
+
 
 class StringDictionaryInstruction extends AbstractInstructionContent
 {

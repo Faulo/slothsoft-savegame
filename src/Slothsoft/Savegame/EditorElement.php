@@ -1,9 +1,10 @@
 <?php
+declare(strict_types = 1);
 namespace Slothsoft\Savegame;
 
 use DomainException;
 use DS\Vector;
-declare(ticks = 1000);
+
 
 class EditorElement
 {

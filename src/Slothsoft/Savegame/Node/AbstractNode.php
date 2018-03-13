@@ -1,4 +1,5 @@
 <?php
+declare(strict_types = 1);
 namespace Slothsoft\Savegame\Node;
 
 use Ds\Vector;
@@ -6,7 +7,7 @@ use Slothsoft\Savegame\Converter;
 use Slothsoft\Savegame\Editor;
 use Slothsoft\Savegame\EditorElement;
 use Slothsoft\Savegame\Build\BuildableInterface;
-declare(ticks = 1000);
+
 
 abstract class AbstractNode
 {

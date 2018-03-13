@@ -1,8 +1,9 @@
 <?php
+declare(strict_types = 1);
 namespace Slothsoft\Savegame\Node;
 
 use Slothsoft\Savegame\EditorElement;
-declare(ticks = 1000);
+
 
 class EventStepInstruction extends AbstractInstructionContent
 {

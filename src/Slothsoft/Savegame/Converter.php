@@ -1,9 +1,10 @@
 <?php
+declare(strict_types = 1);
 namespace Slothsoft\Savegame;
 
 use Slothsoft\Savegame\Script\Parser;
 use RangeException;
-declare(ticks = 1000);
+
 
 class Converter
 {

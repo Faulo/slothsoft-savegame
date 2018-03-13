@@ -1,10 +1,11 @@
 <?php
+declare(strict_types = 1);
 namespace Slothsoft\Savegame\Node;
 
 use Slothsoft\Savegame\EditorElement;
 use Slothsoft\Savegame\Build\BuildableInterface;
 use Slothsoft\Savegame\Build\BuilderInterface;
-declare(ticks = 1000);
+
 
 abstract class AbstractInstructionContent extends AbstractContentNode implements BuildableInterface
 {

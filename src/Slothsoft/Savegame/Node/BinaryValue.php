@@ -1,7 +1,8 @@
 <?php
+declare(strict_types = 1);
 namespace Slothsoft\Savegame\Node;
 
-declare(ticks = 1000);
+
 
 class BinaryValue extends AbstractValueContent
 {

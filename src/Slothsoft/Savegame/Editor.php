@@ -1,4 +1,5 @@
 <?php
+declare(strict_types = 1);
 namespace Slothsoft\Savegame;
 
 use Ds\Vector;
@@ -14,7 +15,7 @@ use DOMNode;
 use DomainException;
 use RuntimeException;
 use UnexpectedValueException;
-declare(ticks = 1000);
+
 
 class Editor implements DOMWriterInterface
 {

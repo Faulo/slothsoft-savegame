@@ -1,8 +1,9 @@
 <?php
+declare(strict_types = 1);
 namespace Slothsoft\Savegame\Script;
 
 use Slothsoft\Savegame\Converter;
-declare(ticks = 1000);
+
 
 abstract class AbstractElement
 {
