@@ -55,7 +55,7 @@ class Editor implements DOMWriterInterface
             throw new RuntimeException('Missing editor mode');
         }
         if (! $this->config['id']) {
-            $this->config['id'] = md5(time());
+            $this->config['id'] = md5((string) time());
         }
         
         $this->dom = new DOMHelper();
