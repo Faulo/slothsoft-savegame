@@ -11,17 +11,13 @@
     "type": "library",
     "require": {
         "php": ">=7.0",
-        "php-ds\/php-ds": "~1",
+        "php-ds\/php-ds": "*",
         "slothsoft\/core": "*",
-        "slothsoft\/dbms": "*",
-        "slothsoft\/farah": "*",
-        "slothsoft\/lang": "*",
-        "slothsoft\/w3c": "*"
+        "slothsoft\/farah": "*"
     },
     "require-dev": {
         "phpunit\/phpunit": ">=6.0",
         "slothsoft\/core": "dev-master",
-        "slothsoft\/dbms": "dev-master",
         "slothsoft\/farah": "dev-master",
         "slothsoft\/lang": "dev-master",
         "slothsoft\/w3c": "dev-master"
