@@ -24,7 +24,7 @@
     },
     "autoload": {
         "files": [
-            "src\/registerModule.php"
+            "C:\\Webserver\\workspace\\slothsoft-savegame\\src\\registerModule.php"
         ],
         "psr-0": {
             "Slothsoft\\Savegame\\": "src\/"
