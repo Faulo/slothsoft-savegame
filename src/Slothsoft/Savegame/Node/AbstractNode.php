@@ -8,7 +8,6 @@ use Slothsoft\Savegame\Editor;
 use Slothsoft\Savegame\EditorElement;
 use Slothsoft\Savegame\Build\BuildableInterface;
 
-
 abstract class AbstractNode
 {
 

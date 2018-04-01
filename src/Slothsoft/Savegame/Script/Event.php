@@ -2,8 +2,6 @@
 declare(strict_types = 1);
 namespace Slothsoft\Savegame\Script;
 
-
-
 class Event extends AbstractElement
 {
 

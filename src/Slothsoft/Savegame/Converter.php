@@ -5,7 +5,6 @@ namespace Slothsoft\Savegame;
 use Slothsoft\Savegame\Script\Parser;
 use RangeException;
 
-
 class Converter
 {
 

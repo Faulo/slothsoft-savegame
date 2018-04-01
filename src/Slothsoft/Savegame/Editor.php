@@ -16,7 +16,6 @@ use DomainException;
 use RuntimeException;
 use UnexpectedValueException;
 
-
 class Editor implements DOMWriterInterface
 {
 

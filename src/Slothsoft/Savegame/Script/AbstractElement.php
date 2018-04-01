@@ -4,7 +4,6 @@ namespace Slothsoft\Savegame\Script;
 
 use Slothsoft\Savegame\Converter;
 
-
 abstract class AbstractElement
 {
 

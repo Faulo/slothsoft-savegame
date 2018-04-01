@@ -5,7 +5,6 @@ namespace Slothsoft\Savegame\Node;
 use Slothsoft\Savegame\EditorElement;
 use RangeException;
 
-
 class EventDictionaryInstruction extends AbstractInstructionContent
 {
 

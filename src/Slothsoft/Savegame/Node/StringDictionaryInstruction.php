@@ -5,7 +5,6 @@ namespace Slothsoft\Savegame\Node;
 use Slothsoft\Savegame\EditorElement;
 use DomainException;
 
-
 class StringDictionaryInstruction extends AbstractInstructionContent
 {
 

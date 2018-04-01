@@ -4,7 +4,6 @@ namespace Slothsoft\Savegame\Node;
 
 use Slothsoft\Savegame\EditorElement;
 
-
 class EventInstruction extends AbstractInstructionContent
 {
 

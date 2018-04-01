@@ -10,7 +10,6 @@ use Slothsoft\Savegame\Build\BuilderInterface;
 use Slothsoft\Savegame\Node\ArchiveParser\ArchiveBuilderInterface;
 use Slothsoft\Savegame\Node\ArchiveParser\ArchiveExtractorInterface;
 
-
 class ArchiveNode extends AbstractNode implements BuildableInterface
 {
 

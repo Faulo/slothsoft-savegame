@@ -5,7 +5,6 @@ namespace Slothsoft\Savegame;
 use DomainException;
 use DS\Vector;
 
-
 class EditorElement
 {
 

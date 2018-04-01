@@ -2,8 +2,6 @@
 declare(strict_types = 1);
 namespace Slothsoft\Savegame\Node;
 
-
-
 class GroupContainer extends AbstractContainerContent
 {
 

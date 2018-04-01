@@ -5,7 +5,6 @@ namespace Slothsoft\Savegame\Node;
 use Slothsoft\Savegame\EditorElement;
 use Slothsoft\Savegame\Build\BuildableInterface;
 
-
 abstract class AbstractContainerContent extends AbstractContentNode implements BuildableInterface
 {
 

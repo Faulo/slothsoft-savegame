@@ -7,7 +7,6 @@ use Slothsoft\Savegame\EditorElement;
 use Slothsoft\Savegame\Build\BuildableInterface;
 use Slothsoft\Savegame\Build\BuilderInterface;
 
-
 class SavegameNode extends AbstractNode implements BuildableInterface
 {
 

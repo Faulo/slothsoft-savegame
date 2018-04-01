@@ -5,7 +5,6 @@ namespace Slothsoft\Savegame\Node;
 use Slothsoft\Savegame\EditorElement;
 use Slothsoft\Savegame\Build\BuilderInterface;
 
-
 class StringValue extends AbstractValueContent
 {
 

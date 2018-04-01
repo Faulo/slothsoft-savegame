@@ -9,7 +9,6 @@ use Slothsoft\Savegame\NodeEvaluatorInterface;
 use Slothsoft\Savegame\Build\BuildableInterface;
 use Slothsoft\Savegame\Build\BuilderInterface;
 
-
 class FileContainer extends AbstractNode implements NodeEvaluatorInterface, BuildableInterface
 {
 

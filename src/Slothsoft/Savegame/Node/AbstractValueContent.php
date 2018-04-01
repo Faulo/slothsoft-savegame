@@ -6,7 +6,6 @@ use Slothsoft\Savegame\EditorElement;
 use Slothsoft\Savegame\Build\BuildableInterface;
 use Slothsoft\Savegame\Build\BuilderInterface;
 
-
 abstract class AbstractValueContent extends AbstractContentNode implements BuildableInterface
 {
 
