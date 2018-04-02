@@ -3,12 +3,41 @@
 	xmlns="http://schema.slothsoft.net/savegame/editor"
 	targetNamespace="http://schema.slothsoft.net/savegame/editor"
 	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-	elementFormDefault="qualified" attributeFormDefault="unqualified"
-	version="0.3">
+	xmlns:ssv="http://schema.slothsoft.net/schema/versioning"
+	elementFormDefault="qualified" attributeFormDefault="unqualified">
+	
+	<xsd:annotation>
+		<xsd:appinfo>
+			<ssv:manifest version="1.0">
+				<ssv:name>Savegame Editor Manifest</ssv:name>
+				<ssv:version>0.3</ssv:version>
+				<ssv:revision>R20171126</ssv:revision>
+				<ssv:prefix>sse</ssv:prefix>
+				<ssv:namespace>http://schema.slothsoft.net/savegame/editor</ssv:namespace>
+				<ssv:author email="daniel.lio.schulz@gmail.com">Daniel Schulz</ssv:author>
+				<ssv:description><![CDATA[
+This namespace defines elements to describe the contents of game files in terms of which-byte-means-what, in a way that an editor can be automatically built by parsing a manifest file and corresponding game file(s).
+				]]></ssv:description>
+				<ssv:changelog><![CDATA[
+*** Version 0.2 ***
+	R20170907
+		- initial release
+
+*** Version 0.3 ***
+	R20171126
+		- removed <savegame.dictionary>
+		- renamed <archive filepath=""> to <archive path="">
+		- added <instruction>
+		- added types id, name, numberExpression
+				]]></ssv:changelog>
+			</ssv:manifest>
+		</xsd:appinfo>
+	</xsd:annotation>
+	
 	<xsd:attributeGroup name="schemaVersion">
-		<xsd:attribute name="schemaVersion" type="xsd:token" use="required" fixed="0.3">
+		<xsd:attribute name="version" type="xsd:token" use="required" fixed="0.3">
 			<xsd:annotation>
-				<xsd:documentation>Die Version des Schemas, mit der dieses Dokument validiert wurde.</xsd:documentation>
+				<xsd:documentation>The schema version used by the instance document.</xsd:documentation>
 			</xsd:annotation>
 		</xsd:attribute>
 	</xsd:attributeGroup>
@@ -21,7 +50,6 @@
 					<xsd:choice minOccurs="0" maxOccurs="unbounded">
 						<xsd:element ref="global" minOccurs="1" maxOccurs="1"/>
 						<xsd:element ref="archive" minOccurs="1" maxOccurs="1"/>
-						<xsd:element ref="dictionary" minOccurs="1" maxOccurs="1"/>
 					</xsd:choice>
 					<xsd:attributeGroup ref="schemaVersion"/>
 					<xsd:attribute name="save-id" type="xsd:normalizedString"/>
@@ -72,12 +100,12 @@
 	<xsd:element name="archive">
 		<xsd:complexType>
 			<xsd:complexContent>
-				<xsd:extension base="containerContentNode">
+				<xsd:extension base="genericNode">
 					<xsd:choice minOccurs="0" maxOccurs="unbounded">
+						<xsd:element ref="for-each-file"/>
 						<xsd:element ref="file"/>
 					</xsd:choice>
-					<xsd:attribute name="file-name" type="xsd:normalizedString" use="required"/>
-					<xsd:attribute name="file-path" type="xsd:normalizedString"/>
+					<xsd:attribute name="path" type="xsd:normalizedString" use="required"/>
 					<xsd:attribute name="type" use="required">
 						<xsd:simpleType>
 							<xsd:restriction base="xsd:token">
@@ -88,6 +116,19 @@
 							</xsd:restriction>
 						</xsd:simpleType>
 					</xsd:attribute>
+					<xsd:attribute name="name" type="xsd:normalizedString" use="optional"/>
+					<xsd:attribute name="size" type="xsd:integer" use="optional"/>
+					<xsd:attribute name="timestamp" type="xsd:normalizedString" use="optional"/>
+					<xsd:attribute name="md5" type="xsd:normalizedString" use="optional"/>
+				</xsd:extension>
+			</xsd:complexContent>
+		</xsd:complexType>
+	</xsd:element>
+	
+	<xsd:element name="for-each-file">
+		<xsd:complexType>
+			<xsd:complexContent>
+				<xsd:extension base="instructionContentNode">
 				</xsd:extension>
 			</xsd:complexContent>
 		</xsd:complexType>
@@ -97,8 +138,7 @@
 		<xsd:complexType>
 			<xsd:complexContent>
 				<xsd:extension base="containerContentNode">
-					<xsd:attribute name="filename" type="xsd:normalizedString" use="required"/>
-					<xsd:attribute name="filepath" type="xsd:normalizedString"/>
+					<xsd:attribute name="file-name" type="xsd:normalizedString" use="required"/>
 				</xsd:extension>
 			</xsd:complexContent>
 		</xsd:complexType>
@@ -108,7 +148,30 @@
 		<xsd:complexType>
 			<xsd:complexContent>
 				<xsd:extension base="containerContentNode">
-					<xsd:attribute name="type" type="xsd:normalizedString"/>
+					<xsd:attribute name="instruction" type="name"/>
+				</xsd:extension>
+			</xsd:complexContent>
+		</xsd:complexType>
+	</xsd:element>
+	
+	<xsd:element name="instruction">
+		<xsd:complexType>
+			<xsd:complexContent>
+				<xsd:extension base="containerContentNode">
+					<xsd:attribute name="type" use="required">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:token">
+								<xsd:enumeration value="string-dictionary"/>
+								<xsd:enumeration value="event-dictionary"/>
+								<xsd:enumeration value="event"/>
+								<xsd:enumeration value="event-step"/>
+								<xsd:enumeration value="bit-field"/>
+								<xsd:enumeration value="repeat-group"/>
+								<xsd:enumeration value="use-global"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:attribute>
+					<xsd:attribute name="dictionary-ref" type="id" use="optional"/>
 				</xsd:extension>
 			</xsd:complexContent>
 		</xsd:complexType>
@@ -171,6 +234,7 @@
 		<xsd:complexType>
 			<xsd:complexContent>
 				<xsd:extension base="valueContentNode">
+					<xsd:attribute name="dictionary-ref" type="id" use="optional"/>
 				</xsd:extension>
 			</xsd:complexContent>
 		</xsd:complexType>
@@ -257,8 +321,8 @@
 	<xsd:complexType name="contentNode">
 		<xsd:complexContent>
 			<xsd:extension base="genericNode">
-				<xsd:attribute name="name" type="name"/>
-				<xsd:attribute name="position" type="numberExpression" />
+				<xsd:attribute name="name" type="name" use="optional"/>
+				<xsd:attribute name="position" type="numberExpression" use="optional"/>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
@@ -276,7 +340,7 @@
 	<xsd:complexType name="instructionContentNode">
 		<xsd:complexContent>
 			<xsd:extension base="containerContentNode">
-				<xsd:attributeGroup ref="dictionary-ref"/>
+				<xsd:attribute name="dictionary-ref" type="id" use="optional"/>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
@@ -287,7 +351,6 @@
 				<xsd:attribute name="value" type="xsd:string"/>
 				<xsd:attribute name="value-id" type="xsd:integer"/>
 				<xsd:attribute name="size" type="numberExpression"/>
-				<xsd:attributeGroup ref="dictionary-ref"/>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
@@ -307,6 +370,7 @@
 			
 			<!-- container -->
 			<xsd:element ref="group"/>
+			<xsd:element ref="instruction"/>
 			
 			<!-- instruction -->
 			<xsd:element ref="bit-field"/>
@@ -316,10 +380,6 @@
 			<xsd:element ref="event-dictionary"/>
 		</xsd:choice>
 	</xsd:group>
-	
-	<xsd:attributeGroup name="dictionary-ref">
-		<xsd:attribute name="dictionary-ref" type="id" use="optional"/>
-	</xsd:attributeGroup>
 	
 	<xsd:attributeGroup name="encoding">
 		<xsd:attribute name="encoding" type="xsd:token"/>

@@ -1,15 +1,6 @@
 <?xml version="1.0"?>
 <assets xmlns="http://schema.slothsoft.net/farah/module">
     <directory name="schema">
-      <directory name="editor">
-        <resource-directory name="20170816" path="20170816" type="application/x-xsd+xml"/>
-        <resource-directory name="20170901" path="20170901" type="application/x-xsd+xml"/>
-        <resource-directory name="20170907" path="20170907" type="application/x-xsd+xml"/>
-        <resource-directory name="20171027" path="20171027" type="application/x-xsd+xml"/>
-        <resource-directory name="20171102" path="20171102" type="application/x-xsd+xml"/>
-        <resource-directory name="20171117" path="20171117" type="application/x-xsd+xml"/>
-        <resource-directory name="20171126" path="20171126" type="application/x-xsd+xml"/>
-        <resource-directory name="latest" path="20171126" type="application/x-xsd+xml"/>
-      </directory>
+        <resource-directory name="editor" type="application/x-xsd+xml"/>
     </directory>
   </assets>
