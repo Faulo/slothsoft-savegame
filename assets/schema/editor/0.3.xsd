@@ -8,7 +8,7 @@
 	
 	<xsd:annotation>
 		<xsd:appinfo>
-			<ssv:manifest version="1.0">
+			<ssv:info version="1.0">
 				<ssv:name>Savegame Editor Manifest</ssv:name>
 				<ssv:version>0.3</ssv:version>
 				<ssv:revision>R20171126</ssv:revision>
@@ -30,7 +30,7 @@ This namespace defines elements to describe the contents of game files in terms 
 		- added <instruction>
 		- added types id, name, numberExpression
 				]]></ssv:changelog>
-			</ssv:manifest>
+			</ssv:info>
 		</xsd:appinfo>
 	</xsd:annotation>
 	
