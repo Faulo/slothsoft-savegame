@@ -104,7 +104,7 @@ class SavegameNode extends AbstractNode implements BuildableInterface
     {
         return [
             'xmlns' => 'http://schema.slothsoft.net/savegame/editor',
-            'schemaVersion' => '0.3',
+            'version' => '0.3',
             'save-id' => $builder->escapeAttribute($this->saveId)
         ];
     }
