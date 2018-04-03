@@ -11,7 +11,7 @@
 			<ssv:info version="1.0">
 				<ssv:name>Savegame Editor Manifest</ssv:name>
 				<ssv:version>0.3</ssv:version>
-				<ssv:revision>R20171126</ssv:revision>
+				<ssv:revision>R20180403</ssv:revision>
 				<ssv:prefix>sse</ssv:prefix>
 				<ssv:namespace>http://schema.slothsoft.net/savegame/editor</ssv:namespace>
 				<ssv:author email="daniel.lio.schulz@gmail.com">Daniel Schulz</ssv:author>
@@ -29,6 +29,8 @@ This namespace defines elements to describe the contents of game files in terms 
 		- renamed <archive filepath=""> to <archive path="">
 		- added <instruction>
 		- added types id, name, numberExpression
+	R20180403
+		- changed <archive type="Raw|AMBR|AM2|JH"> to "xsd:token" (use editor configuration 'archiveBuilders' and 'archiveExtractors' to register archive types)
 				]]></ssv:changelog>
 			</ssv:info>
 		</xsd:appinfo>
