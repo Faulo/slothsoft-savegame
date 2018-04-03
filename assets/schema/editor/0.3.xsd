@@ -106,16 +106,7 @@ This namespace defines elements to describe the contents of game files in terms 
 						<xsd:element ref="file"/>
 					</xsd:choice>
 					<xsd:attribute name="path" type="xsd:normalizedString" use="required"/>
-					<xsd:attribute name="type" use="required">
-						<xsd:simpleType>
-							<xsd:restriction base="xsd:token">
-								<xsd:enumeration value="Raw"/>
-								<xsd:enumeration value="AMBR"/>
-								<xsd:enumeration value="AM2"/>
-								<xsd:enumeration value="JH"/>
-							</xsd:restriction>
-						</xsd:simpleType>
-					</xsd:attribute>
+					<xsd:attribute name="type" type="xsd:token" use="required"/>
 					<xsd:attribute name="name" type="xsd:normalizedString" use="optional"/>
 					<xsd:attribute name="size" type="xsd:integer" use="optional"/>
 					<xsd:attribute name="timestamp" type="xsd:normalizedString" use="optional"/>
