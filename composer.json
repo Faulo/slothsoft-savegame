@@ -18,6 +18,9 @@
     "require-dev": {
         "phpunit/phpunit": ">=6.5"
     },
+    "suggest": {
+        "ext-ds": "*"
+    },
     "autoload": {
         "psr-0": {
             "Slothsoft\\Savegame\\": "src/"
