@@ -2,6 +2,8 @@
 declare(strict_types = 1);
 namespace Slothsoft\Savegame\Build;
 
+use Slothsoft\Core\StreamWrapper\StreamWrapperInterface;
+
 class XmlBuilder implements BuilderInterface
 {
 
@@ -35,8 +37,7 @@ class XmlBuilder implements BuilderInterface
 
     public function buildStream(BuildableInterface $node)
     {
-        $handle = fopen('php://temp', 'w');
-        assert(is_resource($handle));
+        $handle = fopen('php://temp', StreamWrapperInterface::MODE_CREATE_READWRITE);
         $this->appendBuildable($handle, $node);
         fseek($handle, 0);
         return $handle;
