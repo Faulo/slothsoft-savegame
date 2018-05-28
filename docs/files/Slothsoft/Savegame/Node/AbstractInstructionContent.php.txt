@@ -1,0 +1,51 @@
+<?php
+declare(strict_types = 1);
+namespace Slothsoft\Savegame\Node;
+
+use Slothsoft\Savegame\EditorElement;
+use Slothsoft\Savegame\Build\BuildableInterface;
+use Slothsoft\Savegame\Build\BuilderInterface;
+
+abstract class AbstractInstructionContent extends AbstractContentNode implements BuildableInterface
+{
+
+    abstract protected function loadInstruction(EditorElement $strucElement);
+
+    abstract protected function getInstructionType(): string;
+
+    // protected $dictionary;
+    protected $dictionaryRef;
+
+    public function getBuildTag(): string
+    {
+        return 'instruction';
+    }
+
+    public function getBuildAttributes(BuilderInterface $builder): array
+    {
+        return parent::getBuildAttributes($builder) + [
+            'type' => $this->getInstructionType(),
+            'dictionary-ref' => $this->dictionaryRef
+        ];
+    }
+
+    protected function loadStruc(EditorElement $strucElement)
+    {
+        parent::loadStruc($strucElement);
+        
+        $this->dictionaryRef = (string) $strucElement->getAttribute('dictionary-ref');
+    }
+
+    protected function loadContent(EditorElement $strucElement)
+    {}
+
+    protected function loadChildren(EditorElement $strucElement)
+    {
+        if ($instructionList = $this->loadInstruction($strucElement)) {
+            foreach ($instructionList as $instruction) {
+                $this->loadChild($instruction);
+            }
+        }
+    }
+}
+
