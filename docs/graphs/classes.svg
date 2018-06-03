@@ -21,48 +21,352 @@
 <path fill="none" stroke="gray" d="M36,-168C36,-168 1394.96,-168 1394.96,-168 1400.96,-168 1406.96,-174 1406.96,-180 1406.96,-180 1406.96,-1812 1406.96,-1812 1406.96,-1818 1400.96,-1824 1394.96,-1824 1394.96,-1824 36,-1824 36,-1824 30,-1824 24,-1818 24,-1812 24,-1812 24,-180 24,-180 24,-174 30,-168 36,-168"/>
 <text text-anchor="middle" x="715.481" y="-1811.2" font-family="Times New Roman,serif" font-size="11.00" fill="gray">Savegame</text>
 </g>
-<g id="clust4" class="cluster"><title>cluster_\Slothsoft\Savegame\Build</title>
-<path fill="none" stroke="gray" d="M44,-1670C44,-1670 384.5,-1670 384.5,-1670 390.5,-1670 396.5,-1676 396.5,-1682 396.5,-1682 396.5,-1784 396.5,-1784 396.5,-1790 390.5,-1796 384.5,-1796 384.5,-1796 44,-1796 44,-1796 38,-1796 32,-1790 32,-1784 32,-1784 32,-1682 32,-1682 32,-1676 38,-1670 44,-1670"/>
-<text text-anchor="middle" x="214.25" y="-1783.2" font-family="Times New Roman,serif" font-size="11.00" fill="gray">Build</text>
-</g>
-<g id="clust5" class="cluster"><title>cluster_\Slothsoft\Savegame\Executables</title>
-<path fill="none" stroke="gray" d="M1202.96,-276C1202.96,-276 1379.96,-276 1379.96,-276 1385.96,-276 1391.96,-282 1391.96,-288 1391.96,-288 1391.96,-390 1391.96,-390 1391.96,-396 1385.96,-402 1379.96,-402 1379.96,-402 1202.96,-402 1202.96,-402 1196.96,-402 1190.96,-396 1190.96,-390 1190.96,-390 1190.96,-288 1190.96,-288 1190.96,-282 1196.96,-276 1202.96,-276"/>
-<text text-anchor="middle" x="1291.46" y="-389.2" font-family="Times New Roman,serif" font-size="11.00" fill="gray">Executables</text>
-</g>
-<g id="clust6" class="cluster"><title>cluster_\Slothsoft\Savegame\Node</title>
+<g id="clust4" class="cluster"><title>cluster_\Slothsoft\Savegame\Node</title>
 <path fill="none" stroke="gray" d="M274.5,-652C274.5,-652 1386.96,-652 1386.96,-652 1392.96,-652 1398.96,-658 1398.96,-664 1398.96,-664 1398.96,-1604 1398.96,-1604 1398.96,-1610 1392.96,-1616 1386.96,-1616 1386.96,-1616 274.5,-1616 274.5,-1616 268.5,-1616 262.5,-1610 262.5,-1604 262.5,-1604 262.5,-664 262.5,-664 262.5,-658 268.5,-652 274.5,-652"/>
 <text text-anchor="middle" x="830.731" y="-1603.2" font-family="Times New Roman,serif" font-size="11.00" fill="gray">Node</text>
 </g>
-<g id="clust7" class="cluster"><title>cluster_\Slothsoft\Savegame\Node\ArchiveParser</title>
+<g id="clust5" class="cluster"><title>cluster_\Slothsoft\Savegame\Node\ArchiveParser</title>
 <path fill="none" stroke="gray" d="M816.981,-1462C816.981,-1462 1363.46,-1462 1363.46,-1462 1369.46,-1462 1375.46,-1468 1375.46,-1474 1375.46,-1474 1375.46,-1576 1375.46,-1576 1375.46,-1582 1369.46,-1588 1363.46,-1588 1363.46,-1588 816.981,-1588 816.981,-1588 810.981,-1588 804.981,-1582 804.981,-1576 804.981,-1576 804.981,-1474 804.981,-1474 804.981,-1468 810.981,-1462 816.981,-1462"/>
 <text text-anchor="middle" x="1090.22" y="-1575.2" font-family="Times New Roman,serif" font-size="11.00" fill="gray">ArchiveParser</text>
 </g>
-<g id="clust8" class="cluster"><title>cluster_\Slothsoft\Savegame\Script</title>
+<g id="clust7" class="cluster"><title>cluster_\Slothsoft\Savegame\Script</title>
 <path fill="none" stroke="gray" d="M850.481,-410C850.481,-410 1315.96,-410 1315.96,-410 1321.96,-410 1327.96,-416 1327.96,-422 1327.96,-422 1327.96,-632 1327.96,-632 1327.96,-638 1321.96,-644 1315.96,-644 1315.96,-644 850.481,-644 850.481,-644 844.481,-644 838.481,-638 838.481,-632 838.481,-632 838.481,-422 838.481,-422 838.481,-416 844.481,-410 850.481,-410"/>
 <text text-anchor="middle" x="1083.22" y="-631.2" font-family="Times New Roman,serif" font-size="11.00" fill="gray">Script</text>
 </g>
-<!-- \\Slothsoft\\Savegame\\Build\\XmlBuilder -->
-<g id="node1" class="node"><title>\\Slothsoft\\Savegame\\Build\\XmlBuilder</title>
-<polygon fill="none" stroke="black" points="361.5,-1768 277.5,-1768 277.5,-1732 361.5,-1732 361.5,-1768"/>
-<text text-anchor="middle" x="319.5" y="-1747.2" font-family="Courier,monospace" font-size="11.00">XmlBuilder</text>
+<g id="clust8" class="cluster"><title>cluster_\Slothsoft\Savegame\Build</title>
+<path fill="none" stroke="gray" d="M44,-1670C44,-1670 384.5,-1670 384.5,-1670 390.5,-1670 396.5,-1676 396.5,-1682 396.5,-1682 396.5,-1784 396.5,-1784 396.5,-1790 390.5,-1796 384.5,-1796 384.5,-1796 44,-1796 44,-1796 38,-1796 32,-1790 32,-1784 32,-1784 32,-1682 32,-1682 32,-1676 38,-1670 44,-1670"/>
+<text text-anchor="middle" x="214.25" y="-1783.2" font-family="Times New Roman,serif" font-size="11.00" fill="gray">Build</text>
 </g>
-<!-- \\Slothsoft\\Savegame\\Build\\BuilderInterface -->
-<g id="node3" class="node"><title>\\Slothsoft\\Savegame\\Build\\BuilderInterface</title>
-<polygon fill="none" stroke="black" points="165,-1768 40,-1768 40,-1732 165,-1732 165,-1768"/>
-<text text-anchor="middle" x="102.5" y="-1747.2" font-family="Courier,monospace" font-size="11.00">BuilderInterface</text>
+<g id="clust6" class="cluster"><title>cluster_\Slothsoft\Savegame\Executables</title>
+<path fill="none" stroke="gray" d="M1202.96,-276C1202.96,-276 1379.96,-276 1379.96,-276 1385.96,-276 1391.96,-282 1391.96,-288 1391.96,-288 1391.96,-390 1391.96,-390 1391.96,-396 1385.96,-402 1379.96,-402 1379.96,-402 1202.96,-402 1202.96,-402 1196.96,-402 1190.96,-396 1190.96,-390 1190.96,-390 1190.96,-288 1190.96,-288 1190.96,-282 1196.96,-276 1202.96,-276"/>
+<text text-anchor="middle" x="1291.46" y="-389.2" font-family="Times New Roman,serif" font-size="11.00" fill="gray">Executables</text>
 </g>
-<!-- \\Slothsoft\\Savegame\\Build\\XmlBuilder&#45;&gt;\\Slothsoft\\Savegame\\Build\\BuilderInterface -->
-<g id="edge1" class="edge"><title>\\Slothsoft\\Savegame\\Build\\XmlBuilder&#45;&gt;\\Slothsoft\\Savegame\\Build\\BuilderInterface</title>
-<path fill="none" stroke="black" stroke-dasharray="1,5" d="M277.3,-1750C248.57,-1750 209.475,-1750 175.639,-1750"/>
-<polygon fill="none" stroke="black" points="175.324,-1746.5 165.324,-1750 175.324,-1753.5 175.324,-1746.5"/>
+<!-- \\Slothsoft\\Savegame\\Node\\ArchiveParser\\CopyArchiveExtractor -->
+<g id="node1" class="node"><title>\\Slothsoft\\Savegame\\Node\\ArchiveParser\\CopyArchiveExtractor</title>
+<polygon fill="none" stroke="black" points="1367.46,-1560 1215.46,-1560 1215.46,-1524 1367.46,-1524 1367.46,-1560"/>
+<text text-anchor="middle" x="1291.46" y="-1539.2" font-family="Courier,monospace" font-size="11.00">CopyArchiveExtractor</text>
+</g>
+<!-- \\Slothsoft\\Savegame\\Node\\ArchiveParser\\ArchiveExtractorInterface -->
+<g id="node3" class="node"><title>\\Slothsoft\\Savegame\\Node\\ArchiveParser\\ArchiveExtractorInterface</title>
+<polygon fill="none" stroke="black" points="997.981,-1560 812.981,-1560 812.981,-1524 997.981,-1524 997.981,-1560"/>
+<text text-anchor="middle" x="905.481" y="-1539.2" font-family="Courier,monospace" font-size="11.00">ArchiveExtractorInterface</text>
+</g>
+<!-- \\Slothsoft\\Savegame\\Node\\ArchiveParser\\CopyArchiveExtractor&#45;&gt;\\Slothsoft\\Savegame\\Node\\ArchiveParser\\ArchiveExtractorInterface -->
+<g id="edge9" class="edge"><title>\\Slothsoft\\Savegame\\Node\\ArchiveParser\\CopyArchiveExtractor&#45;&gt;\\Slothsoft\\Savegame\\Node\\ArchiveParser\\ArchiveExtractorInterface</title>
+<path fill="none" stroke="black" stroke-dasharray="1,5" d="M1215.06,-1542C1156.08,-1542 1073.47,-1542 1008.56,-1542"/>
+<polygon fill="none" stroke="black" points="1008.31,-1538.5 998.307,-1542 1008.31,-1545.5 1008.31,-1538.5"/>
+</g>
+<!-- \\Slothsoft\\Savegame\\Node\\ArchiveParser\\CopyArchiveBuilder -->
+<g id="node2" class="node"><title>\\Slothsoft\\Savegame\\Node\\ArchiveParser\\CopyArchiveBuilder</title>
+<polygon fill="none" stroke="black" points="1360.46,-1506 1222.46,-1506 1222.46,-1470 1360.46,-1470 1360.46,-1506"/>
+<text text-anchor="middle" x="1291.46" y="-1485.2" font-family="Courier,monospace" font-size="11.00">CopyArchiveBuilder</text>
+</g>
+<!-- \\Slothsoft\\Savegame\\Node\\ArchiveParser\\ArchiveBuilderInterface -->
+<g id="node4" class="node"><title>\\Slothsoft\\Savegame\\Node\\ArchiveParser\\ArchiveBuilderInterface</title>
+<polygon fill="none" stroke="black" points="991.481,-1506 819.481,-1506 819.481,-1470 991.481,-1470 991.481,-1506"/>
+<text text-anchor="middle" x="905.481" y="-1485.2" font-family="Courier,monospace" font-size="11.00">ArchiveBuilderInterface</text>
+</g>
+<!-- \\Slothsoft\\Savegame\\Node\\ArchiveParser\\CopyArchiveBuilder&#45;&gt;\\Slothsoft\\Savegame\\Node\\ArchiveParser\\ArchiveBuilderInterface -->
+<g id="edge36" class="edge"><title>\\Slothsoft\\Savegame\\Node\\ArchiveParser\\CopyArchiveBuilder&#45;&gt;\\Slothsoft\\Savegame\\Node\\ArchiveParser\\ArchiveBuilderInterface</title>
+<path fill="none" stroke="black" stroke-dasharray="1,5" d="M1222.26,-1488C1160.97,-1488 1070.33,-1488 1001.87,-1488"/>
+<polygon fill="none" stroke="black" points="1001.51,-1484.5 991.506,-1488 1001.51,-1491.5 1001.51,-1484.5"/>
+</g>
+<!-- \\Slothsoft\\Savegame\\Node\\AbstractContainerContent -->
+<g id="node5" class="node"><title>\\Slothsoft\\Savegame\\Node\\AbstractContainerContent</title>
+<polygon fill="none" stroke="black" points="994.981,-1443 815.981,-1443 815.981,-1407 994.981,-1407 994.981,-1443"/>
+<text text-anchor="start" x="871.481" y="-1428.2" font-family="Courier,monospace" font-size="11.00">«abstract»</text>
+<text text-anchor="start" x="823.981" y="-1416.2" font-family="Courier,monospace" font-size="11.00">AbstractContainerContent</text>
+</g>
+<!-- \\Slothsoft\\Savegame\\Node\\AbstractContentNode -->
+<g id="node15" class="node"><title>\\Slothsoft\\Savegame\\Node\\AbstractContentNode</title>
+<polygon fill="none" stroke="black" points="619,-1244 474,-1244 474,-1208 619,-1208 619,-1244"/>
+<text text-anchor="start" x="512.5" y="-1229.2" font-family="Courier,monospace" font-size="11.00">«abstract»</text>
+<text text-anchor="start" x="482" y="-1217.2" font-family="Courier,monospace" font-size="11.00">AbstractContentNode</text>
+</g>
+<!-- \\Slothsoft\\Savegame\\Node\\AbstractContainerContent&#45;&gt;\\Slothsoft\\Savegame\\Node\\AbstractContentNode -->
+<g id="edge2" class="edge"><title>\\Slothsoft\\Savegame\\Node\\AbstractContainerContent&#45;&gt;\\Slothsoft\\Savegame\\Node\\AbstractContentNode</title>
+<path fill="none" stroke="black" d="M878.232,-1406.96C828.986,-1373.62 718.697,-1301.36 619,-1253 615.474,-1251.29 611.811,-1249.61 608.088,-1247.99"/>
+<polygon fill="none" stroke="black" points="609.331,-1244.72 598.757,-1244.06 606.615,-1251.17 609.331,-1244.72"/>
 </g>
 <!-- \\Slothsoft\\Savegame\\Build\\BuildableInterface -->
-<g id="node2" class="node"><title>\\Slothsoft\\Savegame\\Build\\BuildableInterface</title>
+<g id="node39" class="node"><title>\\Slothsoft\\Savegame\\Build\\BuildableInterface</title>
 <polygon fill="none" stroke="black" points="388.5,-1714 250.5,-1714 250.5,-1678 388.5,-1678 388.5,-1714"/>
 <text text-anchor="middle" x="319.5" y="-1693.2" font-family="Courier,monospace" font-size="11.00">BuildableInterface</text>
 </g>
+<!-- \\Slothsoft\\Savegame\\Node\\AbstractContainerContent&#45;&gt;\\Slothsoft\\Savegame\\Build\\BuildableInterface -->
+<g id="edge3" class="edge"><title>\\Slothsoft\\Savegame\\Node\\AbstractContainerContent&#45;&gt;\\Slothsoft\\Savegame\\Build\\BuildableInterface</title>
+<path fill="none" stroke="black" stroke-dasharray="1,5" d="M815.826,-1422.09C713.358,-1419.16 557.408,-1416.21 547.5,-1425"/>
+</g>
+<!-- \\Slothsoft\\Savegame\\Node\\AbstractValueContent -->
+<g id="node6" class="node"><title>\\Slothsoft\\Savegame\\Node\\AbstractValueContent</title>
+<polygon fill="none" stroke="black" points="981.481,-939 829.481,-939 829.481,-903 981.481,-903 981.481,-939"/>
+<text text-anchor="start" x="871.481" y="-924.2" font-family="Courier,monospace" font-size="11.00">«abstract»</text>
+<text text-anchor="start" x="837.481" y="-912.2" font-family="Courier,monospace" font-size="11.00">AbstractValueContent</text>
+</g>
+<!-- \\Slothsoft\\Savegame\\Node\\AbstractValueContent&#45;&gt;\\Slothsoft\\Savegame\\Node\\AbstractContentNode -->
+<g id="edge4" class="edge"><title>\\Slothsoft\\Savegame\\Node\\AbstractValueContent&#45;&gt;\\Slothsoft\\Savegame\\Node\\AbstractContentNode</title>
+<path fill="none" stroke="black" d="M890.388,-939.208C851.907,-987.812 739.825,-1122.13 619,-1199 616.586,-1200.54 614.071,-1202 611.49,-1203.41"/>
+<polygon fill="none" stroke="black" points="609.874,-1200.3 602.508,-1207.92 613.015,-1206.56 609.874,-1200.3"/>
+</g>
+<!-- \\Slothsoft\\Savegame\\Node\\AbstractValueContent&#45;&gt;\\Slothsoft\\Savegame\\Build\\BuildableInterface -->
+<g id="edge5" class="edge"><title>\\Slothsoft\\Savegame\\Node\\AbstractValueContent&#45;&gt;\\Slothsoft\\Savegame\\Build\\BuildableInterface</title>
+<path fill="none" stroke="black" stroke-dasharray="1,5" d="M545.5,-1425C449.973,-1509.79 503.232,-1596.11 402,-1674 400.603,-1675.08 399.156,-1676.1 397.669,-1677.07"/>
+<polygon fill="none" stroke="black" points="395.736,-1674.14 388.757,-1682.11 399.184,-1680.24 395.736,-1674.14"/>
+<path fill="none" stroke="black" stroke-dasharray="1,5" d="M887.099,-939.024C847.261,-981.207 748.382,-1090.98 691,-1199 643.527,-1288.37 696.786,-1350.28 619,-1415 594.335,-1435.52 571.498,-1403.7 547.5,-1425"/>
+</g>
+<!-- \\Slothsoft\\Savegame\\Node\\EventScriptValue -->
+<g id="node7" class="node"><title>\\Slothsoft\\Savegame\\Node\\EventScriptValue</title>
+<polygon fill="none" stroke="black" points="1353.96,-1020 1228.96,-1020 1228.96,-984 1353.96,-984 1353.96,-1020"/>
+<text text-anchor="middle" x="1291.46" y="-999.2" font-family="Courier,monospace" font-size="11.00">EventScriptValue</text>
+</g>
+<!-- \\Slothsoft\\Savegame\\Node\\EventScriptValue&#45;&gt;\\Slothsoft\\Savegame\\Node\\AbstractValueContent -->
+<g id="edge7" class="edge"><title>\\Slothsoft\\Savegame\\Node\\EventScriptValue&#45;&gt;\\Slothsoft\\Savegame\\Node\\AbstractValueContent</title>
+<path fill="none" stroke="black" d="M1228.77,-988.986C1164.48,-975.425 1063.3,-954.08 991.467,-938.928"/>
+<polygon fill="none" stroke="black" points="992.04,-935.472 981.533,-936.832 990.595,-942.321 992.04,-935.472"/>
+</g>
+<!-- \\Slothsoft\\Savegame\\Node\\GroupContainer -->
+<g id="node8" class="node"><title>\\Slothsoft\\Savegame\\Node\\GroupContainer</title>
+<polygon fill="none" stroke="black" points="1346.96,-1398 1235.96,-1398 1235.96,-1362 1346.96,-1362 1346.96,-1398"/>
+<text text-anchor="middle" x="1291.46" y="-1377.2" font-family="Courier,monospace" font-size="11.00">GroupContainer</text>
+</g>
+<!-- \\Slothsoft\\Savegame\\Node\\GroupContainer&#45;&gt;\\Slothsoft\\Savegame\\Node\\AbstractContainerContent -->
+<g id="edge8" class="edge"><title>\\Slothsoft\\Savegame\\Node\\GroupContainer&#45;&gt;\\Slothsoft\\Savegame\\Node\\AbstractContainerContent</title>
+<path fill="none" stroke="black" d="M1235.85,-1386.4C1176.04,-1393.41 1078.85,-1404.8 1005.51,-1413.39"/>
+<polygon fill="none" stroke="black" points="1004.86,-1409.95 995.331,-1414.59 1005.67,-1416.9 1004.86,-1409.95"/>
+</g>
+<!-- \\Slothsoft\\Savegame\\Node\\SavegameNode -->
+<g id="node9" class="node"><title>\\Slothsoft\\Savegame\\Node\\SavegameNode</title>
+<polygon fill="none" stroke="black" points="595.5,-1406 497.5,-1406 497.5,-1370 595.5,-1370 595.5,-1406"/>
+<text text-anchor="middle" x="546.5" y="-1385.2" font-family="Courier,monospace" font-size="11.00">SavegameNode</text>
+</g>
+<!-- \\Slothsoft\\Savegame\\Node\\AbstractNode -->
+<g id="node19" class="node"><title>\\Slothsoft\\Savegame\\Node\\AbstractNode</title>
+<polygon fill="none" stroke="black" points="368.5,-1298 270.5,-1298 270.5,-1262 368.5,-1262 368.5,-1298"/>
+<text text-anchor="start" x="285.5" y="-1283.2" font-family="Courier,monospace" font-size="11.00">«abstract»</text>
+<text text-anchor="start" x="278.5" y="-1271.2" font-family="Courier,monospace" font-size="11.00">AbstractNode</text>
+</g>
+<!-- \\Slothsoft\\Savegame\\Node\\SavegameNode&#45;&gt;\\Slothsoft\\Savegame\\Node\\AbstractNode -->
+<g id="edge10" class="edge"><title>\\Slothsoft\\Savegame\\Node\\SavegameNode&#45;&gt;\\Slothsoft\\Savegame\\Node\\AbstractNode</title>
+<path fill="none" stroke="black" d="M497.202,-1372.23C489.245,-1368.94 481.239,-1365.18 474,-1361 438.175,-1340.31 438.79,-1320.92 402,-1302 394.68,-1298.24 386.65,-1295.06 378.572,-1292.41"/>
+<polygon fill="none" stroke="black" points="379.327,-1288.98 368.741,-1289.41 377.288,-1295.67 379.327,-1288.98"/>
+</g>
+<!-- \\Slothsoft\\Savegame\\Node\\SavegameNode&#45;&gt;\\Slothsoft\\Savegame\\Build\\BuildableInterface -->
+<g id="edge11" class="edge"><title>\\Slothsoft\\Savegame\\Node\\SavegameNode&#45;&gt;\\Slothsoft\\Savegame\\Build\\BuildableInterface</title>
+<path fill="none" stroke="black" stroke-dasharray="1,5" d="M497.345,-1402.54C488.629,-1406.98 480.317,-1412.7 474,-1420 397.241,-1508.75 485.489,-1591.55 402,-1674 400.514,-1675.47 398.941,-1676.84 397.295,-1678.12"/>
+<polygon fill="none" stroke="black" points="395.002,-1675.44 388.525,-1683.82 398.817,-1681.31 395.002,-1675.44"/>
+</g>
+<!-- \\Slothsoft\\Savegame\\Node\\EventInstruction -->
+<g id="node10" class="node"><title>\\Slothsoft\\Savegame\\Node\\EventInstruction</title>
+<polygon fill="none" stroke="black" points="1353.96,-1074 1228.96,-1074 1228.96,-1038 1353.96,-1038 1353.96,-1074"/>
+<text text-anchor="middle" x="1291.46" y="-1053.2" font-family="Courier,monospace" font-size="11.00">EventInstruction</text>
+</g>
+<!-- \\Slothsoft\\Savegame\\Node\\AbstractInstructionContent -->
+<g id="node14" class="node"><title>\\Slothsoft\\Savegame\\Node\\AbstractInstructionContent</title>
+<polygon fill="none" stroke="black" points="1001.48,-1244 809.481,-1244 809.481,-1208 1001.48,-1208 1001.48,-1244"/>
+<text text-anchor="start" x="871.481" y="-1229.2" font-family="Courier,monospace" font-size="11.00">«abstract»</text>
+<text text-anchor="start" x="817.481" y="-1217.2" font-family="Courier,monospace" font-size="11.00">AbstractInstructionContent</text>
+</g>
+<!-- \\Slothsoft\\Savegame\\Node\\EventInstruction&#45;&gt;\\Slothsoft\\Savegame\\Node\\AbstractInstructionContent -->
+<g id="edge12" class="edge"><title>\\Slothsoft\\Savegame\\Node\\EventInstruction&#45;&gt;\\Slothsoft\\Savegame\\Node\\AbstractInstructionContent</title>
+<path fill="none" stroke="black" d="M1228.8,-1070.66C1216.14,-1074.25 1203,-1078.4 1190.96,-1083 1100.43,-1117.63 1000.44,-1171.92 946.434,-1202.68"/>
+<polygon fill="none" stroke="black" points="944.474,-1199.77 937.533,-1207.77 947.951,-1205.84 944.474,-1199.77"/>
+</g>
+<!-- \\Slothsoft\\Savegame\\Node\\ForEachFileNode -->
+<g id="node11" class="node"><title>\\Slothsoft\\Savegame\\Node\\ForEachFileNode</title>
+<polygon fill="none" stroke="black" points="605.5,-1190 487.5,-1190 487.5,-1154 605.5,-1154 605.5,-1190"/>
+<text text-anchor="middle" x="546.5" y="-1169.2" font-family="Courier,monospace" font-size="11.00">ForEachFileNode</text>
+</g>
+<!-- \\Slothsoft\\Savegame\\Node\\ForEachFileNode&#45;&gt;\\Slothsoft\\Savegame\\Node\\AbstractNode -->
+<g id="edge13" class="edge"><title>\\Slothsoft\\Savegame\\Node\\ForEachFileNode&#45;&gt;\\Slothsoft\\Savegame\\Node\\AbstractNode</title>
+<path fill="none" stroke="black" d="M495.172,-1190.1C488.007,-1192.94 480.775,-1195.95 474,-1199 434.787,-1216.67 391.583,-1239.81 361.028,-1256.84"/>
+<polygon fill="none" stroke="black" points="358.984,-1253.97 351.97,-1261.91 362.405,-1260.08 358.984,-1253.97"/>
+</g>
+<!-- \\Slothsoft\\Savegame\\Node\\UseGlobalInstruction -->
+<g id="node12" class="node"><title>\\Slothsoft\\Savegame\\Node\\UseGlobalInstruction</title>
+<polygon fill="none" stroke="black" points="981.481,-885 829.481,-885 829.481,-849 981.481,-849 981.481,-885"/>
+<text text-anchor="middle" x="905.481" y="-864.2" font-family="Courier,monospace" font-size="11.00">UseGlobalInstruction</text>
+</g>
+<!-- \\Slothsoft\\Savegame\\Node\\UseGlobalInstruction&#45;&gt;\\Slothsoft\\Savegame\\Node\\AbstractContentNode -->
+<g id="edge14" class="edge"><title>\\Slothsoft\\Savegame\\Node\\UseGlobalInstruction&#45;&gt;\\Slothsoft\\Savegame\\Node\\AbstractContentNode</title>
+<path fill="none" stroke="black" d="M829.322,-856.69C783.912,-854.81 727.876,-860.84 691,-894 587.433,-987.13 710.921,-1094.36 619,-1199 618.256,-1199.85 617.482,-1200.67 616.682,-1201.46"/>
+<polygon fill="none" stroke="black" points="614.313,-1198.88 608.834,-1207.95 618.772,-1204.28 614.313,-1198.88"/>
+</g>
+<!-- \\Slothsoft\\Savegame\\Node\\SelectValue -->
+<g id="node13" class="node"><title>\\Slothsoft\\Savegame\\Node\\SelectValue</title>
+<polygon fill="none" stroke="black" points="1336.96,-966 1245.96,-966 1245.96,-930 1336.96,-930 1336.96,-966"/>
+<text text-anchor="middle" x="1291.46" y="-945.2" font-family="Courier,monospace" font-size="11.00">SelectValue</text>
+</g>
+<!-- \\Slothsoft\\Savegame\\Node\\SelectValue&#45;&gt;\\Slothsoft\\Savegame\\Node\\AbstractValueContent -->
+<g id="edge15" class="edge"><title>\\Slothsoft\\Savegame\\Node\\SelectValue&#45;&gt;\\Slothsoft\\Savegame\\Node\\AbstractValueContent</title>
+<path fill="none" stroke="black" d="M1245.66,-944.85C1183.66,-940.49 1070.46,-932.53 991.983,-927.012"/>
+<polygon fill="none" stroke="black" points="991.851,-923.494 981.63,-926.284 991.36,-930.477 991.851,-923.494"/>
+</g>
+<!-- \\Slothsoft\\Savegame\\Node\\AbstractInstructionContent&#45;&gt;\\Slothsoft\\Savegame\\Node\\AbstractContentNode -->
+<g id="edge17" class="edge"><title>\\Slothsoft\\Savegame\\Node\\AbstractInstructionContent&#45;&gt;\\Slothsoft\\Savegame\\Node\\AbstractContentNode</title>
+<path fill="none" stroke="black" d="M809.286,-1226C753.209,-1226 682.992,-1226 629.4,-1226"/>
+<polygon fill="none" stroke="black" points="629.253,-1222.5 619.253,-1226 629.253,-1229.5 629.253,-1222.5"/>
+</g>
+<!-- \\Slothsoft\\Savegame\\Node\\AbstractInstructionContent&#45;&gt;\\Slothsoft\\Savegame\\Build\\BuildableInterface -->
+<g id="edge18" class="edge"><title>\\Slothsoft\\Savegame\\Node\\AbstractInstructionContent&#45;&gt;\\Slothsoft\\Savegame\\Build\\BuildableInterface</title>
+<path fill="none" stroke="black" stroke-dasharray="1,5" d="M884.109,-1244.29C839.651,-1283.06 729.069,-1373.33 619,-1415 588.991,-1426.36 571.498,-1403.7 547.5,-1425"/>
+</g>
+<!-- \\Slothsoft\\Savegame\\Node\\AbstractContentNode&#45;&gt;\\Slothsoft\\Savegame\\Node\\AbstractNode -->
+<g id="edge20" class="edge"><title>\\Slothsoft\\Savegame\\Node\\AbstractContentNode&#45;&gt;\\Slothsoft\\Savegame\\Node\\AbstractNode</title>
+<path fill="none" stroke="black" d="M473.999,-1243.16C443.266,-1250.54 407.803,-1259.05 378.711,-1266.03"/>
+<polygon fill="none" stroke="black" points="377.612,-1262.69 368.705,-1268.43 379.246,-1269.5 377.612,-1262.69"/>
+</g>
+<!-- \\Slothsoft\\Savegame\\Node\\RepeatGroupInstruction -->
+<g id="node16" class="node"><title>\\Slothsoft\\Savegame\\Node\\RepeatGroupInstruction</title>
+<polygon fill="none" stroke="black" points="1373.96,-1344 1208.96,-1344 1208.96,-1308 1373.96,-1308 1373.96,-1344"/>
+<text text-anchor="middle" x="1291.46" y="-1323.2" font-family="Courier,monospace" font-size="11.00">RepeatGroupInstruction</text>
+</g>
+<!-- \\Slothsoft\\Savegame\\Node\\RepeatGroupInstruction&#45;&gt;\\Slothsoft\\Savegame\\Node\\AbstractInstructionContent -->
+<g id="edge21" class="edge"><title>\\Slothsoft\\Savegame\\Node\\RepeatGroupInstruction&#45;&gt;\\Slothsoft\\Savegame\\Node\\AbstractInstructionContent</title>
+<path fill="none" stroke="black" d="M1220.93,-1307.89C1154.7,-1290.64 1055.11,-1264.71 985.82,-1246.66"/>
+<polygon fill="none" stroke="black" points="986.383,-1243.19 975.823,-1244.06 984.618,-1249.97 986.383,-1243.19"/>
+</g>
+<!-- \\Slothsoft\\Savegame\\Node\\InstructionContainer -->
+<g id="node17" class="node"><title>\\Slothsoft\\Savegame\\Node\\InstructionContainer</title>
+<polygon fill="none" stroke="black" points="1367.46,-1452 1215.46,-1452 1215.46,-1416 1367.46,-1416 1367.46,-1452"/>
+<text text-anchor="middle" x="1291.46" y="-1431.2" font-family="Courier,monospace" font-size="11.00">InstructionContainer</text>
+</g>
+<!-- \\Slothsoft\\Savegame\\Node\\InstructionContainer&#45;&gt;\\Slothsoft\\Savegame\\Node\\AbstractContainerContent -->
+<g id="edge22" class="edge"><title>\\Slothsoft\\Savegame\\Node\\InstructionContainer&#45;&gt;\\Slothsoft\\Savegame\\Node\\AbstractContainerContent</title>
+<path fill="none" stroke="black" d="M1215.06,-1432.23C1155.14,-1430.83 1070.85,-1428.85 1005.5,-1427.32"/>
+<polygon fill="none" stroke="black" points="1005.26,-1423.81 995.18,-1427.08 1005.09,-1430.81 1005.26,-1423.81"/>
+</g>
+<!-- \\Slothsoft\\Savegame\\Node\\BitValue -->
+<g id="node18" class="node"><title>\\Slothsoft\\Savegame\\Node\\BitValue</title>
+<polygon fill="none" stroke="black" points="1326.96,-912 1255.96,-912 1255.96,-876 1326.96,-876 1326.96,-912"/>
+<text text-anchor="middle" x="1291.46" y="-891.2" font-family="Courier,monospace" font-size="11.00">BitValue</text>
+</g>
+<!-- \\Slothsoft\\Savegame\\Node\\BitValue&#45;&gt;\\Slothsoft\\Savegame\\Node\\AbstractValueContent -->
+<g id="edge24" class="edge"><title>\\Slothsoft\\Savegame\\Node\\BitValue&#45;&gt;\\Slothsoft\\Savegame\\Node\\AbstractValueContent</title>
+<path fill="none" stroke="black" d="M1255.71,-896.444C1196.61,-900.6 1074.87,-909.159 991.942,-914.991"/>
+<polygon fill="none" stroke="black" points="991.505,-911.513 981.775,-915.706 991.996,-918.495 991.505,-911.513"/>
+</g>
+<!-- \\Slothsoft\\Savegame\\Node\\IntegerValue -->
+<g id="node20" class="node"><title>\\Slothsoft\\Savegame\\Node\\IntegerValue</title>
+<polygon fill="none" stroke="black" points="1340.46,-858 1242.46,-858 1242.46,-822 1340.46,-822 1340.46,-858"/>
+<text text-anchor="middle" x="1291.46" y="-837.2" font-family="Courier,monospace" font-size="11.00">IntegerValue</text>
+</g>
+<!-- \\Slothsoft\\Savegame\\Node\\IntegerValue&#45;&gt;\\Slothsoft\\Savegame\\Node\\AbstractValueContent -->
+<g id="edge25" class="edge"><title>\\Slothsoft\\Savegame\\Node\\IntegerValue&#45;&gt;\\Slothsoft\\Savegame\\Node\\AbstractValueContent</title>
+<path fill="none" stroke="black" d="M1242.35,-852.032C1225.95,-856.405 1207.56,-861.607 1190.96,-867 1158.85,-877.433 1152.72,-885.824 1119.96,-894 1078.45,-904.361 1031.35,-910.856 991.976,-914.87"/>
+<polygon fill="none" stroke="black" points="991.487,-911.401 981.878,-915.862 992.172,-918.367 991.487,-911.401"/>
+</g>
+<!-- \\Slothsoft\\Savegame\\Node\\StringDictionaryInstruction -->
+<g id="node21" class="node"><title>\\Slothsoft\\Savegame\\Node\\StringDictionaryInstruction</title>
+<polygon fill="none" stroke="black" points="1390.96,-1290 1191.96,-1290 1191.96,-1254 1390.96,-1254 1390.96,-1290"/>
+<text text-anchor="middle" x="1291.46" y="-1269.2" font-family="Courier,monospace" font-size="11.00">StringDictionaryInstruction</text>
+</g>
+<!-- \\Slothsoft\\Savegame\\Node\\StringDictionaryInstruction&#45;&gt;\\Slothsoft\\Savegame\\Node\\AbstractInstructionContent -->
+<g id="edge27" class="edge"><title>\\Slothsoft\\Savegame\\Node\\StringDictionaryInstruction&#45;&gt;\\Slothsoft\\Savegame\\Node\\AbstractInstructionContent</title>
+<path fill="none" stroke="black" d="M1191.58,-1260.15C1136.45,-1253.55 1067.8,-1245.33 1011.68,-1238.6"/>
+<polygon fill="none" stroke="black" points="1012.06,-1235.12 1001.72,-1237.41 1011.23,-1242.07 1012.06,-1235.12"/>
+</g>
+<!-- \\Slothsoft\\Savegame\\Node\\BinaryValue -->
+<g id="node22" class="node"><title>\\Slothsoft\\Savegame\\Node\\BinaryValue</title>
+<polygon fill="none" stroke="black" points="1336.96,-804 1245.96,-804 1245.96,-768 1336.96,-768 1336.96,-804"/>
+<text text-anchor="middle" x="1291.46" y="-783.2" font-family="Courier,monospace" font-size="11.00">BinaryValue</text>
+</g>
+<!-- \\Slothsoft\\Savegame\\Node\\BinaryValue&#45;&gt;\\Slothsoft\\Savegame\\Node\\AbstractValueContent -->
+<g id="edge29" class="edge"><title>\\Slothsoft\\Savegame\\Node\\BinaryValue&#45;&gt;\\Slothsoft\\Savegame\\Node\\AbstractValueContent</title>
+<path fill="none" stroke="black" d="M1245.59,-792.375C1227.63,-796.359 1207.36,-802.764 1190.96,-813 1150.35,-838.349 1162.24,-871.536 1119.96,-894 1081.03,-914.686 1032.64,-922.039 991.769,-923.955"/>
+<polygon fill="none" stroke="black" points="991.417,-920.465 981.552,-924.329 991.673,-927.46 991.417,-920.465"/>
+</g>
+<!-- \\Slothsoft\\Savegame\\Node\\FileContainer -->
+<g id="node23" class="node"><title>\\Slothsoft\\Savegame\\Node\\FileContainer</title>
+<polygon fill="none" stroke="black" points="598.5,-1352 494.5,-1352 494.5,-1316 598.5,-1316 598.5,-1352"/>
+<text text-anchor="middle" x="546.5" y="-1331.2" font-family="Courier,monospace" font-size="11.00">FileContainer</text>
+</g>
+<!-- \\Slothsoft\\Savegame\\Node\\FileContainer&#45;&gt;\\Slothsoft\\Savegame\\Node\\AbstractNode -->
+<g id="edge30" class="edge"><title>\\Slothsoft\\Savegame\\Node\\FileContainer&#45;&gt;\\Slothsoft\\Savegame\\Node\\AbstractNode</title>
+<path fill="none" stroke="black" d="M494.444,-1321.75C459.956,-1313.47 414.355,-1302.53 378.497,-1293.92"/>
+<polygon fill="none" stroke="black" points="379.199,-1290.49 368.658,-1291.56 377.565,-1297.3 379.199,-1290.49"/>
+</g>
+<!-- \\Slothsoft\\Savegame\\Node\\FileContainer&#45;&gt;\\Slothsoft\\Savegame\\Build\\BuildableInterface -->
+<g id="edge32" class="edge"><title>\\Slothsoft\\Savegame\\Node\\FileContainer&#45;&gt;\\Slothsoft\\Savegame\\Build\\BuildableInterface</title>
+<path fill="none" stroke="black" stroke-dasharray="1,5" d="M494.236,-1346.16C486.621,-1349.87 479.499,-1354.7 474,-1361 380.101,-1468.51 501.022,-1571.19 402,-1674 400.551,-1675.5 399.011,-1676.91 397.395,-1678.22"/>
+<polygon fill="none" stroke="black" points="395.089,-1675.55 388.741,-1684.04 398.993,-1681.36 395.089,-1675.55"/>
+</g>
+<!-- \\Slothsoft\\Savegame\\NodeEvaluatorInterface -->
+<g id="node42" class="node"><title>\\Slothsoft\\Savegame\\NodeEvaluatorInterface</title>
+<polygon fill="none" stroke="black" points="402,-1660 237,-1660 237,-1624 402,-1624 402,-1660"/>
+<text text-anchor="middle" x="319.5" y="-1639.2" font-family="Courier,monospace" font-size="11.00">NodeEvaluatorInterface</text>
+</g>
+<!-- \\Slothsoft\\Savegame\\Node\\FileContainer&#45;&gt;\\Slothsoft\\Savegame\\NodeEvaluatorInterface -->
+<g id="edge31" class="edge"><title>\\Slothsoft\\Savegame\\Node\\FileContainer&#45;&gt;\\Slothsoft\\Savegame\\NodeEvaluatorInterface</title>
+<path fill="none" stroke="black" stroke-dasharray="1,5" d="M494.475,-1346.38C486.833,-1350.06 479.639,-1354.83 474,-1361 395.683,-1446.7 481.648,-1530.93 404.872,-1616.32"/>
+<polygon fill="none" stroke="black" points="402.112,-1614.14 397.736,-1623.79 407.174,-1618.98 402.112,-1614.14"/>
+</g>
+<!-- \\Slothsoft\\Savegame\\Node\\EventDictionaryInstruction -->
+<g id="node24" class="node"><title>\\Slothsoft\\Savegame\\Node\\EventDictionaryInstruction</title>
+<polygon fill="none" stroke="black" points="1387.46,-1236 1195.46,-1236 1195.46,-1200 1387.46,-1200 1387.46,-1236"/>
+<text text-anchor="middle" x="1291.46" y="-1215.2" font-family="Courier,monospace" font-size="11.00">EventDictionaryInstruction</text>
+</g>
+<!-- \\Slothsoft\\Savegame\\Node\\EventDictionaryInstruction&#45;&gt;\\Slothsoft\\Savegame\\Node\\AbstractInstructionContent -->
+<g id="edge33" class="edge"><title>\\Slothsoft\\Savegame\\Node\\EventDictionaryInstruction&#45;&gt;\\Slothsoft\\Savegame\\Node\\AbstractInstructionContent</title>
+<path fill="none" stroke="black" d="M1195.05,-1219.99C1139.42,-1221.15 1069.16,-1222.61 1011.9,-1223.8"/>
+<polygon fill="none" stroke="black" points="1011.66,-1220.31 1001.73,-1224.02 1011.8,-1227.31 1011.66,-1220.31"/>
+</g>
+<!-- \\Slothsoft\\Savegame\\Node\\StringValue -->
+<g id="node25" class="node"><title>\\Slothsoft\\Savegame\\Node\\StringValue</title>
+<polygon fill="none" stroke="black" points="1336.96,-750 1245.96,-750 1245.96,-714 1336.96,-714 1336.96,-750"/>
+<text text-anchor="middle" x="1291.46" y="-729.2" font-family="Courier,monospace" font-size="11.00">StringValue</text>
+</g>
+<!-- \\Slothsoft\\Savegame\\Node\\StringValue&#45;&gt;\\Slothsoft\\Savegame\\Node\\AbstractValueContent -->
+<g id="edge34" class="edge"><title>\\Slothsoft\\Savegame\\Node\\StringValue&#45;&gt;\\Slothsoft\\Savegame\\Node\\AbstractValueContent</title>
+<path fill="none" stroke="black" d="M1245.78,-736.213C1227.23,-739.846 1206.46,-746.572 1190.96,-759 1138.07,-801.405 1175.67,-855.375 1119.96,-894 1083.09,-919.563 1033.83,-927.083 991.92,-927.864"/>
+<polygon fill="none" stroke="black" points="991.693,-924.365 981.714,-927.926 991.736,-931.365 991.693,-924.365"/>
+</g>
+<!-- \\Slothsoft\\Savegame\\Node\\BitFieldInstruction -->
+<g id="node26" class="node"><title>\\Slothsoft\\Savegame\\Node\\BitFieldInstruction</title>
+<polygon fill="none" stroke="black" points="1363.96,-1182 1218.96,-1182 1218.96,-1146 1363.96,-1146 1363.96,-1182"/>
+<text text-anchor="middle" x="1291.46" y="-1161.2" font-family="Courier,monospace" font-size="11.00">BitFieldInstruction</text>
+</g>
+<!-- \\Slothsoft\\Savegame\\Node\\BitFieldInstruction&#45;&gt;\\Slothsoft\\Savegame\\Node\\AbstractInstructionContent -->
+<g id="edge35" class="edge"><title>\\Slothsoft\\Savegame\\Node\\BitFieldInstruction&#45;&gt;\\Slothsoft\\Savegame\\Node\\AbstractInstructionContent</title>
+<path fill="none" stroke="black" d="M1218.69,-1175.59C1160.46,-1184.99 1077.56,-1198.38 1011.81,-1208.99"/>
+<polygon fill="none" stroke="black" points="1011.14,-1205.56 1001.83,-1210.6 1012.26,-1212.47 1011.14,-1205.56"/>
+</g>
+<!-- \\Slothsoft\\Savegame\\Node\\ArchiveNode -->
+<g id="node27" class="node"><title>\\Slothsoft\\Savegame\\Node\\ArchiveNode</title>
+<polygon fill="none" stroke="black" points="592,-1298 501,-1298 501,-1262 592,-1262 592,-1298"/>
+<text text-anchor="middle" x="546.5" y="-1277.2" font-family="Courier,monospace" font-size="11.00">ArchiveNode</text>
+</g>
+<!-- \\Slothsoft\\Savegame\\Node\\ArchiveNode&#45;&gt;\\Slothsoft\\Savegame\\Node\\AbstractNode -->
+<g id="edge37" class="edge"><title>\\Slothsoft\\Savegame\\Node\\ArchiveNode&#45;&gt;\\Slothsoft\\Savegame\\Node\\AbstractNode</title>
+<path fill="none" stroke="black" d="M500.778,-1280C465.869,-1280 417.079,-1280 379.058,-1280"/>
+<polygon fill="none" stroke="black" points="378.64,-1276.5 368.64,-1280 378.64,-1283.5 378.64,-1276.5"/>
+</g>
+<!-- \\Slothsoft\\Savegame\\Node\\ArchiveNode&#45;&gt;\\Slothsoft\\Savegame\\Build\\BuildableInterface -->
+<g id="edge38" class="edge"><title>\\Slothsoft\\Savegame\\Node\\ArchiveNode&#45;&gt;\\Slothsoft\\Savegame\\Build\\BuildableInterface</title>
+<path fill="none" stroke="black" stroke-dasharray="1,5" d="M500.671,-1289.09C490.644,-1293.07 480.938,-1298.79 474,-1307 366.698,-1433.95 515.355,-1552.43 402,-1674 400.576,-1675.53 399.058,-1676.95 397.46,-1678.28"/>
+<polygon fill="none" stroke="black" points="395.147,-1675.63 388.884,-1684.17 399.109,-1681.4 395.147,-1675.63"/>
+</g>
+<!-- \\Slothsoft\\Savegame\\Node\\SignedIntegerValue -->
+<g id="node28" class="node"><title>\\Slothsoft\\Savegame\\Node\\SignedIntegerValue</title>
+<polygon fill="none" stroke="black" points="1360.46,-696 1222.46,-696 1222.46,-660 1360.46,-660 1360.46,-696"/>
+<text text-anchor="middle" x="1291.46" y="-675.2" font-family="Courier,monospace" font-size="11.00">SignedIntegerValue</text>
+</g>
+<!-- \\Slothsoft\\Savegame\\Node\\SignedIntegerValue&#45;&gt;\\Slothsoft\\Savegame\\Node\\AbstractValueContent -->
+<g id="edge39" class="edge"><title>\\Slothsoft\\Savegame\\Node\\SignedIntegerValue&#45;&gt;\\Slothsoft\\Savegame\\Node\\AbstractValueContent</title>
+<path fill="none" stroke="black" d="M1222.35,-687.223C1210.88,-691.234 1199.83,-696.93 1190.96,-705 1124.59,-765.386 1190.37,-838.375 1119.96,-894 1084.28,-922.193 1034.25,-929.678 991.598,-929.774"/>
+<polygon fill="none" stroke="black" points="991.532,-926.273 981.493,-929.662 991.454,-933.273 991.532,-926.273"/>
+</g>
+<!-- \\Slothsoft\\Savegame\\Node\\EventStepInstruction -->
+<g id="node29" class="node"><title>\\Slothsoft\\Savegame\\Node\\EventStepInstruction</title>
+<polygon fill="none" stroke="black" points="1367.46,-1128 1215.46,-1128 1215.46,-1092 1367.46,-1092 1367.46,-1128"/>
+<text text-anchor="middle" x="1291.46" y="-1107.2" font-family="Courier,monospace" font-size="11.00">EventStepInstruction</text>
+</g>
+<!-- \\Slothsoft\\Savegame\\Node\\EventStepInstruction&#45;&gt;\\Slothsoft\\Savegame\\Node\\AbstractInstructionContent -->
+<g id="edge40" class="edge"><title>\\Slothsoft\\Savegame\\Node\\EventStepInstruction&#45;&gt;\\Slothsoft\\Savegame\\Node\\AbstractInstructionContent</title>
+<path fill="none" stroke="black" d="M1222.66,-1128.03C1212.03,-1130.96 1201.18,-1134.02 1190.96,-1137 1115.36,-1159.08 1029.1,-1186.36 971.579,-1204.86"/>
+<polygon fill="none" stroke="black" points="970.338,-1201.58 961.892,-1207.98 972.483,-1208.24 970.338,-1201.58"/>
+</g>
 <!-- \\Slothsoft\\Savegame\\Executables\\EditorExecutable -->
-<g id="node4" class="node"><title>\\Slothsoft\\Savegame\\Executables\\EditorExecutable</title>
+<g id="node30" class="node"><title>\\Slothsoft\\Savegame\\Executables\\EditorExecutable</title>
 <polygon fill="none" stroke="black" points="1353.96,-374 1228.96,-374 1228.96,-338 1353.96,-338 1353.96,-374"/>
 <text text-anchor="middle" x="1291.46" y="-353.2" font-family="Courier,monospace" font-size="11.00">EditorExecutable</text>
 </g>
@@ -72,12 +376,12 @@
 <text text-anchor="middle" x="905.481" y="-122.3" font-family="Times New Roman,serif" font-size="14.00" fill="gray">\Slothsoft\Farah\Module\Executables\ExecutableBase</text>
 </g>
 <!-- \\Slothsoft\\Savegame\\Executables\\EditorExecutable&#45;&gt;\\Slothsoft\\Farah\\Module\\Executables\\ExecutableBase -->
-<g id="edge3" class="edge"><title>\\Slothsoft\\Savegame\\Executables\\EditorExecutable&#45;&gt;\\Slothsoft\\Farah\\Module\\Executables\\ExecutableBase</title>
+<g id="edge6" class="edge"><title>\\Slothsoft\\Savegame\\Executables\\EditorExecutable&#45;&gt;\\Slothsoft\\Farah\\Module\\Executables\\ExecutableBase</title>
 <path fill="none" stroke="black" d="M1228.72,-342.909C1215.94,-339.193 1202.77,-334.594 1190.96,-329 1087.6,-280.037 982.209,-193.113 933.823,-150.681"/>
 <polygon fill="none" stroke="black" points="936.094,-148.018 926.282,-144.023 931.461,-153.265 936.094,-148.018"/>
 </g>
 <!-- \\Slothsoft\\Savegame\\Executables\\SavegameExecutableCreator -->
-<g id="node5" class="node"><title>\\Slothsoft\\Savegame\\Executables\\SavegameExecutableCreator</title>
+<g id="node31" class="node"><title>\\Slothsoft\\Savegame\\Executables\\SavegameExecutableCreator</title>
 <polygon fill="none" stroke="black" points="1383.96,-320 1198.96,-320 1198.96,-284 1383.96,-284 1383.96,-320"/>
 <text text-anchor="middle" x="1291.46" y="-299.2" font-family="Courier,monospace" font-size="11.00">SavegameExecutableCreator</text>
 </g>
@@ -87,328 +391,14 @@
 <text text-anchor="middle" x="905.481" y="-68.3" font-family="Times New Roman,serif" font-size="14.00" fill="gray">\Slothsoft\Farah\Module\Executables\ExecutableCreator</text>
 </g>
 <!-- \\Slothsoft\\Savegame\\Executables\\SavegameExecutableCreator&#45;&gt;\\Slothsoft\\Farah\\Module\\Executables\\ExecutableCreator -->
-<g id="edge4" class="edge"><title>\\Slothsoft\\Savegame\\Executables\\SavegameExecutableCreator&#45;&gt;\\Slothsoft\\Farah\\Module\\Executables\\ExecutableCreator</title>
+<g id="edge16" class="edge"><title>\\Slothsoft\\Savegame\\Executables\\SavegameExecutableCreator&#45;&gt;\\Slothsoft\\Farah\\Module\\Executables\\ExecutableCreator</title>
 <path fill="none" stroke="black" d="M1198.65,-285.676C1195.95,-283.956 1193.38,-282.069 1190.96,-280 1125.28,-223.851 1188.15,-152.076 1119.96,-99 1113.48,-93.9582 1106.55,-89.583 1099.27,-85.797"/>
 <polygon fill="none" stroke="black" points="1100.42,-82.4678 1089.89,-81.3109 1097.4,-88.7828 1100.42,-82.4678"/>
 </g>
-<!-- \\Slothsoft\\Savegame\\Node\\ArchiveParser\\CopyArchiveBuilder -->
-<g id="node6" class="node"><title>\\Slothsoft\\Savegame\\Node\\ArchiveParser\\CopyArchiveBuilder</title>
-<polygon fill="none" stroke="black" points="1360.46,-1560 1222.46,-1560 1222.46,-1524 1360.46,-1524 1360.46,-1560"/>
-<text text-anchor="middle" x="1291.46" y="-1539.2" font-family="Courier,monospace" font-size="11.00">CopyArchiveBuilder</text>
-</g>
-<!-- \\Slothsoft\\Savegame\\Node\\ArchiveParser\\ArchiveBuilderInterface -->
-<g id="node8" class="node"><title>\\Slothsoft\\Savegame\\Node\\ArchiveParser\\ArchiveBuilderInterface</title>
-<polygon fill="none" stroke="black" points="991.481,-1560 819.481,-1560 819.481,-1524 991.481,-1524 991.481,-1560"/>
-<text text-anchor="middle" x="905.481" y="-1539.2" font-family="Courier,monospace" font-size="11.00">ArchiveBuilderInterface</text>
-</g>
-<!-- \\Slothsoft\\Savegame\\Node\\ArchiveParser\\CopyArchiveBuilder&#45;&gt;\\Slothsoft\\Savegame\\Node\\ArchiveParser\\ArchiveBuilderInterface -->
-<g id="edge14" class="edge"><title>\\Slothsoft\\Savegame\\Node\\ArchiveParser\\CopyArchiveBuilder&#45;&gt;\\Slothsoft\\Savegame\\Node\\ArchiveParser\\ArchiveBuilderInterface</title>
-<path fill="none" stroke="black" stroke-dasharray="1,5" d="M1222.26,-1542C1160.97,-1542 1070.33,-1542 1001.87,-1542"/>
-<polygon fill="none" stroke="black" points="1001.51,-1538.5 991.506,-1542 1001.51,-1545.5 1001.51,-1538.5"/>
-</g>
-<!-- \\Slothsoft\\Savegame\\Node\\ArchiveParser\\CopyArchiveExtractor -->
-<g id="node7" class="node"><title>\\Slothsoft\\Savegame\\Node\\ArchiveParser\\CopyArchiveExtractor</title>
-<polygon fill="none" stroke="black" points="1367.46,-1506 1215.46,-1506 1215.46,-1470 1367.46,-1470 1367.46,-1506"/>
-<text text-anchor="middle" x="1291.46" y="-1485.2" font-family="Courier,monospace" font-size="11.00">CopyArchiveExtractor</text>
-</g>
-<!-- \\Slothsoft\\Savegame\\Node\\ArchiveParser\\ArchiveExtractorInterface -->
-<g id="node9" class="node"><title>\\Slothsoft\\Savegame\\Node\\ArchiveParser\\ArchiveExtractorInterface</title>
-<polygon fill="none" stroke="black" points="997.981,-1506 812.981,-1506 812.981,-1470 997.981,-1470 997.981,-1506"/>
-<text text-anchor="middle" x="905.481" y="-1485.2" font-family="Courier,monospace" font-size="11.00">ArchiveExtractorInterface</text>
-</g>
-<!-- \\Slothsoft\\Savegame\\Node\\ArchiveParser\\CopyArchiveExtractor&#45;&gt;\\Slothsoft\\Savegame\\Node\\ArchiveParser\\ArchiveExtractorInterface -->
-<g id="edge15" class="edge"><title>\\Slothsoft\\Savegame\\Node\\ArchiveParser\\CopyArchiveExtractor&#45;&gt;\\Slothsoft\\Savegame\\Node\\ArchiveParser\\ArchiveExtractorInterface</title>
-<path fill="none" stroke="black" stroke-dasharray="1,5" d="M1215.06,-1488C1156.08,-1488 1073.47,-1488 1008.56,-1488"/>
-<polygon fill="none" stroke="black" points="1008.31,-1484.5 998.307,-1488 1008.31,-1491.5 1008.31,-1484.5"/>
-</g>
-<!-- \\Slothsoft\\Savegame\\Node\\AbstractContainerContent -->
-<g id="node10" class="node"><title>\\Slothsoft\\Savegame\\Node\\AbstractContainerContent</title>
-<polygon fill="none" stroke="black" points="994.981,-975 815.981,-975 815.981,-939 994.981,-939 994.981,-975"/>
-<text text-anchor="start" x="871.481" y="-960.2" font-family="Courier,monospace" font-size="11.00">«abstract»</text>
-<text text-anchor="start" x="823.981" y="-948.2" font-family="Courier,monospace" font-size="11.00">AbstractContainerContent</text>
-</g>
-<!-- \\Slothsoft\\Savegame\\Node\\AbstractContainerContent&#45;&gt;\\Slothsoft\\Savegame\\Build\\BuildableInterface -->
-<g id="edge6" class="edge"><title>\\Slothsoft\\Savegame\\Node\\AbstractContainerContent&#45;&gt;\\Slothsoft\\Savegame\\Build\\BuildableInterface</title>
-<path fill="none" stroke="black" stroke-dasharray="1,5" d="M815.889,-947.206C773.611,-947.345 724.966,-955.174 691,-984 605.442,-1056.61 704.079,-1152.83 619,-1226 594.672,-1246.92 570.423,-1213.55 547.5,-1236"/>
-<path fill="none" stroke="black" stroke-dasharray="1,5" d="M545.5,-1236C399.159,-1379.34 550.633,-1533.04 402,-1674 400.525,-1675.4 398.97,-1676.71 397.348,-1677.94"/>
-<polygon fill="none" stroke="black" points="395.289,-1675.1 388.746,-1683.44 399.058,-1681 395.289,-1675.1"/>
-</g>
-<!-- \\Slothsoft\\Savegame\\Node\\AbstractContentNode -->
-<g id="node11" class="node"><title>\\Slothsoft\\Savegame\\Node\\AbstractContentNode</title>
-<polygon fill="none" stroke="black" points="619,-1038 474,-1038 474,-1002 619,-1002 619,-1038"/>
-<text text-anchor="start" x="512.5" y="-1023.2" font-family="Courier,monospace" font-size="11.00">«abstract»</text>
-<text text-anchor="start" x="482" y="-1011.2" font-family="Courier,monospace" font-size="11.00">AbstractContentNode</text>
-</g>
-<!-- \\Slothsoft\\Savegame\\Node\\AbstractContainerContent&#45;&gt;\\Slothsoft\\Savegame\\Node\\AbstractContentNode -->
-<g id="edge5" class="edge"><title>\\Slothsoft\\Savegame\\Node\\AbstractContainerContent&#45;&gt;\\Slothsoft\\Savegame\\Node\\AbstractContentNode</title>
-<path fill="none" stroke="black" d="M815.824,-965.801C777.301,-970.246 731.754,-976.34 691,-984 668.562,-988.218 644.406,-993.847 622.429,-999.398"/>
-<polygon fill="none" stroke="black" points="621.32,-996.069 612.5,-1001.94 623.055,-1002.85 621.32,-996.069"/>
-</g>
-<!-- \\Slothsoft\\Savegame\\Node\\AbstractNode -->
-<g id="node13" class="node"><title>\\Slothsoft\\Savegame\\Node\\AbstractNode</title>
-<polygon fill="none" stroke="black" points="368.5,-1109 270.5,-1109 270.5,-1073 368.5,-1073 368.5,-1109"/>
-<text text-anchor="start" x="285.5" y="-1094.2" font-family="Courier,monospace" font-size="11.00">«abstract»</text>
-<text text-anchor="start" x="278.5" y="-1082.2" font-family="Courier,monospace" font-size="11.00">AbstractNode</text>
-</g>
-<!-- \\Slothsoft\\Savegame\\Node\\AbstractContentNode&#45;&gt;\\Slothsoft\\Savegame\\Node\\AbstractNode -->
-<g id="edge7" class="edge"><title>\\Slothsoft\\Savegame\\Node\\AbstractContentNode&#45;&gt;\\Slothsoft\\Savegame\\Node\\AbstractNode</title>
-<path fill="none" stroke="black" d="M488.432,-1038.01C454.779,-1048.63 412.304,-1062.03 378.492,-1072.7"/>
-<polygon fill="none" stroke="black" points="377.232,-1069.43 368.749,-1075.77 379.338,-1076.1 377.232,-1069.43"/>
-</g>
-<!-- \\Slothsoft\\Savegame\\Node\\AbstractInstructionContent -->
-<g id="node12" class="node"><title>\\Slothsoft\\Savegame\\Node\\AbstractInstructionContent</title>
-<polygon fill="none" stroke="black" points="1001.48,-1029 809.481,-1029 809.481,-993 1001.48,-993 1001.48,-1029"/>
-<text text-anchor="start" x="871.481" y="-1014.2" font-family="Courier,monospace" font-size="11.00">«abstract»</text>
-<text text-anchor="start" x="817.481" y="-1002.2" font-family="Courier,monospace" font-size="11.00">AbstractInstructionContent</text>
-</g>
-<!-- \\Slothsoft\\Savegame\\Node\\AbstractInstructionContent&#45;&gt;\\Slothsoft\\Savegame\\Build\\BuildableInterface -->
-<g id="edge9" class="edge"><title>\\Slothsoft\\Savegame\\Node\\AbstractInstructionContent&#45;&gt;\\Slothsoft\\Savegame\\Build\\BuildableInterface</title>
-<path fill="none" stroke="black" stroke-dasharray="1,5" d="M887.192,-1029.27C845.606,-1071.93 734.815,-1178.09 619,-1226 589.35,-1238.27 570.423,-1213.55 547.5,-1236"/>
-</g>
-<!-- \\Slothsoft\\Savegame\\Node\\AbstractInstructionContent&#45;&gt;\\Slothsoft\\Savegame\\Node\\AbstractContentNode -->
-<g id="edge8" class="edge"><title>\\Slothsoft\\Savegame\\Node\\AbstractInstructionContent&#45;&gt;\\Slothsoft\\Savegame\\Node\\AbstractContentNode</title>
-<path fill="none" stroke="black" d="M809.286,-1013.4C753.209,-1014.81 682.992,-1016.58 629.4,-1017.94"/>
-<polygon fill="none" stroke="black" points="629.162,-1014.44 619.253,-1018.19 629.338,-1021.44 629.162,-1014.44"/>
-</g>
-<!-- \\Slothsoft\\Savegame\\Node\\AbstractValueContent -->
-<g id="node14" class="node"><title>\\Slothsoft\\Savegame\\Node\\AbstractValueContent</title>
-<polygon fill="none" stroke="black" points="981.481,-1254 829.481,-1254 829.481,-1218 981.481,-1218 981.481,-1254"/>
-<text text-anchor="start" x="871.481" y="-1239.2" font-family="Courier,monospace" font-size="11.00">«abstract»</text>
-<text text-anchor="start" x="837.481" y="-1227.2" font-family="Courier,monospace" font-size="11.00">AbstractValueContent</text>
-</g>
-<!-- \\Slothsoft\\Savegame\\Node\\AbstractValueContent&#45;&gt;\\Slothsoft\\Savegame\\Build\\BuildableInterface -->
-<g id="edge11" class="edge"><title>\\Slothsoft\\Savegame\\Node\\AbstractValueContent&#45;&gt;\\Slothsoft\\Savegame\\Build\\BuildableInterface</title>
-<path fill="none" stroke="black" stroke-dasharray="1,5" d="M829.284,-1233.35C727.514,-1230.15 557.393,-1226.31 547.5,-1236"/>
-</g>
-<!-- \\Slothsoft\\Savegame\\Node\\AbstractValueContent&#45;&gt;\\Slothsoft\\Savegame\\Node\\AbstractContentNode -->
-<g id="edge10" class="edge"><title>\\Slothsoft\\Savegame\\Node\\AbstractValueContent&#45;&gt;\\Slothsoft\\Savegame\\Node\\AbstractContentNode</title>
-<path fill="none" stroke="black" d="M874.659,-1217.96C810.219,-1178.96 658.021,-1086.87 586.243,-1043.44"/>
-<polygon fill="none" stroke="black" points="587.856,-1040.33 577.488,-1038.15 584.232,-1046.32 587.856,-1040.33"/>
-</g>
-<!-- \\Slothsoft\\Savegame\\Node\\ArchiveNode -->
-<g id="node15" class="node"><title>\\Slothsoft\\Savegame\\Node\\ArchiveNode</title>
-<polygon fill="none" stroke="black" points="592,-1217 501,-1217 501,-1181 592,-1181 592,-1217"/>
-<text text-anchor="middle" x="546.5" y="-1196.2" font-family="Courier,monospace" font-size="11.00">ArchiveNode</text>
-</g>
-<!-- \\Slothsoft\\Savegame\\Node\\ArchiveNode&#45;&gt;\\Slothsoft\\Savegame\\Build\\BuildableInterface -->
-<g id="edge13" class="edge"><title>\\Slothsoft\\Savegame\\Node\\ArchiveNode&#45;&gt;\\Slothsoft\\Savegame\\Build\\BuildableInterface</title>
-<path fill="none" stroke="black" stroke-dasharray="1,5" d="M500.73,-1211C490.577,-1215.7 480.798,-1222.16 474,-1231 352.403,-1389.12 535.635,-1525.91 402,-1674 400.444,-1675.72 398.769,-1677.32 396.995,-1678.79"/>
-<polygon fill="none" stroke="black" points="394.912,-1675.98 388.648,-1684.52 398.873,-1681.75 394.912,-1675.98"/>
-</g>
-<!-- \\Slothsoft\\Savegame\\Node\\ArchiveNode&#45;&gt;\\Slothsoft\\Savegame\\Node\\AbstractNode -->
-<g id="edge12" class="edge"><title>\\Slothsoft\\Savegame\\Node\\ArchiveNode&#45;&gt;\\Slothsoft\\Savegame\\Node\\AbstractNode</title>
-<path fill="none" stroke="black" d="M500.984,-1184.76C491.806,-1181.12 482.388,-1176.84 474,-1172 438.175,-1151.31 438.79,-1131.92 402,-1113 394.68,-1109.24 386.65,-1106.06 378.572,-1103.41"/>
-<polygon fill="none" stroke="black" points="379.327,-1099.98 368.741,-1100.41 377.288,-1106.67 379.327,-1099.98"/>
-</g>
-<!-- \\Slothsoft\\Savegame\\Node\\BinaryValue -->
-<g id="node16" class="node"><title>\\Slothsoft\\Savegame\\Node\\BinaryValue</title>
-<polygon fill="none" stroke="black" points="1336.96,-1128 1245.96,-1128 1245.96,-1092 1336.96,-1092 1336.96,-1128"/>
-<text text-anchor="middle" x="1291.46" y="-1107.2" font-family="Courier,monospace" font-size="11.00">BinaryValue</text>
-</g>
-<!-- \\Slothsoft\\Savegame\\Node\\BinaryValue&#45;&gt;\\Slothsoft\\Savegame\\Node\\AbstractValueContent -->
-<g id="edge16" class="edge"><title>\\Slothsoft\\Savegame\\Node\\BinaryValue&#45;&gt;\\Slothsoft\\Savegame\\Node\\AbstractValueContent</title>
-<path fill="none" stroke="black" d="M1245.69,-1121.44C1228.5,-1126.01 1208.75,-1131.5 1190.96,-1137 1111.86,-1161.46 1021.78,-1193.54 964.559,-1214.45"/>
-<polygon fill="none" stroke="black" points="963.153,-1211.24 954.967,-1217.96 965.561,-1217.81 963.153,-1211.24"/>
-</g>
-<!-- \\Slothsoft\\Savegame\\Node\\BitFieldInstruction -->
-<g id="node17" class="node"><title>\\Slothsoft\\Savegame\\Node\\BitFieldInstruction</title>
-<polygon fill="none" stroke="black" points="1363.96,-804 1218.96,-804 1218.96,-768 1363.96,-768 1363.96,-804"/>
-<text text-anchor="middle" x="1291.46" y="-783.2" font-family="Courier,monospace" font-size="11.00">BitFieldInstruction</text>
-</g>
-<!-- \\Slothsoft\\Savegame\\Node\\BitFieldInstruction&#45;&gt;\\Slothsoft\\Savegame\\Node\\AbstractInstructionContent -->
-<g id="edge17" class="edge"><title>\\Slothsoft\\Savegame\\Node\\BitFieldInstruction&#45;&gt;\\Slothsoft\\Savegame\\Node\\AbstractInstructionContent</title>
-<path fill="none" stroke="black" d="M1218.73,-796.874C1208.62,-800.747 1198.96,-805.969 1190.96,-813 1129.16,-867.33 1185.4,-934.099 1119.96,-984 1089.55,-1007.19 1049.32,-1016.15 1011.99,-1018.56"/>
-<polygon fill="none" stroke="black" points="1011.37,-1015.08 1001.55,-1019.07 1011.71,-1022.07 1011.37,-1015.08"/>
-</g>
-<!-- \\Slothsoft\\Savegame\\Node\\BitValue -->
-<g id="node18" class="node"><title>\\Slothsoft\\Savegame\\Node\\BitValue</title>
-<polygon fill="none" stroke="black" points="1326.96,-1452 1255.96,-1452 1255.96,-1416 1326.96,-1416 1326.96,-1452"/>
-<text text-anchor="middle" x="1291.46" y="-1431.2" font-family="Courier,monospace" font-size="11.00">BitValue</text>
-</g>
-<!-- \\Slothsoft\\Savegame\\Node\\BitValue&#45;&gt;\\Slothsoft\\Savegame\\Node\\AbstractValueContent -->
-<g id="edge18" class="edge"><title>\\Slothsoft\\Savegame\\Node\\BitValue&#45;&gt;\\Slothsoft\\Savegame\\Node\\AbstractValueContent</title>
-<path fill="none" stroke="black" d="M1255.59,-1427.03C1236.13,-1422.53 1211.71,-1415.85 1190.96,-1407 1094.25,-1365.76 990.899,-1296.45 939.49,-1260.02"/>
-<polygon fill="none" stroke="black" points="941.275,-1257 931.101,-1254.04 937.212,-1262.7 941.275,-1257"/>
-</g>
-<!-- \\Slothsoft\\Savegame\\Node\\EventDictionaryInstruction -->
-<g id="node19" class="node"><title>\\Slothsoft\\Savegame\\Node\\EventDictionaryInstruction</title>
-<polygon fill="none" stroke="black" points="1387.46,-1074 1195.46,-1074 1195.46,-1038 1387.46,-1038 1387.46,-1074"/>
-<text text-anchor="middle" x="1291.46" y="-1053.2" font-family="Courier,monospace" font-size="11.00">EventDictionaryInstruction</text>
-</g>
-<!-- \\Slothsoft\\Savegame\\Node\\EventDictionaryInstruction&#45;&gt;\\Slothsoft\\Savegame\\Node\\AbstractInstructionContent -->
-<g id="edge19" class="edge"><title>\\Slothsoft\\Savegame\\Node\\EventDictionaryInstruction&#45;&gt;\\Slothsoft\\Savegame\\Node\\AbstractInstructionContent</title>
-<path fill="none" stroke="black" d="M1195.05,-1044.82C1139.42,-1038.3 1069.16,-1030.07 1011.9,-1023.35"/>
-<polygon fill="none" stroke="black" points="1012.07,-1019.85 1001.73,-1022.16 1011.26,-1026.8 1012.07,-1019.85"/>
-</g>
-<!-- \\Slothsoft\\Savegame\\Node\\EventInstruction -->
-<g id="node20" class="node"><title>\\Slothsoft\\Savegame\\Node\\EventInstruction</title>
-<polygon fill="none" stroke="black" points="1353.96,-1020 1228.96,-1020 1228.96,-984 1353.96,-984 1353.96,-1020"/>
-<text text-anchor="middle" x="1291.46" y="-999.2" font-family="Courier,monospace" font-size="11.00">EventInstruction</text>
-</g>
-<!-- \\Slothsoft\\Savegame\\Node\\EventInstruction&#45;&gt;\\Slothsoft\\Savegame\\Node\\AbstractInstructionContent -->
-<g id="edge20" class="edge"><title>\\Slothsoft\\Savegame\\Node\\EventInstruction&#45;&gt;\\Slothsoft\\Savegame\\Node\\AbstractInstructionContent</title>
-<path fill="none" stroke="black" d="M1228.77,-1003.45C1170.37,-1004.81 1081.53,-1006.9 1011.9,-1008.53"/>
-<polygon fill="none" stroke="black" points="1011.69,-1005.03 1001.77,-1008.77 1011.85,-1012.03 1011.69,-1005.03"/>
-</g>
-<!-- \\Slothsoft\\Savegame\\Node\\EventScriptValue -->
-<g id="node21" class="node"><title>\\Slothsoft\\Savegame\\Node\\EventScriptValue</title>
-<polygon fill="none" stroke="black" points="1353.96,-1398 1228.96,-1398 1228.96,-1362 1353.96,-1362 1353.96,-1398"/>
-<text text-anchor="middle" x="1291.46" y="-1377.2" font-family="Courier,monospace" font-size="11.00">EventScriptValue</text>
-</g>
-<!-- \\Slothsoft\\Savegame\\Node\\EventScriptValue&#45;&gt;\\Slothsoft\\Savegame\\Node\\AbstractValueContent -->
-<g id="edge21" class="edge"><title>\\Slothsoft\\Savegame\\Node\\EventScriptValue&#45;&gt;\\Slothsoft\\Savegame\\Node\\AbstractValueContent</title>
-<path fill="none" stroke="black" d="M1228.79,-1364.56C1216.19,-1361.04 1203.08,-1357.12 1190.96,-1353 1106.6,-1324.33 1011.36,-1283.33 955.261,-1258.26"/>
-<polygon fill="none" stroke="black" points="956.483,-1254.97 945.927,-1254.07 953.618,-1261.35 956.483,-1254.97"/>
-</g>
-<!-- \\Slothsoft\\Savegame\\Node\\EventStepInstruction -->
-<g id="node22" class="node"><title>\\Slothsoft\\Savegame\\Node\\EventStepInstruction</title>
-<polygon fill="none" stroke="black" points="1367.46,-966 1215.46,-966 1215.46,-930 1367.46,-930 1367.46,-966"/>
-<text text-anchor="middle" x="1291.46" y="-945.2" font-family="Courier,monospace" font-size="11.00">EventStepInstruction</text>
-</g>
-<!-- \\Slothsoft\\Savegame\\Node\\EventStepInstruction&#45;&gt;\\Slothsoft\\Savegame\\Node\\AbstractInstructionContent -->
-<g id="edge22" class="edge"><title>\\Slothsoft\\Savegame\\Node\\EventStepInstruction&#45;&gt;\\Slothsoft\\Savegame\\Node\\AbstractInstructionContent</title>
-<path fill="none" stroke="black" d="M1215.18,-965.29C1185.6,-971.717 1151.29,-978.721 1119.96,-984 1084.84,-989.919 1046.27,-995.173 1011.69,-999.438"/>
-<polygon fill="none" stroke="black" points="1011.08,-995.987 1001.57,-1000.67 1011.92,-1002.94 1011.08,-995.987"/>
-</g>
-<!-- \\Slothsoft\\Savegame\\Node\\FileContainer -->
-<g id="node23" class="node"><title>\\Slothsoft\\Savegame\\Node\\FileContainer</title>
-<polygon fill="none" stroke="black" points="598.5,-1163 494.5,-1163 494.5,-1127 598.5,-1127 598.5,-1163"/>
-<text text-anchor="middle" x="546.5" y="-1142.2" font-family="Courier,monospace" font-size="11.00">FileContainer</text>
-</g>
-<!-- \\Slothsoft\\Savegame\\Node\\FileContainer&#45;&gt;\\Slothsoft\\Savegame\\Build\\BuildableInterface -->
-<g id="edge25" class="edge"><title>\\Slothsoft\\Savegame\\Node\\FileContainer&#45;&gt;\\Slothsoft\\Savegame\\Build\\BuildableInterface</title>
-<path fill="none" stroke="black" stroke-dasharray="1,5" d="M494.139,-1156.6C486.44,-1160.38 479.314,-1165.38 474,-1172 332.96,-1347.81 551.433,-1505.26 402,-1674 400.461,-1675.74 398.799,-1677.35 397.038,-1678.83"/>
-<polygon fill="none" stroke="black" points="394.95,-1676.02 388.733,-1684.6 398.943,-1681.77 394.95,-1676.02"/>
-</g>
-<!-- \\Slothsoft\\Savegame\\Node\\FileContainer&#45;&gt;\\Slothsoft\\Savegame\\Node\\AbstractNode -->
-<g id="edge23" class="edge"><title>\\Slothsoft\\Savegame\\Node\\FileContainer&#45;&gt;\\Slothsoft\\Savegame\\Node\\AbstractNode</title>
-<path fill="none" stroke="black" d="M494.444,-1132.75C459.956,-1124.47 414.355,-1113.53 378.497,-1104.92"/>
-<polygon fill="none" stroke="black" points="379.199,-1101.49 368.658,-1102.56 377.565,-1108.3 379.199,-1101.49"/>
-</g>
-<!-- \\Slothsoft\\Savegame\\NodeEvaluatorInterface -->
-<g id="node42" class="node"><title>\\Slothsoft\\Savegame\\NodeEvaluatorInterface</title>
-<polygon fill="none" stroke="black" points="402,-1660 237,-1660 237,-1624 402,-1624 402,-1660"/>
-<text text-anchor="middle" x="319.5" y="-1639.2" font-family="Courier,monospace" font-size="11.00">NodeEvaluatorInterface</text>
-</g>
-<!-- \\Slothsoft\\Savegame\\Node\\FileContainer&#45;&gt;\\Slothsoft\\Savegame\\NodeEvaluatorInterface -->
-<g id="edge24" class="edge"><title>\\Slothsoft\\Savegame\\Node\\FileContainer&#45;&gt;\\Slothsoft\\Savegame\\NodeEvaluatorInterface</title>
-<path fill="none" stroke="black" stroke-dasharray="1,5" d="M494.233,-1156.68C486.523,-1160.44 479.37,-1165.42 474,-1172 348.6,-1325.64 530.735,-1465.44 404.599,-1616.34"/>
-<polygon fill="none" stroke="black" points="401.866,-1614.15 397.944,-1623.99 407.147,-1618.74 401.866,-1614.15"/>
-</g>
-<!-- \\Slothsoft\\Savegame\\Node\\ForEachFileNode -->
-<g id="node24" class="node"><title>\\Slothsoft\\Savegame\\Node\\ForEachFileNode</title>
-<polygon fill="none" stroke="black" points="605.5,-984 487.5,-984 487.5,-948 605.5,-948 605.5,-984"/>
-<text text-anchor="middle" x="546.5" y="-963.2" font-family="Courier,monospace" font-size="11.00">ForEachFileNode</text>
-</g>
-<!-- \\Slothsoft\\Savegame\\Node\\ForEachFileNode&#45;&gt;\\Slothsoft\\Savegame\\Node\\AbstractNode -->
-<g id="edge26" class="edge"><title>\\Slothsoft\\Savegame\\Node\\ForEachFileNode&#45;&gt;\\Slothsoft\\Savegame\\Node\\AbstractNode</title>
-<path fill="none" stroke="black" d="M493.785,-984.063C487.035,-986.845 480.287,-989.849 474,-993 430.652,-1014.73 384.152,-1045.59 353.834,-1066.85"/>
-<polygon fill="none" stroke="black" points="351.495,-1064.22 345.347,-1072.85 355.534,-1069.93 351.495,-1064.22"/>
-</g>
-<!-- \\Slothsoft\\Savegame\\Node\\GroupContainer -->
-<g id="node25" class="node"><title>\\Slothsoft\\Savegame\\Node\\GroupContainer</title>
-<polygon fill="none" stroke="black" points="1346.96,-696 1235.96,-696 1235.96,-660 1346.96,-660 1346.96,-696"/>
-<text text-anchor="middle" x="1291.46" y="-675.2" font-family="Courier,monospace" font-size="11.00">GroupContainer</text>
-</g>
-<!-- \\Slothsoft\\Savegame\\Node\\GroupContainer&#45;&gt;\\Slothsoft\\Savegame\\Node\\AbstractContainerContent -->
-<g id="edge27" class="edge"><title>\\Slothsoft\\Savegame\\Node\\GroupContainer&#45;&gt;\\Slothsoft\\Savegame\\Node\\AbstractContainerContent</title>
-<path fill="none" stroke="black" d="M1235.94,-682.753C1219.74,-686.612 1203.1,-693.347 1190.96,-705 1115.32,-777.624 1200.47,-862.811 1119.96,-930 1088.56,-956.204 1044.98,-964.934 1005.38,-966.344"/>
-<polygon fill="none" stroke="black" points="1005.06,-962.849 995.136,-966.552 1005.21,-969.848 1005.06,-962.849"/>
-</g>
-<!-- \\Slothsoft\\Savegame\\Node\\InstructionContainer -->
-<g id="node26" class="node"><title>\\Slothsoft\\Savegame\\Node\\InstructionContainer</title>
-<polygon fill="none" stroke="black" points="1367.46,-750 1215.46,-750 1215.46,-714 1367.46,-714 1367.46,-750"/>
-<text text-anchor="middle" x="1291.46" y="-729.2" font-family="Courier,monospace" font-size="11.00">InstructionContainer</text>
-</g>
-<!-- \\Slothsoft\\Savegame\\Node\\InstructionContainer&#45;&gt;\\Slothsoft\\Savegame\\Node\\AbstractContainerContent -->
-<g id="edge28" class="edge"><title>\\Slothsoft\\Savegame\\Node\\InstructionContainer&#45;&gt;\\Slothsoft\\Savegame\\Node\\AbstractContainerContent</title>
-<path fill="none" stroke="black" d="M1215.43,-744.193C1206.53,-747.91 1198.09,-752.737 1190.96,-759 1129.16,-813.33 1185.4,-880.099 1119.96,-930 1087.78,-954.539 1044.62,-963.146 1005.52,-964.909"/>
-<polygon fill="none" stroke="black" points="1005.04,-961.423 995.147,-965.225 1005.25,-968.419 1005.04,-961.423"/>
-</g>
-<!-- \\Slothsoft\\Savegame\\Node\\IntegerValue -->
-<g id="node27" class="node"><title>\\Slothsoft\\Savegame\\Node\\IntegerValue</title>
-<polygon fill="none" stroke="black" points="1340.46,-1344 1242.46,-1344 1242.46,-1308 1340.46,-1308 1340.46,-1344"/>
-<text text-anchor="middle" x="1291.46" y="-1323.2" font-family="Courier,monospace" font-size="11.00">IntegerValue</text>
-</g>
-<!-- \\Slothsoft\\Savegame\\Node\\IntegerValue&#45;&gt;\\Slothsoft\\Savegame\\Node\\AbstractValueContent -->
-<g id="edge29" class="edge"><title>\\Slothsoft\\Savegame\\Node\\IntegerValue&#45;&gt;\\Slothsoft\\Savegame\\Node\\AbstractValueContent</title>
-<path fill="none" stroke="black" d="M1242.22,-1314.69C1179.47,-1299.99 1068.8,-1274.04 991.739,-1255.98"/>
-<polygon fill="none" stroke="black" points="992.106,-1252.47 981.571,-1253.6 990.509,-1259.29 992.106,-1252.47"/>
-</g>
-<!-- \\Slothsoft\\Savegame\\Node\\RepeatGroupInstruction -->
-<g id="node28" class="node"><title>\\Slothsoft\\Savegame\\Node\\RepeatGroupInstruction</title>
-<polygon fill="none" stroke="black" points="1373.96,-912 1208.96,-912 1208.96,-876 1373.96,-876 1373.96,-912"/>
-<text text-anchor="middle" x="1291.46" y="-891.2" font-family="Courier,monospace" font-size="11.00">RepeatGroupInstruction</text>
-</g>
-<!-- \\Slothsoft\\Savegame\\Node\\RepeatGroupInstruction&#45;&gt;\\Slothsoft\\Savegame\\Node\\AbstractInstructionContent -->
-<g id="edge30" class="edge"><title>\\Slothsoft\\Savegame\\Node\\RepeatGroupInstruction&#45;&gt;\\Slothsoft\\Savegame\\Node\\AbstractInstructionContent</title>
-<path fill="none" stroke="black" d="M1210.68,-912.059C1203.85,-914.673 1197.18,-917.639 1190.96,-921 1153.85,-941.054 1158.38,-966.575 1119.96,-984 1086.67,-999.097 1047.65,-1006.6 1012.13,-1010.1"/>
-<polygon fill="none" stroke="black" points="1011.38,-1006.66 1001.72,-1011.03 1012,-1013.63 1011.38,-1006.66"/>
-</g>
-<!-- \\Slothsoft\\Savegame\\Node\\SavegameNode -->
-<g id="node29" class="node"><title>\\Slothsoft\\Savegame\\Node\\SavegameNode</title>
-<polygon fill="none" stroke="black" points="595.5,-1109 497.5,-1109 497.5,-1073 595.5,-1073 595.5,-1109"/>
-<text text-anchor="middle" x="546.5" y="-1088.2" font-family="Courier,monospace" font-size="11.00">SavegameNode</text>
-</g>
-<!-- \\Slothsoft\\Savegame\\Node\\SavegameNode&#45;&gt;\\Slothsoft\\Savegame\\Build\\BuildableInterface -->
-<g id="edge32" class="edge"><title>\\Slothsoft\\Savegame\\Node\\SavegameNode&#45;&gt;\\Slothsoft\\Savegame\\Build\\BuildableInterface</title>
-<path fill="none" stroke="black" stroke-dasharray="1,5" d="M497.338,-1101.02C488.405,-1104.94 480.009,-1110.4 474,-1118 319.412,-1313.42 565.919,-1486.33 402,-1674 400.472,-1675.75 398.822,-1677.37 397.069,-1678.86"/>
-<polygon fill="none" stroke="black" points="394.978,-1676.05 388.797,-1684.66 398.995,-1681.78 394.978,-1676.05"/>
-</g>
-<!-- \\Slothsoft\\Savegame\\Node\\SavegameNode&#45;&gt;\\Slothsoft\\Savegame\\Node\\AbstractNode -->
-<g id="edge31" class="edge"><title>\\Slothsoft\\Savegame\\Node\\SavegameNode&#45;&gt;\\Slothsoft\\Savegame\\Node\\AbstractNode</title>
-<path fill="none" stroke="black" d="M497.232,-1091C462.531,-1091 415.57,-1091 378.777,-1091"/>
-<polygon fill="none" stroke="black" points="378.688,-1087.5 368.688,-1091 378.688,-1094.5 378.688,-1087.5"/>
-</g>
-<!-- \\Slothsoft\\Savegame\\Node\\SelectValue -->
-<g id="node30" class="node"><title>\\Slothsoft\\Savegame\\Node\\SelectValue</title>
-<polygon fill="none" stroke="black" points="1336.96,-1290 1245.96,-1290 1245.96,-1254 1336.96,-1254 1336.96,-1290"/>
-<text text-anchor="middle" x="1291.46" y="-1269.2" font-family="Courier,monospace" font-size="11.00">SelectValue</text>
-</g>
-<!-- \\Slothsoft\\Savegame\\Node\\SelectValue&#45;&gt;\\Slothsoft\\Savegame\\Node\\AbstractValueContent -->
-<g id="edge33" class="edge"><title>\\Slothsoft\\Savegame\\Node\\SelectValue&#45;&gt;\\Slothsoft\\Savegame\\Node\\AbstractValueContent</title>
-<path fill="none" stroke="black" d="M1245.66,-1267.8C1183.66,-1261.99 1070.46,-1251.37 991.983,-1244.02"/>
-<polygon fill="none" stroke="black" points="991.914,-1240.49 981.63,-1243.05 991.26,-1247.46 991.914,-1240.49"/>
-</g>
-<!-- \\Slothsoft\\Savegame\\Node\\SignedIntegerValue -->
-<g id="node31" class="node"><title>\\Slothsoft\\Savegame\\Node\\SignedIntegerValue</title>
-<polygon fill="none" stroke="black" points="1360.46,-1236 1222.46,-1236 1222.46,-1200 1360.46,-1200 1360.46,-1236"/>
-<text text-anchor="middle" x="1291.46" y="-1215.2" font-family="Courier,monospace" font-size="11.00">SignedIntegerValue</text>
-</g>
-<!-- \\Slothsoft\\Savegame\\Node\\SignedIntegerValue&#45;&gt;\\Slothsoft\\Savegame\\Node\\AbstractValueContent -->
-<g id="edge34" class="edge"><title>\\Slothsoft\\Savegame\\Node\\SignedIntegerValue&#45;&gt;\\Slothsoft\\Savegame\\Node\\AbstractValueContent</title>
-<path fill="none" stroke="black" d="M1222.26,-1221.2C1157.86,-1224.22 1061.08,-1228.75 991.642,-1232.01"/>
-<polygon fill="none" stroke="black" points="991.428,-1228.51 981.603,-1232.48 991.756,-1235.51 991.428,-1228.51"/>
-</g>
-<!-- \\Slothsoft\\Savegame\\Node\\StringDictionaryInstruction -->
-<g id="node32" class="node"><title>\\Slothsoft\\Savegame\\Node\\StringDictionaryInstruction</title>
-<polygon fill="none" stroke="black" points="1390.96,-858 1191.96,-858 1191.96,-822 1390.96,-822 1390.96,-858"/>
-<text text-anchor="middle" x="1291.46" y="-837.2" font-family="Courier,monospace" font-size="11.00">StringDictionaryInstruction</text>
-</g>
-<!-- \\Slothsoft\\Savegame\\Node\\StringDictionaryInstruction&#45;&gt;\\Slothsoft\\Savegame\\Node\\AbstractInstructionContent -->
-<g id="edge35" class="edge"><title>\\Slothsoft\\Savegame\\Node\\StringDictionaryInstruction&#45;&gt;\\Slothsoft\\Savegame\\Node\\AbstractInstructionContent</title>
-<path fill="none" stroke="black" d="M1205.26,-858.176C1200.21,-860.739 1195.4,-863.663 1190.96,-867 1142.36,-903.577 1170.99,-950.891 1119.96,-984 1088.38,-1004.49 1048.58,-1013.04 1011.93,-1015.86"/>
-<polygon fill="none" stroke="black" points="1011.44,-1012.38 1001.68,-1016.51 1011.89,-1019.37 1011.44,-1012.38"/>
-</g>
-<!-- \\Slothsoft\\Savegame\\Node\\StringValue -->
-<g id="node33" class="node"><title>\\Slothsoft\\Savegame\\Node\\StringValue</title>
-<polygon fill="none" stroke="black" points="1336.96,-1182 1245.96,-1182 1245.96,-1146 1336.96,-1146 1336.96,-1182"/>
-<text text-anchor="middle" x="1291.46" y="-1161.2" font-family="Courier,monospace" font-size="11.00">StringValue</text>
-</g>
-<!-- \\Slothsoft\\Savegame\\Node\\StringValue&#45;&gt;\\Slothsoft\\Savegame\\Node\\AbstractValueContent -->
-<g id="edge36" class="edge"><title>\\Slothsoft\\Savegame\\Node\\StringValue&#45;&gt;\\Slothsoft\\Savegame\\Node\\AbstractValueContent</title>
-<path fill="none" stroke="black" d="M1245.66,-1172.4C1183.53,-1184.05 1070,-1205.34 991.503,-1220.06"/>
-<polygon fill="none" stroke="black" points="990.814,-1216.63 981.63,-1221.91 992.104,-1223.51 990.814,-1216.63"/>
-</g>
-<!-- \\Slothsoft\\Savegame\\Node\\UseGlobalInstruction -->
-<g id="node34" class="node"><title>\\Slothsoft\\Savegame\\Node\\UseGlobalInstruction</title>
-<polygon fill="none" stroke="black" points="981.481,-921 829.481,-921 829.481,-885 981.481,-885 981.481,-921"/>
-<text text-anchor="middle" x="905.481" y="-900.2" font-family="Courier,monospace" font-size="11.00">UseGlobalInstruction</text>
-</g>
-<!-- \\Slothsoft\\Savegame\\Node\\UseGlobalInstruction&#45;&gt;\\Slothsoft\\Savegame\\Node\\AbstractContentNode -->
-<g id="edge37" class="edge"><title>\\Slothsoft\\Savegame\\Node\\UseGlobalInstruction&#45;&gt;\\Slothsoft\\Savegame\\Node\\AbstractContentNode</title>
-<path fill="none" stroke="black" d="M829.456,-901.845C787.154,-903.757 734.276,-910.554 691,-930 652.215,-947.428 655.471,-971.141 619,-993 616.354,-994.586 613.599,-996.107 610.776,-997.561"/>
-<polygon fill="none" stroke="black" points="609.081,-994.492 601.582,-1001.98 612.112,-1000.8 609.081,-994.492"/>
+<!-- \\Slothsoft\\Savegame\\Script\\Event -->
+<g id="node32" class="node"><title>\\Slothsoft\\Savegame\\Script\\Event</title>
+<polygon fill="none" stroke="black" points="1318.46,-562 1264.46,-562 1264.46,-526 1318.46,-526 1318.46,-562"/>
+<text text-anchor="middle" x="1291.46" y="-541.2" font-family="Courier,monospace" font-size="11.00">Event</text>
 </g>
 <!-- \\Slothsoft\\Savegame\\Script\\AbstractElement -->
 <g id="node35" class="node"><title>\\Slothsoft\\Savegame\\Script\\AbstractElement</title>
@@ -416,50 +406,55 @@
 <text text-anchor="start" x="871.481" y="-547.2" font-family="Courier,monospace" font-size="11.00">«abstract»</text>
 <text text-anchor="start" x="854.481" y="-535.2" font-family="Courier,monospace" font-size="11.00">AbstractElement</text>
 </g>
-<!-- \\Slothsoft\\Savegame\\Script\\Event -->
-<g id="node36" class="node"><title>\\Slothsoft\\Savegame\\Script\\Event</title>
-<polygon fill="none" stroke="black" points="1318.46,-454 1264.46,-454 1264.46,-418 1318.46,-418 1318.46,-454"/>
-<text text-anchor="middle" x="1291.46" y="-433.2" font-family="Courier,monospace" font-size="11.00">Event</text>
-</g>
 <!-- \\Slothsoft\\Savegame\\Script\\Event&#45;&gt;\\Slothsoft\\Savegame\\Script\\AbstractElement -->
-<g id="edge38" class="edge"><title>\\Slothsoft\\Savegame\\Script\\Event&#45;&gt;\\Slothsoft\\Savegame\\Script\\AbstractElement</title>
-<path fill="none" stroke="black" d="M1264.25,-443.017C1244.17,-448.416 1215.79,-456.096 1190.96,-463 1116.83,-483.61 1032.03,-507.842 974.434,-524.396"/>
-<polygon fill="none" stroke="black" points="973.362,-521.062 964.719,-527.189 975.297,-527.789 973.362,-521.062"/>
+<g id="edge19" class="edge"><title>\\Slothsoft\\Savegame\\Script\\Event&#45;&gt;\\Slothsoft\\Savegame\\Script\\AbstractElement</title>
+<path fill="none" stroke="black" d="M1264.37,-544C1205.57,-544 1061.12,-544 974.783,-544"/>
+<polygon fill="none" stroke="black" points="974.551,-540.5 964.551,-544 974.551,-547.5 974.551,-540.5"/>
+</g>
+<!-- \\Slothsoft\\Savegame\\Script\\Script -->
+<g id="node33" class="node"><title>\\Slothsoft\\Savegame\\Script\\Script</title>
+<polygon fill="none" stroke="black" points="1319.96,-508 1262.96,-508 1262.96,-472 1319.96,-472 1319.96,-508"/>
+<text text-anchor="middle" x="1291.46" y="-487.2" font-family="Courier,monospace" font-size="11.00">Script</text>
+</g>
+<!-- \\Slothsoft\\Savegame\\Script\\Script&#45;&gt;\\Slothsoft\\Savegame\\Script\\AbstractElement -->
+<g id="edge23" class="edge"><title>\\Slothsoft\\Savegame\\Script\\Script&#45;&gt;\\Slothsoft\\Savegame\\Script\\AbstractElement</title>
+<path fill="none" stroke="black" d="M1262.85,-493.884C1203.11,-502.284 1060.39,-522.356 974.786,-534.394"/>
+<polygon fill="none" stroke="black" points="974.055,-530.962 964.64,-535.821 975.03,-537.894 974.055,-530.962"/>
 </g>
 <!-- \\Slothsoft\\Savegame\\Script\\Line -->
-<g id="node37" class="node"><title>\\Slothsoft\\Savegame\\Script\\Line</title>
+<g id="node34" class="node"><title>\\Slothsoft\\Savegame\\Script\\Line</title>
 <polygon fill="none" stroke="black" points="1318.46,-616 1264.46,-616 1264.46,-580 1318.46,-580 1318.46,-616"/>
 <text text-anchor="middle" x="1291.46" y="-595.2" font-family="Courier,monospace" font-size="11.00">Line</text>
 </g>
 <!-- \\Slothsoft\\Savegame\\Script\\Line&#45;&gt;\\Slothsoft\\Savegame\\Script\\AbstractElement -->
-<g id="edge39" class="edge"><title>\\Slothsoft\\Savegame\\Script\\Line&#45;&gt;\\Slothsoft\\Savegame\\Script\\AbstractElement</title>
+<g id="edge28" class="edge"><title>\\Slothsoft\\Savegame\\Script\\Line&#45;&gt;\\Slothsoft\\Savegame\\Script\\AbstractElement</title>
 <path fill="none" stroke="black" d="M1264.37,-594.331C1205.51,-586.053 1060.83,-565.706 974.52,-553.568"/>
 <polygon fill="none" stroke="black" points="974.941,-550.093 964.551,-552.167 973.966,-557.025 974.941,-550.093"/>
 </g>
 <!-- \\Slothsoft\\Savegame\\Script\\Parser -->
-<g id="node38" class="node"><title>\\Slothsoft\\Savegame\\Script\\Parser</title>
-<polygon fill="none" stroke="black" points="1319.96,-508 1262.96,-508 1262.96,-472 1319.96,-472 1319.96,-508"/>
-<text text-anchor="middle" x="1291.46" y="-487.2" font-family="Courier,monospace" font-size="11.00">Parser</text>
+<g id="node36" class="node"><title>\\Slothsoft\\Savegame\\Script\\Parser</title>
+<polygon fill="none" stroke="black" points="1319.96,-454 1262.96,-454 1262.96,-418 1319.96,-418 1319.96,-454"/>
+<text text-anchor="middle" x="1291.46" y="-433.2" font-family="Courier,monospace" font-size="11.00">Parser</text>
 </g>
-<!-- \\Slothsoft\\Savegame\\Script\\Script -->
-<g id="node39" class="node"><title>\\Slothsoft\\Savegame\\Script\\Script</title>
-<polygon fill="none" stroke="black" points="1319.96,-562 1262.96,-562 1262.96,-526 1319.96,-526 1319.96,-562"/>
-<text text-anchor="middle" x="1291.46" y="-541.2" font-family="Courier,monospace" font-size="11.00">Script</text>
+<!-- \\Slothsoft\\Savegame\\Build\\XmlBuilder -->
+<g id="node37" class="node"><title>\\Slothsoft\\Savegame\\Build\\XmlBuilder</title>
+<polygon fill="none" stroke="black" points="361.5,-1768 277.5,-1768 277.5,-1732 361.5,-1732 361.5,-1768"/>
+<text text-anchor="middle" x="319.5" y="-1747.2" font-family="Courier,monospace" font-size="11.00">XmlBuilder</text>
 </g>
-<!-- \\Slothsoft\\Savegame\\Script\\Script&#45;&gt;\\Slothsoft\\Savegame\\Script\\AbstractElement -->
-<g id="edge40" class="edge"><title>\\Slothsoft\\Savegame\\Script\\Script&#45;&gt;\\Slothsoft\\Savegame\\Script\\AbstractElement</title>
-<path fill="none" stroke="black" d="M1262.85,-544C1203.11,-544 1060.39,-544 974.786,-544"/>
-<polygon fill="none" stroke="black" points="974.64,-540.5 964.64,-544 974.64,-547.5 974.64,-540.5"/>
+<!-- \\Slothsoft\\Savegame\\Build\\BuilderInterface -->
+<g id="node38" class="node"><title>\\Slothsoft\\Savegame\\Build\\BuilderInterface</title>
+<polygon fill="none" stroke="black" points="165,-1768 40,-1768 40,-1732 165,-1732 165,-1768"/>
+<text text-anchor="middle" x="102.5" y="-1747.2" font-family="Courier,monospace" font-size="11.00">BuilderInterface</text>
 </g>
-<!-- \\Slothsoft\\Savegame\\Converter -->
-<g id="node40" class="node"><title>\\Slothsoft\\Savegame\\Converter</title>
-<polygon fill="none" stroke="black" points="1329.96,-266 1252.96,-266 1252.96,-230 1329.96,-230 1329.96,-266"/>
-<text text-anchor="middle" x="1291.46" y="-245.2" font-family="Courier,monospace" font-size="11.00">Converter</text>
+<!-- \\Slothsoft\\Savegame\\Build\\XmlBuilder&#45;&gt;\\Slothsoft\\Savegame\\Build\\BuilderInterface -->
+<g id="edge26" class="edge"><title>\\Slothsoft\\Savegame\\Build\\XmlBuilder&#45;&gt;\\Slothsoft\\Savegame\\Build\\BuilderInterface</title>
+<path fill="none" stroke="black" stroke-dasharray="1,5" d="M277.3,-1750C248.57,-1750 209.475,-1750 175.639,-1750"/>
+<polygon fill="none" stroke="black" points="175.324,-1746.5 165.324,-1750 175.324,-1753.5 175.324,-1746.5"/>
 </g>
 <!-- \\Slothsoft\\Savegame\\Editor -->
-<g id="node41" class="node"><title>\\Slothsoft\\Savegame\\Editor</title>
-<polygon fill="none" stroke="black" points="1319.96,-212 1262.96,-212 1262.96,-176 1319.96,-176 1319.96,-212"/>
-<text text-anchor="middle" x="1291.46" y="-191.2" font-family="Courier,monospace" font-size="11.00">Editor</text>
+<g id="node40" class="node"><title>\\Slothsoft\\Savegame\\Editor</title>
+<polygon fill="none" stroke="black" points="1319.96,-266 1262.96,-266 1262.96,-230 1319.96,-230 1319.96,-266"/>
+<text text-anchor="middle" x="1291.46" y="-245.2" font-family="Courier,monospace" font-size="11.00">Editor</text>
 </g>
 <!-- \\Slothsoft\\Core\\IO\\Writable\\DOMWriterInterface -->
 <g id="node43" class="node"><title>\\Slothsoft\\Core\\IO\\Writable\\DOMWriterInterface</title>
@@ -467,9 +462,14 @@
 <text text-anchor="middle" x="905.481" y="-14.3" font-family="Times New Roman,serif" font-size="14.00" fill="gray">\Slothsoft\Core\IO\Writable\DOMWriterInterface</text>
 </g>
 <!-- \\Slothsoft\\Savegame\\Editor&#45;&gt;\\Slothsoft\\Core\\IO\\Writable\\DOMWriterInterface -->
-<g id="edge2" class="edge"><title>\\Slothsoft\\Savegame\\Editor&#45;&gt;\\Slothsoft\\Core\\IO\\Writable\\DOMWriterInterface</title>
-<path fill="none" stroke="black" stroke-dasharray="1,5" d="M1276.11,-175.753C1249.33,-143.204 1188.28,-75.6733 1119.96,-45 1106.19,-38.8181 1091.45,-33.915 1076.39,-30.0409"/>
-<polygon fill="none" stroke="black" points="1077,-26.5866 1066.46,-27.6406 1075.35,-33.3909 1077,-26.5866"/>
+<g id="edge1" class="edge"><title>\\Slothsoft\\Savegame\\Editor&#45;&gt;\\Slothsoft\\Core\\IO\\Writable\\DOMWriterInterface</title>
+<path fill="none" stroke="black" stroke-dasharray="1,5" d="M1262.85,-247.03C1240.93,-244.866 1210.77,-238.59 1190.96,-221 1127.89,-164.993 1186.77,-96.4866 1119.96,-45 1111.5,-38.4764 1102.26,-33.0737 1092.52,-28.6228"/>
+<polygon fill="none" stroke="black" points="1093.62,-25.2884 1083.05,-24.6415 1090.91,-31.7419 1093.62,-25.2884"/>
+</g>
+<!-- \\Slothsoft\\Savegame\\Converter -->
+<g id="node41" class="node"><title>\\Slothsoft\\Savegame\\Converter</title>
+<polygon fill="none" stroke="black" points="1329.96,-212 1252.96,-212 1252.96,-176 1329.96,-176 1329.96,-212"/>
+<text text-anchor="middle" x="1291.46" y="-191.2" font-family="Courier,monospace" font-size="11.00">Converter</text>
 </g>
 </g>
 </svg>
