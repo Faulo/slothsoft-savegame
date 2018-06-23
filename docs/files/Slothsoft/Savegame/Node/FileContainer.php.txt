@@ -83,7 +83,7 @@ class FileContainer extends AbstractNode implements NodeEvaluatorInterface, Buil
                 }
                 break;
             default:
-                $ret = substr($this->content, $offset, $length);
+                $ret = (string) substr($this->content, $offset, $length);
                 $ret = str_pad($ret, $length, "\0");
                 break;
         }

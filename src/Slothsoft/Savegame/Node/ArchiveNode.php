@@ -9,6 +9,7 @@ use Slothsoft\Savegame\Build\BuildableInterface;
 use Slothsoft\Savegame\Build\BuilderInterface;
 use Slothsoft\Savegame\Node\ArchiveParser\ArchiveBuilderInterface;
 use Slothsoft\Savegame\Node\ArchiveParser\ArchiveExtractorInterface;
+use Slothsoft\Core\ServerEnvironment;
 
 class ArchiveNode extends AbstractNode implements BuildableInterface
 {
@@ -132,12 +133,12 @@ class ArchiveNode extends AbstractNode implements BuildableInterface
         $this->archivePath = $path;
         
         if (file_exists($this->archivePath)) {
-            $this->size = FileSystem::size($this->archivePath);
-            $this->timestamp = date(DateTimeFormatter::FORMAT_DATETIME, FileSystem::changetime($this->archivePath));
+            $this->size = filesize($this->archivePath);
+            $this->timestamp = date(DateTimeFormatter::FORMAT_DATETIME, filemtime($this->archivePath));
             $this->md5 = md5_file($this->archivePath);
             
             $dir = [];
-            $dir[] = sys_get_temp_dir();
+            $dir[] = ServerEnvironment::getCacheDirectory();
             $dir[] = str_replace(self::NAMESPACE_SEPARATOR, DIRECTORY_SEPARATOR, __CLASS__);
             $dir[] = $this->name;
             $dir[] = $this->md5;

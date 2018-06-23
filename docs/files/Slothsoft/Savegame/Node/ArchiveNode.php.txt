@@ -132,8 +132,8 @@ class ArchiveNode extends AbstractNode implements BuildableInterface
         $this->archivePath = $path;
         
         if (file_exists($this->archivePath)) {
-            $this->size = FileSystem::size($this->archivePath);
-            $this->timestamp = date(DateTimeFormatter::FORMAT_DATETIME, FileSystem::changetime($this->archivePath));
+            $this->size = filesize($this->archivePath);
+            $this->timestamp = date(DateTimeFormatter::FORMAT_DATETIME, filemtime($this->archivePath));
             $this->md5 = md5_file($this->archivePath);
             
             $dir = [];

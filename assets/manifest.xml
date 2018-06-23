@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <assets xmlns="http://schema.slothsoft.net/farah/module">
-    <directory name="schema">
-        <resource-directory name="editor" type="application/x-xsd+xml"/>
-    </directory>
-  </assets>
+	<directory name="schema">
+		<resource-directory name="editor" type="application/x-xsd+xml" />
+	</directory>
+</assets>
