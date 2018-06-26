@@ -12,7 +12,7 @@ class ForEachFileNode extends AbstractNode
 
     public function loadChildren(EditorElement $strucElement)
     {
-        $archive = $this->getParentNode();
+        $archive = $this->getOwnerArchive();
         
         foreach ($archive->getFileNameList() as $name) {
             $strucData = [];
@@ -23,4 +23,12 @@ class ForEachFileNode extends AbstractNode
             $this->loadChild($childElement);
         }
     }
+    public function getOwnerSavegame(): SavegameNode
+    {
+        return $this->getOwnerArchive()->getOwnerSavegame();
+    }
+    private function getOwnerArchive() : ArchiveNode {
+        return $this->getParentNode();
+    }
+
 }

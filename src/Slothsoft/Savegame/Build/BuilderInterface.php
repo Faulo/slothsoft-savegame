@@ -5,11 +5,11 @@ namespace Slothsoft\Savegame\Build;
 interface BuilderInterface
 {
 
-    public function registerTagBlacklist(array $tagList);
+    public function registerTagBlacklist(iterable $tagList);
 
     public function clearTagBlacklist();
 
-    public function registerAttributeBlacklist(array $tagList);
+    public function registerAttributeBlacklist(iterable $tagList);
 
     public function clearAttributeBlacklist();
 

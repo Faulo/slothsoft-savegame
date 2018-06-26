@@ -2,19 +2,28 @@
 declare(strict_types = 1);
 namespace Slothsoft\Savegame\Node;
 
+use Slothsoft\Core\IO\FileInfoFactory;
+use Slothsoft\Core\IO\AdapterTraits\DOMWriterFromStringTrait;
+use Slothsoft\Core\IO\Writable\DOMWriterInterface;
+use Slothsoft\Core\IO\Writable\FileWriterInterface;
 use Slothsoft\Savegame\Editor;
 use Slothsoft\Savegame\EditorElement;
 use Slothsoft\Savegame\Build\BuildableInterface;
 use Slothsoft\Savegame\Build\BuilderInterface;
+use Slothsoft\Savegame\Build\XmlBuilder;
+use SplFileInfo;
 
-class SavegameNode extends AbstractNode implements BuildableInterface
+class SavegameNode extends AbstractNode implements BuildableInterface, FileWriterInterface, DOMWriterInterface
 {
+    use DOMWriterFromStringTrait;
 
     /**
      *
      * @var \Slothsoft\Savegame\Editor
      */
     private $ownerEditor;
+    
+    private $factory;
 
     private $globalElements;
 
@@ -22,11 +31,10 @@ class SavegameNode extends AbstractNode implements BuildableInterface
 
     private $valueIdCounter = 0;
 
-    public function __construct(Editor $ownerEditor = null)
+    public function __construct(Editor $ownerEditor, NodeFactory $factory)
     {
         $this->ownerEditor = $ownerEditor;
-        
-        parent::__construct();
+        $this->factory = $factory;
     }
 
     protected function loadStruc(EditorElement $strucElement)
@@ -137,4 +145,37 @@ class SavegameNode extends AbstractNode implements BuildableInterface
         }
         return $ret;
     }
+    
+    
+    
+    public function toFile(): SplFileInfo
+    {
+        $builder = new XmlBuilder();
+        $handle = $builder->buildStream($this);
+        $file = FileInfoFactory::createFromResource($handle);
+        fclose($handle);
+        return $file;
+    }
+
+    public function toString(): string
+    {
+        $builder = new XmlBuilder();
+        $builder->registerAttributeBlacklist([
+            'position',
+            'bit',
+            'encoding'
+        ]);
+        return $builder->buildString($this);
+    }
+    
+    public function createNode(EditorElement $strucElement, AbstractNode $parentValue) : AbstractNode
+    {
+        return $this->factory->createNode($strucElement, $parentValue);
+    }
+    public function getOwnerSavegame(): SavegameNode {
+        return $this;
+    }
+
+
+    
 }

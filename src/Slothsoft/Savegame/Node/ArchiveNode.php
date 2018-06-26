@@ -3,13 +3,14 @@ declare(strict_types = 1);
 namespace Slothsoft\Savegame\Node;
 
 use Slothsoft\Core\FileSystem;
+use Slothsoft\Core\ServerEnvironment;
 use Slothsoft\Core\Calendar\DateTimeFormatter;
+use Slothsoft\Savegame\Editor;
 use Slothsoft\Savegame\EditorElement;
 use Slothsoft\Savegame\Build\BuildableInterface;
 use Slothsoft\Savegame\Build\BuilderInterface;
 use Slothsoft\Savegame\Node\ArchiveParser\ArchiveBuilderInterface;
 use Slothsoft\Savegame\Node\ArchiveParser\ArchiveExtractorInterface;
-use Slothsoft\Core\ServerEnvironment;
 
 class ArchiveNode extends AbstractNode implements BuildableInterface
 {
@@ -61,8 +62,8 @@ class ArchiveNode extends AbstractNode implements BuildableInterface
         
         $editor = $this->getOwnerEditor();
         
-        $defaultFile = $editor->buildDefaultFile($this->path);
-        $tempFile = $editor->buildTempFile($this->name);
+        $defaultFile = (string) $editor->buildDefaultFile($this->path);
+        $tempFile = (string) $editor->buildUserFile($this->name);
         
         if ($uploadedArchives = $editor->getConfigValue('uploadedArchives')) {
             if (isset($uploadedArchives[$this->name])) {
@@ -106,7 +107,10 @@ class ArchiveNode extends AbstractNode implements BuildableInterface
 
     public function writeArchive()
     {
-        $path = $this->getOwnerEditor()->buildTempFile($this->name);
+        $path = (string) $this->getOwnerEditor()->buildUserFile($this->name);
+        if (!is_dir(dirname($path))) {
+            mkdir(dirname($path), 0777, true);
+        }
         $ret = file_put_contents($path, $this->getArchive());
         if ($ret) {
             $this->setArchivePath($path);
@@ -177,4 +181,14 @@ class ArchiveNode extends AbstractNode implements BuildableInterface
     {
         return $this->getOwnerEditor()->getArchiveExtractor($this->type);
     }
+    
+    public function getOwnerSavegame(): SavegameNode
+    {
+        return $this->getParentNode();
+    }
+    private function getOwnerEditor(): Editor
+    {
+        return $this->getOwnerSavegame()->getOwnerEditor();
+    }
+
 }

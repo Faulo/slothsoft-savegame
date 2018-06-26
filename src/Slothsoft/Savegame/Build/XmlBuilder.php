@@ -9,7 +9,7 @@ class XmlBuilder implements BuilderInterface
 
     private $tagBlacklist = [];
 
-    public function registerTagBlacklist(array $list)
+    public function registerTagBlacklist(iterable $list)
     {
         foreach ($list as $key) {
             $this->tagBlacklist[$key] = true;
@@ -23,7 +23,7 @@ class XmlBuilder implements BuilderInterface
 
     private $attributeBlacklist = [];
 
-    public function registerAttributeBlacklist(array $list)
+    public function registerAttributeBlacklist(iterable $list)
     {
         foreach ($list as $key) {
             $this->attributeBlacklist[$key] = true;

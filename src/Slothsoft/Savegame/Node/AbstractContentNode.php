@@ -2,10 +2,9 @@
 declare(strict_types = 1);
 namespace Slothsoft\Savegame\Node;
 
-use Slothsoft\Savegame\Editor;
 use Slothsoft\Savegame\EditorElement;
-use Slothsoft\Savegame\Build\BuilderInterface;
 use Slothsoft\Savegame\Build\BuildableInterface;
+use Slothsoft\Savegame\Build\BuilderInterface;
 
 abstract class AbstractContentNode extends AbstractNode
 {
@@ -48,18 +47,9 @@ abstract class AbstractContentNode extends AbstractNode
      *
      * @return \Slothsoft\Savegame\Node\FileContainer
      */
-    public function getOwnerFile()
+    protected function getOwnerFile() : FileContainer
     {
         return $this->ownerFile;
-    }
-
-    /**
-     *
-     * @return \Slothsoft\Savegame\Editor
-     */
-    public function getOwnerEditor(): Editor
-    {
-        return $this->ownerFile->getOwnerEditor();
     }
 
     /**
@@ -96,4 +86,6 @@ abstract class AbstractContentNode extends AbstractNode
         
         parent::appendBuildChild($childNode);
     }
+    
+    
 }

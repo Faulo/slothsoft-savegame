@@ -4,7 +4,6 @@ namespace Slothsoft\Savegame\Node;
 
 use Ds\Vector;
 use Slothsoft\Savegame\Converter;
-use Slothsoft\Savegame\Editor;
 use Slothsoft\Savegame\EditorElement;
 use Slothsoft\Savegame\Build\BuildableInterface;
 
@@ -20,9 +19,6 @@ abstract class AbstractNode
     private $parentNode;
 
     private $childNodeList;
-
-    public function __construct()
-    {}
 
     public function init(EditorElement $strucElement, AbstractNode $parentNode = null)
     {
@@ -47,30 +43,14 @@ abstract class AbstractNode
         }
     }
 
-    protected function loadChild(EditorElement $strucElement)
+    final protected function loadChild(EditorElement $strucElement)
     {
-        if ($node = $this->getOwnerEditor()->createNode($this, $strucElement)) {
+        if ($node = $this->getOwnerSavegame()->createNode($strucElement, $this)) {
             // echo get_class($node) . PHP_EOL;
         }
     }
-
-    /**
-     *
-     * @return \Slothsoft\Savegame\Editor
-     */
-    public function getOwnerEditor(): Editor
-    {
-        return $this->getOwnerSavegame()->getOwnerEditor();
-    }
-
-    /**
-     *
-     * @return \Slothsoft\Savegame\Node\SavegameNode
-     */
-    public function getOwnerSavegame(): SavegameNode
-    {
-        return $this->parentNode instanceof SavegameNode ? $this->parentNode : $this->parentNode->getOwnerSavegame();
-    }
+    
+    abstract public function getOwnerSavegame(): SavegameNode;
 
     /**
      *

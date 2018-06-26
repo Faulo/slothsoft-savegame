@@ -26,8 +26,6 @@ class FileContainer extends AbstractNode implements NodeEvaluatorInterface, Buil
 
     private $evaluateCache;
 
-    private $ownerEditor;
-
     private $ownerSavegame;
 
     public function getBuildTag(): string
@@ -46,10 +44,7 @@ class FileContainer extends AbstractNode implements NodeEvaluatorInterface, Buil
     {
         parent::loadStruc($strucElement);
         
-        $parent = $this->getParentNode();
-        $archive = $parent instanceof ArchiveNode ? $parent : $parent->getParentNode();
-        $this->ownerSavegame = $archive->getOwnerSavegame();
-        $this->ownerEditor = $this->ownerSavegame->getOwnerEditor();
+        $this->ownerSavegame = $this->getOwnerArchive()->getOwnerSavegame();
         
         $this->fileName = (string) $strucElement->getAttribute('file-name');
         $this->filePath = $archive->getFilePathByName($this->fileName);
@@ -201,19 +196,15 @@ class FileContainer extends AbstractNode implements NodeEvaluatorInterface, Buil
 
     /**
      *
-     * @return \Slothsoft\Savegame\Editor
-     */
-    public function getOwnerEditor(): Editor
-    {
-        return $this->ownerEditor;
-    }
-
-    /**
-     *
      * @return \Slothsoft\Savegame\Node\SavegameNode
      */
     public function getOwnerSavegame(): SavegameNode
     {
         return $this->ownerSavegame;
+    }
+    
+    private function getOwnerArchive() : ArchiveNode {
+        $parent = $this->getParentNode();
+        return $parent instanceof ArchiveNode ? $parent : $parent->getParentNode();
     }
 }
