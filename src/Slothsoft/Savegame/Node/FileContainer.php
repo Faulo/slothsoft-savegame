@@ -3,7 +3,6 @@ declare(strict_types = 1);
 namespace Slothsoft\Savegame\Node;
 
 use Ds\Vector;
-use Slothsoft\Savegame\Editor;
 use Slothsoft\Savegame\EditorElement;
 use Slothsoft\Savegame\NodeEvaluatorInterface;
 use Slothsoft\Savegame\Build\BuildableInterface;
@@ -44,10 +43,12 @@ class FileContainer extends AbstractNode implements NodeEvaluatorInterface, Buil
     {
         parent::loadStruc($strucElement);
         
-        $this->ownerSavegame = $this->getOwnerArchive()->getOwnerSavegame();
+        $archive = $this->getOwnerArchive();
+        
+        $this->ownerSavegame = $archive->getOwnerSavegame();
         
         $this->fileName = (string) $strucElement->getAttribute('file-name');
-        $this->filePath = $archive->getFilePathByName($this->fileName);
+        $this->filePath = (string) $archive->getFileByName($this->fileName);
         
         $this->valueList = new Vector();
         $this->evaluateCache = [];

@@ -14,7 +14,7 @@ class ForEachFileNode extends AbstractNode
     {
         $archive = $this->getOwnerArchive();
         
-        foreach ($archive->getFileNameList() as $name) {
+        foreach ($archive->getFileNames() as $name) {
             $strucData = [];
             $strucData['file-name'] = $name;
             

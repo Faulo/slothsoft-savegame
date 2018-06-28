@@ -2,12 +2,14 @@
 declare(strict_types = 1);
 namespace Slothsoft\Savegame\Node\ArchiveParser;
 
+use SplFileInfo;
+
 class CopyArchiveExtractor implements ArchiveExtractorInterface
 {
 
-    public function extractArchive(string $archivePath, string $targetDirectory): bool
+    public function extractArchive(SplFileInfo $archivePath, SplFileInfo $targetDirectory): bool
     {
-        return copy($archivePath, $targetDirectory . DIRECTORY_SEPARATOR . '1');
+        return copy((string) $archivePath, $targetDirectory . DIRECTORY_SEPARATOR . '1');
     }
 }
 

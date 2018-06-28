@@ -31,21 +31,34 @@ class Editor implements DOMWriterInterface, FileWriterInterface
      */
     private $savegame;
     
+    private $loadArchives = [];
+    
     public function __construct(EditorConfig $config)
     {
         $this->config = $config;
     }
 
-    public function load()
+    public function loadAllArchives()
     {
-        $infoset = DOMHelper::loadDocument((string) $this->config->infosetFile);
-        $rootElement = $this->loadDocument($infoset);        
-        $factory = new NodeFactory($this);
-        $this->savegame = $factory->createNode($rootElement, null);
+        $this->loadArchives = true;
+        $this->loadDocument();
+    }
+    
+    public function loadNoArchives()
+    {
+        $this->loadArchives = [];
+        $this->loadDocument();
+    }
+    
+    public function loadArchive(string... $archiveIds) {
+        $this->loadArchives = $archiveIds;
+        $this->loadDocument();
     }
 
-    private function loadDocument(DOMDocument $strucDoc): EditorElement
+    private function loadDocument(): void
     {
+        $strucDoc = DOMHelper::loadDocument((string) $this->config->infosetFile);
+        
         if (! ($strucDoc and $strucDoc->documentElement)) {
             throw new UnexpectedValueException("Structure document is empty.");
         }
@@ -54,7 +67,12 @@ class Editor implements DOMWriterInterface, FileWriterInterface
             throw new UnexpectedValueException("XInclude processing in the structure document failed.");
         }
         
-        return $this->loadDocumentElement($strucDoc->documentElement);
+        $rootNode = $strucDoc->documentElement;
+        $rootNode->setAttribute('save-id', basename((string) $this->getUserDirectory()));
+        
+        $rootElement = $this->loadDocumentElement($rootNode);
+        $factory = new NodeFactory($this);
+        $this->savegame = $factory->createNode($rootElement, null);
     }
 
     private function loadDocumentElement(DOMElement $node): EditorElement
@@ -95,58 +113,54 @@ class Editor implements DOMWriterInterface, FileWriterInterface
     }
     public function getArchiveNode(string $archiveName): ArchiveNode
     {
-        return $this->getSavegameNode()->getArchiveById($id);
+        return $this->getSavegameNode()->getArchiveById($archiveName);
     }
     public function getFileNode(string $archiveName, string $fileName): FileContainer
     {
-        return $this->getArchiveNode($archiveName)->getFileNode($fileName);
+        return $this->getArchiveNode($archiveName)->getFileNodeByName($fileName);
     }
-    public function parseRequest(array $req)
+    public function applyValues(array $data)
     {
-        if (isset($req['data'])) {
-            $valueMap = $this->getSavegameNode()->getValueMap();
-            foreach ($req['data'] as $id => $val) {
-                if ($val === '_checkbox') {
-                    $val = isset($req['data'][$id . $val]);
-                }
-                if (isset($valueMap[$id])) {
-                    // printf('%s: %s => %s%s', $id, $node->getValue(), $val, PHP_EOL);
-                    $valueMap[$id]->setValue($val, true);
-                }
+        $valueMap = $this->getSavegameNode()->getValueMap();
+        foreach ($data as $id => $val) {
+            if ($val === '_checkbox') {
+                $val = isset($data[$id . $val]);
+            }
+            if (isset($valueMap[$id])) {
+                // printf('%s: %s => %s%s', $id, $node->getValue(), $val, PHP_EOL);
+                $valueMap[$id]->setValue($val, true);
             }
         }
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     public function findGameFile(string $name) : SplFileInfo
     {
         $defaultFile = $this->buildDefaultFile($name);
         $userFile = $this->buildUserFile($name);
         return $userFile->isFile() ? $userFile : $defaultFile;
     }
+    public function writeGameFile(string $name, FileWriterInterface $writer) : SplFileInfo
+    {
+        $userFile = $this->buildUserFile($name);
+        $userPath = (string) $userFile;
+        if (!is_dir(dirname($userPath))) {
+            mkdir(dirname($userPath), 0777, true);
+        }
+        file_put_contents($userPath, $writer->toString());
+        return $userFile;
+    }
     
-    public function buildDefaultFile(string $name) : SplFileInfo
+    private function buildDefaultFile(string $name) : SplFileInfo
     {
         return new SplFileInfo($this->getDefaultDirectory() . DIRECTORY_SEPARATOR . $name);
     }
-    public function getDefaultDirectory() : SplFileInfo {
+    private function getDefaultDirectory() : SplFileInfo {
         return $this->config->sourceDirectory;
     }
-
-    public function buildUserFile(string $name) : SplFileInfo
+    private function buildUserFile(string $name) : SplFileInfo
     {
         return new SplFileInfo($this->getUserDirectory() . DIRECTORY_SEPARATOR . $name);
     }
-    public function getUserDirectory() : SplFileInfo {
+    private function getUserDirectory() : SplFileInfo {
         return $this->config->userDirectory;
     }
 
@@ -154,8 +168,8 @@ class Editor implements DOMWriterInterface, FileWriterInterface
 
     public function shouldLoadArchive($name): bool
     {
-        return true;
-    }
+        return $this->loadArchives === true or in_array($name, $this->loadArchives);
+     }
     
     
     

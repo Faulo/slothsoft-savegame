@@ -5,14 +5,18 @@ namespace Slothsoft\Savegame\Node;
 use Slothsoft\Core\FileSystem;
 use Slothsoft\Core\ServerEnvironment;
 use Slothsoft\Core\Calendar\DateTimeFormatter;
+use Slothsoft\Core\IO\Writable\FileWriterInterface;
 use Slothsoft\Savegame\Editor;
 use Slothsoft\Savegame\EditorElement;
 use Slothsoft\Savegame\Build\BuildableInterface;
 use Slothsoft\Savegame\Build\BuilderInterface;
 use Slothsoft\Savegame\Node\ArchiveParser\ArchiveBuilderInterface;
 use Slothsoft\Savegame\Node\ArchiveParser\ArchiveExtractorInterface;
+use SplFileInfo;
+use Slothsoft\Core\IO\Readable\FileReaderInterface;
+use Slothsoft\Core\IO\FileInfoFactory;
 
-class ArchiveNode extends AbstractNode implements BuildableInterface
+class ArchiveNode extends AbstractNode implements BuildableInterface, FileWriterInterface, FileReaderInterface
 {
 
     const NAMESPACE_SEPARATOR = '\\';
@@ -29,11 +33,11 @@ class ArchiveNode extends AbstractNode implements BuildableInterface
 
     private $size;
 
-    private $archivePath;
+    private $file;
 
-    private $fileDirectory;
+    private $extractDirectory;
 
-    private $filePathList;
+    private $extractedFiles;
 
     public function getBuildTag(): string
     {
@@ -60,34 +64,21 @@ class ArchiveNode extends AbstractNode implements BuildableInterface
         $this->name = (string) $strucElement->getAttribute('name', basename($this->path));
         $this->type = (string) $strucElement->getAttribute('type');
         
-        $editor = $this->getOwnerEditor();
-        
-        $defaultFile = (string) $editor->buildDefaultFile($this->path);
-        $tempFile = (string) $editor->buildUserFile($this->name);
-        
-        if ($uploadedArchives = $editor->getConfigValue('uploadedArchives')) {
-            if (isset($uploadedArchives[$this->name])) {
-                move_uploaded_file($uploadedArchives[$this->name], $tempFile);
-            }
-        }
-        
-        $path = file_exists($tempFile) ? $tempFile : $defaultFile;
-        
-        $this->setArchivePath($path);
+        $this->fromFile($this->getOwnerEditor()->findGameFile($this->path));
     }
 
     protected function loadNode(EditorElement $strucElement)
     {
-        $this->filePathList = [];
+        $this->extractedFiles = [];
         if ($this->getOwnerEditor()->shouldLoadArchive($this->name)) {
-            if ($this->fileDirectory) {
-                $list = FileSystem::scanDir($this->fileDirectory, FileSystem::SCANDIR_REALPATH);
+            if ($this->extractDirectory) {
+                $list = FileSystem::scanDir((string) $this->extractDirectory, FileSystem::SCANDIR_FILEINFO);
                 if (! count($list)) {
                     $this->loadArchive();
-                    $list = FileSystem::scanDir($this->fileDirectory, FileSystem::SCANDIR_REALPATH);
+                    $list = FileSystem::scanDir((string) $this->extractDirectory, FileSystem::SCANDIR_FILEINFO);
                 }
-                foreach ($list as $path) {
-                    $this->filePathList[$path] = basename($path);
+                foreach ($list as $file) {
+                    $this->extractedFiles[$file->getFilename()] = $file;
                 }
             }
         }
@@ -100,31 +91,9 @@ class ArchiveNode extends AbstractNode implements BuildableInterface
         }
     }
 
-    protected function loadArchive()
+    private function loadArchive()
     {
-        $this->getArchiveExtractor()->extractArchive($this->archivePath, $this->fileDirectory);
-    }
-
-    public function writeArchive()
-    {
-        $path = (string) $this->getOwnerEditor()->buildUserFile($this->name);
-        if (!is_dir(dirname($path))) {
-            mkdir(dirname($path), 0777, true);
-        }
-        $ret = file_put_contents($path, $this->getArchive());
-        if ($ret) {
-            $this->setArchivePath($path);
-        }
-        return $ret;
-    }
-
-    public function getArchive()
-    {
-        $ret = null;
-        if ($childList = $this->getBuildChildren()) {
-            $ret = $this->getArchiveBuilder()->buildArchive($childList);
-        }
-        return $ret;
+        $this->getArchiveExtractor()->extractArchive($this->file, $this->extractDirectory);
     }
 
     public function getArchiveId()
@@ -132,37 +101,26 @@ class ArchiveNode extends AbstractNode implements BuildableInterface
         return $this->name;
     }
 
-    protected function setArchivePath($path)
+    public function getFileNames(): iterable
     {
-        $this->archivePath = $path;
-        
-        if (file_exists($this->archivePath)) {
-            $this->size = filesize($this->archivePath);
-            $this->timestamp = date(DateTimeFormatter::FORMAT_DATETIME, filemtime($this->archivePath));
-            $this->md5 = md5_file($this->archivePath);
-            
-            $dir = [];
-            $dir[] = ServerEnvironment::getCacheDirectory();
-            $dir[] = str_replace(self::NAMESPACE_SEPARATOR, DIRECTORY_SEPARATOR, __CLASS__);
-            $dir[] = $this->name;
-            $dir[] = $this->md5;
-            
-            $this->fileDirectory = implode(DIRECTORY_SEPARATOR, $dir);
-            
-            if (! is_dir($this->fileDirectory)) {
-                mkdir($this->fileDirectory, 0777, true);
+        return array_keys($this->extractedFiles);
+    }
+    
+    public function getFileByName(string $name): SplFileInfo
+    {
+        return $this->extractedFiles[$name];
+    }
+    
+    
+    public function getFileNodeByName(string $name): FileContainer
+    {
+        if ($nodeList = $this->getBuildChildren()) {
+            foreach ($nodeList as $node) {
+                if ($node->getFileName() === $name) {
+                    return $node;
+                }
             }
         }
-    }
-
-    public function getFileNameList(): array
-    {
-        return array_values($this->filePathList);
-    }
-
-    public function getFilePathByName(string $name): string
-    {
-        return array_search($name, $this->filePathList, true);
     }
 
     public function appendBuildChild(BuildableInterface $childNode)
@@ -190,5 +148,50 @@ class ArchiveNode extends AbstractNode implements BuildableInterface
     {
         return $this->getOwnerSavegame()->getOwnerEditor();
     }
+    
+    public function toFile(): SplFileInfo
+    {
+        return $this->file;
+    }
+
+    public function toString(): string
+    {
+        if ($childList = $this->getBuildChildren()) {
+            return $this->getArchiveBuilder()->buildArchive($childList);
+        } else {
+            return '';
+        }
+    }
+    
+    public function fromString(string $sourceString) : void
+    {
+        file_put_contents((string) $this->file, $sourceString);
+        $this->fromFile($this->file);
+    }
+
+    public function fromFile(SplFileInfo $sourceFile) : void
+    {
+        $this->file = $sourceFile;
+        
+        if ($this->file->isReadable()) {
+            $this->size = $this->file->getSize();
+            $this->timestamp = date(DateTimeFormatter::FORMAT_DATETIME, $this->file->getMTime());
+            $this->md5 = md5_file((string) $this->file);
+            
+            $dir = [];
+            $dir[] = ServerEnvironment::getCacheDirectory();
+            $dir[] = str_replace(self::NAMESPACE_SEPARATOR, DIRECTORY_SEPARATOR, __CLASS__);
+            $dir[] = $this->name;
+            $dir[] = $this->md5;
+            
+            $this->extractDirectory = FileInfoFactory::createFromPath(implode(DIRECTORY_SEPARATOR, $dir));
+            
+            if (! $this->extractDirectory->isDir()) {
+                mkdir((string) $this->extractDirectory, 0777, true);
+            }
+        }
+    }
+
+
 
 }

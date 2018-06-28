@@ -1,4 +1,5 @@
 <?php
+declare(strict_types = 1);
 namespace Slothsoft\Savegame;
 
 use SplFileInfo;
@@ -10,6 +11,7 @@ class EditorConfig
     public $infosetFile;
     public $archiveExtractors;
     public $archiveBuilders;
+    
     public function __construct(SplFileInfo $sourceDirectory, SplFileInfo $userDirectory, SplFileInfo $infosetFile, array $archiveExtractors, array $archiveBuilders) {
         $this->sourceDirectory = $sourceDirectory;
         $this->userDirectory = $userDirectory;
