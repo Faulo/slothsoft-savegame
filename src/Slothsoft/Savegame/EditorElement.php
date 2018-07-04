@@ -22,6 +22,7 @@ class EditorElement
         'bit' => 14,
         'select' => 15,
         'event-script' => 16,
+        'image' => 17,
         
         'group' => 20,
         'instruction' => 21,
@@ -32,7 +33,8 @@ class EditorElement
         'event' => 33,
         'event-step' => 34,
         'repeat-group' => 35,
-        'use-global' => 36
+        'use-global' => 36,
+        'image-map' => 37,
     ];
 
     public static function getNodeTag(int $val)

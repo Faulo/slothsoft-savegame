@@ -3,12 +3,15 @@ declare(strict_types = 1);
 namespace Slothsoft\Savegame\Node;
 
 use Ds\Vector;
+use Slothsoft\Core\IO\Writable\FileWriterInterface;
 use Slothsoft\Savegame\EditorElement;
 use Slothsoft\Savegame\NodeEvaluatorInterface;
 use Slothsoft\Savegame\Build\BuildableInterface;
 use Slothsoft\Savegame\Build\BuilderInterface;
+use SplFileInfo;
+use Slothsoft\Core\IO\FileInfoFactory;
 
-class FileContainer extends AbstractNode implements NodeEvaluatorInterface, BuildableInterface
+class FileContainer extends AbstractNode implements NodeEvaluatorInterface, BuildableInterface, FileWriterInterface
 {
 
     private $filePath;
@@ -20,8 +23,10 @@ class FileContainer extends AbstractNode implements NodeEvaluatorInterface, Buil
      * @var string
      */
     private $content;
-
+    
     private $valueList;
+    
+    private $imageList;
 
     private $evaluateCache;
 
@@ -51,14 +56,13 @@ class FileContainer extends AbstractNode implements NodeEvaluatorInterface, Buil
         $this->filePath = (string) $archive->getFileByName($this->fileName);
         
         $this->valueList = new Vector();
+        $this->imageList = null;
         $this->evaluateCache = [];
     }
 
     protected function loadNode(EditorElement $strucElement)
     {
         assert(file_exists($this->filePath), '$this->filePath must exist');
-        
-        log_execution_time(__FILE__, __LINE__);
         
         $this->setContent(file_get_contents($this->filePath));
     }
@@ -189,10 +193,29 @@ class FileContainer extends AbstractNode implements NodeEvaluatorInterface, Buil
         return $evalList[$code];
     }
 
-    public function registerValue(AbstractValueContent $node)
+    public function registerValue(AbstractValueContent $node) : int
     {
         $this->valueList[] = $node;
         return $this->ownerSavegame->nextValueId();
+    }
+    
+    public function registerImage(ImageValue $node) : int
+    {
+        if ($this->imageList === null) {
+            $this->imageList = new Vector();
+        }
+        $id = $this->imageList->count();
+        $this->imageList[] = $node;
+        return $id;
+    }
+    
+    public function getImageNodes(): iterable {
+        return $this->imageList;
+    }
+    
+    public function getImageNodeById(int $id): ImageValue
+    {
+        return $this->imageList[$id] ?? null;
     }
 
     /**
@@ -208,4 +231,9 @@ class FileContainer extends AbstractNode implements NodeEvaluatorInterface, Buil
         $parent = $this->getParentNode();
         return $parent instanceof ArchiveNode ? $parent : $parent->getParentNode();
     }
+    public function toFile(): SplFileInfo
+    {
+        return FileInfoFactory::createFromPath($this->filePath);
+    }
+
 }

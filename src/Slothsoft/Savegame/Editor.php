@@ -3,7 +3,7 @@ declare(strict_types = 1);
 namespace Slothsoft\Savegame;
 
 use Ds\Vector;
-use Slothsoft\Core\IO\Writable\DOMWriterInterface;
+use Slothsoft\Core\DOMHelper;
 use Slothsoft\Core\IO\Writable\FileWriterInterface;
 use Slothsoft\Savegame\Node\ArchiveNode;
 use Slothsoft\Savegame\Node\FileContainer;
@@ -11,14 +11,12 @@ use Slothsoft\Savegame\Node\NodeFactory;
 use Slothsoft\Savegame\Node\SavegameNode;
 use Slothsoft\Savegame\Node\ArchiveParser\ArchiveBuilderInterface;
 use Slothsoft\Savegame\Node\ArchiveParser\ArchiveExtractorInterface;
-use DOMDocument;
 use DOMElement;
 use DomainException;
 use SplFileInfo;
 use UnexpectedValueException;
-use Slothsoft\Core\DOMHelper;
 
-class Editor implements DOMWriterInterface, FileWriterInterface
+class Editor
 {
     /**
      * @var EditorConfig
@@ -31,48 +29,44 @@ class Editor implements DOMWriterInterface, FileWriterInterface
      */
     private $savegame;
     
-    private $loadArchives = [];
-    
     public function __construct(EditorConfig $config)
     {
         $this->config = $config;
     }
 
-    public function loadAllArchives()
+    public function loadAllArchives() : void
     {
-        $this->loadArchives = true;
-        $this->loadDocument();
+        $this->load();
+        foreach ($this->getArchiveNodes() as $archiveNode) {
+            $archiveNode->load();
+        }
     }
-    
-    public function loadNoArchives()
+    public function loadArchive(string $archiveId) : void
     {
-        $this->loadArchives = [];
-        $this->loadDocument();
-    }
-    
-    public function loadArchive(string... $archiveIds) {
-        $this->loadArchives = $archiveIds;
-        $this->loadDocument();
+        $this->load();
+        $this->getArchiveNode($archiveId)->load();
     }
 
-    private function loadDocument(): void
+    public function load(): void
     {
-        $strucDoc = DOMHelper::loadDocument((string) $this->config->infosetFile);
-        
-        if (! ($strucDoc and $strucDoc->documentElement)) {
-            throw new UnexpectedValueException("Structure document is empty.");
+        if ($this->savegame === null) {
+            $strucDoc = DOMHelper::loadDocument((string) $this->config->infosetFile);
+            
+            if (! ($strucDoc and $strucDoc->documentElement)) {
+                throw new UnexpectedValueException("Structure document is empty.");
+            }
+            
+            if ($strucDoc->xinclude() === - 1) {
+                throw new UnexpectedValueException("XInclude processing in the structure document failed.");
+            }
+            
+            $rootNode = $strucDoc->documentElement;
+            $rootNode->setAttribute('save-id', basename((string) $this->getUserDirectory()));
+            
+            $rootElement = $this->loadDocumentElement($rootNode);
+            $factory = new NodeFactory($this);
+            $this->savegame = $factory->createNode($rootElement, null);
         }
-        
-        if ($strucDoc->xinclude() === - 1) {
-            throw new UnexpectedValueException("XInclude processing in the structure document failed.");
-        }
-        
-        $rootNode = $strucDoc->documentElement;
-        $rootNode->setAttribute('save-id', basename((string) $this->getUserDirectory()));
-        
-        $rootElement = $this->loadDocumentElement($rootNode);
-        $factory = new NodeFactory($this);
-        $this->savegame = $factory->createNode($rootElement, null);
     }
 
     private function loadDocumentElement(DOMElement $node): EditorElement
@@ -113,7 +107,13 @@ class Editor implements DOMWriterInterface, FileWriterInterface
     }
     public function getArchiveNode(string $archiveName): ArchiveNode
     {
+        $this->load();
         return $this->getSavegameNode()->getArchiveById($archiveName);
+    }
+    public function getArchiveNodes(): iterable
+    {
+        $this->load();
+        return $this->getSavegameNode()->getArchiveNodes();
     }
     public function getFileNode(string $archiveName, string $fileName): FileContainer
     {
@@ -172,26 +172,29 @@ class Editor implements DOMWriterInterface, FileWriterInterface
      }
     
     
-    
-    public function toElement(DOMDocument $targetDoc): DOMElement
-    {
-        return $this->getSavegameNode()->toElement($targetDoc);
-    }
-    
-    public function toDocument(): DOMDocument
-    {
-        return $this->getSavegameNode()->toDocument();
-    }
+     
+     
+//     public function toDocument(): DOMDocument
+//     {
+//         return $this->getSavegameNode()->toDocument();
+//     }
+//     public function toElement(DOMDocument $targetDoc): DOMElement
+//     {
+//         return $this->getSavegameNode()->toElement($targetDoc);
+//     }
 
-    public function toFile(): SplFileInfo
-    {
-        return $this->getSavegameNode()->toFile();
-    }
-
-    public function toString(): string
-    {
-        return $this->getSavegameNode()->toString();
-    }
+//     public function toFile(): SplFileInfo
+//     {
+//         return $this->getSavegameNode()->toFile();
+//     }
+//     public function toFileName(): string
+//     {
+//         return $this->getSavegameNode()->toFileName();
+//     }
+//     public function toString(): string
+//     {
+//         return $this->getSavegameNode()->toString();
+//     }
     
     
     

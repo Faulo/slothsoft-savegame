@@ -6,15 +6,20 @@ use Slothsoft\Savegame\EditorElement;
 
 class ForEachFileNode extends AbstractNode
 {
+    private $fileRange;
 
+    protected function loadStruc(EditorElement $strucElement)
+    {
+        parent::loadStruc($strucElement);
+        $this->fileRange = (string) $strucElement->getAttribute('file-range');
+    }
+    
     protected function loadNode(EditorElement $strucElement)
     {}
 
     public function loadChildren(EditorElement $strucElement)
     {
-        $archive = $this->getOwnerArchive();
-        
-        foreach ($archive->getFileNames() as $name) {
+        foreach ($this->getFileNames() as $name) {
             $strucData = [];
             $strucData['file-name'] = $name;
             
@@ -29,6 +34,14 @@ class ForEachFileNode extends AbstractNode
     }
     private function getOwnerArchive() : ArchiveNode {
         return $this->getParentNode();
+    }
+    private function getFileNames() : iterable {
+        $names = $this->getOwnerArchive()->getFileNames();
+        if (strlen($this->fileRange)) {
+            $range = preg_split('~\s+~', $this->fileRange, 0, PREG_SPLIT_NO_EMPTY);
+            $names = array_filter($names, function($name) use($range) { return in_array($name, $range); });
+        }
+        return $names;
     }
 
 }

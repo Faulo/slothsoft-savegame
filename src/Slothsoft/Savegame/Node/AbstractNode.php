@@ -45,9 +45,7 @@ abstract class AbstractNode
 
     final protected function loadChild(EditorElement $strucElement)
     {
-        if ($node = $this->getOwnerSavegame()->createNode($strucElement, $this)) {
-            // echo get_class($node) . PHP_EOL;
-        }
+        $this->getOwnerSavegame()->createNode($strucElement, $this);
     }
     
     abstract public function getOwnerSavegame(): SavegameNode;
@@ -78,7 +76,7 @@ abstract class AbstractNode
         }
     }
 
-    public function getBuildChildren()
+    public function getBuildChildren() : ?iterable
     {
         return $this->childNodeList;
     }

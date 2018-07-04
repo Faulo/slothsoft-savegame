@@ -2,12 +2,17 @@
 declare(strict_types = 1);
 namespace Slothsoft\Savegame\Build;
 
-use Slothsoft\Core\StreamWrapper\StreamWrapperInterface;
+use Generator;
 
 class XmlBuilder implements BuilderInterface
 {
-
     private $tagBlacklist = [];
+    
+    private $root;
+    
+    public function __construct(BuildableInterface $root) {
+        $this->root = $root;
+    }
 
     public function registerTagBlacklist(iterable $list)
     {
@@ -35,21 +40,21 @@ class XmlBuilder implements BuilderInterface
         $this->attributeBlacklist = [];
     }
 
-    public function buildStream(BuildableInterface $node)
-    {
-        $handle = fopen('php://temp', StreamWrapperInterface::MODE_CREATE_READWRITE);
-        $this->appendBuildable($handle, $node);
-        fseek($handle, 0);
-        return $handle;
-    }
+//     public function buildStream(BuildableInterface $node)
+//     {
+//         $handle = fopen('php://temp', StreamWrapperInterface::MODE_CREATE_READWRITE);
+//         $this->appendBuildable($handle, $node);
+//         fseek($handle, 0);
+//         return $handle;
+//     }
 
-    public function buildString(BuildableInterface $node): string
-    {
-        $handle = $this->buildStream($node);
-        $ret = stream_get_contents($handle);
-        fclose($handle);
-        return $ret;
-    }
+//     public function buildString(BuildableInterface $node): string
+//     {
+//         $handle = $this->buildStream($node);
+//         $ret = stream_get_contents($handle);
+//         fclose($handle);
+//         return $ret;
+//     }
 
     public function escapeAttribute(string $data): string
     {
@@ -86,6 +91,37 @@ class XmlBuilder implements BuilderInterface
             $this->append($handle, "</$tag>");
         } else {
             $this->append($handle, "/>");
+        }
+    }
+    public function toChunks(): Generator
+    {
+        yield from $this->chunkBuildable($this->root);
+    }
+    private function chunkBuildable(BuildableInterface $node) : Generator
+    {
+        $tag = $node->getBuildTag();
+        $attributes = $node->getBuildAttributes($this);
+        $children = $node->getBuildChildren();
+        
+        if (isset($this->tagBlacklist[$tag]) and $children === null) {
+            return;
+        }
+        
+        yield "<$tag";
+        
+        foreach ($attributes as $key => $val) {
+            if ($val !== '' and ! isset($this->attributeBlacklist[$key])) {
+                yield " $key=\"$val\"";
+            }
+        }
+        if ($children) {
+            yield ">";
+            foreach ($children as $child) {
+                yield from $this->chunkBuildable($child);
+            }
+            yield "</$tag>";
+        } else {
+            yield "/>";
         }
     }
 }

@@ -122,6 +122,11 @@ This namespace defines elements to describe the contents of game files in terms 
 		<xsd:complexType>
 			<xsd:complexContent>
 				<xsd:extension base="instructionContentNode">
+					<xsd:attribute name="file-range" use="optional">
+						<xsd:simpleType>
+							<xsd:list itemType='xsd:normalizedString'/>
+						</xsd:simpleType>
+					</xsd:attribute>
 				</xsd:extension>
 			</xsd:complexContent>
 		</xsd:complexType>
@@ -161,6 +166,7 @@ This namespace defines elements to describe the contents of game files in terms 
 								<xsd:enumeration value="bit-field" />
 								<xsd:enumeration value="repeat-group" />
 								<xsd:enumeration value="use-global" />
+								<xsd:enumeration value="image-map" />
 							</xsd:restriction>
 						</xsd:simpleType>
 					</xsd:attribute>
@@ -306,6 +312,31 @@ This namespace defines elements to describe the contents of game files in terms 
 		</xsd:complexType>
 	</xsd:element>
 
+	<xsd:element name="image-map">
+		<xsd:complexType>
+			<xsd:complexContent>
+				<xsd:extension base="instructionContentNode">
+					<xsd:attribute name="image-count" type="numberExpression" />
+					<xsd:attribute name="width" type="numberExpression" />
+					<xsd:attribute name="height" type="numberExpression" />
+					<xsd:attribute name="bitplanes" type="numberExpression" />
+				</xsd:extension>
+			</xsd:complexContent>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="image">
+		<xsd:complexType>
+			<xsd:complexContent>
+				<xsd:extension base="valueContentNode">
+					<xsd:attribute name="width" type="numberExpression" />
+					<xsd:attribute name="height" type="numberExpression" />
+					<xsd:attribute name="bitplanes" type="numberExpression" />
+				</xsd:extension>
+			</xsd:complexContent>
+		</xsd:complexType>
+	</xsd:element>
+
 
 	<!-- node types -->
 	<xsd:complexType name="genericNode">
@@ -360,6 +391,7 @@ This namespace defines elements to describe the contents of game files in terms 
 			<xsd:element ref="bit" />
 			<xsd:element ref="select" />
 			<xsd:element ref="event-script" />
+			<xsd:element ref="image" />
 
 			<!-- container -->
 			<xsd:element ref="group" />
@@ -371,6 +403,7 @@ This namespace defines elements to describe the contents of game files in terms 
 			<xsd:element ref="use-global" />
 			<xsd:element ref="string-dictionary" />
 			<xsd:element ref="event-dictionary" />
+			<xsd:element ref="image-map" />
 		</xsd:choice>
 	</xsd:group>
 

@@ -34,6 +34,8 @@ class ArchiveNode extends AbstractNode implements BuildableInterface, FileWriter
     private $size;
 
     private $file;
+    
+    private $strucElement;
 
     private $extractDirectory;
 
@@ -56,7 +58,7 @@ class ArchiveNode extends AbstractNode implements BuildableInterface, FileWriter
         ];
     }
 
-    public function loadStruc(EditorElement $strucElement)
+    protected function loadStruc(EditorElement $strucElement)
     {
         parent::loadStruc($strucElement);
         
@@ -64,34 +66,34 @@ class ArchiveNode extends AbstractNode implements BuildableInterface, FileWriter
         $this->name = (string) $strucElement->getAttribute('name', basename($this->path));
         $this->type = (string) $strucElement->getAttribute('type');
         
+        $this->strucElement = $strucElement;
+        
         $this->fromFile($this->getOwnerEditor()->findGameFile($this->path));
     }
 
     protected function loadNode(EditorElement $strucElement)
     {
-        $this->extractedFiles = [];
-        if ($this->getOwnerEditor()->shouldLoadArchive($this->name)) {
-            if ($this->extractDirectory) {
-                $list = FileSystem::scanDir((string) $this->extractDirectory, FileSystem::SCANDIR_FILEINFO);
-                if (! count($list)) {
-                    $this->loadArchive();
-                    $list = FileSystem::scanDir((string) $this->extractDirectory, FileSystem::SCANDIR_FILEINFO);
-                }
-                foreach ($list as $file) {
-                    $this->extractedFiles[$file->getFilename()] = $file;
-                }
-            }
-        }
     }
-
     protected function loadChildren(EditorElement $strucElement)
     {
-        if ($this->getOwnerEditor()->shouldLoadArchive($this->name)) {
-            parent::loadChildren($strucElement);
+    }
+    
+    public function load() : void {
+        if ($this->extractedFiles === null) {
+            $this->extractedFiles = [];
+            $list = FileSystem::scanDir((string) $this->extractDirectory, FileSystem::SCANDIR_FILEINFO);
+            if (! count($list)) {
+                $this->extractArchive();
+                $list = FileSystem::scanDir((string) $this->extractDirectory, FileSystem::SCANDIR_FILEINFO);
+            }
+            foreach ($list as $file) {
+                $this->extractedFiles[$file->getFilename()] = $file;
+            }
+            parent::loadChildren($this->strucElement);
         }
     }
 
-    private function loadArchive()
+    private function extractArchive()
     {
         $this->getArchiveExtractor()->extractArchive($this->file, $this->extractDirectory);
     }
@@ -100,7 +102,12 @@ class ArchiveNode extends AbstractNode implements BuildableInterface, FileWriter
     {
         return $this->name;
     }
-
+    
+    public function getFileNodes(): iterable
+    {
+        return $this->getBuildChildren() ?? [];
+    }
+    
     public function getFileNames(): iterable
     {
         return array_keys($this->extractedFiles);
@@ -114,7 +121,7 @@ class ArchiveNode extends AbstractNode implements BuildableInterface, FileWriter
     
     public function getFileNodeByName(string $name): FileContainer
     {
-        if ($nodeList = $this->getBuildChildren()) {
+        if ($nodeList = $this->getFileNodes()) {
             foreach ($nodeList as $node) {
                 if ($node->getFileName() === $name) {
                     return $node;
@@ -153,6 +160,10 @@ class ArchiveNode extends AbstractNode implements BuildableInterface, FileWriter
     {
         return $this->file;
     }
+    public function toFileName(): string
+    {
+        return $this->name;
+    }
 
     public function toString(): string
     {
@@ -180,15 +191,12 @@ class ArchiveNode extends AbstractNode implements BuildableInterface, FileWriter
             
             $dir = [];
             $dir[] = ServerEnvironment::getCacheDirectory();
-            $dir[] = str_replace(self::NAMESPACE_SEPARATOR, DIRECTORY_SEPARATOR, __CLASS__);
-            $dir[] = $this->name;
+            $dir[] = 'slothsoft/savegame';
+            $dir[] = $this->path;
             $dir[] = $this->md5;
+            $dir[] = 'archive';
             
             $this->extractDirectory = FileInfoFactory::createFromPath(implode(DIRECTORY_SEPARATOR, $dir));
-            
-            if (! $this->extractDirectory->isDir()) {
-                mkdir((string) $this->extractDirectory, 0777, true);
-            }
         }
     }
 

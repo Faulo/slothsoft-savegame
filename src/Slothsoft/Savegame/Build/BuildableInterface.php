@@ -9,7 +9,7 @@ interface BuildableInterface
 
     public function getBuildAttributes(BuilderInterface $builder): array;
 
-    public function getBuildChildren();
+    public function getBuildChildren() : ?iterable;
 
     public function appendBuildChild(BuildableInterface $childNode);
 }

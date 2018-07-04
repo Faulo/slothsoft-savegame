@@ -33,7 +33,7 @@ abstract class AbstractValueContent extends AbstractContentNode implements Build
         parent::loadStruc($strucElement);
         
         $this->size = (int) $strucElement->getAttribute('size', 1, $this->ownerFile);
-        $this->valueId = (int) $this->ownerFile->registerValue($this);
+        $this->valueId = $this->ownerFile->registerValue($this);
     }
 
     protected function loadContent(EditorElement $strucElement)
@@ -82,5 +82,9 @@ abstract class AbstractValueContent extends AbstractContentNode implements Build
         if ($this->size) {
             $this->ownerFile->insertContent($this->contentOffset, $this->size, $this->getRawValue());
         }
+    }
+    
+    public function getContentSize() : int {
+        return $this->size;
     }
 }

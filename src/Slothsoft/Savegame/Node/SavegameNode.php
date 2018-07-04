@@ -2,20 +2,15 @@
 declare(strict_types = 1);
 namespace Slothsoft\Savegame\Node;
 
-use Slothsoft\Core\IO\FileInfoFactory;
-use Slothsoft\Core\IO\AdapterTraits\DOMWriterFromStringTrait;
-use Slothsoft\Core\IO\Writable\DOMWriterInterface;
-use Slothsoft\Core\IO\Writable\FileWriterInterface;
+use Slothsoft\Core\IO\Writable\ChunkWriterInterface;
 use Slothsoft\Savegame\Editor;
 use Slothsoft\Savegame\EditorElement;
 use Slothsoft\Savegame\Build\BuildableInterface;
 use Slothsoft\Savegame\Build\BuilderInterface;
 use Slothsoft\Savegame\Build\XmlBuilder;
-use SplFileInfo;
 
-class SavegameNode extends AbstractNode implements BuildableInterface, FileWriterInterface, DOMWriterInterface
+class SavegameNode extends AbstractNode implements BuildableInterface
 {
-    use DOMWriterFromStringTrait;
 
     /**
      *
@@ -53,8 +48,6 @@ class SavegameNode extends AbstractNode implements BuildableInterface, FileWrite
 
     public function loadChildren(EditorElement $strucElement)
     {
-        log_execution_time(__FILE__, __LINE__);
-        
         $archiveList = [];
         $globalList = [];
         
@@ -73,13 +66,9 @@ class SavegameNode extends AbstractNode implements BuildableInterface, FileWrite
             $this->globalElements[$element->getAttribute('global-id')] = $element->getChildren();
         }
         
-        log_execution_time(__FILE__, __LINE__);
-        
         foreach ($archiveList as $element) {
             $this->loadChild($element);
         }
-        
-        log_execution_time(__FILE__, __LINE__);
     }
 
     protected function loadNode(EditorElement $strucElement)
@@ -90,6 +79,11 @@ class SavegameNode extends AbstractNode implements BuildableInterface, FileWrite
         assert($node instanceof ArchiveNode);
         
         parent::appendBuildChild($node);
+    }
+    
+    public function getArchiveNodes(): iterable
+    {
+        return $this->getBuildChildren() ?? [];
     }
 
     public function getArchiveById(string $id): ArchiveNode
@@ -148,25 +142,33 @@ class SavegameNode extends AbstractNode implements BuildableInterface, FileWrite
     
     
     
-    public function toFile(): SplFileInfo
-    {
-        $builder = new XmlBuilder();
-        $handle = $builder->buildStream($this);
-        $file = FileInfoFactory::createFromResource($handle);
-        fclose($handle);
-        return $file;
-    }
-
-    public function toString(): string
-    {
-        $builder = new XmlBuilder();
-        $builder->registerAttributeBlacklist([
-            'position',
-            'bit',
-            'encoding'
-        ]);
-        return $builder->buildString($this);
-    }
+//     public function toFileName(): string
+//     {
+//         return 'savegame.xml';
+//     }
+//     public function toFile(): SplFileInfo
+//     {
+//         $builder = new XmlBuilder();
+//         $handle = $builder->buildStream($this);
+//         $file = FileInfoFactory::createFromResource($handle);
+//         fclose($handle);
+//         return $file;
+//     }
+//     public function toString(): string
+//     {
+//         $builder = new XmlBuilder($this);
+//         $builder->registerAttributeBlacklist([
+//             'position',
+//             'bit',
+//             'encoding'
+//         ]);
+//         $xml = '';
+//         foreach ($builder->toChunks() as $data) {
+//             $xml .= $data;
+//         }
+//         return $xml;
+//         //return $builder->buildString($this);
+//     }
     
     public function createNode(EditorElement $strucElement, AbstractNode $parentValue) : AbstractNode
     {
@@ -175,7 +177,14 @@ class SavegameNode extends AbstractNode implements BuildableInterface, FileWrite
     public function getOwnerSavegame(): SavegameNode {
         return $this;
     }
-
-
     
+    public function getChunkWriter() : ChunkWriterInterface {
+        $builder = new XmlBuilder($this);
+        $builder->registerAttributeBlacklist([
+            'position',
+            'bit',
+            'encoding'
+        ]);
+        return $builder;
+    }
 }

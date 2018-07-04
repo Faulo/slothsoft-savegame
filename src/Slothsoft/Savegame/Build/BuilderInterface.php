@@ -2,7 +2,9 @@
 declare(strict_types = 1);
 namespace Slothsoft\Savegame\Build;
 
-interface BuilderInterface
+use Slothsoft\Core\IO\Writable\ChunkWriterInterface;
+
+interface BuilderInterface extends ChunkWriterInterface
 {
 
     public function registerTagBlacklist(iterable $tagList);
@@ -13,9 +15,9 @@ interface BuilderInterface
 
     public function clearAttributeBlacklist();
 
-    public function buildStream(BuildableInterface $node);
+//     public function buildStream(BuildableInterface $node);
 
-    public function buildString(BuildableInterface $node): string;
+//     public function buildString(BuildableInterface $node): string;
 
     public function escapeAttribute(string $name): string;
 }

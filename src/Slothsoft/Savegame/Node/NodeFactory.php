@@ -53,6 +53,8 @@ class NodeFactory
                 return new EventScriptValue();
             case 'binary':
                 return new BinaryValue();
+            case 'image':
+                return new ImageValue();
                 
                 // containers
             case 'group':
@@ -75,6 +77,8 @@ class NodeFactory
                 return new RepeatGroupInstruction();
             case 'use-global':
                 return new UseGlobalInstruction();
+            case 'image-map':
+                return new ImageMapInstruction();
                 
             default:
                 throw new DomainException(sprintf('unknown type: "%s"', $tag));
