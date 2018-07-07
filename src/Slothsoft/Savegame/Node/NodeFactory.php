@@ -79,6 +79,8 @@ class NodeFactory
                 return new UseGlobalInstruction();
             case 'image-map':
                 return new ImageMapInstruction();
+            case 'image-pile':
+                return new ImagePileInstruction();
                 
             default:
                 throw new DomainException(sprintf('unknown type: "%s"', $tag));

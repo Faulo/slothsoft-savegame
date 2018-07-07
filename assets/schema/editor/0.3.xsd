@@ -167,6 +167,7 @@ This namespace defines elements to describe the contents of game files in terms 
 								<xsd:enumeration value="repeat-group" />
 								<xsd:enumeration value="use-global" />
 								<xsd:enumeration value="image-map" />
+								<xsd:enumeration value="image-pile" />
 							</xsd:restriction>
 						</xsd:simpleType>
 					</xsd:attribute>
@@ -325,6 +326,21 @@ This namespace defines elements to describe the contents of game files in terms 
 		</xsd:complexType>
 	</xsd:element>
 
+	<xsd:element name="image-pile">
+		<xsd:complexType>
+			<xsd:complexContent>
+				<xsd:extension base="instructionContentNode">
+					<xsd:attribute name="image-dimensions">
+						<xsd:simpleType>
+							<xsd:list itemType='imageDimension'/>
+						</xsd:simpleType>
+					</xsd:attribute>
+					<xsd:attribute name="bitplanes" type="numberExpression" />
+				</xsd:extension>
+			</xsd:complexContent>
+		</xsd:complexType>
+	</xsd:element>
+
 	<xsd:element name="image">
 		<xsd:complexType>
 			<xsd:complexContent>
@@ -404,6 +420,7 @@ This namespace defines elements to describe the contents of game files in terms 
 			<xsd:element ref="string-dictionary" />
 			<xsd:element ref="event-dictionary" />
 			<xsd:element ref="image-map" />
+			<xsd:element ref="image-pile" />
 		</xsd:choice>
 	</xsd:group>
 
@@ -427,7 +444,7 @@ This namespace defines elements to describe the contents of game files in terms 
 		<xsd:union>
 			<xsd:simpleType>
 				<xsd:restriction base="xsd:token">
-					<xsd:pattern value="($[A-Za-z0-9\-\.]+|\s+|\d+|[\*\+\-\(\)])+" />
+					<xsd:pattern value="($[A-Za-z0-9\-\.]+|\s+|\d+|[/\*\+\-\(\)])+" />
 				</xsd:restriction>
 			</xsd:simpleType>
 			<xsd:simpleType>
@@ -439,5 +456,11 @@ This namespace defines elements to describe the contents of game files in terms 
 				<xsd:restriction base="xsd:integer" />
 			</xsd:simpleType>
 		</xsd:union>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="imageDimension">
+		<xsd:restriction base="xsd:token">
+			<xsd:pattern value="[0-9]+x[0-9]+" />
+		</xsd:restriction>
 	</xsd:simpleType>
 </xsd:schema>

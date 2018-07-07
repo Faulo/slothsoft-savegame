@@ -6,18 +6,13 @@ use Slothsoft\Core\IO\Writable\ChunkWriterInterface;
 
 interface BuilderInterface extends ChunkWriterInterface
 {
+    public function registerTagBlacklist(iterable $tagList) : void;
 
-    public function registerTagBlacklist(iterable $tagList);
+    public function clearTagBlacklist() : void;
 
-    public function clearTagBlacklist();
+    public function registerAttributeBlacklist(iterable $tagList) : void;
 
-    public function registerAttributeBlacklist(iterable $tagList);
-
-    public function clearAttributeBlacklist();
-
-//     public function buildStream(BuildableInterface $node);
-
-//     public function buildString(BuildableInterface $node): string;
+    public function clearAttributeBlacklist() : void;
 
     public function escapeAttribute(string $name): string;
 }

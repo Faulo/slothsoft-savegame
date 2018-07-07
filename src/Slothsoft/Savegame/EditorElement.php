@@ -35,6 +35,7 @@ class EditorElement
         'repeat-group' => 35,
         'use-global' => 36,
         'image-map' => 37,
+        'image-pile' => 38,
     ];
 
     public static function getNodeTag(int $val)
