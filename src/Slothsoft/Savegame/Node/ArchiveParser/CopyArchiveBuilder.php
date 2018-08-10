@@ -8,7 +8,7 @@ class CopyArchiveBuilder implements ArchiveBuilderInterface
     public function buildArchive(iterable $buildChildren): string
     {
         $ret = '';
-        foreach ($childList as $child) {
+        foreach ($buildChildren as $child) {
             $ret .= $child->getContent();
         }
         return $ret;

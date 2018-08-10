@@ -1,28 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta name="viewport"
-	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-<meta charset="utf-8" />
-<title>API Documentation</title>
-<meta name="author" content="" />
-<meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>API Documentation</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
 
-<link href="../css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
-<link href="../css/font-awesome.min.css" rel="stylesheet">
-<link href="../css/prism.css" rel="stylesheet" media="all" />
-<link href="../css/template.css" rel="stylesheet" media="all" />
-
-<!--[if lt IE 9]>
+    <link href="../css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/prism.css" rel="stylesheet" media="all"/>
+    <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+    <!--[if lt IE 9]>
     <script src="../js/html5.js"></script>
     <![endif]-->
-<script src="../js/jquery-1.11.0.min.js"></script>
-<script src="../js/ui/1.10.4/jquery-ui.min.js"></script>
-<script src="../js/bootstrap.min.js"></script>
-<script src="../js/jquery.smooth-scroll.js"></script>
-<script src="../js/prism.min.js"></script>
-<!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
-<script type="text/javascript">
+    <script src="../js/jquery-1.11.0.min.js"></script>
+    <script src="../js/ui/1.10.4/jquery-ui.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery.smooth-scroll.js"></script>
+    <script src="../js/prism.min.js"></script>
+    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
+        <script type="text/javascript">
         function loadExternalCodeSnippets() {
             Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
                 var src = pre.getAttribute('data-src');
@@ -71,753 +70,531 @@
         })
     </script>
 
-<link rel="shortcut icon" href="../images/favicon.ico" />
-<link rel="apple-touch-icon" href="../images/apple-touch-icon.png" />
-<link rel="apple-touch-icon" sizes="72x72"
-	href="../images/apple-touch-icon-72x72.png" />
-<link rel="apple-touch-icon" sizes="114x114"
-	href="../images/apple-touch-icon-114x114.png" />
+    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
 </head>
 <body>
 
-	<div class="navbar navbar-fixed-top">
-		<div class="navbar-inner">
-			<div class="container">
-				<a class="btn btn-navbar" data-toggle="collapse"
-					data-target=".nav-collapse"> <i class="icon-ellipsis-vertical"></i>
-				</a> <a class="brand" href="../index.html">API Documentation</a>
-
-				<div class="nav-collapse">
-					<ul class="nav pull-right">
-						<li class="dropdown"><a href="../index.html"
-							class="dropdown-toggle" data-toggle="dropdown"> API
-								Documentation <b class="caret"></b>
-						</a>
-							<ul class="dropdown-menu">
-								<li><a href="../namespaces/Slothsoft.html">\Slothsoft</a></li>
-							</ul></li>
-						<li class="dropdown" id="charts-menu"><a href="#"
-							class="dropdown-toggle" data-toggle="dropdown"> Charts <b
-								class="caret"></b>
-						</a>
-							<ul class="dropdown-menu">
-								<li><a href="../graphs/class.html"> <i
-										class="icon-list-alt"></i>&#160;Class hierarchy diagram
-								</a></li>
-							</ul></li>
-						<li class="dropdown" id="reports-menu"><a href="#"
-							class="dropdown-toggle" data-toggle="dropdown"> Reports <b
-								class="caret"></b>
-						</a>
-							<ul class="dropdown-menu">
-								<li><a href="../reports/errors.html"> <i
-										class="icon-list-alt"></i>&#160;Errors <span
-										class="label label-info pull-right">480</span>
-								</a></li>
-								<li><a href="../reports/markers.html"> <i
-										class="icon-list-alt"></i>&#160;Markers <span
-										class="label label-info pull-right">0</span>
-								</a></li>
-								<li><a href="../reports/deprecated.html"> <i
-										class="icon-list-alt"></i>&#160;Deprecated <span
-										class="label label-info pull-right">0</span>
-								</a></li>
-							</ul></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-		<!--<div class="go_to_top">-->
-		<!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
-		<!--</div>-->
-	</div>
-
-	<div id="___" class="container-fluid">
-		<section class="row-fluid">
-			<div class="span2 sidebar">
-				<div class="accordion" style="margin-bottom: 0">
-					<div class="accordion-group">
-						<div class="accordion-heading">
-							<a class="accordion-toggle " data-toggle="collapse"
-								data-target="#namespace-1718710422"></a> <a
-								href="../namespaces/default.html"
-								style="margin-left: 30px; padding-left: 0">\</a>
-						</div>
-						<div id="namespace-1718710422" class="accordion-body collapse in">
-							<div class="accordion-inner">
-
-								<div class="accordion" style="margin-bottom: 0">
-									<div class="accordion-group">
-										<div class="accordion-heading">
-											<a class="accordion-toggle collapsed" data-toggle="collapse"
-												data-target="#namespace-1663028993"></a> <a
-												href="../namespaces/Slothsoft.html"
-												style="margin-left: 30px; padding-left: 0">Slothsoft</a>
-										</div>
-										<div id="namespace-1663028993"
-											class="accordion-body collapse ">
-											<div class="accordion-inner">
-
-												<div class="accordion" style="margin-bottom: 0">
-													<div class="accordion-group">
-														<div class="accordion-heading">
-															<a class="accordion-toggle collapsed"
-																data-toggle="collapse"
-																data-target="#namespace-848002542"></a> <a
-																href="../namespaces/Slothsoft.Savegame.html"
-																style="margin-left: 30px; padding-left: 0">Savegame</a>
-														</div>
-														<div id="namespace-848002542"
-															class="accordion-body collapse ">
-															<div class="accordion-inner">
-
-																<div class="accordion" style="margin-bottom: 0">
-																	<div class="accordion-group">
-																		<div class="accordion-heading">
-																			<a class="accordion-toggle collapsed"
-																				data-toggle="collapse"
-																				data-target="#namespace-1228600874"></a> <a
-																				href="../namespaces/Slothsoft.Savegame.Build.html"
-																				style="margin-left: 30px; padding-left: 0">Build</a>
-																		</div>
-																		<div id="namespace-1228600874"
-																			class="accordion-body collapse ">
-																			<div class="accordion-inner">
-
-
-																				<ul>
-																					<li class="interface"><a
-																						href="../classes/Slothsoft.Savegame.Build.BuildableInterface.html">BuildableInterface</a></li>
-																					<li class="interface"><a
-																						href="../classes/Slothsoft.Savegame.Build.BuilderInterface.html">BuilderInterface</a></li>
-																					<li class="class"><a
-																						href="../classes/Slothsoft.Savegame.Build.XmlBuilder.html">XmlBuilder</a></li>
-																				</ul>
-																			</div>
-																		</div>
-																	</div>
-																</div>
-
-																<div class="accordion" style="margin-bottom: 0">
-																	<div class="accordion-group">
-																		<div class="accordion-heading">
-																			<a class="accordion-toggle collapsed"
-																				data-toggle="collapse"
-																				data-target="#namespace-380600272"></a> <a
-																				href="../namespaces/Slothsoft.Savegame.Node.html"
-																				style="margin-left: 30px; padding-left: 0">Node</a>
-																		</div>
-																		<div id="namespace-380600272"
-																			class="accordion-body collapse ">
-																			<div class="accordion-inner">
-
-																				<div class="accordion" style="margin-bottom: 0">
-																					<div class="accordion-group">
-																						<div class="accordion-heading">
-																							<a class="accordion-toggle collapsed"
-																								data-toggle="collapse"
-																								data-target="#namespace-130179649"></a> <a
-																								href="../namespaces/Slothsoft.Savegame.Node.ArchiveParser.html"
-																								style="margin-left: 30px; padding-left: 0">ArchiveParser</a>
-																						</div>
-																						<div id="namespace-130179649"
-																							class="accordion-body collapse ">
-																							<div class="accordion-inner">
-
-
-																								<ul>
-																									<li class="interface"><a
-																										href="../classes/Slothsoft.Savegame.Node.ArchiveParser.ArchiveBuilderInterface.html">ArchiveBuilderInterface</a></li>
-																									<li class="interface"><a
-																										href="../classes/Slothsoft.Savegame.Node.ArchiveParser.ArchiveExtractorInterface.html">ArchiveExtractorInterface</a></li>
-																									<li class="class"><a
-																										href="../classes/Slothsoft.Savegame.Node.ArchiveParser.CopyArchiveBuilder.html">CopyArchiveBuilder</a></li>
-																									<li class="class"><a
-																										href="../classes/Slothsoft.Savegame.Node.ArchiveParser.CopyArchiveExtractor.html">CopyArchiveExtractor</a></li>
-																								</ul>
-																							</div>
-																						</div>
-																					</div>
-																				</div>
-
-
-																				<ul>
-																					<li class="class"><a
-																						href="../classes/Slothsoft.Savegame.Node.AbstractContainerContent.html">AbstractContainerContent</a></li>
-																					<li class="class"><a
-																						href="../classes/Slothsoft.Savegame.Node.AbstractContentNode.html">AbstractContentNode</a></li>
-																					<li class="class"><a
-																						href="../classes/Slothsoft.Savegame.Node.AbstractInstructionContent.html">AbstractInstructionContent</a></li>
-																					<li class="class"><a
-																						href="../classes/Slothsoft.Savegame.Node.AbstractNode.html">AbstractNode</a></li>
-																					<li class="class"><a
-																						href="../classes/Slothsoft.Savegame.Node.AbstractValueContent.html">AbstractValueContent</a></li>
-																					<li class="class"><a
-																						href="../classes/Slothsoft.Savegame.Node.ArchiveNode.html">ArchiveNode</a></li>
-																					<li class="class"><a
-																						href="../classes/Slothsoft.Savegame.Node.BinaryValue.html">BinaryValue</a></li>
-																					<li class="class"><a
-																						href="../classes/Slothsoft.Savegame.Node.BitFieldInstruction.html">BitFieldInstruction</a></li>
-																					<li class="class"><a
-																						href="../classes/Slothsoft.Savegame.Node.BitValue.html">BitValue</a></li>
-																					<li class="class"><a
-																						href="../classes/Slothsoft.Savegame.Node.EventDictionaryInstruction.html">EventDictionaryInstruction</a></li>
-																					<li class="class"><a
-																						href="../classes/Slothsoft.Savegame.Node.EventInstruction.html">EventInstruction</a></li>
-																					<li class="class"><a
-																						href="../classes/Slothsoft.Savegame.Node.EventScriptValue.html">EventScriptValue</a></li>
-																					<li class="class"><a
-																						href="../classes/Slothsoft.Savegame.Node.EventStepInstruction.html">EventStepInstruction</a></li>
-																					<li class="class"><a
-																						href="../classes/Slothsoft.Savegame.Node.FileContainer.html">FileContainer</a></li>
-																					<li class="class"><a
-																						href="../classes/Slothsoft.Savegame.Node.ForEachFileNode.html">ForEachFileNode</a></li>
-																					<li class="class"><a
-																						href="../classes/Slothsoft.Savegame.Node.GroupContainer.html">GroupContainer</a></li>
-																					<li class="class"><a
-																						href="../classes/Slothsoft.Savegame.Node.InstructionContainer.html">InstructionContainer</a></li>
-																					<li class="class"><a
-																						href="../classes/Slothsoft.Savegame.Node.IntegerValue.html">IntegerValue</a></li>
-																					<li class="class"><a
-																						href="../classes/Slothsoft.Savegame.Node.RepeatGroupInstruction.html">RepeatGroupInstruction</a></li>
-																					<li class="class"><a
-																						href="../classes/Slothsoft.Savegame.Node.SavegameNode.html">SavegameNode</a></li>
-																					<li class="class"><a
-																						href="../classes/Slothsoft.Savegame.Node.SelectValue.html">SelectValue</a></li>
-																					<li class="class"><a
-																						href="../classes/Slothsoft.Savegame.Node.SignedIntegerValue.html">SignedIntegerValue</a></li>
-																					<li class="class"><a
-																						href="../classes/Slothsoft.Savegame.Node.StringDictionaryInstruction.html">StringDictionaryInstruction</a></li>
-																					<li class="class"><a
-																						href="../classes/Slothsoft.Savegame.Node.StringValue.html">StringValue</a></li>
-																					<li class="class"><a
-																						href="../classes/Slothsoft.Savegame.Node.UseGlobalInstruction.html">UseGlobalInstruction</a></li>
-																				</ul>
-																			</div>
-																		</div>
-																	</div>
-																</div>
-
-																<div class="accordion" style="margin-bottom: 0">
-																	<div class="accordion-group">
-																		<div class="accordion-heading">
-																			<a class="accordion-toggle collapsed"
-																				data-toggle="collapse"
-																				data-target="#namespace-171014376"></a> <a
-																				href="../namespaces/Slothsoft.Savegame.Script.html"
-																				style="margin-left: 30px; padding-left: 0">Script</a>
-																		</div>
-																		<div id="namespace-171014376"
-																			class="accordion-body collapse ">
-																			<div class="accordion-inner">
-
-
-																				<ul>
-																					<li class="class"><a
-																						href="../classes/Slothsoft.Savegame.Script.AbstractElement.html">AbstractElement</a></li>
-																					<li class="class"><a
-																						href="../classes/Slothsoft.Savegame.Script.Event.html">Event</a></li>
-																					<li class="class"><a
-																						href="../classes/Slothsoft.Savegame.Script.Line.html">Line</a></li>
-																					<li class="class"><a
-																						href="../classes/Slothsoft.Savegame.Script.Parser.html">Parser</a></li>
-																					<li class="class"><a
-																						href="../classes/Slothsoft.Savegame.Script.Script.html">Script</a></li>
-																				</ul>
-																			</div>
-																		</div>
-																	</div>
-																</div>
-
-
-																<ul>
-																	<li class="interface"><a
-																		href="../classes/Slothsoft.Savegame.NodeEvaluatorInterface.html">NodeEvaluatorInterface</a></li>
-																	<li class="class"><a
-																		href="../classes/Slothsoft.Savegame.Converter.html">Converter</a></li>
-																	<li class="class"><a
-																		href="../classes/Slothsoft.Savegame.Editor.html">Editor</a></li>
-																</ul>
-															</div>
-														</div>
-													</div>
-												</div>
-
-
-												<ul>
-												</ul>
-											</div>
-										</div>
-									</div>
-								</div>
-
-
-								<ul>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-
-			</div>
-		</section>
-		<section class="row-fluid">
-			<div class="span10 offset2">
-				<div class="row-fluid">
-					<div class="span8 content class">
-						<nav>
-							<a href="../namespaces/Slothsoft.Savegame.Build.html">\Slothsoft\Savegame\Build</a>
-						</nav>
-						<a href="#source-view" role="button" class="pull-right btn"
-							data-toggle="modal"><i class="icon-code"></i></a>
-
-						<h1>
-							<small>\Slothsoft\Savegame\Build</small>BuilderInterface
-						</h1>
-						<p>
-							<em></em>
-						</p>
-
-
-						<section id="summary">
-							<h2>Summary</h2>
-							<section class="row-fluid heading">
-								<section class="span6">
-									<a href="#methods">Methods</a>
-								</section>
-								<section class="span6">
-									<a href="#constants">Constants</a>
-								</section>
-							</section>
-							<section class="row-fluid public">
-								<section class="span6">
-									<a
-										href="../classes/Slothsoft.Savegame.Build.BuilderInterface.html#method_registerTagBlacklist">registerTagBlacklist()</a><br />
-									<a
-										href="../classes/Slothsoft.Savegame.Build.BuilderInterface.html#method_clearTagBlacklist">clearTagBlacklist()</a><br />
-									<a
-										href="../classes/Slothsoft.Savegame.Build.BuilderInterface.html#method_registerAttributeBlacklist">registerAttributeBlacklist()</a><br />
-									<a
-										href="../classes/Slothsoft.Savegame.Build.BuilderInterface.html#method_clearAttributeBlacklist">clearAttributeBlacklist()</a><br />
-									<a
-										href="../classes/Slothsoft.Savegame.Build.BuilderInterface.html#method_buildStream">buildStream()</a><br />
-									<a
-										href="../classes/Slothsoft.Savegame.Build.BuilderInterface.html#method_buildString">buildString()</a><br />
-									<a
-										href="../classes/Slothsoft.Savegame.Build.BuilderInterface.html#method_escapeAttribute">escapeAttribute()</a><br />
-								</section>
-								<section class="span6">
-									<em>No constants found</em>
-								</section>
-							</section>
-							<section class="row-fluid protected">
-								<section class="span6">
-									<em>No protected methods found</em>
-								</section>
-								<section class="span6">
-									<em>N/A</em>
-								</section>
-							</section>
-							<section class="row-fluid private">
-								<section class="span6">
-									<em>No private methods found</em>
-								</section>
-								<section class="span6">
-									<em>N/A</em>
-								</section>
-							</section>
-						</section>
-					</div>
-					<aside class="span4 detailsbar">
-						<dl>
-							<dt>File</dt>
-							<dd>
-								<a
-									href="../files/Slothsoft.Savegame.Build.BuilderInterface.html"><div
-										class="path-wrapper">Slothsoft\Savegame\Build\BuilderInterface.php</div></a>
-							</dd>
-							<dt>Package</dt>
-							<dd>
-								<div class="namespace-wrapper">\Default</div>
-							</dd>
-
-						</dl>
-						<h2>Tags</h2>
-						<table class="table table-condensed">
-							<tr>
-								<td colspan="2"><em>None found</em></td>
-							</tr>
-						</table>
-					</aside>
-				</div>
-
-
-				<div class="row-fluid">
-					<div class="span8 content class">
-						<h2>Methods</h2>
-					</div>
-					<aside class="span4 detailsbar"></aside>
-				</div>
-
-				<div class="row-fluid">
-					<div class="span8 content class">
-						<a id="method_registerTagBlacklist"
-							name="method_registerTagBlacklist" class="anchor"></a>
-						<article class="method">
-							<h3 class="public ">registerTagBlacklist()</h3>
-							<a href="#source-view" role="button" class="pull-right btn"
-								data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i
-								class="icon-code"></i></a>
-							<pre class="signature" style="margin-right: 54px;">registerTagBlacklist(array  <span
-									class="argument">$tagList</span>) </pre>
-							<p>
-								<em></em>
-							</p>
-
-
-							<h4>Parameters</h4>
-							<table class="table table-condensed table-hover">
-								<tr>
-									<td>array</td>
-									<td>$tagList</td>
-									<td></td>
-								</tr>
-							</table>
-
-
-
-						</article>
-					</div>
-					<aside class="span4 detailsbar">
-						<h1>
-							<i class="icon-arrow-down"></i>
-						</h1>
-						<dl>
-						</dl>
-						<h2>Tags</h2>
-						<table class="table table-condensed">
-							<tr>
-								<td colspan="2"><em>None found</em></td>
-							</tr>
-						</table>
-					</aside>
-				</div>
-
-				<div class="row-fluid">
-					<div class="span8 content class">
-						<a id="method_clearTagBlacklist" name="method_clearTagBlacklist"
-							class="anchor"></a>
-						<article class="method">
-							<h3 class="public ">clearTagBlacklist()</h3>
-							<a href="#source-view" role="button" class="pull-right btn"
-								data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i
-								class="icon-code"></i></a>
-							<pre class="signature" style="margin-right: 54px;">clearTagBlacklist() </pre>
-							<p>
-								<em></em>
-							</p>
-
-
-
-
-
-						</article>
-					</div>
-					<aside class="span4 detailsbar">
-						<h1>
-							<i class="icon-arrow-down"></i>
-						</h1>
-						<dl>
-						</dl>
-						<h2>Tags</h2>
-						<table class="table table-condensed">
-							<tr>
-								<td colspan="2"><em>None found</em></td>
-							</tr>
-						</table>
-					</aside>
-				</div>
-
-				<div class="row-fluid">
-					<div class="span8 content class">
-						<a id="method_registerAttributeBlacklist"
-							name="method_registerAttributeBlacklist" class="anchor"></a>
-						<article class="method">
-							<h3 class="public ">registerAttributeBlacklist()</h3>
-							<a href="#source-view" role="button" class="pull-right btn"
-								data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i
-								class="icon-code"></i></a>
-							<pre class="signature" style="margin-right: 54px;">registerAttributeBlacklist(array  <span
-									class="argument">$tagList</span>) </pre>
-							<p>
-								<em></em>
-							</p>
-
-
-							<h4>Parameters</h4>
-							<table class="table table-condensed table-hover">
-								<tr>
-									<td>array</td>
-									<td>$tagList</td>
-									<td></td>
-								</tr>
-							</table>
-
-
-
-						</article>
-					</div>
-					<aside class="span4 detailsbar">
-						<h1>
-							<i class="icon-arrow-down"></i>
-						</h1>
-						<dl>
-						</dl>
-						<h2>Tags</h2>
-						<table class="table table-condensed">
-							<tr>
-								<td colspan="2"><em>None found</em></td>
-							</tr>
-						</table>
-					</aside>
-				</div>
-
-				<div class="row-fluid">
-					<div class="span8 content class">
-						<a id="method_clearAttributeBlacklist"
-							name="method_clearAttributeBlacklist" class="anchor"></a>
-						<article class="method">
-							<h3 class="public ">clearAttributeBlacklist()</h3>
-							<a href="#source-view" role="button" class="pull-right btn"
-								data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i
-								class="icon-code"></i></a>
-							<pre class="signature" style="margin-right: 54px;">clearAttributeBlacklist() </pre>
-							<p>
-								<em></em>
-							</p>
-
-
-
-
-
-						</article>
-					</div>
-					<aside class="span4 detailsbar">
-						<h1>
-							<i class="icon-arrow-down"></i>
-						</h1>
-						<dl>
-						</dl>
-						<h2>Tags</h2>
-						<table class="table table-condensed">
-							<tr>
-								<td colspan="2"><em>None found</em></td>
-							</tr>
-						</table>
-					</aside>
-				</div>
-
-				<div class="row-fluid">
-					<div class="span8 content class">
-						<a id="method_buildStream" name="method_buildStream"
-							class="anchor"></a>
-						<article class="method">
-							<h3 class="public ">buildStream()</h3>
-							<a href="#source-view" role="button" class="pull-right btn"
-								data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i
-								class="icon-code"></i></a>
-							<pre class="signature" style="margin-right: 54px;">buildStream(\Slothsoft\Savegame\Build\BuildableInterface  <span
-									class="argument">$node</span>) </pre>
-							<p>
-								<em></em>
-							</p>
-
-
-							<h4>Parameters</h4>
-							<table class="table table-condensed table-hover">
-								<tr>
-									<td><a
-										href="../classes/Slothsoft.Savegame.Build.BuildableInterface.html">\Slothsoft\Savegame\Build\BuildableInterface</a></td>
-									<td>$node</td>
-									<td></td>
-								</tr>
-							</table>
-
-
-
-						</article>
-					</div>
-					<aside class="span4 detailsbar">
-						<h1>
-							<i class="icon-arrow-down"></i>
-						</h1>
-						<dl>
-						</dl>
-						<h2>Tags</h2>
-						<table class="table table-condensed">
-							<tr>
-								<td colspan="2"><em>None found</em></td>
-							</tr>
-						</table>
-					</aside>
-				</div>
-
-				<div class="row-fluid">
-					<div class="span8 content class">
-						<a id="method_buildString" name="method_buildString"
-							class="anchor"></a>
-						<article class="method">
-							<h3 class="public ">buildString()</h3>
-							<a href="#source-view" role="button" class="pull-right btn"
-								data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i
-								class="icon-code"></i></a>
-							<pre class="signature" style="margin-right: 54px;">buildString(\Slothsoft\Savegame\Build\BuildableInterface  <span
-									class="argument">$node</span>) </pre>
-							<p>
-								<em></em>
-							</p>
-
-
-							<h4>Parameters</h4>
-							<table class="table table-condensed table-hover">
-								<tr>
-									<td><a
-										href="../classes/Slothsoft.Savegame.Build.BuildableInterface.html">\Slothsoft\Savegame\Build\BuildableInterface</a></td>
-									<td>$node</td>
-									<td></td>
-								</tr>
-							</table>
-
-
-
-						</article>
-					</div>
-					<aside class="span4 detailsbar">
-						<h1>
-							<i class="icon-arrow-down"></i>
-						</h1>
-						<dl>
-						</dl>
-						<h2>Tags</h2>
-						<table class="table table-condensed">
-							<tr>
-								<td colspan="2"><em>None found</em></td>
-							</tr>
-						</table>
-					</aside>
-				</div>
-
-				<div class="row-fluid">
-					<div class="span8 content class">
-						<a id="method_escapeAttribute" name="method_escapeAttribute"
-							class="anchor"></a>
-						<article class="method">
-							<h3 class="public ">escapeAttribute()</h3>
-							<a href="#source-view" role="button" class="pull-right btn"
-								data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i
-								class="icon-code"></i></a>
-							<pre class="signature" style="margin-right: 54px;">escapeAttribute(\Slothsoft\Savegame\Build\string  <span
-									class="argument">$name</span>) </pre>
-							<p>
-								<em></em>
-							</p>
-
-
-							<h4>Parameters</h4>
-							<table class="table table-condensed table-hover">
-								<tr>
-									<td>\Slothsoft\Savegame\Build\string</td>
-									<td>$name</td>
-									<td></td>
-								</tr>
-							</table>
-
-
-
-						</article>
-					</div>
-					<aside class="span4 detailsbar">
-						<h1>
-							<i class="icon-arrow-down"></i>
-						</h1>
-						<dl>
-						</dl>
-						<h2>Tags</h2>
-						<table class="table table-condensed">
-							<tr>
-								<td colspan="2"><em>None found</em></td>
-							</tr>
-						</table>
-					</aside>
-				</div>
-
-			</div>
-		</section>
-
-		<div id="source-view" class="modal hide fade" tabindex="-1"
-			role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal"
-					aria-hidden="true">×</button>
-				<h3 id="source-view-label">BuilderInterface.php</h3>
-			</div>
-			<div class="modal-body">
-				<pre
-					data-src="../files/Slothsoft\Savegame\Build\BuilderInterface.php.txt"
-					class="language-php"></pre>
-			</div>
-		</div>
-
-		<footer class="row-fluid">
-			<section class="span10 offset2">
-				<section class="row-fluid">
-					<section class="span10 offset1">
-						<section class="row-fluid footer-sections">
-							<section class="span4">
-								<h1>
-									<i class="icon-code"></i>
-								</h1>
-								<div>
-									<ul>
-										<li><a href="../namespaces/Slothsoft.html">\Slothsoft</a></li>
-									</ul>
-								</div>
-							</section>
-							<section class="span4">
-								<h1>
-									<i class="icon-bar-chart"></i>
-								</h1>
-								<div>
-									<ul>
-										<li><a href="../graphs/class.html">Class Hierarchy
-												Diagram</a></li>
-									</ul>
-								</div>
-							</section>
-							<section class="span4">
-								<h1>
-									<i class="icon-pushpin"></i>
-								</h1>
-								<div>
-									<ul>
-										<li><a href="../reports/errors.html">Errors</a></li>
-										<li><a href="../reports/markers.html">Markers</a></li>
-									</ul>
-								</div>
-							</section>
-						</section>
-					</section>
-				</section>
-				<section class="row-fluid">
-					<section class="span10 offset1">
-						<hr />
-						Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor
-						</a> and authored on June 23rd, 2018 at 18:11.
-					</section>
-				</section>
-			</section>
-		</footer>
-	</div>
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <i class="icon-ellipsis-vertical"></i>
+            </a>
+            <a class="brand" href="../index.html">API Documentation</a>
+
+            <div class="nav-collapse">
+                <ul class="nav pull-right">
+                                        <li class="dropdown">
+                        <a href="../index.html" class="dropdown-toggle" data-toggle="dropdown">
+                            API Documentation <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                                                        <li><a href="../namespaces/Slothsoft.html">\Slothsoft</a></li>
+                                                    </ul>
+                    </li>
+                                        <li class="dropdown" id="charts-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Charts <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../graphs/class.html">
+                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" id="reports-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Reports <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../reports/errors.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">518</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/markers.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/deprecated.html">
+                                                                                                            <i class="icon-list-alt"></i>&#160;Deprecated <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--<div class="go_to_top">-->
+    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
+    <!--</div>-->
+</div>
+
+<div id="___" class="container-fluid">
+        <section class="row-fluid">
+        <div class="span2 sidebar">
+                                <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-929521676"></a>
+                                <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
+            </div>
+            <div id="namespace-929521676" class="accordion-body collapse in">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-264653198"></a>
+                                <a href="../namespaces/Slothsoft.html" style="margin-left: 30px; padding-left: 0">Slothsoft</a>
+            </div>
+            <div id="namespace-264653198" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1048688047"></a>
+                                <a href="../namespaces/Slothsoft.Savegame.html" style="margin-left: 30px; padding-left: 0">Savegame</a>
+            </div>
+            <div id="namespace-1048688047" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1118974934"></a>
+                                <a href="../namespaces/Slothsoft.Savegame.Build.html" style="margin-left: 30px; padding-left: 0">Build</a>
+            </div>
+            <div id="namespace-1118974934" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Slothsoft.Savegame.Build.BuilderInterface.html">BuilderInterface</a></li>
+                                                                                                    <li class="class"><a href="../classes/Slothsoft.Savegame.Build.XmlBuilder.html">XmlBuilder</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1300624823"></a>
+                                <a href="../namespaces/Slothsoft.Savegame.Node.html" style="margin-left: 30px; padding-left: 0">Node</a>
+            </div>
+            <div id="namespace-1300624823" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-708594377"></a>
+                                <a href="../namespaces/Slothsoft.Savegame.Node.ArchiveParser.html" style="margin-left: 30px; padding-left: 0">ArchiveParser</a>
+            </div>
+            <div id="namespace-708594377" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Slothsoft.Savegame.Node.ArchiveParser.ArchiveBuilderInterface.html">ArchiveBuilderInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Slothsoft.Savegame.Node.ArchiveParser.ArchiveExtractorInterface.html">ArchiveExtractorInterface</a></li>
+                                                                                                    <li class="class"><a href="../classes/Slothsoft.Savegame.Node.ArchiveParser.CopyArchiveBuilder.html">CopyArchiveBuilder</a></li>
+                                                    <li class="class"><a href="../classes/Slothsoft.Savegame.Node.ArchiveParser.CopyArchiveExtractor.html">CopyArchiveExtractor</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Slothsoft.Savegame.Node.AbstractContainerContent.html">AbstractContainerContent</a></li>
+                                                    <li class="class"><a href="../classes/Slothsoft.Savegame.Node.AbstractContentNode.html">AbstractContentNode</a></li>
+                                                    <li class="class"><a href="../classes/Slothsoft.Savegame.Node.AbstractInstructionContent.html">AbstractInstructionContent</a></li>
+                                                    <li class="class"><a href="../classes/Slothsoft.Savegame.Node.AbstractValueContent.html">AbstractValueContent</a></li>
+                                                    <li class="class"><a href="../classes/Slothsoft.Savegame.Node.ArchiveNode.html">ArchiveNode</a></li>
+                                                    <li class="class"><a href="../classes/Slothsoft.Savegame.Node.BinaryValue.html">BinaryValue</a></li>
+                                                    <li class="class"><a href="../classes/Slothsoft.Savegame.Node.BitFieldInstruction.html">BitFieldInstruction</a></li>
+                                                    <li class="class"><a href="../classes/Slothsoft.Savegame.Node.BitValue.html">BitValue</a></li>
+                                                    <li class="class"><a href="../classes/Slothsoft.Savegame.Node.EventDictionaryInstruction.html">EventDictionaryInstruction</a></li>
+                                                    <li class="class"><a href="../classes/Slothsoft.Savegame.Node.EventInstruction.html">EventInstruction</a></li>
+                                                    <li class="class"><a href="../classes/Slothsoft.Savegame.Node.EventScriptValue.html">EventScriptValue</a></li>
+                                                    <li class="class"><a href="../classes/Slothsoft.Savegame.Node.EventStepInstruction.html">EventStepInstruction</a></li>
+                                                    <li class="class"><a href="../classes/Slothsoft.Savegame.Node.FileContainer.html">FileContainer</a></li>
+                                                    <li class="class"><a href="../classes/Slothsoft.Savegame.Node.ForEachFileNode.html">ForEachFileNode</a></li>
+                                                    <li class="class"><a href="../classes/Slothsoft.Savegame.Node.GroupContainer.html">GroupContainer</a></li>
+                                                    <li class="class"><a href="../classes/Slothsoft.Savegame.Node.ImageMapInstruction.html">ImageMapInstruction</a></li>
+                                                    <li class="class"><a href="../classes/Slothsoft.Savegame.Node.ImagePileInstruction.html">ImagePileInstruction</a></li>
+                                                    <li class="class"><a href="../classes/Slothsoft.Savegame.Node.ImageValue.html">ImageValue</a></li>
+                                                    <li class="class"><a href="../classes/Slothsoft.Savegame.Node.InstructionContainer.html">InstructionContainer</a></li>
+                                                    <li class="class"><a href="../classes/Slothsoft.Savegame.Node.IntegerValue.html">IntegerValue</a></li>
+                                                    <li class="class"><a href="../classes/Slothsoft.Savegame.Node.RepeatGroupInstruction.html">RepeatGroupInstruction</a></li>
+                                                    <li class="class"><a href="../classes/Slothsoft.Savegame.Node.SavegameNode.html">SavegameNode</a></li>
+                                                    <li class="class"><a href="../classes/Slothsoft.Savegame.Node.SelectValue.html">SelectValue</a></li>
+                                                    <li class="class"><a href="../classes/Slothsoft.Savegame.Node.SignedIntegerValue.html">SignedIntegerValue</a></li>
+                                                    <li class="class"><a href="../classes/Slothsoft.Savegame.Node.StringDictionaryInstruction.html">StringDictionaryInstruction</a></li>
+                                                    <li class="class"><a href="../classes/Slothsoft.Savegame.Node.StringValue.html">StringValue</a></li>
+                                                    <li class="class"><a href="../classes/Slothsoft.Savegame.Node.UseGlobalInstruction.html">UseGlobalInstruction</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1539975725"></a>
+                                <a href="../namespaces/Slothsoft.Savegame.Script.html" style="margin-left: 30px; padding-left: 0">Script</a>
+            </div>
+            <div id="namespace-1539975725" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Slothsoft.Savegame.Script.AbstractElement.html">AbstractElement</a></li>
+                                                    <li class="class"><a href="../classes/Slothsoft.Savegame.Script.Event.html">Event</a></li>
+                                                    <li class="class"><a href="../classes/Slothsoft.Savegame.Script.Line.html">Line</a></li>
+                                                    <li class="class"><a href="../classes/Slothsoft.Savegame.Script.Parser.html">Parser</a></li>
+                                                    <li class="class"><a href="../classes/Slothsoft.Savegame.Script.Script.html">Script</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Slothsoft.Savegame.NodeEvaluatorInterface.html">NodeEvaluatorInterface</a></li>
+                                                                                                    <li class="class"><a href="../classes/Slothsoft.Savegame.ArchiveRepository.html">ArchiveRepository</a></li>
+                                                    <li class="class"><a href="../classes/Slothsoft.Savegame.Converter.html">Converter</a></li>
+                                                    <li class="class"><a href="../classes/Slothsoft.Savegame.Editor.html">Editor</a></li>
+                                                    <li class="class"><a href="../classes/Slothsoft.Savegame.EditorConfig.html">EditorConfig</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        </div>
+    </section>
+    <section class="row-fluid">
+        <div class="span10 offset2">
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <nav>
+                                                <a href="../namespaces/Slothsoft.Savegame.Build.html">\Slothsoft\Savegame\Build</a>
+                                            </nav>
+                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
+
+                    <h1><small>\Slothsoft\Savegame\Build</small>BuilderInterface</h1>
+                    <p><em></em></p>
+                    
+
+                    <section id="summary">
+                        <h2>Summary</h2>
+                        <section class="row-fluid heading">
+                            <section class="span6">
+                                <a href="#methods">Methods</a>
+                            </section>
+                            <section class="span6">
+                                <a href="#constants">Constants</a>
+                            </section>
+                        </section>
+                        <section class="row-fluid public">
+                            <section class="span6">
+                                                                    <a href="../classes/Slothsoft.Savegame.Build.BuilderInterface.html#method_registerTagBlacklist">registerTagBlacklist()</a><br />
+                                                                    <a href="../classes/Slothsoft.Savegame.Build.BuilderInterface.html#method_clearTagBlacklist">clearTagBlacklist()</a><br />
+                                                                    <a href="../classes/Slothsoft.Savegame.Build.BuilderInterface.html#method_registerAttributeBlacklist">registerAttributeBlacklist()</a><br />
+                                                                    <a href="../classes/Slothsoft.Savegame.Build.BuilderInterface.html#method_clearAttributeBlacklist">clearAttributeBlacklist()</a><br />
+                                                                    <a href="../classes/Slothsoft.Savegame.Build.BuilderInterface.html#method_escapeAttribute">escapeAttribute()</a><br />
+                                                            </section>
+                            <section class="span6">
+                                                                    <em>No constants found</em>
+                                                            </section>
+                        </section>
+                        <section class="row-fluid protected">
+                            <section class="span6">
+                                                                    <em>No protected methods found</em>
+                                                            </section>
+                            <section class="span6">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                        <section class="row-fluid private">
+                            <section class="span6">
+                                                                    <em>No private methods found</em>
+                                                            </section>
+                            <section class="span6">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                    </section>
+                </div>
+                <aside class="span4 detailsbar">
+                                        <dl>
+                        <dt>File</dt>
+                            <dd>
+                                <a href="../files/Slothsoft.Savegame.Build.BuilderInterface.html"><div class="path-wrapper">Slothsoft\Savegame\Build\BuilderInterface.php</div></a>
+                            </dd>
+                                                <dt>Package</dt>
+                            <dd><div class="namespace-wrapper">\Default</div></dd>
+                                                                                                    <dt>Parents</dt>
+                                                        <dd><a href=""><div class="namespace-wrapper"></div></a></dd>
+                        
+                                            </dl>
+                    <h2>Tags</h2>
+                    <table class="table table-condensed">
+                                            <tr><td colspan="2"><em>None found</em></td></tr>
+                                        </table>
+                </aside>
+            </div>
+
+            
+                        <div class="row-fluid">
+                <div class="span8 content class">
+                    <h2>Methods</h2>
+                </div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_registerTagBlacklist" name="method_registerTagBlacklist" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">registerTagBlacklist()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">registerTagBlacklist(\Slothsoft\Savegame\Build\iterable  <span class="argument">$tagList</span>) </pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>\Slothsoft\Savegame\Build\iterable</td>
+                                <td>$tagList </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_clearTagBlacklist" name="method_clearTagBlacklist" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">clearTagBlacklist()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">clearTagBlacklist() </pre>
+                <p><em></em></p>
+                
+
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_registerAttributeBlacklist" name="method_registerAttributeBlacklist" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">registerAttributeBlacklist()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">registerAttributeBlacklist(\Slothsoft\Savegame\Build\iterable  <span class="argument">$tagList</span>) </pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>\Slothsoft\Savegame\Build\iterable</td>
+                                <td>$tagList </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_clearAttributeBlacklist" name="method_clearAttributeBlacklist" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">clearAttributeBlacklist()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">clearAttributeBlacklist() </pre>
+                <p><em></em></p>
+                
+
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_escapeAttribute" name="method_escapeAttribute" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">escapeAttribute()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">escapeAttribute(\Slothsoft\Savegame\Build\string  <span class="argument">$name</span>) </pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>\Slothsoft\Savegame\Build\string</td>
+                                <td>$name </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                                    </div>
+    </section>
+
+    <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="source-view-label">BuilderInterface.php</h3>
+        </div>
+        <div class="modal-body">
+            <pre data-src="../files/Slothsoft\Savegame\Build\BuilderInterface.php.txt" class="language-php"></pre>
+        </div>
+    </div>
+
+    <footer class="row-fluid">
+        <section class="span10 offset2">
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <section class="row-fluid footer-sections">
+                        <section class="span4">
+                                                        <h1><i class="icon-code"></i></h1>
+                            <div>
+                                <ul>
+                                                                            <li><a href="../namespaces/Slothsoft.html">\Slothsoft</a></li>
+                                                                    </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-bar-chart"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../graphs/class.html">Class Hierarchy Diagram</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-pushpin"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../reports/errors.html">Errors</a></li>
+                                    <li><a href="../reports/markers.html">Markers</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <hr />
+                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
+                    on August 10th, 2018 at 12:37.
+                </section>
+            </section>
+        </section>
+    </footer>
+</div>
 
 </body>
 </html>

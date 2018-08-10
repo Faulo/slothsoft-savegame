@@ -1,28 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta name="viewport"
-	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-<meta charset="utf-8" />
-<title>API Documentation</title>
-<meta name="author" content="" />
-<meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>API Documentation</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
 
-<link href="../css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
-<link href="../css/font-awesome.min.css" rel="stylesheet">
-<link href="../css/prism.css" rel="stylesheet" media="all" />
-<link href="../css/template.css" rel="stylesheet" media="all" />
-
-<!--[if lt IE 9]>
+    <link href="../css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/prism.css" rel="stylesheet" media="all"/>
+    <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+    <!--[if lt IE 9]>
     <script src="../js/html5.js"></script>
     <![endif]-->
-<script src="../js/jquery-1.11.0.min.js"></script>
-<script src="../js/ui/1.10.4/jquery-ui.min.js"></script>
-<script src="../js/bootstrap.min.js"></script>
-<script src="../js/jquery.smooth-scroll.js"></script>
-<script src="../js/prism.min.js"></script>
-<!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
-<script type="text/javascript">
+    <script src="../js/jquery-1.11.0.min.js"></script>
+    <script src="../js/ui/1.10.4/jquery-ui.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery.smooth-scroll.js"></script>
+    <script src="../js/prism.min.js"></script>
+    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
+        <script type="text/javascript">
         function loadExternalCodeSnippets() {
             Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
                 var src = pre.getAttribute('data-src');
@@ -71,402 +70,330 @@
         })
     </script>
 
-<link rel="shortcut icon" href="../images/favicon.ico" />
-<link rel="apple-touch-icon" href="../images/apple-touch-icon.png" />
-<link rel="apple-touch-icon" sizes="72x72"
-	href="../images/apple-touch-icon-72x72.png" />
-<link rel="apple-touch-icon" sizes="114x114"
-	href="../images/apple-touch-icon-114x114.png" />
+    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
 </head>
 <body>
 
-	<div class="navbar navbar-fixed-top">
-		<div class="navbar-inner">
-			<div class="container">
-				<a class="btn btn-navbar" data-toggle="collapse"
-					data-target=".nav-collapse"> <i class="icon-ellipsis-vertical"></i>
-				</a> <a class="brand" href="../index.html">API Documentation</a>
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <i class="icon-ellipsis-vertical"></i>
+            </a>
+            <a class="brand" href="../index.html">API Documentation</a>
 
-				<div class="nav-collapse">
-					<ul class="nav pull-right">
-						<li class="dropdown"><a href="../index.html"
-							class="dropdown-toggle" data-toggle="dropdown"> API
-								Documentation <b class="caret"></b>
-						</a>
-							<ul class="dropdown-menu">
-								<li><a href="../namespaces/Slothsoft.html">\Slothsoft</a></li>
-							</ul></li>
-						<li class="dropdown" id="charts-menu"><a href="#"
-							class="dropdown-toggle" data-toggle="dropdown"> Charts <b
-								class="caret"></b>
-						</a>
-							<ul class="dropdown-menu">
-								<li><a href="../graphs/class.html"> <i
-										class="icon-list-alt"></i>&#160;Class hierarchy diagram
-								</a></li>
-							</ul></li>
-						<li class="dropdown" id="reports-menu"><a href="#"
-							class="dropdown-toggle" data-toggle="dropdown"> Reports <b
-								class="caret"></b>
-						</a>
-							<ul class="dropdown-menu">
-								<li><a href="../reports/errors.html"> <i
-										class="icon-list-alt"></i>&#160;Errors <span
-										class="label label-info pull-right">480</span>
-								</a></li>
-								<li><a href="../reports/markers.html"> <i
-										class="icon-list-alt"></i>&#160;Markers <span
-										class="label label-info pull-right">0</span>
-								</a></li>
-								<li><a href="../reports/deprecated.html"> <i
-										class="icon-list-alt"></i>&#160;Deprecated <span
-										class="label label-info pull-right">0</span>
-								</a></li>
-							</ul></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-		<!--<div class="go_to_top">-->
-		<!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
-		<!--</div>-->
-	</div>
+            <div class="nav-collapse">
+                <ul class="nav pull-right">
+                                        <li class="dropdown">
+                        <a href="../index.html" class="dropdown-toggle" data-toggle="dropdown">
+                            API Documentation <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                                                        <li><a href="../namespaces/Slothsoft.html">\Slothsoft</a></li>
+                                                    </ul>
+                    </li>
+                                        <li class="dropdown" id="charts-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Charts <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../graphs/class.html">
+                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" id="reports-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Reports <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../reports/errors.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">518</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/markers.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/deprecated.html">
+                                                                                                            <i class="icon-list-alt"></i>&#160;Deprecated <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--<div class="go_to_top">-->
+    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
+    <!--</div>-->
+</div>
 
-	<div id="___" class="container-fluid">
-		<section class="row-fluid">
-			<div class="span2 sidebar">
-				<div class="accordion" style="margin-bottom: 0">
-					<div class="accordion-group">
-						<div class="accordion-heading">
-							<a class="accordion-toggle " data-toggle="collapse"
-								data-target="#namespace-1496898184"></a> <a
-								href="../namespaces/default.html"
-								style="margin-left: 30px; padding-left: 0">\</a>
-						</div>
-						<div id="namespace-1496898184" class="accordion-body collapse in">
-							<div class="accordion-inner">
+<div id="___" class="container-fluid">
+        <section class="row-fluid">
+        <div class="span2 sidebar">
+                                <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-460851641"></a>
+                                <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
+            </div>
+            <div id="namespace-460851641" class="accordion-body collapse in">
+                <div class="accordion-inner">
 
-								<div class="accordion" style="margin-bottom: 0">
-									<div class="accordion-group">
-										<div class="accordion-heading">
-											<a class="accordion-toggle collapsed" data-toggle="collapse"
-												data-target="#namespace-175297599"></a> <a
-												href="../namespaces/Slothsoft.html"
-												style="margin-left: 30px; padding-left: 0">Slothsoft</a>
-										</div>
-										<div id="namespace-175297599" class="accordion-body collapse ">
-											<div class="accordion-inner">
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-780272188"></a>
+                                <a href="../namespaces/Slothsoft.html" style="margin-left: 30px; padding-left: 0">Slothsoft</a>
+            </div>
+            <div id="namespace-780272188" class="accordion-body collapse ">
+                <div class="accordion-inner">
 
-												<div class="accordion" style="margin-bottom: 0">
-													<div class="accordion-group">
-														<div class="accordion-heading">
-															<a class="accordion-toggle collapsed"
-																data-toggle="collapse"
-																data-target="#namespace-631491468"></a> <a
-																href="../namespaces/Slothsoft.Savegame.html"
-																style="margin-left: 30px; padding-left: 0">Savegame</a>
-														</div>
-														<div id="namespace-631491468"
-															class="accordion-body collapse ">
-															<div class="accordion-inner">
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1440324471"></a>
+                                <a href="../namespaces/Slothsoft.Savegame.html" style="margin-left: 30px; padding-left: 0">Savegame</a>
+            </div>
+            <div id="namespace-1440324471" class="accordion-body collapse ">
+                <div class="accordion-inner">
 
-																<div class="accordion" style="margin-bottom: 0">
-																	<div class="accordion-group">
-																		<div class="accordion-heading">
-																			<a class="accordion-toggle collapsed"
-																				data-toggle="collapse"
-																				data-target="#namespace-1199702528"></a> <a
-																				href="../namespaces/Slothsoft.Savegame.Build.html"
-																				style="margin-left: 30px; padding-left: 0">Build</a>
-																		</div>
-																		<div id="namespace-1199702528"
-																			class="accordion-body collapse ">
-																			<div class="accordion-inner">
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-122990359"></a>
+                                <a href="../namespaces/Slothsoft.Savegame.Build.html" style="margin-left: 30px; padding-left: 0">Build</a>
+            </div>
+            <div id="namespace-122990359" class="accordion-body collapse ">
+                <div class="accordion-inner">
 
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Slothsoft.Savegame.Build.BuilderInterface.html">BuilderInterface</a></li>
+                                                                                                    <li class="class"><a href="../classes/Slothsoft.Savegame.Build.XmlBuilder.html">XmlBuilder</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
 
-																				<ul>
-																					<li class="interface"><a
-																						href="../classes/Slothsoft.Savegame.Build.BuildableInterface.html">BuildableInterface</a></li>
-																					<li class="interface"><a
-																						href="../classes/Slothsoft.Savegame.Build.BuilderInterface.html">BuilderInterface</a></li>
-																					<li class="class"><a
-																						href="../classes/Slothsoft.Savegame.Build.XmlBuilder.html">XmlBuilder</a></li>
-																				</ul>
-																			</div>
-																		</div>
-																	</div>
-																</div>
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1603403218"></a>
+                                <a href="../namespaces/Slothsoft.Savegame.Node.html" style="margin-left: 30px; padding-left: 0">Node</a>
+            </div>
+            <div id="namespace-1603403218" class="accordion-body collapse ">
+                <div class="accordion-inner">
 
-																<div class="accordion" style="margin-bottom: 0">
-																	<div class="accordion-group">
-																		<div class="accordion-heading">
-																			<a class="accordion-toggle collapsed"
-																				data-toggle="collapse"
-																				data-target="#namespace-2140518579"></a> <a
-																				href="../namespaces/Slothsoft.Savegame.Node.html"
-																				style="margin-left: 30px; padding-left: 0">Node</a>
-																		</div>
-																		<div id="namespace-2140518579"
-																			class="accordion-body collapse ">
-																			<div class="accordion-inner">
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-839230032"></a>
+                                <a href="../namespaces/Slothsoft.Savegame.Node.ArchiveParser.html" style="margin-left: 30px; padding-left: 0">ArchiveParser</a>
+            </div>
+            <div id="namespace-839230032" class="accordion-body collapse ">
+                <div class="accordion-inner">
 
-																				<div class="accordion" style="margin-bottom: 0">
-																					<div class="accordion-group">
-																						<div class="accordion-heading">
-																							<a class="accordion-toggle collapsed"
-																								data-toggle="collapse"
-																								data-target="#namespace-729811196"></a> <a
-																								href="../namespaces/Slothsoft.Savegame.Node.ArchiveParser.html"
-																								style="margin-left: 30px; padding-left: 0">ArchiveParser</a>
-																						</div>
-																						<div id="namespace-729811196"
-																							class="accordion-body collapse ">
-																							<div class="accordion-inner">
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Slothsoft.Savegame.Node.ArchiveParser.ArchiveBuilderInterface.html">ArchiveBuilderInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Slothsoft.Savegame.Node.ArchiveParser.ArchiveExtractorInterface.html">ArchiveExtractorInterface</a></li>
+                                                                                                    <li class="class"><a href="../classes/Slothsoft.Savegame.Node.ArchiveParser.CopyArchiveBuilder.html">CopyArchiveBuilder</a></li>
+                                                    <li class="class"><a href="../classes/Slothsoft.Savegame.Node.ArchiveParser.CopyArchiveExtractor.html">CopyArchiveExtractor</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
 
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Slothsoft.Savegame.Node.AbstractContainerContent.html">AbstractContainerContent</a></li>
+                                                    <li class="class"><a href="../classes/Slothsoft.Savegame.Node.AbstractContentNode.html">AbstractContentNode</a></li>
+                                                    <li class="class"><a href="../classes/Slothsoft.Savegame.Node.AbstractInstructionContent.html">AbstractInstructionContent</a></li>
+                                                    <li class="class"><a href="../classes/Slothsoft.Savegame.Node.AbstractValueContent.html">AbstractValueContent</a></li>
+                                                    <li class="class"><a href="../classes/Slothsoft.Savegame.Node.ArchiveNode.html">ArchiveNode</a></li>
+                                                    <li class="class"><a href="../classes/Slothsoft.Savegame.Node.BinaryValue.html">BinaryValue</a></li>
+                                                    <li class="class"><a href="../classes/Slothsoft.Savegame.Node.BitFieldInstruction.html">BitFieldInstruction</a></li>
+                                                    <li class="class"><a href="../classes/Slothsoft.Savegame.Node.BitValue.html">BitValue</a></li>
+                                                    <li class="class"><a href="../classes/Slothsoft.Savegame.Node.EventDictionaryInstruction.html">EventDictionaryInstruction</a></li>
+                                                    <li class="class"><a href="../classes/Slothsoft.Savegame.Node.EventInstruction.html">EventInstruction</a></li>
+                                                    <li class="class"><a href="../classes/Slothsoft.Savegame.Node.EventScriptValue.html">EventScriptValue</a></li>
+                                                    <li class="class"><a href="../classes/Slothsoft.Savegame.Node.EventStepInstruction.html">EventStepInstruction</a></li>
+                                                    <li class="class"><a href="../classes/Slothsoft.Savegame.Node.FileContainer.html">FileContainer</a></li>
+                                                    <li class="class"><a href="../classes/Slothsoft.Savegame.Node.ForEachFileNode.html">ForEachFileNode</a></li>
+                                                    <li class="class"><a href="../classes/Slothsoft.Savegame.Node.GroupContainer.html">GroupContainer</a></li>
+                                                    <li class="class"><a href="../classes/Slothsoft.Savegame.Node.ImageMapInstruction.html">ImageMapInstruction</a></li>
+                                                    <li class="class"><a href="../classes/Slothsoft.Savegame.Node.ImagePileInstruction.html">ImagePileInstruction</a></li>
+                                                    <li class="class"><a href="../classes/Slothsoft.Savegame.Node.ImageValue.html">ImageValue</a></li>
+                                                    <li class="class"><a href="../classes/Slothsoft.Savegame.Node.InstructionContainer.html">InstructionContainer</a></li>
+                                                    <li class="class"><a href="../classes/Slothsoft.Savegame.Node.IntegerValue.html">IntegerValue</a></li>
+                                                    <li class="class"><a href="../classes/Slothsoft.Savegame.Node.RepeatGroupInstruction.html">RepeatGroupInstruction</a></li>
+                                                    <li class="class"><a href="../classes/Slothsoft.Savegame.Node.SavegameNode.html">SavegameNode</a></li>
+                                                    <li class="class"><a href="../classes/Slothsoft.Savegame.Node.SelectValue.html">SelectValue</a></li>
+                                                    <li class="class"><a href="../classes/Slothsoft.Savegame.Node.SignedIntegerValue.html">SignedIntegerValue</a></li>
+                                                    <li class="class"><a href="../classes/Slothsoft.Savegame.Node.StringDictionaryInstruction.html">StringDictionaryInstruction</a></li>
+                                                    <li class="class"><a href="../classes/Slothsoft.Savegame.Node.StringValue.html">StringValue</a></li>
+                                                    <li class="class"><a href="../classes/Slothsoft.Savegame.Node.UseGlobalInstruction.html">UseGlobalInstruction</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
 
-																								<ul>
-																									<li class="interface"><a
-																										href="../classes/Slothsoft.Savegame.Node.ArchiveParser.ArchiveBuilderInterface.html">ArchiveBuilderInterface</a></li>
-																									<li class="interface"><a
-																										href="../classes/Slothsoft.Savegame.Node.ArchiveParser.ArchiveExtractorInterface.html">ArchiveExtractorInterface</a></li>
-																									<li class="class"><a
-																										href="../classes/Slothsoft.Savegame.Node.ArchiveParser.CopyArchiveBuilder.html">CopyArchiveBuilder</a></li>
-																									<li class="class"><a
-																										href="../classes/Slothsoft.Savegame.Node.ArchiveParser.CopyArchiveExtractor.html">CopyArchiveExtractor</a></li>
-																								</ul>
-																							</div>
-																						</div>
-																					</div>
-																				</div>
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-2061894101"></a>
+                                <a href="../namespaces/Slothsoft.Savegame.Script.html" style="margin-left: 30px; padding-left: 0">Script</a>
+            </div>
+            <div id="namespace-2061894101" class="accordion-body collapse ">
+                <div class="accordion-inner">
 
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Slothsoft.Savegame.Script.AbstractElement.html">AbstractElement</a></li>
+                                                    <li class="class"><a href="../classes/Slothsoft.Savegame.Script.Event.html">Event</a></li>
+                                                    <li class="class"><a href="../classes/Slothsoft.Savegame.Script.Line.html">Line</a></li>
+                                                    <li class="class"><a href="../classes/Slothsoft.Savegame.Script.Parser.html">Parser</a></li>
+                                                    <li class="class"><a href="../classes/Slothsoft.Savegame.Script.Script.html">Script</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
 
-																				<ul>
-																					<li class="class"><a
-																						href="../classes/Slothsoft.Savegame.Node.AbstractContainerContent.html">AbstractContainerContent</a></li>
-																					<li class="class"><a
-																						href="../classes/Slothsoft.Savegame.Node.AbstractContentNode.html">AbstractContentNode</a></li>
-																					<li class="class"><a
-																						href="../classes/Slothsoft.Savegame.Node.AbstractInstructionContent.html">AbstractInstructionContent</a></li>
-																					<li class="class"><a
-																						href="../classes/Slothsoft.Savegame.Node.AbstractNode.html">AbstractNode</a></li>
-																					<li class="class"><a
-																						href="../classes/Slothsoft.Savegame.Node.AbstractValueContent.html">AbstractValueContent</a></li>
-																					<li class="class"><a
-																						href="../classes/Slothsoft.Savegame.Node.ArchiveNode.html">ArchiveNode</a></li>
-																					<li class="class"><a
-																						href="../classes/Slothsoft.Savegame.Node.BinaryValue.html">BinaryValue</a></li>
-																					<li class="class"><a
-																						href="../classes/Slothsoft.Savegame.Node.BitFieldInstruction.html">BitFieldInstruction</a></li>
-																					<li class="class"><a
-																						href="../classes/Slothsoft.Savegame.Node.BitValue.html">BitValue</a></li>
-																					<li class="class"><a
-																						href="../classes/Slothsoft.Savegame.Node.EventDictionaryInstruction.html">EventDictionaryInstruction</a></li>
-																					<li class="class"><a
-																						href="../classes/Slothsoft.Savegame.Node.EventInstruction.html">EventInstruction</a></li>
-																					<li class="class"><a
-																						href="../classes/Slothsoft.Savegame.Node.EventScriptValue.html">EventScriptValue</a></li>
-																					<li class="class"><a
-																						href="../classes/Slothsoft.Savegame.Node.EventStepInstruction.html">EventStepInstruction</a></li>
-																					<li class="class"><a
-																						href="../classes/Slothsoft.Savegame.Node.FileContainer.html">FileContainer</a></li>
-																					<li class="class"><a
-																						href="../classes/Slothsoft.Savegame.Node.ForEachFileNode.html">ForEachFileNode</a></li>
-																					<li class="class"><a
-																						href="../classes/Slothsoft.Savegame.Node.GroupContainer.html">GroupContainer</a></li>
-																					<li class="class"><a
-																						href="../classes/Slothsoft.Savegame.Node.InstructionContainer.html">InstructionContainer</a></li>
-																					<li class="class"><a
-																						href="../classes/Slothsoft.Savegame.Node.IntegerValue.html">IntegerValue</a></li>
-																					<li class="class"><a
-																						href="../classes/Slothsoft.Savegame.Node.RepeatGroupInstruction.html">RepeatGroupInstruction</a></li>
-																					<li class="class"><a
-																						href="../classes/Slothsoft.Savegame.Node.SavegameNode.html">SavegameNode</a></li>
-																					<li class="class"><a
-																						href="../classes/Slothsoft.Savegame.Node.SelectValue.html">SelectValue</a></li>
-																					<li class="class"><a
-																						href="../classes/Slothsoft.Savegame.Node.SignedIntegerValue.html">SignedIntegerValue</a></li>
-																					<li class="class"><a
-																						href="../classes/Slothsoft.Savegame.Node.StringDictionaryInstruction.html">StringDictionaryInstruction</a></li>
-																					<li class="class"><a
-																						href="../classes/Slothsoft.Savegame.Node.StringValue.html">StringValue</a></li>
-																					<li class="class"><a
-																						href="../classes/Slothsoft.Savegame.Node.UseGlobalInstruction.html">UseGlobalInstruction</a></li>
-																				</ul>
-																			</div>
-																		</div>
-																	</div>
-																</div>
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Slothsoft.Savegame.NodeEvaluatorInterface.html">NodeEvaluatorInterface</a></li>
+                                                                                                    <li class="class"><a href="../classes/Slothsoft.Savegame.ArchiveRepository.html">ArchiveRepository</a></li>
+                                                    <li class="class"><a href="../classes/Slothsoft.Savegame.Converter.html">Converter</a></li>
+                                                    <li class="class"><a href="../classes/Slothsoft.Savegame.Editor.html">Editor</a></li>
+                                                    <li class="class"><a href="../classes/Slothsoft.Savegame.EditorConfig.html">EditorConfig</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
 
-																<div class="accordion" style="margin-bottom: 0">
-																	<div class="accordion-group">
-																		<div class="accordion-heading">
-																			<a class="accordion-toggle collapsed"
-																				data-toggle="collapse"
-																				data-target="#namespace-2026764222"></a> <a
-																				href="../namespaces/Slothsoft.Savegame.Script.html"
-																				style="margin-left: 30px; padding-left: 0">Script</a>
-																		</div>
-																		<div id="namespace-2026764222"
-																			class="accordion-body collapse ">
-																			<div class="accordion-inner">
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
 
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
 
-																				<ul>
-																					<li class="class"><a
-																						href="../classes/Slothsoft.Savegame.Script.AbstractElement.html">AbstractElement</a></li>
-																					<li class="class"><a
-																						href="../classes/Slothsoft.Savegame.Script.Event.html">Event</a></li>
-																					<li class="class"><a
-																						href="../classes/Slothsoft.Savegame.Script.Line.html">Line</a></li>
-																					<li class="class"><a
-																						href="../classes/Slothsoft.Savegame.Script.Parser.html">Parser</a></li>
-																					<li class="class"><a
-																						href="../classes/Slothsoft.Savegame.Script.Script.html">Script</a></li>
-																				</ul>
-																			</div>
-																		</div>
-																	</div>
-																</div>
+        </div>
+    </section>
+    <section class="row-fluid">
+        <div class="span10 offset2">
+            <div class="row-fluid">
+                <div class="span8 content file">
+                    <nav>
+                                                                    </nav>
 
+                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
+                    <h1><small></small>registerModule.php</h1>
+                    <p><em></em></p>
+                    
 
-																<ul>
-																	<li class="interface"><a
-																		href="../classes/Slothsoft.Savegame.NodeEvaluatorInterface.html">NodeEvaluatorInterface</a></li>
-																	<li class="class"><a
-																		href="../classes/Slothsoft.Savegame.Converter.html">Converter</a></li>
-																	<li class="class"><a
-																		href="../classes/Slothsoft.Savegame.Editor.html">Editor</a></li>
-																</ul>
-															</div>
-														</div>
-													</div>
-												</div>
+                    
+                    
+                                    </div>
 
+                <aside class="span4 detailsbar">
+                    <dl>
+                                                    <dt>Package</dt>
+                            <dd><div class="namespace-wrapper">\Default</div></dd>
+                        
+                        
+                    </dl>
+                    <h2>Tags</h2>
+                    <table class="table table-condensed">
+                                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                                            </table>
 
-												<ul>
-												</ul>
-											</div>
-										</div>
-									</div>
-								</div>
+                </aside>
+            </div>
 
+            
+            
+        </div>
+    </section>
 
-								<ul>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
+    <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="source-view-label"></h3>
+        </div>
+        <div class="modal-body">
+            <pre data-src="../files/registerModule.php.txt" class="language-php line-numbers"></pre>
+        </div>
+    </div>
 
-			</div>
-		</section>
-		<section class="row-fluid">
-			<div class="span10 offset2">
-				<div class="row-fluid">
-					<div class="span8 content file">
-						<nav></nav>
-
-						<a href="#source-view" role="button" class="pull-right btn"
-							data-toggle="modal"><i class="icon-code"></i></a>
-						<h1>
-							<small></small>registerModule.php
-						</h1>
-						<p>
-							<em></em>
-						</p>
-
-
-
-
-					</div>
-
-					<aside class="span4 detailsbar">
-						<dl>
-							<dt>Package</dt>
-							<dd>
-								<div class="namespace-wrapper">\Default</div>
-							</dd>
-
-
-						</dl>
-						<h2>Tags</h2>
-						<table class="table table-condensed">
-							<tr>
-								<td colspan="2"><em>None found</em></td>
-							</tr>
-						</table>
-
-					</aside>
-				</div>
-
-
-
-			</div>
-		</section>
-
-		<div id="source-view" class="modal hide fade" tabindex="-1"
-			role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal"
-					aria-hidden="true">×</button>
-				<h3 id="source-view-label"></h3>
-			</div>
-			<div class="modal-body">
-				<pre data-src="../files/registerModule.php.txt"
-					class="language-php line-numbers"></pre>
-			</div>
-		</div>
-
-		<footer class="row-fluid">
-			<section class="span10 offset2">
-				<section class="row-fluid">
-					<section class="span10 offset1">
-						<section class="row-fluid footer-sections">
-							<section class="span4">
-								<h1>
-									<i class="icon-code"></i>
-								</h1>
-								<div>
-									<ul>
-										<li><a href="../namespaces/Slothsoft.html">\Slothsoft</a></li>
-									</ul>
-								</div>
-							</section>
-							<section class="span4">
-								<h1>
-									<i class="icon-bar-chart"></i>
-								</h1>
-								<div>
-									<ul>
-										<li><a href="../graphs/class.html">Class Hierarchy
-												Diagram</a></li>
-									</ul>
-								</div>
-							</section>
-							<section class="span4">
-								<h1>
-									<i class="icon-pushpin"></i>
-								</h1>
-								<div>
-									<ul>
-										<li><a href="../reports/errors.html">Errors</a></li>
-										<li><a href="../reports/markers.html">Markers</a></li>
-									</ul>
-								</div>
-							</section>
-						</section>
-					</section>
-				</section>
-				<section class="row-fluid">
-					<section class="span10 offset1">
-						<hr />
-						Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor
-						</a> and authored on June 23rd, 2018 at 18:11.
-					</section>
-				</section>
-			</section>
-		</footer>
-	</div>
+    <footer class="row-fluid">
+        <section class="span10 offset2">
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <section class="row-fluid footer-sections">
+                        <section class="span4">
+                                                        <h1><i class="icon-code"></i></h1>
+                            <div>
+                                <ul>
+                                                                            <li><a href="../namespaces/Slothsoft.html">\Slothsoft</a></li>
+                                                                    </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-bar-chart"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../graphs/class.html">Class Hierarchy Diagram</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-pushpin"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../reports/errors.html">Errors</a></li>
+                                    <li><a href="../reports/markers.html">Markers</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <hr />
+                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
+                    on August 10th, 2018 at 12:37.
+                </section>
+            </section>
+        </section>
+    </footer>
+</div>
 
 </body>
 </html>

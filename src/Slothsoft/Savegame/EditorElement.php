@@ -14,6 +14,7 @@ class EditorElement
         'archive' => 3,
         'for-each-file' => 4,
         'file' => 5,
+        'globals' => 6,
         
         'binary' => 10,
         'integer' => 11,
