@@ -1,8 +1,11 @@
 <?xml version="1.0"?>
 <xsd:schema xmlns="http://schema.slothsoft.net/savegame/editor"
 	targetNamespace="http://schema.slothsoft.net/savegame/editor" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-	xmlns:ssv="http://schema.slothsoft.net/schema/versioning" elementFormDefault="qualified"
+	xmlns:ssv="http://schema.slothsoft.net/schema/versioning" 
+	xmlns:xml="http://www.w3.org/XML/1998/namespace" elementFormDefault="qualified"
 	attributeFormDefault="unqualified">
+	
+	<xsd:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="http://www.w3.org/2001/xml.xsd"/>
 
 	<xsd:annotation>
 		<xsd:appinfo>
@@ -29,6 +32,10 @@ This namespace defines elements to describe the contents of game files in terms 
 		- added types id, name, numberExpression
 	R20180403
 		- changed <archive type="Raw|AMBR|AM2|JH"> to "xsd:token" (use editor configuration 'archiveBuilders' and 'archiveExtractors' to register archive types)
+	R20180802
+		- changed <archive type="xsd:token"> to [a-zA-Z0-9]
+		- added <globals>
+		- added xml:base to <savegame.editor>, <globals>, <archive>
 				]]></ssv:changelog>
 			</ssv:info>
 		</xsd:appinfo>
@@ -50,12 +57,27 @@ This namespace defines elements to describe the contents of game files in terms 
 					<xsd:choice minOccurs="0" maxOccurs="unbounded">
 						<xsd:any processContents="lax" namespace="http://www.w3.org/2001/XInclude" minOccurs="1" maxOccurs="1" />
 
+						<xsd:element ref="globals" minOccurs="1" maxOccurs="1" />
 						<xsd:element ref="global" minOccurs="1" maxOccurs="1" />
 						<xsd:element ref="archive" minOccurs="1" maxOccurs="1" />
 					</xsd:choice>
 					<xsd:attributeGroup ref="schemaVersion" />
 					<xsd:attribute name="save-id" type="xsd:normalizedString" />
 					<xsd:attribute name="save-mode" type="xsd:normalizedString" />
+					<xsd:attribute ref="xml:base" use="optional" />
+				</xsd:extension>
+			</xsd:complexContent>
+		</xsd:complexType>
+	</xsd:element>
+	
+	<xsd:element name="globals">
+		<xsd:complexType>
+			<xsd:complexContent>
+				<xsd:extension base="genericNode">
+					<xsd:choice minOccurs="0" maxOccurs="unbounded">
+						<xsd:element ref="global" />
+					</xsd:choice>
+					<xsd:attribute ref="xml:base" use="optional" />
 				</xsd:extension>
 			</xsd:complexContent>
 		</xsd:complexType>
@@ -108,11 +130,18 @@ This namespace defines elements to describe the contents of game files in terms 
 						<xsd:element ref="file" />
 					</xsd:choice>
 					<xsd:attribute name="path" type="xsd:normalizedString" use="required" />
-					<xsd:attribute name="type" type="xsd:token" use="required" />
+					<xsd:attribute name="type" use="required">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:token">
+								<xsd:pattern value="[a-zA-Z0-9]+"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:attribute>
 					<xsd:attribute name="name" type="xsd:normalizedString" use="optional" />
 					<xsd:attribute name="size" type="xsd:integer" use="optional" />
 					<xsd:attribute name="timestamp" type="xsd:normalizedString" use="optional" />
 					<xsd:attribute name="md5" type="xsd:normalizedString" use="optional" />
+					<xsd:attribute ref="xml:base" use="optional" />
 				</xsd:extension>
 			</xsd:complexContent>
 		</xsd:complexType>

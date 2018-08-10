@@ -59,6 +59,9 @@ class SavegameNode extends AbstractNode implements BuildableInterface
                 case EditorElement::NODE_TYPES['global']:
                     $globalList[] = $element;
                     break;
+                case EditorElement::NODE_TYPES['globals']:
+                    $this->loadChildren($element);
+                    break;
             }
         }
         
