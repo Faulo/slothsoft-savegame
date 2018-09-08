@@ -12,7 +12,7 @@
 			<ssv:info version="1.0">
 				<ssv:name>Savegame Editor Manifest</ssv:name>
 				<ssv:version>0.3</ssv:version>
-				<ssv:revision>R20180403</ssv:revision>
+				<ssv:revision>R20180908</ssv:revision>
 				<ssv:prefix>sse</ssv:prefix>
 				<ssv:namespace>http://schema.slothsoft.net/savegame/editor</ssv:namespace>
 				<ssv:author email="daniel.lio.schulz@gmail.com">Daniel Schulz</ssv:author>
@@ -36,6 +36,9 @@ This namespace defines elements to describe the contents of game files in terms 
 		- changed <archive type="xsd:token"> to [a-zA-Z0-9]
 		- added <globals>
 		- added xml:base to <savegame.editor>, <globals>, <archive>
+	R20180908
+		- <group> may have a dictionary-ref
+		- name may include /
 				]]></ssv:changelog>
 			</ssv:info>
 		</xsd:appinfo>
@@ -176,6 +179,7 @@ This namespace defines elements to describe the contents of game files in terms 
 			<xsd:complexContent>
 				<xsd:extension base="containerContentNode">
 					<xsd:attribute name="instruction" type="name" />
+					<xsd:attribute name="dictionary-ref" type="id" use="optional" />
 				</xsd:extension>
 			</xsd:complexContent>
 		</xsd:complexType>
@@ -465,7 +469,7 @@ This namespace defines elements to describe the contents of game files in terms 
 
 	<xsd:simpleType name="name">
 		<xsd:restriction base="xsd:token">
-			<xsd:pattern value="[A-Za-z0-9\-\.]+" />
+			<xsd:pattern value="[A-Za-z0-9\-\./]+" />
 		</xsd:restriction>
 	</xsd:simpleType>
 

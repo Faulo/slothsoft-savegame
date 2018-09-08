@@ -2,11 +2,29 @@
 declare(strict_types = 1);
 namespace Slothsoft\Savegame\Node;
 
+use Slothsoft\Savegame\EditorElement;
+use Slothsoft\Savegame\Build\BuilderInterface;
+
 class GroupContainer extends AbstractContainerContent
 {
-
+    private $dictionaryRef;
+    
     public function getBuildTag(): string
     {
         return 'group';
+    }
+    
+    public function getBuildAttributes(BuilderInterface $builder): array
+    {
+        return parent::getBuildAttributes($builder) + [
+            'dictionary-ref' => $this->dictionaryRef
+        ];
+    }
+    
+    protected function loadStruc(EditorElement $strucElement)
+    {
+        parent::loadStruc($strucElement);
+        
+        $this->dictionaryRef = (string) $strucElement->getAttribute('dictionary-ref');
     }
 }
