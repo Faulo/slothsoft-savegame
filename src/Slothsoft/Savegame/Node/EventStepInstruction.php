@@ -3,7 +3,6 @@ declare(strict_types = 1);
 namespace Slothsoft\Savegame\Node;
 
 use Slothsoft\Core\XML\LeanElement;
-use LogicException;
 
 class EventStepInstruction extends AbstractInstructionContent
 {
