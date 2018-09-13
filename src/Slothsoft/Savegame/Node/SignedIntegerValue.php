@@ -2,7 +2,7 @@
 declare(strict_types = 1);
 namespace Slothsoft\Savegame\Node;
 
-use Slothsoft\Savegame\EditorElement;
+use Slothsoft\Core\XML\LeanElement;
 use Slothsoft\Savegame\Build\BuilderInterface;
 
 class SignedIntegerValue extends AbstractValueContent
@@ -42,7 +42,7 @@ class SignedIntegerValue extends AbstractValueContent
         ];
     }
 
-    protected function loadStruc(EditorElement $strucElement)
+    protected function loadStruc(LeanElement $strucElement)
     {
         parent::loadStruc($strucElement);
         

@@ -2,7 +2,7 @@
 declare(strict_types = 1);
 namespace Slothsoft\Savegame\Node;
 
-use Slothsoft\Savegame\EditorElement;
+use Slothsoft\Core\XML\LeanElement;
 use Slothsoft\Savegame\Build\BuilderInterface;
 
 class ImagePileInstruction extends AbstractInstructionContent
@@ -24,7 +24,7 @@ class ImagePileInstruction extends AbstractInstructionContent
         ];
     }
 
-    protected function loadStruc(EditorElement $strucElement)
+    protected function loadStruc(LeanElement $strucElement)
     {
         parent::loadStruc($strucElement);
         
@@ -38,10 +38,10 @@ class ImagePileInstruction extends AbstractInstructionContent
     
     protected function getInstructionType(): string
     {
-        return 'image-pile';
+        return NodeFactory::TAG_IMAGE_PILE;
     }
     
-    protected function loadInstruction(EditorElement $strucElement)
+    protected function loadInstruction(LeanElement $strucElement)
     {
         $this->width = 0;
         $this->height = 0;
@@ -58,7 +58,7 @@ class ImagePileInstruction extends AbstractInstructionContent
             $strucData['bitplanes'] = $this->bitplanes;
             $strucData['position'] = $this->size;
             
-            yield new EditorElement(EditorElement::NODE_TYPES['image'], $strucData, $strucElement->getChildren());
+            yield LeanElement::createOneFromArray(NodeFactory::TAG_IMAGE, $strucData, $strucElement->getChildren());
             
             $this->width = max($width, $this->width);
             $this->height += $height;

@@ -2,28 +2,28 @@
 declare(strict_types = 1);
 namespace Slothsoft\Savegame\Node;
 
-use Slothsoft\Savegame\EditorElement;
+use Slothsoft\Core\XML\LeanElement;
 
 class ForEachFileNode extends AbstractNode
 {
     private $fileRange;
 
-    protected function loadStruc(EditorElement $strucElement)
+    protected function loadStruc(LeanElement $strucElement)
     {
         parent::loadStruc($strucElement);
         $this->fileRange = (string) $strucElement->getAttribute('file-range');
     }
     
-    protected function loadNode(EditorElement $strucElement)
+    protected function loadNode(LeanElement $strucElement)
     {}
 
-    public function loadChildren(EditorElement $strucElement)
+    public function loadChildren(LeanElement $strucElement)
     {
         foreach ($this->getFileNames() as $name) {
             $strucData = [];
             $strucData['file-name'] = $name;
             
-            $childElement = new EditorElement(EditorElement::NODE_TYPES['file'], $strucData, $strucElement->getChildren());
+            $childElement = LeanElement::createOneFromArray(NodeFactory::TAG_FILE, $strucData, $strucElement->getChildren());
             
             $this->loadChild($childElement);
         }

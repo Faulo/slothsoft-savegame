@@ -3,13 +3,13 @@ declare(strict_types = 1);
 namespace Slothsoft\Savegame\Node;
 
 use Ds\Vector;
+use Slothsoft\Core\IO\FileInfoFactory;
 use Slothsoft\Core\IO\Writable\FileWriterInterface;
-use Slothsoft\Savegame\EditorElement;
+use Slothsoft\Core\XML\LeanElement;
 use Slothsoft\Savegame\NodeEvaluatorInterface;
 use Slothsoft\Savegame\Build\BuildableInterface;
 use Slothsoft\Savegame\Build\BuilderInterface;
 use SplFileInfo;
-use Slothsoft\Core\IO\FileInfoFactory;
 
 class FileContainer extends AbstractNode implements NodeEvaluatorInterface, BuildableInterface, FileWriterInterface
 {
@@ -44,7 +44,7 @@ class FileContainer extends AbstractNode implements NodeEvaluatorInterface, Buil
         ];
     }
 
-    protected function loadStruc(EditorElement $strucElement)
+    protected function loadStruc(LeanElement $strucElement)
     {
         parent::loadStruc($strucElement);
         
@@ -60,7 +60,7 @@ class FileContainer extends AbstractNode implements NodeEvaluatorInterface, Buil
         $this->evaluateCache = [];
     }
 
-    protected function loadNode(EditorElement $strucElement)
+    protected function loadNode(LeanElement $strucElement)
     {
         assert(file_exists($this->filePath), '$this->filePath must exist');
         
@@ -152,7 +152,7 @@ class FileContainer extends AbstractNode implements NodeEvaluatorInterface, Buil
         if (is_int($expression)) {
             return $expression;
         }
-        $expression = trim($expression);
+        $expression = trim((string) $expression);
         if ($expression === '') {
             return 0;
         }

@@ -2,7 +2,7 @@
 declare(strict_types = 1);
 namespace Slothsoft\Savegame\Node;
 
-use Slothsoft\Savegame\EditorElement;
+use Slothsoft\Core\XML\LeanElement;
 use Slothsoft\Savegame\Build\BuildableInterface;
 use Slothsoft\Savegame\Build\BuilderInterface;
 
@@ -28,15 +28,17 @@ abstract class AbstractValueContent extends AbstractContentNode implements Build
         ];
     }
 
-    protected function loadStruc(EditorElement $strucElement)
+    protected function loadStruc(LeanElement $strucElement)
     {
         parent::loadStruc($strucElement);
         
-        $this->size = (int) $strucElement->getAttribute('size', 1, $this->ownerFile);
+        $this->size = $strucElement->hasAttribute('size')
+            ? (int) $this->ownerFile->evaluate($strucElement->getAttribute('size'))
+            : 1;
         $this->valueId = $this->ownerFile->registerValue($this);
     }
 
-    protected function loadContent(EditorElement $strucElement)
+    protected function loadContent(LeanElement $strucElement)
     {
         if ($this->size and $this->ownerFile) {
             $this->setRawValue($this->ownerFile->extractContent($this->contentOffset, $this->size));

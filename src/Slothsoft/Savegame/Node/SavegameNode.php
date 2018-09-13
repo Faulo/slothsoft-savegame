@@ -3,8 +3,8 @@ declare(strict_types = 1);
 namespace Slothsoft\Savegame\Node;
 
 use Slothsoft\Core\IO\Writable\ChunkWriterInterface;
+use Slothsoft\Core\XML\LeanElement;
 use Slothsoft\Savegame\Editor;
-use Slothsoft\Savegame\EditorElement;
 use Slothsoft\Savegame\Build\BuildableInterface;
 use Slothsoft\Savegame\Build\BuilderInterface;
 use Slothsoft\Savegame\Build\XmlBuilder;
@@ -32,7 +32,7 @@ class SavegameNode extends AbstractNode implements BuildableInterface
         $this->factory = $factory;
     }
 
-    protected function loadStruc(EditorElement $strucElement)
+    protected function loadStruc(LeanElement $strucElement)
     {
         parent::loadStruc($strucElement);
         
@@ -46,20 +46,20 @@ class SavegameNode extends AbstractNode implements BuildableInterface
         return $this->ownerEditor;
     }
 
-    public function loadChildren(EditorElement $strucElement)
+    public function loadChildren(LeanElement $strucElement)
     {
         $archiveList = [];
         $globalList = [];
         
         foreach ($strucElement->getChildren() as $element) {
-            switch ($element->getType()) {
-                case EditorElement::NODE_TYPES['archive']:
+            switch ($element->getTag()) {
+                case NodeFactory::TAG_ARCHIVE:
                     $archiveList[] = $element;
                     break;
-                case EditorElement::NODE_TYPES['global']:
+                case NodeFactory::TAG_GLOBAL:
                     $globalList[] = $element;
                     break;
-                case EditorElement::NODE_TYPES['globals']:
+                case NodeFactory::TAG_GLOBALS:
                     $this->loadChildren($element);
                     break;
             }
@@ -74,7 +74,7 @@ class SavegameNode extends AbstractNode implements BuildableInterface
         }
     }
 
-    protected function loadNode(EditorElement $strucElement)
+    protected function loadNode(LeanElement $strucElement)
     {}
 
     public function appendBuildChild(BuildableInterface $node)
@@ -173,7 +173,7 @@ class SavegameNode extends AbstractNode implements BuildableInterface
 //         //return $builder->buildString($this);
 //     }
     
-    public function createNode(EditorElement $strucElement, AbstractNode $parentValue) : AbstractNode
+    public function createNode(LeanElement $strucElement, AbstractNode $parentValue) : AbstractNode
     {
         return $this->factory->createNode($strucElement, $parentValue);
     }

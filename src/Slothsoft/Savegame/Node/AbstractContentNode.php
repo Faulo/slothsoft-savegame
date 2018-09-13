@@ -2,7 +2,7 @@
 declare(strict_types = 1);
 namespace Slothsoft\Savegame\Node;
 
-use Slothsoft\Savegame\EditorElement;
+use Slothsoft\Core\XML\LeanElement;
 use Slothsoft\Savegame\Build\BuildableInterface;
 use Slothsoft\Savegame\Build\BuilderInterface;
 
@@ -17,7 +17,7 @@ abstract class AbstractContentNode extends AbstractNode
 
     protected $contentOffset;
 
-    abstract protected function loadContent(EditorElement $strucElement);
+    abstract protected function loadContent(LeanElement $strucElement);
 
     public function getBuildAttributes(BuilderInterface $builder): array
     {
@@ -26,7 +26,7 @@ abstract class AbstractContentNode extends AbstractNode
         ];
     }
 
-    protected function loadStruc(EditorElement $strucElement)
+    protected function loadStruc(LeanElement $strucElement)
     {
         parent::loadStruc($strucElement);
         
@@ -35,7 +35,9 @@ abstract class AbstractContentNode extends AbstractNode
         $this->ownerFile = $parentNode instanceof FileContainer ? $parentNode : $parentNode->getOwnerFile();
         
         $this->name = (string) $strucElement->getAttribute('name');
-        $this->position = (int) $strucElement->getAttribute('position', 0, $this->ownerFile);
+        $this->position = $strucElement->hasAttribute('position')
+            ? (int) $this->ownerFile->evaluate($strucElement->getAttribute('position'))
+            : 0;
         
         $this->contentOffset = $this->position;
         if ($parentNode instanceof AbstractContentNode) {
@@ -61,7 +63,7 @@ abstract class AbstractContentNode extends AbstractNode
         return $this->ownerFile->getOwnerSavegame();
     }
 
-    protected function loadNode(EditorElement $strucElement)
+    protected function loadNode(LeanElement $strucElement)
     {
         $this->loadContent($strucElement);
     }

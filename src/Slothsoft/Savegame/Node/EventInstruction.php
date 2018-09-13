@@ -2,7 +2,7 @@
 declare(strict_types = 1);
 namespace Slothsoft\Savegame\Node;
 
-use Slothsoft\Savegame\EditorElement;
+use Slothsoft\Core\XML\LeanElement;
 
 class EventInstruction extends AbstractInstructionContent
 {
@@ -13,10 +13,10 @@ class EventInstruction extends AbstractInstructionContent
 
     protected function getInstructionType(): string
     {
-        return 'event';
+        return NodeFactory::TAG_EVENT;
     }
 
-    protected function loadStruc(EditorElement $strucElement)
+    protected function loadStruc(LeanElement $strucElement)
     {
         parent::loadStruc($strucElement);
         
@@ -24,18 +24,14 @@ class EventInstruction extends AbstractInstructionContent
         $this->stepSize = (int) $strucElement->getAttribute('step-size');
     }
 
-    protected function loadInstruction(EditorElement $strucElement)
+    protected function loadInstruction(LeanElement $strucElement)
     {
-        $instructionList = [];
-        
         for ($i = 0; $i < $this->size; $i += $this->stepSize) {
             $strucData = [];
             $strucData['position'] = $i;
             // $strucData['size'] = $this->stepSize;
             
-            $instructionList[] = new EditorElement(EditorElement::NODE_TYPES['event-step'], $strucData, $strucElement->getChildren());
+            yield LeanElement::createOneFromArray(NodeFactory::TAG_EVENT_STEP, $strucData, $strucElement->getChildren());
         }
-        
-        return $instructionList;
     }
 }

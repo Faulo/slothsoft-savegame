@@ -2,9 +2,9 @@
 declare(strict_types = 1);
 namespace Slothsoft\Savegame\Node;
 
-use Slothsoft\Savegame\EditorElement;
-use Slothsoft\Savegame\Build\BuilderInterface;
 use Slothsoft\Core\IO\Writable\FileWriterInterface;
+use Slothsoft\Core\XML\LeanElement;
+use Slothsoft\Savegame\Build\BuilderInterface;
 use SplFileInfo;
 
 class ImageValue extends AbstractValueContent implements FileWriterInterface
@@ -43,7 +43,7 @@ class ImageValue extends AbstractValueContent implements FileWriterInterface
         return $this->imageId;
     }
 
-    protected function loadStruc(EditorElement $strucElement)
+    protected function loadStruc(LeanElement $strucElement)
     {
         parent::loadStruc($strucElement);
         

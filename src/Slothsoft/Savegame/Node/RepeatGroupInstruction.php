@@ -2,7 +2,7 @@
 declare(strict_types = 1);
 namespace Slothsoft\Savegame\Node;
 
-use Slothsoft\Savegame\EditorElement;
+use Slothsoft\Core\XML\LeanElement;
 
 class RepeatGroupInstruction extends AbstractInstructionContent
 {
@@ -13,21 +13,23 @@ class RepeatGroupInstruction extends AbstractInstructionContent
 
     protected function getInstructionType(): string
     {
-        return 'repeat-group';
+        return NodeFactory::TAG_REPEAT_GROUP;
     }
 
-    protected function loadStruc(EditorElement $strucElement)
+    protected function loadStruc(LeanElement $strucElement)
     {
         parent::loadStruc($strucElement);
         
-        $this->groupSize = (int) $strucElement->getAttribute('group-size', 0, $this->ownerFile);
-        $this->groupCount = (int) $strucElement->getAttribute('group-count', 0, $this->ownerFile);
+        $this->groupSize = $strucElement->hasAttribute('group-size')
+            ? (int) $this->ownerFile->evaluate($strucElement->getAttribute('group-size'))
+            : 0;
+        $this->groupCount = $strucElement->hasAttribute('group-count')
+            ? (int) $this->ownerFile->evaluate($strucElement->getAttribute('group-count'))
+            : 0;
     }
 
-    protected function loadInstruction(EditorElement $strucElement)
+    protected function loadInstruction(LeanElement $strucElement)
     {
-        $instructionList = [];
-        
         $start = 0;
         $step = $this->groupSize;
         $count = $this->groupCount * $step;
@@ -42,10 +44,8 @@ class RepeatGroupInstruction extends AbstractInstructionContent
             $strucData['position'] = $position;
             // $strucData['name'] = $this->dictionary ? (string) $this->dictionary->getOption($i) : '';
             
-            $instructionList[] = new EditorElement(EditorElement::NODE_TYPES['group'], $strucData, $strucElement->getChildren());
+            yield LeanElement::createOneFromArray(NodeFactory::TAG_GROUP, $strucData, $strucElement->getChildren());
         }
-        
-        return $instructionList;
     }
 }
 

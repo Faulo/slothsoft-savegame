@@ -2,7 +2,8 @@
 declare(strict_types = 1);
 namespace Slothsoft\Savegame\Node;
 
-use Slothsoft\Savegame\EditorElement;
+use Slothsoft\Core\XML\LeanElement;
+use LogicException;
 
 class EventStepInstruction extends AbstractInstructionContent
 {
@@ -33,35 +34,26 @@ class EventStepInstruction extends AbstractInstructionContent
      */
     protected function getInstructionType(): string
     {
-        return 'event-step';
+        return NodeFactory::TAG_EVENT_STEP;
     }
 
-    protected function loadInstruction(EditorElement $strucElement)
+    protected function loadInstruction(LeanElement $strucElement)
     {
-        $instructionList = [];
-        
         $savegame = $this->getOwnerSavegame();
         
         $eventType = $this->ownerFile->extractContent($this->contentOffset, 1);
         $eventType = $this->getConverter()->decodeInteger($eventType, 1);
+        $eventType = sprintf('%02d', $eventType);
         
         $eventSubType = $this->ownerFile->extractContent($this->contentOffset + 1, 1);
         $eventSubType = $this->getConverter()->decodeInteger($eventSubType, 1);
+        $eventSubType = sprintf('%02d', $eventSubType);
         
-        $ref = sprintf('event-%02d.%02d', $eventType, $eventSubType);
-        
-        $instructionList = $savegame->getGlobalElementsById($ref);
-        
-        if (! $instructionList) {
-            $ref = sprintf('event-%02d', $eventType);
-            $instructionList = $savegame->getGlobalElementsById($ref);
+        foreach (["event-$eventType.$eventSubType", "event-$eventType", "event-unknown"] as $ref) {
+            if ($instructionList = $savegame->getGlobalElementsById($ref)) {
+                break;
+            }
         }
-        
-        if (! $instructionList) {
-            $ref = 'event-unknown';
-            $instructionList = $savegame->getGlobalElementsById($ref);
-        }
-        
         return $instructionList;
     }
 }

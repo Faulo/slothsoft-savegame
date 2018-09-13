@@ -2,7 +2,7 @@
 declare(strict_types = 1);
 namespace Slothsoft\Savegame\Node;
 
-use Slothsoft\Savegame\EditorElement;
+use Slothsoft\Core\XML\LeanElement;
 use RangeException;
 
 class EventDictionaryInstruction extends AbstractInstructionContent
@@ -10,13 +10,11 @@ class EventDictionaryInstruction extends AbstractInstructionContent
 
     protected function getInstructionType(): string
     {
-        return 'event-dictionary';
+        return NodeFactory::TAG_EVENT_DICTIONARY;
     }
 
-    protected function loadInstruction(EditorElement $strucElement)
+    protected function loadInstruction(LeanElement $strucElement)
     {
-        $instructionList = [];
-        
         $offsetWordSize = 2;
         $eventWordSize = 12;
         
@@ -48,11 +46,9 @@ class EventDictionaryInstruction extends AbstractInstructionContent
             $strucData['size'] = $eventSize;
             $strucData['step-size'] = $eventWordSize;
             
-            $instructionList[] = new EditorElement(EditorElement::NODE_TYPES['event'], $strucData, $strucElement->getChildren());
+            yield LeanElement::createOneFromArray(NodeFactory::TAG_EVENT, $strucData, $strucElement->getChildren());
             
             $eventStartOffset += $eventSize;
         }
-        
-        return $instructionList;
     }
 }

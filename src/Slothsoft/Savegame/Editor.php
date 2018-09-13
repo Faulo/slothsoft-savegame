@@ -2,16 +2,15 @@
 declare(strict_types = 1);
 namespace Slothsoft\Savegame;
 
-use Ds\Vector;
 use Slothsoft\Core\DOMHelper;
 use Slothsoft\Core\IO\Writable\FileWriterInterface;
+use Slothsoft\Core\XML\LeanElement;
 use Slothsoft\Savegame\Node\ArchiveNode;
 use Slothsoft\Savegame\Node\FileContainer;
 use Slothsoft\Savegame\Node\NodeFactory;
 use Slothsoft\Savegame\Node\SavegameNode;
 use Slothsoft\Savegame\Node\ArchiveParser\ArchiveBuilderInterface;
 use Slothsoft\Savegame\Node\ArchiveParser\ArchiveExtractorInterface;
-use DOMElement;
 use DomainException;
 use SplFileInfo;
 use UnexpectedValueException;
@@ -63,29 +62,10 @@ class Editor
             $rootNode = $strucDoc->documentElement;
             $rootNode->setAttribute('save-id', basename((string) $this->getUserDirectory()));
             
-            $rootElement = $this->loadDocumentElement($rootNode);
+            $rootElement = LeanElement::createTreeFromDOMElement($rootNode);
             $factory = new NodeFactory($this);
             $this->savegame = $factory->createNode($rootElement, null);
         }
-    }
-
-    private function loadDocumentElement(DOMElement $node): EditorElement
-    {
-        $type = EditorElement::getNodeType($node->localName);
-        
-        $attributes = [];
-        foreach ($node->attributes as $attr) {
-            $attributes[$attr->name] = $attr->value;
-        }
-        
-        $children = new Vector();
-        foreach ($node->childNodes as $childNode) {
-            if ($childNode->nodeType === XML_ELEMENT_NODE) {
-                $children[] = $this->loadDocumentElement($childNode);
-            }
-        }
-        
-        return new EditorElement($type, $attributes, $children);
     }
     public function getArchiveExtractor(string $type): ArchiveExtractorInterface
     {

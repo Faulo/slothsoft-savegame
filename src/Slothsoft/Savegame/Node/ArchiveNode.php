@@ -5,16 +5,16 @@ namespace Slothsoft\Savegame\Node;
 use Slothsoft\Core\FileSystem;
 use Slothsoft\Core\ServerEnvironment;
 use Slothsoft\Core\Calendar\DateTimeFormatter;
+use Slothsoft\Core\IO\FileInfoFactory;
+use Slothsoft\Core\IO\Readable\FileReaderInterface;
 use Slothsoft\Core\IO\Writable\FileWriterInterface;
+use Slothsoft\Core\XML\LeanElement;
 use Slothsoft\Savegame\Editor;
-use Slothsoft\Savegame\EditorElement;
 use Slothsoft\Savegame\Build\BuildableInterface;
 use Slothsoft\Savegame\Build\BuilderInterface;
 use Slothsoft\Savegame\Node\ArchiveParser\ArchiveBuilderInterface;
 use Slothsoft\Savegame\Node\ArchiveParser\ArchiveExtractorInterface;
 use SplFileInfo;
-use Slothsoft\Core\IO\Readable\FileReaderInterface;
-use Slothsoft\Core\IO\FileInfoFactory;
 
 class ArchiveNode extends AbstractNode implements BuildableInterface, FileWriterInterface, FileReaderInterface
 {
@@ -58,7 +58,7 @@ class ArchiveNode extends AbstractNode implements BuildableInterface, FileWriter
         ];
     }
 
-    protected function loadStruc(EditorElement $strucElement)
+    protected function loadStruc(LeanElement $strucElement)
     {
         parent::loadStruc($strucElement);
         
@@ -71,10 +71,10 @@ class ArchiveNode extends AbstractNode implements BuildableInterface, FileWriter
         $this->fromFile($this->getOwnerEditor()->findGameFile($this->path));
     }
 
-    protected function loadNode(EditorElement $strucElement)
+    protected function loadNode(LeanElement $strucElement)
     {
     }
-    protected function loadChildren(EditorElement $strucElement)
+    protected function loadChildren(LeanElement $strucElement)
     {
     }
     

@@ -3,14 +3,14 @@ declare(strict_types = 1);
 namespace Slothsoft\Savegame\Node;
 
 use Ds\Vector;
+use Slothsoft\Core\XML\LeanElement;
 use Slothsoft\Savegame\Converter;
-use Slothsoft\Savegame\EditorElement;
 use Slothsoft\Savegame\Build\BuildableInterface;
 
 abstract class AbstractNode
 {
 
-    abstract protected function loadNode(EditorElement $strucElement);
+    abstract protected function loadNode(LeanElement $strucElement);
 
     /**
      *
@@ -20,7 +20,7 @@ abstract class AbstractNode
 
     private $childNodeList;
 
-    public function init(EditorElement $strucElement, AbstractNode $parentNode = null)
+    public function init(LeanElement $strucElement, AbstractNode $parentNode = null)
     {
         $this->parentNode = $parentNode;
         
@@ -33,17 +33,17 @@ abstract class AbstractNode
         $this->loadChildren($strucElement);
     }
 
-    protected function loadStruc(EditorElement $strucElement)
+    protected function loadStruc(LeanElement $strucElement)
     {}
 
-    protected function loadChildren(EditorElement $strucElement)
+    protected function loadChildren(LeanElement $strucElement)
     {
         foreach ($strucElement->getChildren() as $strucElement) {
             $this->loadChild($strucElement);
         }
     }
 
-    final protected function loadChild(EditorElement $strucElement)
+    final protected function loadChild(LeanElement $strucElement)
     {
         $this->getOwnerSavegame()->createNode($strucElement, $this);
     }

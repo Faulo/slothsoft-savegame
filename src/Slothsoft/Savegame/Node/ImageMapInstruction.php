@@ -2,7 +2,7 @@
 declare(strict_types = 1);
 namespace Slothsoft\Savegame\Node;
 
-use Slothsoft\Savegame\EditorElement;
+use Slothsoft\Core\XML\LeanElement;
 use Slothsoft\Savegame\Build\BuilderInterface;
 
 class ImageMapInstruction extends AbstractInstructionContent
@@ -22,7 +22,7 @@ class ImageMapInstruction extends AbstractInstructionContent
         ];
     }
 
-    protected function loadStruc(EditorElement $strucElement)
+    protected function loadStruc(LeanElement $strucElement)
     {
         parent::loadStruc($strucElement);
         
@@ -34,12 +34,11 @@ class ImageMapInstruction extends AbstractInstructionContent
     
     protected function getInstructionType(): string
     {
-        return 'image-map';
+        return NodeFactory::TAG_IMAGE_MAP;
     }
     
-    protected function loadInstruction(EditorElement $strucElement)
+    protected function loadInstruction(LeanElement $strucElement)
     {
-        
         $strucData = [];
         $strucData['width'] = $this->width;
         $strucData['height'] = $this->height / $this->imageCount;
@@ -48,7 +47,7 @@ class ImageMapInstruction extends AbstractInstructionContent
         
         for ($i = 0; $i < $this->imageCount; $i++) {
             $strucData['position'] = $i * $strucData['size'];
-            yield new EditorElement(EditorElement::NODE_TYPES['image'], $strucData, $strucElement->getChildren());
+            yield LeanElement::createOneFromArray(NodeFactory::TAG_IMAGE, $strucData, $strucElement->getChildren());
         }
     }
 

@@ -6,6 +6,8 @@ use Generator;
 
 class XmlBuilder implements BuilderInterface
 {
+    private $tagCachelist = [];
+    
     private $tagBlacklist = [];
     
     private $attributeBlacklist = [];
@@ -14,6 +16,18 @@ class XmlBuilder implements BuilderInterface
     
     public function __construct(BuildableInterface $root) {
         $this->root = $root;
+    }
+    
+    public function registerTagCachelist(iterable $list) : void
+    {
+        foreach ($list as $key) {
+            $this->tagCachelist[$key] = true;
+        }
+    }
+    
+    public function clearTagCachelist() : void
+    {
+        $this->tagCachelist = [];
     }
 
     public function registerTagBlacklist(iterable $list) : void

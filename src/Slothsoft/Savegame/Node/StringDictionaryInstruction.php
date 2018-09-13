@@ -2,7 +2,7 @@
 declare(strict_types = 1);
 namespace Slothsoft\Savegame\Node;
 
-use Slothsoft\Savegame\EditorElement;
+use Slothsoft\Core\XML\LeanElement;
 use DomainException;
 
 class StringDictionaryInstruction extends AbstractInstructionContent
@@ -26,10 +26,10 @@ class StringDictionaryInstruction extends AbstractInstructionContent
 
     protected function getInstructionType(): string
     {
-        return 'string-dictionary';
+        return NodeFactory::TAG_STRING_DICTIONARY;
     }
 
-    public function loadStruc(EditorElement $strucElement)
+    public function loadStruc(LeanElement $strucElement)
     {
         parent::loadStruc($strucElement);
         
@@ -37,14 +37,14 @@ class StringDictionaryInstruction extends AbstractInstructionContent
         $this->type = (string) $strucElement->getAttribute('type');
     }
 
-    protected function loadInstruction(EditorElement $strucElement)
+    protected function loadInstruction(LeanElement $strucElement)
     {
-        $instructionList = [];
-        
         // string-count
         switch ($this->type) {
             case self::LIST_TYPE_NULL_DELIMITED:
-                $this->stringCount = (int) $strucElement->getAttribute('string-count', 0, $this->ownerFile);
+                $this->stringCount = $strucElement->hasAttribute('string-count')
+                    ? (int) $this->ownerFile->evaluate($strucElement->getAttribute('string-count'))
+                    : 0;
                 break;
             case self::LIST_TYPE_SIZE_INTERSPERSED:
             case self::LIST_TYPE_SIZE_FIRST:
@@ -59,8 +59,12 @@ class StringDictionaryInstruction extends AbstractInstructionContent
                 }
                 break;
             case self::LIST_TYPE_SIZE_FIXED:
-                $this->stringCount = (int) $strucElement->getAttribute('string-count', 0, $this->ownerFile);
-                $this->stringSize = (int) $strucElement->getAttribute('string-size', 0, $this->ownerFile);
+                $this->stringCount = $strucElement->hasAttribute('string-count')
+                    ? (int) $this->ownerFile->evaluate($strucElement->getAttribute('string-count'))
+                    : 0;
+                $this->stringSize = $strucElement->hasAttribute('string-size')
+                    ? (int) $this->ownerFile->evaluate($strucElement->getAttribute('string-size'))
+                    : 0;
                 break;
             default:
                 throw new DomainException('unknown text-list type: ' . $this->type);
@@ -152,9 +156,7 @@ class StringDictionaryInstruction extends AbstractInstructionContent
         }
         
         foreach ($strucDataList as $strucData) {
-            $instructionList[] = new EditorElement(EditorElement::NODE_TYPES['string'], $strucData, $strucElement->getChildren());
+            yield LeanElement::createOneFromArray(NodeFactory::TAG_STRING, $strucData, $strucElement->getChildren());
         }
-        
-        return $instructionList;
     }
 }
