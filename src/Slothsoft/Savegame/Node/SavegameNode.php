@@ -159,4 +159,9 @@ class SavegameNode extends AbstractNode implements BuildableInterface
     public function getOwnerSavegame(): SavegameNode {
         return $this;
     }
+    public function getChunkWriter() : ChunkWriterInterface {
+        $builder = new XmlBuilder($this);
+        $builder->setCacheDirectory(sys_get_temp_dir());
+        return $builder;
+    }
 }
