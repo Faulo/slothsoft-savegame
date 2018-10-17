@@ -17,6 +17,8 @@ class FileContainer extends AbstractNode implements NodeEvaluatorInterface, Buil
     private $filePath;
 
     private $fileName;
+    
+    private $fileHash;
 
     /**
      *
@@ -31,6 +33,8 @@ class FileContainer extends AbstractNode implements NodeEvaluatorInterface, Buil
     private $evaluateCache;
 
     private $ownerSavegame;
+    
+    private $strucElement;
 
     public function getBuildTag(): string
     {
@@ -52,14 +56,21 @@ class FileContainer extends AbstractNode implements NodeEvaluatorInterface, Buil
         
         $this->ownerSavegame = $archive->getOwnerSavegame();
         
+        $this->strucElement = $strucElement;
+        
         $this->fileName = (string) $strucElement->getAttribute('file-name');
         $this->filePath = (string) $archive->getFileByName($this->fileName);
+        $this->fileHash = $this->fileName . DIRECTORY_SEPARATOR . md5_file($this->filePath);
         
         $this->valueList = new Vector();
         $this->imageList = null;
         $this->evaluateCache = [];
     }
-
+    protected function loadChildren(LeanElement $strucElement) {
+    }
+    public function load() : void {
+        parent::loadChildren($this->strucElement);
+    }
     protected function loadNode(LeanElement $strucElement)
     {
         assert(file_exists($this->filePath), '$this->filePath must exist');
@@ -234,6 +245,11 @@ class FileContainer extends AbstractNode implements NodeEvaluatorInterface, Buil
     public function toFile(): SplFileInfo
     {
         return FileInfoFactory::createFromPath($this->filePath);
+    }
+    
+    public function getBuildHash(): string
+    {
+        return $this->fileHash;
     }
 
 }

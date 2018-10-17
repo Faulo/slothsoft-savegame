@@ -32,6 +32,8 @@ abstract class AbstractNode
         $this->loadNode($strucElement);
         $this->loadChildren($strucElement);
     }
+    public function load() : void {
+    }
 
     protected function loadStruc(LeanElement $strucElement)
     {}
@@ -80,4 +82,16 @@ abstract class AbstractNode
     {
         return $this->childNodeList;
     }
+    
+    public function getBuildHash() : string {
+        return '';
+    }
+    
+    public function getBuildAncestors() : iterable {
+        if ($this->parentNode) {
+            yield from $this->parentNode->getBuildAncestors();
+            yield $this->parentNode;
+        }
+    }
+    
 }

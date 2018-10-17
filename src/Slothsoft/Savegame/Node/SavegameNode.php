@@ -11,6 +11,26 @@ use Slothsoft\Savegame\Build\XmlBuilder;
 
 class SavegameNode extends AbstractNode implements BuildableInterface
 {
+    
+    public function getBuildTag(): string
+    {
+        return 'savegame.editor';
+    }
+    
+    public function getBuildHash(): string
+    {
+        return $this->fileHash;
+    }
+    
+    public function getBuildAttributes(BuilderInterface $builder): array
+    {
+        return [
+            'xmlns' => 'http://schema.slothsoft.net/savegame/editor',
+            'version' => '0.3',
+            'save-id' => $builder->escapeAttribute($this->saveId),
+            'file-hash' => $this->fileHash,
+        ];
+    }
 
     /**
      *
@@ -21,8 +41,10 @@ class SavegameNode extends AbstractNode implements BuildableInterface
     private $factory;
 
     private $globalElements;
-
+    
     private $saveId;
+    
+    private $fileHash;
 
     private $valueIdCounter = 0;
 
@@ -37,6 +59,7 @@ class SavegameNode extends AbstractNode implements BuildableInterface
         parent::loadStruc($strucElement);
         
         $this->saveId = (string) $strucElement->getAttribute('save-id');
+        $this->fileHash = (string) $strucElement->getAttribute('file-hash');
         
         $this->globalElements = [];
     }
@@ -46,7 +69,7 @@ class SavegameNode extends AbstractNode implements BuildableInterface
         return $this->ownerEditor;
     }
 
-    public function loadChildren(LeanElement $strucElement)
+    protected function loadChildren(LeanElement $strucElement)
     {
         $archiveList = [];
         $globalList = [];
@@ -100,20 +123,6 @@ class SavegameNode extends AbstractNode implements BuildableInterface
         }
     }
 
-    public function getBuildTag(): string
-    {
-        return 'savegame.editor';
-    }
-
-    public function getBuildAttributes(BuilderInterface $builder): array
-    {
-        return [
-            'xmlns' => 'http://schema.slothsoft.net/savegame/editor',
-            'version' => '0.3',
-            'save-id' => $builder->escapeAttribute($this->saveId)
-        ];
-    }
-
     public function getGlobalElementsById(string $id)
     {
         return $this->globalElements[$id] ?? null;
@@ -143,51 +152,11 @@ class SavegameNode extends AbstractNode implements BuildableInterface
         return $ret;
     }
     
-    
-    
-//     public function toFileName(): string
-//     {
-//         return 'savegame.xml';
-//     }
-//     public function toFile(): SplFileInfo
-//     {
-//         $builder = new XmlBuilder();
-//         $handle = $builder->buildStream($this);
-//         $file = FileInfoFactory::createFromResource($handle);
-//         fclose($handle);
-//         return $file;
-//     }
-//     public function toString(): string
-//     {
-//         $builder = new XmlBuilder($this);
-//         $builder->registerAttributeBlacklist([
-//             'position',
-//             'bit',
-//             'encoding'
-//         ]);
-//         $xml = '';
-//         foreach ($builder->toChunks() as $data) {
-//             $xml .= $data;
-//         }
-//         return $xml;
-//         //return $builder->buildString($this);
-//     }
-    
     public function createNode(LeanElement $strucElement, AbstractNode $parentValue) : AbstractNode
     {
         return $this->factory->createNode($strucElement, $parentValue);
     }
     public function getOwnerSavegame(): SavegameNode {
         return $this;
-    }
-    
-    public function getChunkWriter() : ChunkWriterInterface {
-        $builder = new XmlBuilder($this);
-        $builder->registerAttributeBlacklist([
-            'position',
-            'bit',
-            'encoding'
-        ]);
-        return $builder;
     }
 }

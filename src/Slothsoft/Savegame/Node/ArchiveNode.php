@@ -29,7 +29,7 @@ class ArchiveNode extends AbstractNode implements BuildableInterface, FileWriter
 
     private $timestamp;
 
-    private $md5;
+    private $fileHash;
 
     private $size;
 
@@ -45,6 +45,10 @@ class ArchiveNode extends AbstractNode implements BuildableInterface, FileWriter
     {
         return 'archive';
     }
+    
+    public function getBuildHash() : string {
+        return $this->fileHash;
+    }
 
     public function getBuildAttributes(BuilderInterface $builder): array
     {
@@ -52,7 +56,6 @@ class ArchiveNode extends AbstractNode implements BuildableInterface, FileWriter
             'name' => $this->name,
             'type' => $this->type,
             'path' => $this->path,
-            'md5' => $this->md5,
             'size' => $this->size,
             'timestamp' => $this->timestamp
         ];
@@ -184,22 +187,22 @@ class ArchiveNode extends AbstractNode implements BuildableInterface, FileWriter
     {
         $this->file = $sourceFile;
         
-        if ($this->file->isReadable()) {
-            $this->size = $this->file->getSize();
-            $this->timestamp = date(DateTimeFormatter::FORMAT_DATETIME, $this->file->getMTime());
-            $this->md5 = md5_file((string) $this->file);
-            
-            $dir = [];
-            $dir[] = ServerEnvironment::getCacheDirectory();
-            $dir[] = 'slothsoft/savegame';
-            $dir[] = $this->path;
-            $dir[] = $this->md5;
-            $dir[] = 'archive';
-            
-            $this->extractDirectory = FileInfoFactory::createFromPath(implode(DIRECTORY_SEPARATOR, $dir));
+        if (!$this->file->isReadable()) {
+            throw new \RuntimeException("Cannot read archive source file '$sourceFile'!");
         }
+
+        $this->size = $this->file->getSize();
+        $this->timestamp = date(DateTimeFormatter::FORMAT_DATETIME, $this->file->getMTime());
+        $this->fileHash = $this->name . DIRECTORY_SEPARATOR . md5_file((string) $this->file);
+        
+        $dir = [];
+        $dir[] = ServerEnvironment::getCacheDirectory();
+        $dir[] = 'slothsoft/savegame';
+        $dir[] = $this->path;
+        $dir[] = $this->fileHash;
+        $dir[] = 'archive';
+        
+        $this->extractDirectory = FileInfoFactory::createFromPath(implode(DIRECTORY_SEPARATOR, $dir));
+        $this->extractedFiles = null;
     }
-
-
-
 }

@@ -2,18 +2,20 @@
 declare(strict_types = 1);
 namespace Slothsoft\Savegame;
 
+use Ds\Vector;
 use Slothsoft\Core\DOMHelper;
 use Slothsoft\Core\IO\Writable\FileWriterInterface;
-use Slothsoft\Core\XML\LeanElement;
 use Slothsoft\Savegame\Node\ArchiveNode;
 use Slothsoft\Savegame\Node\FileContainer;
 use Slothsoft\Savegame\Node\NodeFactory;
 use Slothsoft\Savegame\Node\SavegameNode;
 use Slothsoft\Savegame\Node\ArchiveParser\ArchiveBuilderInterface;
 use Slothsoft\Savegame\Node\ArchiveParser\ArchiveExtractorInterface;
+use DOMElement;
 use DomainException;
 use SplFileInfo;
 use UnexpectedValueException;
+use Slothsoft\Core\XML\LeanElement;
 
 class Editor
 {
@@ -60,6 +62,7 @@ class Editor
             }
             
             $rootNode = $strucDoc->documentElement;
+            $rootNode->setAttribute('file-hash', md5($strucDoc->saveXML()));
             $rootNode->setAttribute('save-id', basename((string) $this->getUserDirectory()));
             
             $rootElement = LeanElement::createTreeFromDOMElement($rootNode);
