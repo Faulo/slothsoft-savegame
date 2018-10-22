@@ -1,7 +1,7 @@
 {
     "name": "slothsoft/savegame",
     "description": "A Farah module for editing arbitrary savegame files.",
-    "license": "GPL",
+    "license": "WTFPL",
     "authors": [
         {
             "name": "Daniel Schulz",
