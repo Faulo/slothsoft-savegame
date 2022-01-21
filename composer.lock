@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e79119e6a6235f08da3b4ec06745b600",
+    "content-hash": "cfa02b1276ddc70688cd3f99cb1ac650",
     "packages": [
         {
             "name": "container-interop/container-interop",
@@ -1363,20 +1363,19 @@
         },
         {
             "name": "slothsoft/farah",
-            "version": "1.5.0",
+            "version": "dev-develop",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Faulo/slothsoft-farah.git",
-                "reference": "1c19e3c5434c10bf7a5f019fd3ff390ce7fef787"
+                "reference": "fa49d84eb1532d6965d3a346301bc8cceff0f431"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Faulo/slothsoft-farah/zipball/1c19e3c5434c10bf7a5f019fd3ff390ce7fef787",
-                "reference": "1c19e3c5434c10bf7a5f019fd3ff390ce7fef787",
+                "url": "https://api.github.com/repos/Faulo/slothsoft-farah/zipball/fa49d84eb1532d6965d3a346301bc8cceff0f431",
+                "reference": "fa49d84eb1532d6965d3a346301bc8cceff0f431",
                 "shasum": ""
             },
             "require": {
-                "ext-sockets": "*",
                 "guzzlehttp/psr7": "^1.8",
                 "krakjoe/pthreads-polyfill": "^1.1",
                 "laminas/laminas-router": "^3.2",
@@ -1388,14 +1387,15 @@
                 "psr/http-message": "^1.0",
                 "psr/log": "^1.0",
                 "slothsoft/blob": "^1.0",
-                "slothsoft/core": "^1.4"
+                "slothsoft/core": "^1.5"
             },
             "require-dev": {
                 "phpunit/phpunit": "8.5.*"
             },
             "suggest": {
                 "ext-ds": "*",
-                "ext-pthreads": "*"
+                "ext-pthreads": "*",
+                "ext-sockets": "*"
             },
             "bin": [
                 "bin/farah-asset",
@@ -1434,9 +1434,9 @@
             ],
             "support": {
                 "issues": "https://github.com/Faulo/slothsoft-farah/issues",
-                "source": "https://github.com/Faulo/slothsoft-farah/tree/1.5.0"
+                "source": "https://github.com/Faulo/slothsoft-farah/tree/develop"
             },
-            "time": "2022-01-21T14:30:05+00:00"
+            "time": "2022-01-21T15:58:05+00:00"
         },
         {
             "name": "slothsoft/w3c",
@@ -3416,7 +3416,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "slothsoft/farah": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
