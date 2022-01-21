@@ -7,8 +7,7 @@ namespace Slothsoft\Savegame;
  * @author Daniel Schulz
  *        
  */
-interface NodeEvaluatorInterface
-{
+interface NodeEvaluatorInterface {
 
     public function evaluate($expression);
 

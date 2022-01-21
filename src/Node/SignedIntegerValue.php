@@ -5,8 +5,7 @@ namespace Slothsoft\Savegame\Node;
 use Slothsoft\Core\XML\LeanElement;
 use Slothsoft\Savegame\Build\BuilderInterface;
 
-class SignedIntegerValue extends AbstractValueContent
-{
+class SignedIntegerValue extends AbstractValueContent {
 
     const MIN_VALUES = [
         0,
@@ -28,13 +27,11 @@ class SignedIntegerValue extends AbstractValueContent
 
     private $max;
 
-    public function getBuildTag(): string
-    {
+    public function getBuildTag(): string {
         return 'signed-integer';
     }
 
-    public function getBuildAttributes(BuilderInterface $builder): array
-    {
+    public function getBuildAttributes(BuilderInterface $builder): array {
         return parent::getBuildAttributes($builder) + [
             'value' => $this->value,
             'min' => $this->min,
@@ -42,22 +39,19 @@ class SignedIntegerValue extends AbstractValueContent
         ];
     }
 
-    protected function loadStruc(LeanElement $strucElement)
-    {
+    protected function loadStruc(LeanElement $strucElement) {
         parent::loadStruc($strucElement);
-        
+
         $this->value = 0;
         $this->min = (int) $strucElement->getAttribute('min', self::MIN_VALUES[$this->size]);
         $this->max = (int) $strucElement->getAttribute('max', self::MAX_VALUES[$this->size]);
     }
 
-    protected function decodeValue(string $rawValue)
-    {
+    protected function decodeValue(string $rawValue) {
         return $this->getConverter()->decodeSignedInteger($rawValue, $this->size);
     }
 
-    protected function encodeValue($value): string
-    {
+    protected function encodeValue($value): string {
         return $this->getConverter()->encodeSignedInteger($value, $this->size);
     }
 }

@@ -4,8 +4,7 @@ namespace Slothsoft\Savegame\Node;
 
 use Slothsoft\Core\XML\LeanElement;
 
-class EventStepInstruction extends AbstractInstructionContent
-{
+class EventStepInstruction extends AbstractInstructionContent {
 
     /*
      * const EVENT_TYPE_IF = 13;
@@ -31,24 +30,26 @@ class EventStepInstruction extends AbstractInstructionContent
      * const EVENT_CREATE_FOOD = 2;
      *
      */
-    protected function getInstructionType(): string
-    {
+    protected function getInstructionType(): string {
         return NodeFactory::TAG_EVENT_STEP;
     }
 
-    protected function loadInstruction(LeanElement $strucElement)
-    {
+    protected function loadInstruction(LeanElement $strucElement) {
         $savegame = $this->getOwnerSavegame();
-        
+
         $eventType = $this->ownerFile->extractContent($this->contentOffset, 1);
         $eventType = $this->getConverter()->decodeInteger($eventType, 1);
         $eventType = sprintf('%02d', $eventType);
-        
+
         $eventSubType = $this->ownerFile->extractContent($this->contentOffset + 1, 1);
         $eventSubType = $this->getConverter()->decodeInteger($eventSubType, 1);
         $eventSubType = sprintf('%02d', $eventSubType);
-        
-        foreach (["event-$eventType.$eventSubType", "event-$eventType", "event-unknown"] as $ref) {
+
+        foreach ([
+            "event-$eventType.$eventSubType",
+            "event-$eventType",
+            "event-unknown"
+        ] as $ref) {
             if ($instructionList = $savegame->getGlobalElementsById($ref)) {
                 break;
             }

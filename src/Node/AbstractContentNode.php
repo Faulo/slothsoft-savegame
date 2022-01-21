@@ -6,8 +6,7 @@ use Slothsoft\Core\XML\LeanElement;
 use Slothsoft\Savegame\Build\BuildableInterface;
 use Slothsoft\Savegame\Build\BuilderInterface;
 
-abstract class AbstractContentNode extends AbstractNode
-{
+abstract class AbstractContentNode extends AbstractNode {
 
     private $name;
 
@@ -19,26 +18,22 @@ abstract class AbstractContentNode extends AbstractNode
 
     abstract protected function loadContent(LeanElement $strucElement);
 
-    public function getBuildAttributes(BuilderInterface $builder): array
-    {
+    public function getBuildAttributes(BuilderInterface $builder): array {
         return [
             'name' => $this->name
         ];
     }
 
-    protected function loadStruc(LeanElement $strucElement)
-    {
+    protected function loadStruc(LeanElement $strucElement) {
         parent::loadStruc($strucElement);
-        
+
         $parentNode = $this->getParentNode();
-        
+
         $this->ownerFile = $parentNode instanceof FileContainer ? $parentNode : $parentNode->getOwnerFile();
-        
+
         $this->name = (string) $strucElement->getAttribute('name');
-        $this->position = $strucElement->hasAttribute('position')
-            ? (int) $this->ownerFile->evaluate($strucElement->getAttribute('position'))
-            : 0;
-        
+        $this->position = $strucElement->hasAttribute('position') ? (int) $this->ownerFile->evaluate($strucElement->getAttribute('position')) : 0;
+
         $this->contentOffset = $this->position;
         if ($parentNode instanceof AbstractContentNode) {
             $this->contentOffset += $parentNode->getContentOffset();
@@ -49,8 +44,7 @@ abstract class AbstractContentNode extends AbstractNode
      *
      * @return \Slothsoft\Savegame\Node\FileContainer
      */
-    protected function getOwnerFile() : FileContainer
-    {
+    protected function getOwnerFile(): FileContainer {
         return $this->ownerFile;
     }
 
@@ -58,18 +52,15 @@ abstract class AbstractContentNode extends AbstractNode
      *
      * @return \Slothsoft\Savegame\Node\SavegameNode
      */
-    public function getOwnerSavegame(): SavegameNode
-    {
+    public function getOwnerSavegame(): SavegameNode {
         return $this->ownerFile->getOwnerSavegame();
     }
 
-    protected function loadNode(LeanElement $strucElement)
-    {
+    protected function loadNode(LeanElement $strucElement) {
         $this->loadContent($strucElement);
     }
 
-    public function getContentOffset()
-    {
+    public function getContentOffset() {
         return $this->contentOffset;
     }
 
@@ -77,17 +68,13 @@ abstract class AbstractContentNode extends AbstractNode
      *
      * @return string
      */
-    public function getName()
-    {
+    public function getName() {
         return $this->name;
     }
 
-    public function appendBuildChild(BuildableInterface $childNode)
-    {
+    public function appendBuildChild(BuildableInterface $childNode) {
         assert($childNode instanceof AbstractContentNode);
-        
+
         parent::appendBuildChild($childNode);
     }
-    
-    
 }

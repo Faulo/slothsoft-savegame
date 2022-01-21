@@ -4,8 +4,7 @@ namespace Slothsoft\Savegame\Script;
 
 use Slothsoft\Savegame\Converter;
 
-abstract class AbstractElement
-{
+abstract class AbstractElement {
 
     abstract public function fromBinary($binary);
 
@@ -19,8 +18,7 @@ abstract class AbstractElement
 
     protected $converter;
 
-    public function __construct(Parser $parser)
-    {
+    public function __construct(Parser $parser) {
         $this->ownerParser = $parser;
         $this->converter = Converter::getInstance();
     }

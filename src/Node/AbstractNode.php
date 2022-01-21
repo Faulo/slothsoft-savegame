@@ -7,8 +7,7 @@ use Slothsoft\Core\XML\LeanElement;
 use Slothsoft\Savegame\Converter;
 use Slothsoft\Savegame\Build\BuildableInterface;
 
-abstract class AbstractNode
-{
+abstract class AbstractNode {
 
     abstract protected function loadNode(LeanElement $strucElement);
 
@@ -20,54 +19,47 @@ abstract class AbstractNode
 
     private $childNodeList;
 
-    public function init(LeanElement $strucElement, AbstractNode $parentNode = null)
-    {
+    public function init(LeanElement $strucElement, AbstractNode $parentNode = null) {
         $this->parentNode = $parentNode;
-        
+
         if ($this->parentNode and $this instanceof BuildableInterface) {
             $this->parentNode->appendBuildChild($this);
         }
-        
+
         $this->loadStruc($strucElement);
         $this->loadNode($strucElement);
         $this->loadChildren($strucElement);
     }
-    public function load() : void {
-    }
 
-    protected function loadStruc(LeanElement $strucElement)
-    {}
+    public function load(): void {}
 
-    protected function loadChildren(LeanElement $strucElement)
-    {
+    protected function loadStruc(LeanElement $strucElement) {}
+
+    protected function loadChildren(LeanElement $strucElement) {
         foreach ($strucElement->getChildren() as $strucElement) {
             $this->loadChild($strucElement);
         }
     }
 
-    final protected function loadChild(LeanElement $strucElement)
-    {
+    final protected function loadChild(LeanElement $strucElement) {
         $this->getOwnerSavegame()->createNode($strucElement, $this);
     }
-    
+
     abstract public function getOwnerSavegame(): SavegameNode;
 
     /**
      *
      * @return \Slothsoft\Savegame\Converter
      */
-    protected function getConverter()
-    {
+    protected function getConverter() {
         return Converter::getInstance();
     }
 
-    public function getParentNode()
-    {
+    public function getParentNode() {
         return $this->parentNode;
     }
 
-    public function appendBuildChild(BuildableInterface $childNode)
-    {
+    public function appendBuildChild(BuildableInterface $childNode) {
         if ($this instanceof BuildableInterface) {
             if ($this->childNodeList === null) {
                 $this->childNodeList = new Vector();
@@ -78,20 +70,18 @@ abstract class AbstractNode
         }
     }
 
-    public function getBuildChildren() : ?iterable
-    {
+    public function getBuildChildren(): ?iterable {
         return $this->childNodeList;
     }
-    
-    public function getBuildHash() : string {
+
+    public function getBuildHash(): string {
         return '';
     }
-    
-    public function getBuildAncestors() : iterable {
+
+    public function getBuildAncestors(): iterable {
         if ($this->parentNode) {
             yield from $this->parentNode->getBuildAncestors();
             yield $this->parentNode;
         }
     }
-    
 }
