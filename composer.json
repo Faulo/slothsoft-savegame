@@ -34,10 +34,14 @@
 		"docs"
 	],
 	"autoload-dev" : {
-		"classmap" : [
-			"tests/"
-		]
+		"psr-4" : {
+			"Slothsoft\\Savegame\\" : "tests"
+		}
 	},
-	"classmap-authoritative" : false,
+	"extra" : {
+		"branch-alias" : {
+			"dev-develop" : "1.5.x-dev"
+		}
+	},
 	"homepage" : "http://farah.slothsoft.net/modules/savegame"
 }
