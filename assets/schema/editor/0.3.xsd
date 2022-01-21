@@ -36,9 +36,11 @@ This namespace defines elements to describe the contents of game files in terms 
 		- changed <archive type="xsd:token"> to [a-zA-Z0-9]
 		- added <globals>
 		- added xml:base to <savegame.editor>, <globals>, <archive>
-	R20180908
-		- <group> may have a dictionary-ref
-		- name may include /
+    R20180908
+        - <group> may have a dictionary-ref
+        - name may include /
+    R20220121
+        - <savegame.editor> may have a file-hash
 				]]></ssv:changelog>
 			</ssv:info>
 		</xsd:appinfo>
@@ -66,7 +68,8 @@ This namespace defines elements to describe the contents of game files in terms 
 					</xsd:choice>
 					<xsd:attributeGroup ref="schemaVersion" />
 					<xsd:attribute name="save-id" type="xsd:normalizedString" />
-					<xsd:attribute name="save-mode" type="xsd:normalizedString" />
+                    <xsd:attribute name="save-mode" type="xsd:normalizedString" />
+                    <xsd:attribute name="file-hash" type="xsd:normalizedString" use="optional"/>
 					<xsd:attribute ref="xml:base" use="optional" />
 				</xsd:extension>
 			</xsd:complexContent>
