@@ -170,11 +170,13 @@ class FileContainer extends AbstractNode implements NodeEvaluatorInterface, Buil
         if (is_numeric($expression)) {
             return (int) $expression;
         }
+        $match = null;
         if (preg_match('/^0x(\w+)$/', $expression, $match)) {
             return hexdec($match[1]);
         }
         
         if (! isset($this->evaluateCache[$expression])) {
+            $matches = null;
             preg_match_all('/\$([A-Za-z0-9\-\.]+)/', $expression, $matches);
             $translate = [];
             foreach ($matches[0] as $i => $key) {
