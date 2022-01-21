@@ -22,10 +22,10 @@
 	},
 	"autoload" : {
 		"psr-4" : {
-			"Slothsoft\\Savegame\\" : "src/"
+			"Slothsoft\\Savegame\\" : "src"
 		},
 		"files" : [
-			"src/registerModule.php"
+			"scripts/registerModule.php"
 		]
 	},
 	"keywords" : [
