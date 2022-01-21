@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "cfa02b1276ddc70688cd3f99cb1ac650",
+    "content-hash": "e79119e6a6235f08da3b4ec06745b600",
     "packages": [
         {
             "name": "container-interop/container-interop",
@@ -1363,16 +1363,16 @@
         },
         {
             "name": "slothsoft/farah",
-            "version": "dev-develop",
+            "version": "1.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Faulo/slothsoft-farah.git",
-                "reference": "fa49d84eb1532d6965d3a346301bc8cceff0f431"
+                "reference": "83bf50b3aae6847daa83ce0f5cab5d03dc3adb5e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Faulo/slothsoft-farah/zipball/fa49d84eb1532d6965d3a346301bc8cceff0f431",
-                "reference": "fa49d84eb1532d6965d3a346301bc8cceff0f431",
+                "url": "https://api.github.com/repos/Faulo/slothsoft-farah/zipball/83bf50b3aae6847daa83ce0f5cab5d03dc3adb5e",
+                "reference": "83bf50b3aae6847daa83ce0f5cab5d03dc3adb5e",
                 "shasum": ""
             },
             "require": {
@@ -1434,9 +1434,9 @@
             ],
             "support": {
                 "issues": "https://github.com/Faulo/slothsoft-farah/issues",
-                "source": "https://github.com/Faulo/slothsoft-farah/tree/develop"
+                "source": "https://github.com/Faulo/slothsoft-farah/tree/1.5.1"
             },
-            "time": "2022-01-21T15:58:05+00:00"
+            "time": "2022-01-21T16:02:31+00:00"
         },
         {
             "name": "slothsoft/w3c",
@@ -3416,9 +3416,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "slothsoft/farah": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
