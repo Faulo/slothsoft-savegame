@@ -1,11 +1,14 @@
 <?xml version="1.0"?>
-<xsd:schema xmlns="http://schema.slothsoft.net/savegame/editor"
-	targetNamespace="http://schema.slothsoft.net/savegame/editor" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-	xmlns:ssv="http://schema.slothsoft.net/schema/versioning" 
-	xmlns:xml="http://www.w3.org/XML/1998/namespace" elementFormDefault="qualified"
-	attributeFormDefault="unqualified">
-	
-	<xsd:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="http://www.w3.org/2001/xml.xsd"/>
+<xsd:schema
+	xmlns="http://schema.slothsoft.net/savegame/editor"
+	targetNamespace="http://schema.slothsoft.net/savegame/editor"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:ssv="http://schema.slothsoft.net/schema/versioning"
+	xmlns:xml="http://www.w3.org/XML/1998/namespace"
+	elementFormDefault="qualified" attributeFormDefault="unqualified">
+
+	<xsd:import namespace="http://www.w3.org/XML/1998/namespace"
+		schemaLocation="http://www.w3.org/2001/xml.xsd" />
 
 	<xsd:annotation>
 		<xsd:appinfo>
@@ -14,7 +17,8 @@
 				<ssv:version>0.3</ssv:version>
 				<ssv:revision>R20180908</ssv:revision>
 				<ssv:prefix>sse</ssv:prefix>
-				<ssv:namespace>http://schema.slothsoft.net/savegame/editor</ssv:namespace>
+				<ssv:namespace>http://schema.slothsoft.net/savegame/editor
+				</ssv:namespace>
 				<ssv:author email="daniel.lio.schulz@gmail.com">Daniel Schulz</ssv:author>
 				<ssv:description><![CDATA[
 This namespace defines elements to describe the contents of game files in terms of which-byte-means-what, in a way that an editor can be automatically built by parsing a manifest file and corresponding game file(s).
@@ -47,9 +51,11 @@ This namespace defines elements to describe the contents of game files in terms 
 	</xsd:annotation>
 
 	<xsd:attributeGroup name="schemaVersion">
-		<xsd:attribute name="version" type="xsd:token" use="required" fixed="0.3">
+		<xsd:attribute name="version" type="xsd:token"
+			use="required" fixed="0.3">
 			<xsd:annotation>
-				<xsd:documentation>The schema version used by the instance document.</xsd:documentation>
+				<xsd:documentation>The schema version used by the instance document.
+				</xsd:documentation>
 			</xsd:annotation>
 		</xsd:attribute>
 	</xsd:attributeGroup>
@@ -60,22 +66,26 @@ This namespace defines elements to describe the contents of game files in terms 
 			<xsd:complexContent>
 				<xsd:extension base="genericNode">
 					<xsd:choice minOccurs="0" maxOccurs="unbounded">
-						<xsd:any processContents="lax" namespace="http://www.w3.org/2001/XInclude"/>
+						<xsd:any processContents="lax"
+							namespace="http://www.w3.org/2001/XInclude" />
 
 						<xsd:element ref="globals" />
 						<xsd:element ref="global" />
 						<xsd:element ref="archive" />
 					</xsd:choice>
 					<xsd:attributeGroup ref="schemaVersion" />
-					<xsd:attribute name="save-id" type="xsd:normalizedString" />
-                    <xsd:attribute name="save-mode" type="xsd:normalizedString" />
-                    <xsd:attribute name="file-hash" type="xsd:normalizedString" use="optional"/>
+					<xsd:attribute name="save-id"
+						type="xsd:normalizedString" />
+					<xsd:attribute name="save-mode"
+						type="xsd:normalizedString" />
+					<xsd:attribute name="file-hash"
+						type="xsd:normalizedString" use="optional" />
 					<xsd:attribute ref="xml:base" use="optional" />
 				</xsd:extension>
 			</xsd:complexContent>
 		</xsd:complexType>
 	</xsd:element>
-	
+
 	<xsd:element name="globals">
 		<xsd:complexType>
 			<xsd:complexContent>
@@ -110,18 +120,23 @@ This namespace defines elements to describe the contents of game files in terms 
 						<xsd:element ref="for-each-file" />
 						<xsd:element ref="file" />
 					</xsd:choice>
-					<xsd:attribute name="path" type="xsd:normalizedString" use="required" />
+					<xsd:attribute name="path"
+						type="xsd:normalizedString" use="required" />
 					<xsd:attribute name="type" use="required">
 						<xsd:simpleType>
 							<xsd:restriction base="xsd:token">
-								<xsd:pattern value="[a-zA-Z0-9]+"/>
+								<xsd:pattern value="[a-zA-Z0-9]+" />
 							</xsd:restriction>
 						</xsd:simpleType>
 					</xsd:attribute>
-					<xsd:attribute name="name" type="xsd:normalizedString" use="optional" />
-					<xsd:attribute name="size" type="xsd:integer" use="optional" />
-					<xsd:attribute name="timestamp" type="xsd:normalizedString" use="optional" />
-					<xsd:attribute name="md5" type="xsd:normalizedString" use="optional" />
+					<xsd:attribute name="name"
+						type="xsd:normalizedString" use="optional" />
+					<xsd:attribute name="size" type="xsd:integer"
+						use="optional" />
+					<xsd:attribute name="timestamp"
+						type="xsd:normalizedString" use="optional" />
+					<xsd:attribute name="md5" type="xsd:normalizedString"
+						use="optional" />
 					<xsd:attribute ref="xml:base" use="optional" />
 				</xsd:extension>
 			</xsd:complexContent>
@@ -134,7 +149,7 @@ This namespace defines elements to describe the contents of game files in terms 
 				<xsd:extension base="instructionContentNode">
 					<xsd:attribute name="file-range" use="optional">
 						<xsd:simpleType>
-							<xsd:list itemType='xsd:normalizedString'/>
+							<xsd:list itemType='xsd:normalizedString' />
 						</xsd:simpleType>
 					</xsd:attribute>
 				</xsd:extension>
@@ -146,7 +161,8 @@ This namespace defines elements to describe the contents of game files in terms 
 		<xsd:complexType>
 			<xsd:complexContent>
 				<xsd:extension base="containerContentNode">
-					<xsd:attribute name="file-name" type="xsd:normalizedString" use="required" />
+					<xsd:attribute name="file-name"
+						type="xsd:normalizedString" use="required" />
 				</xsd:extension>
 			</xsd:complexContent>
 		</xsd:complexType>
@@ -157,7 +173,8 @@ This namespace defines elements to describe the contents of game files in terms 
 			<xsd:complexContent>
 				<xsd:extension base="containerContentNode">
 					<xsd:attribute name="instruction" type="name" />
-					<xsd:attribute name="dictionary-ref" type="id" use="optional" />
+					<xsd:attribute name="dictionary-ref" type="id"
+						use="optional" />
 				</xsd:extension>
 			</xsd:complexContent>
 		</xsd:complexType>
@@ -182,7 +199,8 @@ This namespace defines elements to describe the contents of game files in terms 
 							</xsd:restriction>
 						</xsd:simpleType>
 					</xsd:attribute>
-					<xsd:attribute name="dictionary-ref" type="id" use="optional" />
+					<xsd:attribute name="dictionary-ref" type="id"
+						use="optional" />
 				</xsd:extension>
 			</xsd:complexContent>
 		</xsd:complexType>
@@ -245,7 +263,8 @@ This namespace defines elements to describe the contents of game files in terms 
 		<xsd:complexType>
 			<xsd:complexContent>
 				<xsd:extension base="valueContentNode">
-					<xsd:attribute name="dictionary-ref" type="id" use="optional" />
+					<xsd:attribute name="dictionary-ref" type="id"
+						use="optional" />
 				</xsd:extension>
 			</xsd:complexContent>
 		</xsd:complexType>
@@ -255,8 +274,10 @@ This namespace defines elements to describe the contents of game files in terms 
 		<xsd:complexType>
 			<xsd:complexContent>
 				<xsd:extension base="instructionContentNode">
-					<xsd:attribute name="string-count" type="numberExpression" />
-					<xsd:attribute name="string-size" type="numberExpression" use="optional" />
+					<xsd:attribute name="string-count"
+						type="numberExpression" />
+					<xsd:attribute name="string-size"
+						type="numberExpression" use="optional" />
 					<xsd:attributeGroup ref="encoding" />
 					<xsd:attribute name="type" use="required">
 						<xsd:simpleType>
@@ -307,8 +328,10 @@ This namespace defines elements to describe the contents of game files in terms 
 		<xsd:complexType>
 			<xsd:complexContent>
 				<xsd:extension base="instructionContentNode">
-					<xsd:attribute name="group-size" type="numberExpression" use="required" />
-					<xsd:attribute name="group-count" type="numberExpression" />
+					<xsd:attribute name="group-size"
+						type="numberExpression" use="required" />
+					<xsd:attribute name="group-count"
+						type="numberExpression" />
 				</xsd:extension>
 			</xsd:complexContent>
 		</xsd:complexType>
@@ -328,10 +351,12 @@ This namespace defines elements to describe the contents of game files in terms 
 		<xsd:complexType>
 			<xsd:complexContent>
 				<xsd:extension base="instructionContentNode">
-					<xsd:attribute name="image-count" type="numberExpression" />
+					<xsd:attribute name="image-count"
+						type="numberExpression" />
 					<xsd:attribute name="width" type="numberExpression" />
 					<xsd:attribute name="height" type="numberExpression" />
-					<xsd:attribute name="bitplanes" type="numberExpression" />
+					<xsd:attribute name="bitplanes"
+						type="numberExpression" />
 				</xsd:extension>
 			</xsd:complexContent>
 		</xsd:complexType>
@@ -343,10 +368,11 @@ This namespace defines elements to describe the contents of game files in terms 
 				<xsd:extension base="instructionContentNode">
 					<xsd:attribute name="image-dimensions">
 						<xsd:simpleType>
-							<xsd:list itemType='imageDimension'/>
+							<xsd:list itemType='imageDimension' />
 						</xsd:simpleType>
 					</xsd:attribute>
-					<xsd:attribute name="bitplanes" type="numberExpression" />
+					<xsd:attribute name="bitplanes"
+						type="numberExpression" />
 				</xsd:extension>
 			</xsd:complexContent>
 		</xsd:complexType>
@@ -358,7 +384,8 @@ This namespace defines elements to describe the contents of game files in terms 
 				<xsd:extension base="valueContentNode">
 					<xsd:attribute name="width" type="numberExpression" />
 					<xsd:attribute name="height" type="numberExpression" />
-					<xsd:attribute name="bitplanes" type="numberExpression" />
+					<xsd:attribute name="bitplanes"
+						type="numberExpression" />
 				</xsd:extension>
 			</xsd:complexContent>
 		</xsd:complexType>
@@ -373,7 +400,8 @@ This namespace defines elements to describe the contents of game files in terms 
 		<xsd:complexContent>
 			<xsd:extension base="genericNode">
 				<xsd:attribute name="name" type="name" use="optional" />
-				<xsd:attribute name="position" type="numberExpression" use="optional" />
+				<xsd:attribute name="position" type="numberExpression"
+					use="optional" />
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
@@ -391,7 +419,8 @@ This namespace defines elements to describe the contents of game files in terms 
 	<xsd:complexType name="instructionContentNode">
 		<xsd:complexContent>
 			<xsd:extension base="containerContentNode">
-				<xsd:attribute name="dictionary-ref" type="id" use="optional" />
+				<xsd:attribute name="dictionary-ref" type="id"
+					use="optional" />
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
@@ -455,7 +484,8 @@ This namespace defines elements to describe the contents of game files in terms 
 		<xsd:union>
 			<xsd:simpleType>
 				<xsd:restriction base="xsd:token">
-					<xsd:pattern value="($[A-Za-z0-9\-\.]+|\s+|\d+|[/\*\+\-\(\)])+" />
+					<xsd:pattern
+						value="($[A-Za-z0-9\-\.]+|\s+|\d+|[/\*\+\-\(\)])+" />
 				</xsd:restriction>
 			</xsd:simpleType>
 			<xsd:simpleType>
