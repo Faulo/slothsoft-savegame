@@ -40,8 +40,9 @@
 	},
 	"extra" : {
 		"branch-alias" : {
-			"dev-develop" : "1.5.x-dev"
+			"dev-main" : "1.5.x-dev"
 		}
 	},
-	"homepage" : "http://farah.slothsoft.net/modules/savegame"
+	"homepage" : "http://farah.slothsoft.net/modules/savegame",
+	"classmap-authoritative" : false
 }
