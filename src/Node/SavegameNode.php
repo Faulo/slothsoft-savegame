@@ -28,21 +28,17 @@ class SavegameNode extends AbstractNode implements BuildableInterface {
         ];
     }
 
-    /**
-     *
-     * @var \Slothsoft\Savegame\Editor
-     */
-    private $ownerEditor;
+    private Editor $ownerEditor;
 
-    private $factory;
+    private NodeFactory $factory;
 
-    private $globalElements;
+    private string $saveId;
 
-    private $saveId;
+    private string $fileHash;
 
-    private $fileHash;
+    private array $globalElements;
 
-    private $valueIdCounter = 0;
+    private int $valueIdCounter = 0;
 
     public function __construct(Editor $ownerEditor, NodeFactory $factory) {
         $this->ownerEditor = $ownerEditor;

@@ -8,41 +8,25 @@ use SplFileInfo;
 
 class EditorConfig {
 
-    /**
-     *
-     * @var SplFileInfo
-     */
-    public $sourceDirectory;
+    public SplFileInfo $sourceDirectory;
 
-    /**
-     *
-     * @var SplFileInfo
-     */
-    public $userDirectory;
+    public SplFileInfo $userDirectory;
 
-    /**
-     *
-     * @var SplFileInfo
-     */
-    public $cacheDirectory;
+    public SplFileInfo $cacheDirectory;
 
-    /**
-     *
-     * @var SplFileInfo
-     */
-    public $infosetFile;
+    public SplFileInfo $infosetFile;
 
     /**
      *
      * @var ArchiveExtractorInterface[]
      */
-    public $archiveExtractors;
+    public array $archiveExtractors;
 
     /**
      *
      * @var ArchiveBuilderInterface[]
      */
-    public $archiveBuilders;
+    public array $archiveBuilders;
 
     public function __construct(SplFileInfo $sourceDirectory, SplFileInfo $userDirectory, SplFileInfo $cacheDirectory, SplFileInfo $infosetFile, array $archiveExtractors, array $archiveBuilders) {
         $this->sourceDirectory = $sourceDirectory;

@@ -14,6 +14,8 @@ use Slothsoft\Savegame\Build\BuildableInterface;
 use Slothsoft\Savegame\Build\BuilderInterface;
 use Slothsoft\Savegame\Node\ArchiveParser\ArchiveBuilderInterface;
 use Slothsoft\Savegame\Node\ArchiveParser\ArchiveExtractorInterface;
+use DomainException;
+use RuntimeException;
 use SplFileInfo;
 
 class ArchiveNode extends AbstractNode implements BuildableInterface, FileWriterInterface, FileReaderInterface {
@@ -107,6 +109,10 @@ class ArchiveNode extends AbstractNode implements BuildableInterface, FileWriter
     }
 
     public function getFileByName(string $name): SplFileInfo {
+        if (! isset($this->extractedFiles[$name])) {
+            throw new DomainException(sprintf('Unknown file "%s"! Currently available from archive "%s": [%s]', $name, $this->file, implode(', ', $this->getFileNames())));
+        }
+
         return $this->extractedFiles[$name];
     }
 

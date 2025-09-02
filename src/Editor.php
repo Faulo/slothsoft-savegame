@@ -17,17 +17,9 @@ use UnexpectedValueException;
 
 class Editor {
 
-    /**
-     *
-     * @var EditorConfig
-     */
-    private $config;
+    private EditorConfig $config;
 
-    /**
-     *
-     * @var SavegameNode
-     */
-    private $savegame;
+    private ?SavegameNode $savegame;
 
     public function __construct(EditorConfig $config) {
         $this->config = $config;
