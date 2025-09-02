@@ -7,11 +7,7 @@ use RangeException;
 
 class Converter {
 
-    /**
-     *
-     * @return \Slothsoft\Savegame\Converter
-     */
-    public static function getInstance() {
+    public static function getInstance(): Converter {
         static $instance;
         if (! $instance) {
             $instance = new Converter();
@@ -19,19 +15,17 @@ class Converter {
         return $instance;
     }
 
-    public function encodeInteger($val, $size = 1) {
-        $val = (int) $val;
+    public function encodeInteger(int $val, int $size = 1): string {
         $ret = pack('N', $val);
         $ret = substr($ret, - $size);
         return $ret;
     }
 
-    public function encodeSignedInteger($val, $size = 1) {
+    public function encodeSignedInteger(int $val, int $size = 1): string {
         return $this->encodeInteger($val, $size);
     }
 
-    public function encodeString($val, $size = 1, $encoding = '') {
-        $val = (string) $val;
+    public function encodeString(string $val, int $size = 1, string $encoding = ''): string {
         $val = trim($val);
         if ($encoding) {
             $val = mb_convert_encoding($val, $encoding, 'UTF-8');
@@ -41,11 +35,11 @@ class Converter {
         return $ret;
     }
 
-    public function encodeBinary($val) {
+    public function encodeBinary(string $val): string {
         return hex2bin(preg_replace('~\s+~', '', $val));
     }
 
-    public function encodeScript($val) {
+    public function encodeScript(string $val): string {
         $parser = new Parser();
         return $parser->code2binary($val);
     }
@@ -104,11 +98,11 @@ class Converter {
         return $encoding === '' ? $ret : mb_convert_encoding($ret, 'UTF-8', $encoding);
     }
 
-    public function decodeBinary($val) {
+    public function decodeBinary(string $val): string {
         return chunk_split(bin2hex($val), 2, ' ');
     }
 
-    public function decodeScript($val) {
+    public function decodeScript(string $val): string {
         $parser = new Parser();
         return $parser->binary2code($val);
     }
