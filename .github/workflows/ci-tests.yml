@@ -11,7 +11,7 @@ jobs:
       matrix:
         composer: ["lowest", "stable"]
         php: ["7.4", "8.0"]
-        extensions: ["ctype json mbstring pcre sockets xsl"]
+        extensions: ["json xsl"]
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -35,7 +35,7 @@ jobs:
         with:
           php_version: ${{ matrix.php }}
           php_extensions: ${{ matrix.extensions }}
-          version: 8
+          version: 9
           bootstrap: vendor/autoload.php
           configuration: phpunit.xml
           args: --log-junit phpunit-${{ matrix.php }}-${{ matrix.composer }}.results.xml
