@@ -2,6 +2,7 @@
 declare(strict_types = 1);
 namespace Slothsoft\Savegame\Node;
 
+use Ds\Vector;
 use Slothsoft\Core\IO\Writable\ChunkWriterInterface;
 use Slothsoft\Core\XML\LeanElement;
 use Slothsoft\Savegame\Editor;
@@ -107,7 +108,7 @@ class SavegameNode extends AbstractNode implements BuildableInterface {
         }
     }
 
-    public function getGlobalElementsById(string $id): ?array {
+    public function getGlobalElementsById(string $id): ?Vector {
         return $this->globalElements[$id] ?? null;
     }
 
