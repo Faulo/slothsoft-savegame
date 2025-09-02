@@ -11,7 +11,7 @@ pipeline {
 			}
 			steps {
 				script {
-					def versions = ["7.4", "8.0"]
+					def versions = ["7.4", "8.0", "8.1", "8.2", "8.3"]
 
 					for (version in versions) {
 						def image = "faulo/farah:${version}"
@@ -21,6 +21,7 @@ pipeline {
 
 							docker.image(image).inside {
 								callShell 'composer update --prefer-lowest'
+								callShell 'composer exec server-clean cache'
 
 								dir('.reports') {
 									deleteDir()
@@ -47,7 +48,7 @@ pipeline {
 			}
 			steps {
 				script {
-					def versions = ["7.4", "8.0"]
+					def versions = ["7.4", "8.0", "8.1", "8.2", "8.3"]
 
 					for (version in versions) {
 						def image = "faulo/farah:${version}"
@@ -57,6 +58,7 @@ pipeline {
 
 							docker.image(image).inside {
 								callShell 'composer update --prefer-lowest'
+								callShell 'composer exec server-clean cache'
 
 								dir('.reports') {
 									deleteDir()

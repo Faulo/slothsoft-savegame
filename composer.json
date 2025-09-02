@@ -9,7 +9,7 @@
 	],
 	"type" : "library",
 	"require" : {
-		"php" : "7.4 - 8.0",
+		"php" : ">=7.4",
 		"php-ds/php-ds" : "^1.2",
 		"slothsoft/core" : "^1.13.3",
 		"slothsoft/farah" : "^1.16.3"
