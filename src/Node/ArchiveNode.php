@@ -60,7 +60,7 @@ class ArchiveNode extends AbstractNode implements BuildableInterface, FileWriter
         ];
     }
 
-    protected function loadStruc(LeanElement $strucElement) {
+    protected function loadStruc(LeanElement $strucElement): void {
         parent::loadStruc($strucElement);
 
         $this->path = (string) $strucElement->getAttribute('path');
@@ -73,9 +73,9 @@ class ArchiveNode extends AbstractNode implements BuildableInterface, FileWriter
             ->findGameFile($this->path));
     }
 
-    protected function loadNode(LeanElement $strucElement) {}
+    protected function loadNode(LeanElement $strucElement): void {}
 
-    protected function loadChildren(LeanElement $strucElement) {}
+    protected function loadChildren(LeanElement $strucElement): void {}
 
     public function load(): void {
         if ($this->extractedFiles === null) {
@@ -92,11 +92,11 @@ class ArchiveNode extends AbstractNode implements BuildableInterface, FileWriter
         }
     }
 
-    private function extractArchive() {
+    private function extractArchive(): void {
         $this->getArchiveExtractor()->extractArchive($this->file, $this->extractDirectory);
     }
 
-    public function getArchiveId() {
+    public function getArchiveId(): string {
         return $this->name;
     }
 
@@ -126,7 +126,7 @@ class ArchiveNode extends AbstractNode implements BuildableInterface, FileWriter
         }
     }
 
-    public function appendBuildChild(BuildableInterface $childNode) {
+    public function appendBuildChild(BuildableInterface $childNode): void {
         assert($childNode instanceof FileContainer);
 
         parent::appendBuildChild($childNode);

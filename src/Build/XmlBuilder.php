@@ -11,15 +11,15 @@ use SplFileInfo;
 
 class XmlBuilder implements BuilderInterface {
 
-    private $tagCachelist = [];
+    private array $tagCachelist = [];
 
-    private $tagBlacklist = [];
+    private array $tagBlacklist = [];
 
-    private $attributeBlacklist = [];
+    private array $attributeBlacklist = [];
 
-    private $root;
+    private BuildableInterface $root;
 
-    private $cacheDirectory;
+    private ?string $cacheDirectory;
 
     public function __construct(BuildableInterface $root) {
         $this->root = $root;

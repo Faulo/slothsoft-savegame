@@ -12,9 +12,9 @@ abstract class AbstractValueContent extends AbstractContentNode implements Build
 
     abstract protected function encodeValue($value): string;
 
-    private $valueId;
+    private int $valueId;
 
-    protected $size;
+    protected int $size;
 
     protected $value;
 
@@ -26,21 +26,21 @@ abstract class AbstractValueContent extends AbstractContentNode implements Build
         ];
     }
 
-    protected function loadStruc(LeanElement $strucElement) {
+    protected function loadStruc(LeanElement $strucElement): void {
         parent::loadStruc($strucElement);
 
         $this->size = $strucElement->hasAttribute('size') ? (int) $this->ownerFile->evaluate($strucElement->getAttribute('size')) : 1;
         $this->valueId = $this->ownerFile->registerValue($this);
     }
 
-    protected function loadContent(LeanElement $strucElement) {
+    protected function loadContent(LeanElement $strucElement): void {
         if ($this->size and $this->ownerFile) {
             $this->setRawValue($this->ownerFile->extractContent($this->contentOffset, $this->size));
         }
         // echo $this->getName() . ': ' . $this->getValue() . PHP_EOL;
     }
 
-    public function setValueId(int $id) {
+    public function setValueId(int $id): void {
         $this->valueId = $id;
     }
 
@@ -48,7 +48,7 @@ abstract class AbstractValueContent extends AbstractContentNode implements Build
         return $this->valueId;
     }
 
-    public function setValue($value, bool $updateContent = false) {
+    public function setValue($value, bool $updateContent = false): void {
         $this->value = $value;
         if ($updateContent) {
             $this->updateContent();
@@ -59,15 +59,15 @@ abstract class AbstractValueContent extends AbstractContentNode implements Build
         return $this->value;
     }
 
-    public function setRawValue(string $rawValue) {
+    public function setRawValue(string $rawValue): void {
         $this->value = $this->decodeValue($rawValue);
     }
 
-    public function getRawValue() {
+    public function getRawValue(): string {
         return $this->encodeValue($this->value);
     }
 
-    public function updateContent() {
+    public function updateContent(): void {
         if ($this->size) {
             $this->ownerFile->insertContent($this->contentOffset, $this->size, $this->getRawValue());
         }

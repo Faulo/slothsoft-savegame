@@ -8,12 +8,11 @@ use Slothsoft\Savegame\Build\BuilderInterface;
 
 abstract class AbstractInstructionContent extends AbstractContentNode implements BuildableInterface {
 
-    abstract protected function loadInstruction(LeanElement $strucElement);
+    abstract protected function loadInstruction(LeanElement $strucElement): void;
 
     abstract protected function getInstructionType(): string;
 
-    // protected $dictionary;
-    protected $dictionaryRef;
+    protected string $dictionaryRef;
 
     public function getBuildTag(): string {
         return 'instruction';
@@ -26,15 +25,15 @@ abstract class AbstractInstructionContent extends AbstractContentNode implements
         ];
     }
 
-    protected function loadStruc(LeanElement $strucElement) {
+    protected function loadStruc(LeanElement $strucElement): void {
         parent::loadStruc($strucElement);
 
         $this->dictionaryRef = (string) $strucElement->getAttribute('dictionary-ref');
     }
 
-    protected function loadContent(LeanElement $strucElement) {}
+    protected function loadContent(LeanElement $strucElement): void {}
 
-    protected function loadChildren(LeanElement $strucElement) {
+    protected function loadChildren(LeanElement $strucElement): void {
         if ($instructionList = $this->loadInstruction($strucElement)) {
             foreach ($instructionList as $instruction) {
                 $this->loadChild($instruction);

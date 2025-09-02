@@ -214,10 +214,6 @@ class FileContainer extends AbstractNode implements NodeEvaluatorInterface, Buil
         return $this->imageList[$id] ?? null;
     }
 
-    /**
-     *
-     * @return \Slothsoft\Savegame\Node\SavegameNode
-     */
     public function getOwnerSavegame(): SavegameNode {
         return $this->ownerSavegame;
     }

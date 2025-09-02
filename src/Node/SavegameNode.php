@@ -45,7 +45,7 @@ class SavegameNode extends AbstractNode implements BuildableInterface {
         $this->factory = $factory;
     }
 
-    protected function loadStruc(LeanElement $strucElement) {
+    protected function loadStruc(LeanElement $strucElement): void {
         parent::loadStruc($strucElement);
 
         $this->saveId = (string) $strucElement->getAttribute('save-id');
@@ -58,7 +58,7 @@ class SavegameNode extends AbstractNode implements BuildableInterface {
         return $this->ownerEditor;
     }
 
-    protected function loadChildren(LeanElement $strucElement) {
+    protected function loadChildren(LeanElement $strucElement): void {
         $archiveList = [];
         $globalList = [];
 
@@ -85,9 +85,9 @@ class SavegameNode extends AbstractNode implements BuildableInterface {
         }
     }
 
-    protected function loadNode(LeanElement $strucElement) {}
+    protected function loadNode(LeanElement $strucElement): void {}
 
-    public function appendBuildChild(BuildableInterface $node) {
+    public function appendBuildChild(BuildableInterface $node): void {
         assert($node instanceof ArchiveNode);
 
         parent::appendBuildChild($node);
@@ -107,7 +107,7 @@ class SavegameNode extends AbstractNode implements BuildableInterface {
         }
     }
 
-    public function getGlobalElementsById(string $id) {
+    public function getGlobalElementsById(string $id): ?array {
         return $this->globalElements[$id] ?? null;
     }
 

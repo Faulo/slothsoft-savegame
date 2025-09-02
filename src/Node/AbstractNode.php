@@ -9,7 +9,7 @@ use Slothsoft\Savegame\Build\BuildableInterface;
 
 abstract class AbstractNode {
 
-    abstract protected function loadNode(LeanElement $strucElement);
+    abstract protected function loadNode(LeanElement $strucElement): void;
 
     /**
      *
@@ -19,7 +19,7 @@ abstract class AbstractNode {
 
     private $childNodeList;
 
-    public function init(LeanElement $strucElement, AbstractNode $parentNode = null) {
+    public function init(LeanElement $strucElement, AbstractNode $parentNode = null): void {
         $this->parentNode = $parentNode;
 
         if ($this->parentNode and $this instanceof BuildableInterface) {
@@ -33,33 +33,29 @@ abstract class AbstractNode {
 
     public function load(): void {}
 
-    protected function loadStruc(LeanElement $strucElement) {}
+    protected function loadStruc(LeanElement $strucElement): void {}
 
-    protected function loadChildren(LeanElement $strucElement) {
+    protected function loadChildren(LeanElement $strucElement): void {
         foreach ($strucElement->getChildren() as $strucElement) {
             $this->loadChild($strucElement);
         }
     }
 
-    final protected function loadChild(LeanElement $strucElement) {
+    final protected function loadChild(LeanElement $strucElement): void {
         $this->getOwnerSavegame()->createNode($strucElement, $this);
     }
 
     abstract public function getOwnerSavegame(): SavegameNode;
 
-    /**
-     *
-     * @return \Slothsoft\Savegame\Converter
-     */
-    protected function getConverter() {
+    protected function getConverter(): Converter {
         return Converter::getInstance();
     }
 
-    public function getParentNode() {
+    public function getParentNode(): ?AbstractNode {
         return $this->parentNode;
     }
 
-    public function appendBuildChild(BuildableInterface $childNode) {
+    public function appendBuildChild(BuildableInterface $childNode): void {
         if ($this instanceof BuildableInterface) {
             if ($this->childNodeList === null) {
                 $this->childNodeList = new Vector();

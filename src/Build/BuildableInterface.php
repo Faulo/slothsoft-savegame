@@ -14,5 +14,5 @@ interface BuildableInterface {
 
     public function getBuildChildren(): ?iterable;
 
-    public function appendBuildChild(BuildableInterface $childNode);
+    public function appendBuildChild(BuildableInterface $childNode): void;
 }

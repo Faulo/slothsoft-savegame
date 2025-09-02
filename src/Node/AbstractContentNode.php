@@ -8,15 +8,15 @@ use Slothsoft\Savegame\Build\BuilderInterface;
 
 abstract class AbstractContentNode extends AbstractNode {
 
-    private $name;
+    private string $name;
 
-    private $position;
+    private int $position;
 
-    protected $ownerFile;
+    protected FileContainer $ownerFile;
 
-    protected $contentOffset;
+    protected int $contentOffset;
 
-    abstract protected function loadContent(LeanElement $strucElement);
+    abstract protected function loadContent(LeanElement $strucElement): void;
 
     public function getBuildAttributes(BuilderInterface $builder): array {
         return [
@@ -24,7 +24,7 @@ abstract class AbstractContentNode extends AbstractNode {
         ];
     }
 
-    protected function loadStruc(LeanElement $strucElement) {
+    protected function loadStruc(LeanElement $strucElement): void {
         parent::loadStruc($strucElement);
 
         $parentNode = $this->getParentNode();
@@ -40,39 +40,27 @@ abstract class AbstractContentNode extends AbstractNode {
         }
     }
 
-    /**
-     *
-     * @return \Slothsoft\Savegame\Node\FileContainer
-     */
     protected function getOwnerFile(): FileContainer {
         return $this->ownerFile;
     }
 
-    /**
-     *
-     * @return \Slothsoft\Savegame\Node\SavegameNode
-     */
     public function getOwnerSavegame(): SavegameNode {
         return $this->ownerFile->getOwnerSavegame();
     }
 
-    protected function loadNode(LeanElement $strucElement) {
+    protected function loadNode(LeanElement $strucElement): void {
         $this->loadContent($strucElement);
     }
 
-    public function getContentOffset() {
+    public function getContentOffset(): int {
         return $this->contentOffset;
     }
 
-    /**
-     *
-     * @return string
-     */
-    public function getName() {
+    public function getName(): string {
         return $this->name;
     }
 
-    public function appendBuildChild(BuildableInterface $childNode) {
+    public function appendBuildChild(BuildableInterface $childNode): void {
         assert($childNode instanceof AbstractContentNode);
 
         parent::appendBuildChild($childNode);
