@@ -13,7 +13,7 @@ abstract class AbstractNode {
 
     private ?AbstractNode $parentNode = null;
 
-    private ?array $childNodeList = null;
+    private ?Vector $childNodeList = null;
 
     public function init(LeanElement $strucElement, ?AbstractNode $parentNode = null): void {
         $this->parentNode = $parentNode;
