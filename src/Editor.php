@@ -19,7 +19,7 @@ class Editor {
 
     private EditorConfig $config;
 
-    private ?SavegameNode $savegame;
+    private ?SavegameNode $savegame = null;
 
     public function __construct(EditorConfig $config) {
         $this->config = $config;

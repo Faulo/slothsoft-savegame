@@ -15,32 +15,31 @@ use Slothsoft\Savegame\Build\BuilderInterface;
 use Slothsoft\Savegame\Node\ArchiveParser\ArchiveBuilderInterface;
 use Slothsoft\Savegame\Node\ArchiveParser\ArchiveExtractorInterface;
 use DomainException;
-use RuntimeException;
 use SplFileInfo;
 
 class ArchiveNode extends AbstractNode implements BuildableInterface, FileWriterInterface, FileReaderInterface {
 
     const NAMESPACE_SEPARATOR = '\\';
 
-    private $path;
+    private string $path;
 
-    private $name;
+    private string $name;
 
-    private $type;
+    private string $type;
 
-    private $timestamp;
+    private string $timestamp;
 
-    private $fileHash;
+    private string $fileHash;
 
-    private $size;
+    private int $size;
 
-    private $file;
+    private SplFileInfo $file;
 
-    private $strucElement;
+    private LeanElement $strucElement;
 
-    private $extractDirectory;
+    private SplFileInfo $extractDirectory;
 
-    private $extractedFiles;
+    private ?array $extractedFiles = null;
 
     public function getBuildTag(): string {
         return 'archive';

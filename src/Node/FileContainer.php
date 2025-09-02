@@ -23,7 +23,7 @@ class FileContainer extends AbstractNode implements NodeEvaluatorInterface, Buil
 
     private Vector $valueList;
 
-    private ?array $imageList;
+    private ?array $imageList = null;
 
     private array $evaluateCache;
 

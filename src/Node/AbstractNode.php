@@ -11,15 +11,11 @@ abstract class AbstractNode {
 
     abstract protected function loadNode(LeanElement $strucElement): void;
 
-    /**
-     *
-     * @var \Slothsoft\Savegame\Node\AbstractNode
-     */
-    private $parentNode;
+    private ?AbstractNode $parentNode = null;
 
-    private $childNodeList;
+    private ?array $childNodeList = null;
 
-    public function init(LeanElement $strucElement, AbstractNode $parentNode = null): void {
+    public function init(LeanElement $strucElement, ?AbstractNode $parentNode = null): void {
         $this->parentNode = $parentNode;
 
         if ($this->parentNode and $this instanceof BuildableInterface) {

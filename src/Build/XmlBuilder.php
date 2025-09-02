@@ -19,7 +19,7 @@ class XmlBuilder implements BuilderInterface {
 
     private BuildableInterface $root;
 
-    private ?string $cacheDirectory;
+    private ?string $cacheDirectory = null;
 
     public function __construct(BuildableInterface $root) {
         $this->root = $root;
