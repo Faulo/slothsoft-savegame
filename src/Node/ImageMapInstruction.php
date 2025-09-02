@@ -7,13 +7,13 @@ use Slothsoft\Savegame\Build\BuilderInterface;
 
 class ImageMapInstruction extends AbstractInstructionContent {
 
-    private $width;
+    private int $width;
 
-    private $height;
+    private int $height;
 
-    private $bitplanes;
+    private int $bitplanes;
 
-    private $imageCount;
+    private int $imageCount;
 
     public function getBuildAttributes(BuilderInterface $builder): array {
         return parent::getBuildAttributes($builder) + [
@@ -24,7 +24,7 @@ class ImageMapInstruction extends AbstractInstructionContent {
         ];
     }
 
-    protected function loadStruc(LeanElement $strucElement) {
+    protected function loadStruc(LeanElement $strucElement): void {
         parent::loadStruc($strucElement);
 
         $this->width = (int) $strucElement->getAttribute('width');
@@ -37,7 +37,7 @@ class ImageMapInstruction extends AbstractInstructionContent {
         return NodeFactory::TAG_IMAGE_MAP;
     }
 
-    protected function loadInstruction(LeanElement $strucElement) {
+    protected function loadInstruction(LeanElement $strucElement): iterable {
         $strucData = [];
         $strucData['width'] = $this->width;
         $strucData['height'] = $this->height / $this->imageCount;

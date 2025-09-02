@@ -15,26 +15,26 @@ class StringDictionaryInstruction extends AbstractInstructionContent {
 
     const LIST_TYPE_SIZE_FIXED = 'size-fixed';
 
-    private $type;
+    private string $type;
 
-    private $encoding;
+    private string $encoding;
 
-    private $stringCount;
+    private int $stringCount;
 
-    private $stringSize;
+    private int $stringSize;
 
     protected function getInstructionType(): string {
         return NodeFactory::TAG_STRING_DICTIONARY;
     }
 
-    public function loadStruc(LeanElement $strucElement) {
+    public function loadStruc(LeanElement $strucElement): void {
         parent::loadStruc($strucElement);
 
         $this->encoding = (string) $strucElement->getAttribute('encoding');
         $this->type = (string) $strucElement->getAttribute('type');
     }
 
-    protected function loadInstruction(LeanElement $strucElement) {
+    protected function loadInstruction(LeanElement $strucElement): iterable {
         // string-count
         switch ($this->type) {
             case self::LIST_TYPE_NULL_DELIMITED:

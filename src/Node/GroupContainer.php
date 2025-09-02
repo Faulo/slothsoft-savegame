@@ -7,7 +7,7 @@ use Slothsoft\Savegame\Build\BuilderInterface;
 
 class GroupContainer extends AbstractContainerContent {
 
-    private $dictionaryRef;
+    private string $dictionaryRef;
 
     public function getBuildTag(): string {
         return 'group';
@@ -19,7 +19,7 @@ class GroupContainer extends AbstractContainerContent {
         ];
     }
 
-    protected function loadStruc(LeanElement $strucElement) {
+    protected function loadStruc(LeanElement $strucElement): void {
         parent::loadStruc($strucElement);
 
         $this->dictionaryRef = (string) $strucElement->getAttribute('dictionary-ref');

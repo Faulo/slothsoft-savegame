@@ -6,22 +6,22 @@ use Slothsoft\Core\XML\LeanElement;
 
 class RepeatGroupInstruction extends AbstractInstructionContent {
 
-    private $groupSize;
+    private int $groupSize;
 
-    private $groupCount;
+    private int $groupCount;
 
     protected function getInstructionType(): string {
         return NodeFactory::TAG_REPEAT_GROUP;
     }
 
-    protected function loadStruc(LeanElement $strucElement) {
+    protected function loadStruc(LeanElement $strucElement): void {
         parent::loadStruc($strucElement);
 
         $this->groupSize = $strucElement->hasAttribute('group-size') ? (int) $this->ownerFile->evaluate($strucElement->getAttribute('group-size')) : 0;
         $this->groupCount = $strucElement->hasAttribute('group-count') ? (int) $this->ownerFile->evaluate($strucElement->getAttribute('group-count')) : 0;
     }
 
-    protected function loadInstruction(LeanElement $strucElement) {
+    protected function loadInstruction(LeanElement $strucElement): iterable {
         $start = 0;
         $step = $this->groupSize;
         $count = $this->groupCount * $step;

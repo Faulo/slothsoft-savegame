@@ -6,17 +6,17 @@ use Slothsoft\Core\XML\LeanElement;
 
 class BitFieldInstruction extends AbstractInstructionContent {
 
-    private $size;
+    private int $size;
 
-    private $firstBit;
+    private int $firstBit;
 
-    private $lastBit;
+    private int $lastBit;
 
     protected function getInstructionType(): string {
         return NodeFactory::TAG_BIT_FIELD;
     }
 
-    protected function loadStruc(LeanElement $strucElement) {
+    protected function loadStruc(LeanElement $strucElement): void {
         parent::loadStruc($strucElement);
 
         $this->size = $strucElement->hasAttribute('size') ? (int) $this->ownerFile->evaluate($strucElement->getAttribute('size')) : 1;
@@ -24,7 +24,7 @@ class BitFieldInstruction extends AbstractInstructionContent {
         $this->lastBit = (int) $strucElement->getAttribute('last-bit', $this->size * 8 - 1);
     }
 
-    protected function loadInstruction(LeanElement $strucElement) {
+    protected function loadInstruction(LeanElement $strucElement): iterable {
         $max = $this->size - 1;
         for ($i = $this->firstBit; $i <= $this->lastBit; $i ++) {
             $offset = (int) ($i / 8);

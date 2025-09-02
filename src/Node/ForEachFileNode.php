@@ -6,16 +6,16 @@ use Slothsoft\Core\XML\LeanElement;
 
 class ForEachFileNode extends AbstractNode {
 
-    private $fileRange;
+    private string $fileRange;
 
-    protected function loadStruc(LeanElement $strucElement) {
+    protected function loadStruc(LeanElement $strucElement): void {
         parent::loadStruc($strucElement);
         $this->fileRange = (string) $strucElement->getAttribute('file-range');
     }
 
-    protected function loadNode(LeanElement $strucElement) {}
+    protected function loadNode(LeanElement $strucElement): void {}
 
-    public function loadChildren(LeanElement $strucElement) {
+    public function loadChildren(LeanElement $strucElement): void {
         foreach ($this->getFileNames() as $name) {
             $strucData = [];
             $strucData['file-name'] = $name;

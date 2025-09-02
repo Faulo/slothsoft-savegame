@@ -6,17 +6,17 @@ use Slothsoft\Core\XML\LeanElement;
 
 class UseGlobalInstruction extends AbstractContentNode {
 
-    private $globalRef;
+    private string $globalRef;
 
-    protected function loadStruc(LeanElement $strucElement) {
+    protected function loadStruc(LeanElement $strucElement): void {
         parent::loadStruc($strucElement);
 
         $this->globalRef = (string) $strucElement->getAttribute('ref');
     }
 
-    protected function loadContent(LeanElement $strucElement) {}
+    protected function loadContent(LeanElement $strucElement): void {}
 
-    protected function loadChildren(LeanElement $strucElement) {
+    protected function loadChildren(LeanElement $strucElement): void {
         if ($instructionList = $this->getOwnerSavegame()->getGlobalElementsById($this->globalRef)) {
             foreach ($instructionList as $instruction) {
                 $this->loadChild($instruction);

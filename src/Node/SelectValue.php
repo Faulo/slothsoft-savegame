@@ -7,7 +7,7 @@ use Slothsoft\Savegame\Build\BuilderInterface;
 
 class SelectValue extends AbstractValueContent {
 
-    protected $dictionaryRef;
+    protected string $dictionaryRef;
 
     public function getBuildTag(): string {
         return 'select';
@@ -20,7 +20,7 @@ class SelectValue extends AbstractValueContent {
         ];
     }
 
-    protected function loadStruc(LeanElement $strucElement) {
+    protected function loadStruc(LeanElement $strucElement): void {
         parent::loadStruc($strucElement);
 
         $this->value = 0;

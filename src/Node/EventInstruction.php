@@ -14,14 +14,14 @@ class EventInstruction extends AbstractInstructionContent {
         return NodeFactory::TAG_EVENT;
     }
 
-    protected function loadStruc(LeanElement $strucElement) {
+    protected function loadStruc(LeanElement $strucElement): void {
         parent::loadStruc($strucElement);
 
         $this->size = (int) $strucElement->getAttribute('size');
         $this->stepSize = (int) $strucElement->getAttribute('step-size');
     }
 
-    protected function loadInstruction(LeanElement $strucElement) {
+    protected function loadInstruction(LeanElement $strucElement): iterable {
         for ($i = 0; $i < $this->size; $i += $this->stepSize) {
             $strucData = [];
             $strucData['position'] = $i;

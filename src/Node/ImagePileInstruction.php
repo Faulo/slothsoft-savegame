@@ -7,15 +7,15 @@ use Slothsoft\Savegame\Build\BuilderInterface;
 
 class ImagePileInstruction extends AbstractInstructionContent {
 
-    private $width;
+    private int $width;
 
-    private $height;
+    private int $height;
 
-    private $size;
+    private int $size;
 
-    private $bitplanes;
+    private int $bitplanes;
 
-    private $imageDimensions;
+    private string $imageDimensions;
 
     public function getBuildAttributes(BuilderInterface $builder): array {
         return parent::getBuildAttributes($builder) + [
@@ -27,7 +27,7 @@ class ImagePileInstruction extends AbstractInstructionContent {
         ];
     }
 
-    protected function loadStruc(LeanElement $strucElement) {
+    protected function loadStruc(LeanElement $strucElement): void {
         parent::loadStruc($strucElement);
 
         $this->width = 0;
@@ -42,7 +42,7 @@ class ImagePileInstruction extends AbstractInstructionContent {
         return NodeFactory::TAG_IMAGE_PILE;
     }
 
-    protected function loadInstruction(LeanElement $strucElement) {
+    protected function loadInstruction(LeanElement $strucElement): iterable {
         $this->width = 0;
         $this->height = 0;
         $this->size = 0;

@@ -2,6 +2,7 @@
 declare(strict_types = 1);
 namespace Slothsoft\Savegame\Node;
 
+use Slothsoft\Core\XML\LeanElement;
 use Slothsoft\Savegame\Build\BuilderInterface;
 
 class EventScriptValue extends AbstractValueContent {
@@ -16,7 +17,7 @@ class EventScriptValue extends AbstractValueContent {
         ];
     }
 
-    protected function loadContent() {
+    protected function loadContent(LeanElement $strucElement): void {
         $scriptSize = 4;
 
         $offsetWordSize = 2;

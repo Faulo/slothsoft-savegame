@@ -13,27 +13,23 @@ use SplFileInfo;
 
 class FileContainer extends AbstractNode implements NodeEvaluatorInterface, BuildableInterface, FileWriterInterface {
 
-    private $filePath;
+    private string $filePath;
 
-    private $fileName;
+    private string $fileName;
 
-    private $fileHash;
+    private string $fileHash;
 
-    /**
-     *
-     * @var string
-     */
-    private $content;
+    private string $content;
 
-    private $valueList;
+    private Vector $valueList;
 
-    private $imageList;
+    private ?array $imageList;
 
-    private $evaluateCache;
+    private array $evaluateCache;
 
-    private $ownerSavegame;
+    private SavegameNode $ownerSavegame;
 
-    private $strucElement;
+    private LeanElement $strucElement;
 
     public function getBuildTag(): string {
         return 'file';
@@ -45,7 +41,7 @@ class FileContainer extends AbstractNode implements NodeEvaluatorInterface, Buil
         ];
     }
 
-    protected function loadStruc(LeanElement $strucElement) {
+    protected function loadStruc(LeanElement $strucElement): void {
         parent::loadStruc($strucElement);
 
         $archive = $this->getOwnerArchive();
@@ -63,19 +59,19 @@ class FileContainer extends AbstractNode implements NodeEvaluatorInterface, Buil
         $this->evaluateCache = [];
     }
 
-    protected function loadChildren(LeanElement $strucElement) {}
+    protected function loadChildren(LeanElement $strucElement): void {}
 
     public function load(): void {
         parent::loadChildren($this->strucElement);
     }
 
-    protected function loadNode(LeanElement $strucElement) {
+    protected function loadNode(LeanElement $strucElement): void {
         assert(file_exists($this->filePath), '$this->filePath must exist');
 
         $this->setContent(file_get_contents($this->filePath));
     }
 
-    public function extractContent($offset, $length) {
+    public function extractContent($offset, $length): string {
         $ret = null;
         switch ($length) {
             case 'auto':
@@ -97,11 +93,11 @@ class FileContainer extends AbstractNode implements NodeEvaluatorInterface, Buil
         return $ret;
     }
 
-    public function insertContent($offset, $length, $value) {
+    public function insertContent($offset, $length, $value): void {
         $this->content = substr_replace($this->content, $value, $offset, $length);
     }
 
-    public function insertContentBit($offset, $bit, $value) {
+    public function insertContentBit($offset, $bit, $value): void {
         // echo "setting bit $bit at position $offset to " . ($value?'ON':'OFF') . PHP_EOL;
         $byte = $this->extractContent($offset, 1);
         $byte = hexdec(bin2hex($byte));
@@ -111,22 +107,22 @@ class FileContainer extends AbstractNode implements NodeEvaluatorInterface, Buil
             $byte &= ~ $bit;
         }
         $byte = substr(pack('N', $byte), - 1);
-        return $this->insertContent($offset, 1, $byte);
+        $this->insertContent($offset, 1, $byte);
     }
 
-    public function setContent($content) {
+    public function setContent($content): void {
         $this->content = $content;
     }
 
-    public function getContent() {
+    public function getContent(): string {
         return $this->content;
     }
 
-    public function getFileName() {
+    public function getFileName(): string {
         return $this->fileName;
     }
 
-    public function getValueByName(string $name) {
+    public function getValueByName(string $name): AbstractValueContent {
         foreach ($this->valueList as $node) {
             if ($node->getName() === $name) {
                 return $node;
@@ -134,7 +130,7 @@ class FileContainer extends AbstractNode implements NodeEvaluatorInterface, Buil
         }
     }
 
-    public function getValueById(int $id) {
+    public function getValueById(int $id): AbstractValueContent {
         foreach ($this->valueList as $node) {
             if ($node->getValueId() === $id) {
                 return $node;

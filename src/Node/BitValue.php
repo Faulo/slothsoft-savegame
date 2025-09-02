@@ -7,7 +7,7 @@ use Slothsoft\Savegame\Build\BuilderInterface;
 
 class BitValue extends AbstractValueContent {
 
-    private $bit;
+    private int $bit = 0;
 
     public function getBuildTag(): string {
         return 'bit';
@@ -20,18 +20,18 @@ class BitValue extends AbstractValueContent {
         ];
     }
 
-    protected function loadStruc(LeanElement $strucElement) {
+    protected function loadStruc(LeanElement $strucElement): void {
         parent::loadStruc($strucElement);
 
         $this->value = false;
         $this->bit = (int) $strucElement->getAttribute('bit');
     }
 
-    private function getBitValue() {
+    private function getBitValue(): int {
         return $this->getConverter()->pow2($this->bit);
     }
 
-    public function updateContent() {
+    public function updateContent(): void {
         $this->ownerFile->insertContentBit($this->contentOffset, $this->getBitValue(), $this->value);
     }
 

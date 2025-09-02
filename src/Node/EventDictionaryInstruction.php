@@ -11,7 +11,7 @@ class EventDictionaryInstruction extends AbstractInstructionContent {
         return NodeFactory::TAG_EVENT_DICTIONARY;
     }
 
-    protected function loadInstruction(LeanElement $strucElement) {
+    protected function loadInstruction(LeanElement $strucElement): iterable {
         $offsetWordSize = 2;
         $eventWordSize = 12;
 

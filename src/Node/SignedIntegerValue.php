@@ -23,9 +23,9 @@ class SignedIntegerValue extends AbstractValueContent {
         2147483647
     ];
 
-    private $min;
+    private int $min;
 
-    private $max;
+    private int $max;
 
     public function getBuildTag(): string {
         return 'signed-integer';
@@ -39,7 +39,7 @@ class SignedIntegerValue extends AbstractValueContent {
         ];
     }
 
-    protected function loadStruc(LeanElement $strucElement) {
+    protected function loadStruc(LeanElement $strucElement): void {
         parent::loadStruc($strucElement);
 
         $this->value = 0;

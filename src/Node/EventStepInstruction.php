@@ -34,7 +34,7 @@ class EventStepInstruction extends AbstractInstructionContent {
         return NodeFactory::TAG_EVENT_STEP;
     }
 
-    protected function loadInstruction(LeanElement $strucElement) {
+    protected function loadInstruction(LeanElement $strucElement): iterable {
         $savegame = $this->getOwnerSavegame();
 
         $eventType = $this->ownerFile->extractContent($this->contentOffset, 1);

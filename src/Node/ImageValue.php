@@ -9,13 +9,13 @@ use SplFileInfo;
 
 class ImageValue extends AbstractValueContent implements FileWriterInterface {
 
-    private $width;
+    private int $width;
 
-    private $height;
+    private int $height;
 
-    private $bitplanes;
+    private int $bitplanes;
 
-    private $imageId;
+    private int $imageId;
 
     public function getBuildTag(): string {
         return 'image';
@@ -47,7 +47,7 @@ class ImageValue extends AbstractValueContent implements FileWriterInterface {
         return $this->imageId;
     }
 
-    protected function loadStruc(LeanElement $strucElement) {
+    protected function loadStruc(LeanElement $strucElement): void {
         parent::loadStruc($strucElement);
 
         $this->value = '';

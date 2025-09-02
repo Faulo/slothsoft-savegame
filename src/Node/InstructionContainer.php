@@ -7,9 +7,9 @@ use Slothsoft\Savegame\Build\BuilderInterface;
 
 class InstructionContainer extends AbstractContainerContent {
 
-    private $type;
+    private string $type;
 
-    private $dictionaryRef;
+    private string $dictionaryRef;
 
     public function getBuildTag(): string {
         return 'instruction';
@@ -22,7 +22,7 @@ class InstructionContainer extends AbstractContainerContent {
         ];
     }
 
-    protected function loadStruc(LeanElement $strucElement) {
+    protected function loadStruc(LeanElement $strucElement): void {
         parent::loadStruc($strucElement);
 
         $this->type = (string) $strucElement->getAttribute('type');

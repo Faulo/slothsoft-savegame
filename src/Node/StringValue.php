@@ -7,7 +7,7 @@ use Slothsoft\Savegame\Build\BuilderInterface;
 
 class StringValue extends AbstractValueContent {
 
-    private $encoding;
+    private string $encoding;
 
     public function getBuildTag(): string {
         return 'string';
@@ -20,7 +20,7 @@ class StringValue extends AbstractValueContent {
         ];
     }
 
-    protected function loadStruc(LeanElement $strucElement) {
+    protected function loadStruc(LeanElement $strucElement): void {
         parent::loadStruc($strucElement);
 
         $this->value = '';

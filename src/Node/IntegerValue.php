@@ -15,9 +15,9 @@ class IntegerValue extends AbstractValueContent {
         4294967296
     ];
 
-    private $min;
+    private int $min;
 
-    private $max;
+    private int $max;
 
     public function getBuildTag(): string {
         return 'integer';
@@ -31,7 +31,7 @@ class IntegerValue extends AbstractValueContent {
         ];
     }
 
-    protected function loadStruc(LeanElement $strucElement) {
+    protected function loadStruc(LeanElement $strucElement): void {
         parent::loadStruc($strucElement);
 
         $this->value = 0;
