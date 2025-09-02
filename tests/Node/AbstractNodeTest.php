@@ -2,17 +2,28 @@
 declare(strict_types = 1);
 namespace Slothsoft\Savegame\Node;
 
+use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\MockObject\MockObject;
 use Slothsoft\Core\IO\FileInfo;
 use Slothsoft\Core\IO\FileInfoFactory;
 use Slothsoft\Core\XML\LeanElement;
-use Slothsoft\Farah\ModuleTests\AbstractTestCase;
 use Slothsoft\Savegame\Editor;
 use Slothsoft\Savegame\Node\ArchiveParser\ArchiveExtractorInterface;
 use DomainException;
 use SplFileInfo;
 
-class ArchiveNodeTest extends AbstractTestCase {
+/**
+ * AbstractNodeTest
+ *
+ * @see AbstractNode
+ *
+ * @todo auto-generated
+ */
+class AbstractNodeTest extends TestCase {
+
+    public function testClassExists(): void {
+        $this->assertTrue(class_exists(AbstractNode::class), "Failed to load class 'Slothsoft\Savegame\Node\AbstractNode'!");
+    }
 
     private FileInfo $archiveFile;
 
