@@ -16,8 +16,6 @@ use SplFileInfo;
  * ArchiveNodeTest
  *
  * @see ArchiveNode
- *
- * @todo auto-generated
  */
 class ArchiveNodeTest extends TestCase {
 
