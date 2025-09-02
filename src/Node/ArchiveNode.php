@@ -112,10 +112,6 @@ class ArchiveNode extends AbstractNode implements BuildableInterface, FileWriter
             throw new DomainException(sprintf('Unknown file "%s"! Currently available from archive "%s": [%s]', $name, $this->file, implode(', ', $this->getFileNames())));
         }
 
-        var_dump([
-            $name => $this->extractedFiles[$name]
-        ]);
-
         return $this->extractedFiles[$name];
     }
 
