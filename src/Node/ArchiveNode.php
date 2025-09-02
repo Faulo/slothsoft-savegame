@@ -116,13 +116,19 @@ class ArchiveNode extends AbstractNode implements BuildableInterface, FileWriter
     }
 
     public function getFileNodeByName(string $name): FileContainer {
+        $names = [];
+
         if ($nodeList = $this->getFileNodes()) {
             foreach ($nodeList as $node) {
                 if ($node->getFileName() === $name) {
                     return $node;
+                } else {
+                    $names[] = $node->getFileName();
                 }
             }
         }
+
+        throw new DomainException(sprintf('Unknown file node "%s"! Currently available from archive "%s": [%s]', $name, $this->file, implode(', ', $names)));
     }
 
     public function appendBuildChild(BuildableInterface $childNode): void {
