@@ -12,7 +12,7 @@ use PHPUnit\Framework\TestCase;
  * @todo auto-generated
  */
 class EventTest extends TestCase {
-
+    
     public function testClassExists(): void {
         $this->assertTrue(class_exists(Event::class), "Failed to load class 'Slothsoft\Savegame\Script\Event'!");
     }

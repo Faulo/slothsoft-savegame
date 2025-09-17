@@ -12,7 +12,7 @@ use PHPUnit\Framework\TestCase;
  * @todo auto-generated
  */
 class CopyArchiveBuilderTest extends TestCase {
-
+    
     public function testClassExists(): void {
         $this->assertTrue(class_exists(CopyArchiveBuilder::class), "Failed to load class 'Slothsoft\Savegame\Node\ArchiveParser\CopyArchiveBuilder'!");
     }

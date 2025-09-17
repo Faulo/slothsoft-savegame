@@ -12,7 +12,7 @@ use PHPUnit\Framework\TestCase;
  * @todo auto-generated
  */
 class ArchiveRepositoryTest extends TestCase {
-
+    
     public function testClassExists(): void {
         $this->assertTrue(class_exists(ArchiveRepository::class), "Failed to load class 'Slothsoft\Savegame\ArchiveRepository'!");
     }

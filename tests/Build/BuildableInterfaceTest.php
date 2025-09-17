@@ -12,7 +12,7 @@ use PHPUnit\Framework\TestCase;
  * @todo auto-generated
  */
 class BuildableInterfaceTest extends TestCase {
-
+    
     public function testInterfaceExists(): void {
         $this->assertTrue(interface_exists(BuildableInterface::class), "Failed to load interface 'Slothsoft\Savegame\Build\BuildableInterface'!");
     }

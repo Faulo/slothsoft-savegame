@@ -12,7 +12,7 @@ use PHPUnit\Framework\TestCase;
  * @todo auto-generated
  */
 class InstructionContainerTest extends TestCase {
-
+    
     public function testClassExists(): void {
         $this->assertTrue(class_exists(InstructionContainer::class), "Failed to load class 'Slothsoft\Savegame\Node\InstructionContainer'!");
     }

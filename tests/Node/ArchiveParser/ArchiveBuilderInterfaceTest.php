@@ -12,7 +12,7 @@ use PHPUnit\Framework\TestCase;
  * @todo auto-generated
  */
 class ArchiveBuilderInterfaceTest extends TestCase {
-
+    
     public function testInterfaceExists(): void {
         $this->assertTrue(interface_exists(ArchiveBuilderInterface::class), "Failed to load interface 'Slothsoft\Savegame\Node\ArchiveParser\ArchiveBuilderInterface'!");
     }

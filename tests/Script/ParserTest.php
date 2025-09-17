@@ -12,7 +12,7 @@ use PHPUnit\Framework\TestCase;
  * @todo auto-generated
  */
 class ParserTest extends TestCase {
-
+    
     public function testClassExists(): void {
         $this->assertTrue(class_exists(Parser::class), "Failed to load class 'Slothsoft\Savegame\Script\Parser'!");
     }

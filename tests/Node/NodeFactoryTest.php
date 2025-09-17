@@ -12,7 +12,7 @@ use PHPUnit\Framework\TestCase;
  * @todo auto-generated
  */
 class NodeFactoryTest extends TestCase {
-
+    
     public function testClassExists(): void {
         $this->assertTrue(class_exists(NodeFactory::class), "Failed to load class 'Slothsoft\Savegame\Node\NodeFactory'!");
     }

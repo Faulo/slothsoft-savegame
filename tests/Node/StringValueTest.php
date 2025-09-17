@@ -12,7 +12,7 @@ use PHPUnit\Framework\TestCase;
  * @todo auto-generated
  */
 class StringValueTest extends TestCase {
-
+    
     public function testClassExists(): void {
         $this->assertTrue(class_exists(StringValue::class), "Failed to load class 'Slothsoft\Savegame\Node\StringValue'!");
     }

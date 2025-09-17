@@ -12,7 +12,7 @@ use PHPUnit\Framework\TestCase;
  * @todo auto-generated
  */
 class EditorConfigTest extends TestCase {
-
+    
     public function testClassExists(): void {
         $this->assertTrue(class_exists(EditorConfig::class), "Failed to load class 'Slothsoft\Savegame\EditorConfig'!");
     }

@@ -12,7 +12,7 @@ use PHPUnit\Framework\TestCase;
  * @todo auto-generated
  */
 class ConverterTest extends TestCase {
-
+    
     public function testClassExists(): void {
         $this->assertTrue(class_exists(Converter::class), "Failed to load class 'Slothsoft\Savegame\Converter'!");
     }
