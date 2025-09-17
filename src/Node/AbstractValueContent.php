@@ -7,17 +7,17 @@ use Slothsoft\Savegame\Build\BuildableInterface;
 use Slothsoft\Savegame\Build\BuilderInterface;
 
 abstract class AbstractValueContent extends AbstractContentNode implements BuildableInterface {
-
+    
     abstract protected function decodeValue(string $rawValue);
-
+    
     abstract protected function encodeValue($value): string;
-
+    
     private int $valueId;
-
+    
     protected int $size;
-
+    
     protected $value;
-
+    
     public function getBuildAttributes(BuilderInterface $builder): array {
         return parent::getBuildAttributes($builder) + [
             'position' => $this->getContentOffset(),
@@ -25,54 +25,54 @@ abstract class AbstractValueContent extends AbstractContentNode implements Build
             'size' => $this->size
         ];
     }
-
+    
     protected function loadStruc(LeanElement $strucElement): void {
         parent::loadStruc($strucElement);
-
+        
         $this->size = $strucElement->hasAttribute('size') ? (int) $this->ownerFile->evaluate($strucElement->getAttribute('size')) : 1;
         $this->valueId = $this->ownerFile->registerValue($this);
     }
-
+    
     protected function loadContent(LeanElement $strucElement): void {
         if ($this->size and $this->ownerFile) {
             $this->setRawValue($this->ownerFile->extractContent($this->contentOffset, $this->size));
         }
         // echo $this->getName() . ': ' . $this->getValue() . PHP_EOL;
     }
-
+    
     public function setValueId(int $id): void {
         $this->valueId = $id;
     }
-
+    
     public function getValueId(): int {
         return $this->valueId;
     }
-
+    
     public function setValue($value, bool $updateContent = false): void {
         $this->value = $value;
         if ($updateContent) {
             $this->updateContent();
         }
     }
-
+    
     public function getValue() {
         return $this->value;
     }
-
+    
     public function setRawValue(string $rawValue): void {
         $this->value = $this->decodeValue($rawValue);
     }
-
+    
     public function getRawValue(): string {
         return $this->encodeValue($this->value);
     }
-
+    
     public function updateContent(): void {
         if ($this->size) {
             $this->ownerFile->insertContent($this->contentOffset, $this->size, $this->getRawValue());
         }
     }
-
+    
     public function getContentSize(): int {
         return $this->size;
     }

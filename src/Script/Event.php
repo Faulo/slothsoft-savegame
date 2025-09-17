@@ -3,21 +3,21 @@ declare(strict_types = 1);
 namespace Slothsoft\Savegame\Script;
 
 class Event extends AbstractElement {
-
+    
     protected $lineList;
-
+    
     protected function init() {
         $this->lineList = [];
     }
-
+    
     public function fromBinary($binary) {
         $this->init();
     }
-
+    
     public function fromCode($code) {
         $this->init();
     }
-
+    
     public function toBinary() {
         $ret = '';
         foreach ($this->lineList as $line) {
@@ -25,7 +25,7 @@ class Event extends AbstractElement {
         }
         return $ret;
     }
-
+    
     public function toCode() {
         $ret = '';
         foreach ($this->lineList as $line) {

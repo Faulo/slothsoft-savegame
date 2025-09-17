@@ -3,13 +3,13 @@ declare(strict_types = 1);
 namespace Slothsoft\Savegame\Script;
 
 class Script extends AbstractElement {
-
+    
     protected $eventList;
-
+    
     protected function init() {
         $this->eventList = [];
     }
-
+    
     public function fromBinary($binary) {
         $this->init();
         /*
@@ -48,11 +48,11 @@ class Script extends AbstractElement {
          * //
          */
     }
-
+    
     public function fromCode($code) {
         $this->init();
     }
-
+    
     public function toBinary() {
         $ret = '';
         foreach ($this->eventList as $event) {
@@ -60,7 +60,7 @@ class Script extends AbstractElement {
         }
         return $ret;
     }
-
+    
     public function toCode() {
         $ret = '';
         foreach ($this->eventList as $event) {

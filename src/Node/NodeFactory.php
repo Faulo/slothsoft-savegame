@@ -7,63 +7,63 @@ use Slothsoft\Savegame\Editor;
 use DomainException;
 
 class NodeFactory {
-
+    
     const TAG_SAVEGAME_EDITOR = 'savegame.editor';
-
+    
     const TAG_GLOBALS = 'globals';
-
+    
     const TAG_GLOBAL = 'global';
-
+    
     const TAG_ARCHIVE = 'archive';
-
+    
     const TAG_FOR_EACH_FILE = 'for-each-file';
-
+    
     const TAG_FILE = 'file';
-
+    
     const TAG_BINARY = 'binary';
-
+    
     const TAG_INTEGER = 'integer';
-
+    
     const TAG_SIGNED_INTEGER = 'signed-integer';
-
+    
     const TAG_STRING = 'string';
-
+    
     const TAG_BIT = 'bit';
-
+    
     const TAG_SELECT = 'select';
-
+    
     const TAG_EVENT_SCRIPT = 'event-script';
-
+    
     const TAG_IMAGE = 'image';
-
+    
     const TAG_GROUP = 'group';
-
+    
     const TAG_INSTRUCTION = 'instruction';
-
+    
     const TAG_BIT_FIELD = 'bit-field';
-
+    
     const TAG_STRING_DICTIONARY = 'string-dictionary';
-
+    
     const TAG_EVENT_DICTIONARY = 'event-dictionary';
-
+    
     const TAG_EVENT = 'event';
-
+    
     const TAG_EVENT_STEP = 'event-step';
-
+    
     const TAG_REPEAT_GROUP = 'repeat-group';
-
+    
     const TAG_USE_GLOBAL = 'use-global';
-
+    
     const TAG_IMAGE_MAP = 'image-map';
-
+    
     const TAG_IMAGE_PILE = 'image-pile';
-
+    
     private $editor;
-
+    
     public function __construct(Editor $editor) {
         $this->editor = $editor;
     }
-
+    
     /**
      *
      * @param \Slothsoft\Core\XML\LeanElement $strucElement
@@ -75,7 +75,7 @@ class NodeFactory {
         $value->init($strucElement, $parentValue);
         return $value;
     }
-
+    
     private function constructValue(string $tag): AbstractNode {
         switch ($tag) {
             // root
@@ -87,7 +87,7 @@ class NodeFactory {
                 return new ForEachFileNode();
             case self::TAG_FILE:
                 return new FileContainer();
-
+            
             // values
             case self::TAG_INTEGER:
                 return new IntegerValue();
@@ -105,13 +105,13 @@ class NodeFactory {
                 return new BinaryValue();
             case self::TAG_IMAGE:
                 return new ImageValue();
-
+            
             // containers
             case self::TAG_GROUP:
                 return new GroupContainer();
             case self::TAG_INSTRUCTION:
                 return new InstructionContainer();
-
+            
             // instructions
             case self::TAG_BIT_FIELD:
                 return new BitFieldInstruction();
@@ -131,7 +131,7 @@ class NodeFactory {
                 return new ImageMapInstruction();
             case self::TAG_IMAGE_PILE:
                 return new ImagePileInstruction();
-
+            
             default:
                 throw new DomainException(sprintf('unknown tag: <sse:%s/>', $tag));
         }

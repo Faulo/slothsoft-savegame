@@ -5,7 +5,7 @@ namespace Slothsoft\Savegame\Node;
 use Slothsoft\Core\XML\LeanElement;
 
 class EventStepInstruction extends AbstractInstructionContent {
-
+    
     /*
      * const EVENT_TYPE_IF = 13;
      * const EVENT_TYPE_TRIGGER = 16;
@@ -33,18 +33,18 @@ class EventStepInstruction extends AbstractInstructionContent {
     protected function getInstructionType(): string {
         return NodeFactory::TAG_EVENT_STEP;
     }
-
+    
     protected function loadInstruction(LeanElement $strucElement): iterable {
         $savegame = $this->getOwnerSavegame();
-
+        
         $eventType = $this->ownerFile->extractContent($this->contentOffset, 1);
         $eventType = $this->getConverter()->decodeInteger($eventType, 1);
         $eventType = sprintf('%02d', $eventType);
-
+        
         $eventSubType = $this->ownerFile->extractContent($this->contentOffset + 1, 1);
         $eventSubType = $this->getConverter()->decodeInteger($eventSubType, 1);
         $eventSubType = sprintf('%02d', $eventSubType);
-
+        
         foreach ([
             "event-$eventType.$eventSubType",
             "event-$eventType",

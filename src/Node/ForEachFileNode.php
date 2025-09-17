@@ -5,35 +5,35 @@ namespace Slothsoft\Savegame\Node;
 use Slothsoft\Core\XML\LeanElement;
 
 class ForEachFileNode extends AbstractNode {
-
+    
     private string $fileRange;
-
+    
     protected function loadStruc(LeanElement $strucElement): void {
         parent::loadStruc($strucElement);
         $this->fileRange = (string) $strucElement->getAttribute('file-range');
     }
-
+    
     protected function loadNode(LeanElement $strucElement): void {}
-
+    
     public function loadChildren(LeanElement $strucElement): void {
         foreach ($this->getFileNames() as $name) {
             $strucData = [];
             $strucData['file-name'] = $name;
-
+            
             $childElement = LeanElement::createOneFromArray(NodeFactory::TAG_FILE, $strucData, $strucElement->getChildren());
-
+            
             $this->loadChild($childElement);
         }
     }
-
+    
     public function getOwnerSavegame(): SavegameNode {
         return $this->getOwnerArchive()->getOwnerSavegame();
     }
-
+    
     private function getOwnerArchive(): ArchiveNode {
         return $this->getParentNode();
     }
-
+    
     private function getFileNames(): iterable {
         $names = $this->getOwnerArchive()->getFileNames();
         if (strlen($this->fileRange)) {

@@ -11,15 +11,15 @@ use Slothsoft\Savegame\Build\BuilderInterface;
 use Slothsoft\Savegame\Build\XmlBuilder;
 
 class SavegameNode extends AbstractNode implements BuildableInterface {
-
+    
     public function getBuildTag(): string {
         return 'savegame.editor';
     }
-
+    
     public function getBuildHash(): string {
         return $this->fileHash;
     }
-
+    
     public function getBuildAttributes(BuilderInterface $builder): array {
         return [
             'xmlns' => 'http://schema.slothsoft.net/savegame/editor',
@@ -28,41 +28,41 @@ class SavegameNode extends AbstractNode implements BuildableInterface {
             'file-hash' => $this->fileHash
         ];
     }
-
+    
     private Editor $ownerEditor;
-
+    
     private NodeFactory $factory;
-
+    
     private string $saveId;
-
+    
     private string $fileHash;
-
+    
     private array $globalElements;
-
+    
     private int $valueIdCounter = 0;
-
+    
     public function __construct(Editor $ownerEditor, NodeFactory $factory) {
         $this->ownerEditor = $ownerEditor;
         $this->factory = $factory;
     }
-
+    
     protected function loadStruc(LeanElement $strucElement): void {
         parent::loadStruc($strucElement);
-
+        
         $this->saveId = (string) $strucElement->getAttribute('save-id');
         $this->fileHash = (string) $strucElement->getAttribute('file-hash');
-
+        
         $this->globalElements = [];
     }
-
+    
     public function getOwnerEditor(): Editor {
         return $this->ownerEditor;
     }
-
+    
     protected function loadChildren(LeanElement $strucElement): void {
         $archiveList = [];
         $globalList = [];
-
+        
         foreach ($strucElement->getChildren() as $element) {
             switch ($element->getTag()) {
                 case NodeFactory::TAG_ARCHIVE:
@@ -76,28 +76,28 @@ class SavegameNode extends AbstractNode implements BuildableInterface {
                     break;
             }
         }
-
+        
         foreach ($globalList as $element) {
             $this->globalElements[$element->getAttribute('global-id')] = $element->getChildren();
         }
-
+        
         foreach ($archiveList as $element) {
             $this->loadChild($element);
         }
     }
-
+    
     protected function loadNode(LeanElement $strucElement): void {}
-
+    
     public function appendBuildChild(BuildableInterface $node): void {
         assert($node instanceof ArchiveNode);
-
+        
         parent::appendBuildChild($node);
     }
-
+    
     public function getArchiveNodes(): iterable {
         return $this->getBuildChildren() ?? [];
     }
-
+    
     public function getArchiveById(string $id): ArchiveNode {
         if ($nodeList = $this->getBuildChildren()) {
             foreach ($nodeList as $node) {
@@ -107,15 +107,15 @@ class SavegameNode extends AbstractNode implements BuildableInterface {
             }
         }
     }
-
+    
     public function getGlobalElementsById(string $id): ?Vector {
         return $this->globalElements[$id] ?? null;
     }
-
+    
     public function nextValueId(): int {
         return ++ $this->valueIdCounter;
     }
-
+    
     public function getValueMap(): array {
         $ret = [];
         if ($archiveList = $this->getBuildChildren()) {
@@ -133,15 +133,15 @@ class SavegameNode extends AbstractNode implements BuildableInterface {
         }
         return $ret;
     }
-
+    
     public function createNode(LeanElement $strucElement, AbstractNode $parentValue): AbstractNode {
         return $this->factory->createNode($strucElement, $parentValue);
     }
-
+    
     public function getOwnerSavegame(): SavegameNode {
         return $this;
     }
-
+    
     public function getChunkWriter(): ChunkWriterInterface {
         $builder = new XmlBuilder($this);
         $builder->setCacheDirectory(sys_get_temp_dir());

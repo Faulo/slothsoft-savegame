@@ -12,65 +12,65 @@ use Slothsoft\Savegame\Build\BuilderInterface;
 use SplFileInfo;
 
 class FileContainer extends AbstractNode implements NodeEvaluatorInterface, BuildableInterface, FileWriterInterface {
-
+    
     private string $filePath;
-
+    
     private string $fileName;
-
+    
     private string $fileHash;
-
+    
     private string $content;
-
+    
     private Vector $valueList;
-
+    
     private ?Vector $imageList = null;
-
+    
     private array $evaluateCache;
-
+    
     private SavegameNode $ownerSavegame;
-
+    
     private LeanElement $strucElement;
-
+    
     public function getBuildTag(): string {
         return 'file';
     }
-
+    
     public function getBuildAttributes(BuilderInterface $builder): array {
         return [
             'file-name' => $this->fileName
         ];
     }
-
+    
     protected function loadStruc(LeanElement $strucElement): void {
         parent::loadStruc($strucElement);
-
+        
         $archive = $this->getOwnerArchive();
-
+        
         $this->ownerSavegame = $archive->getOwnerSavegame();
-
+        
         $this->strucElement = $strucElement;
-
+        
         $this->fileName = (string) $strucElement->getAttribute('file-name');
         $this->filePath = (string) $archive->getFileByName($this->fileName);
         $this->fileHash = $this->fileName . DIRECTORY_SEPARATOR . md5_file($this->filePath);
-
+        
         $this->valueList = new Vector();
         $this->imageList = null;
         $this->evaluateCache = [];
     }
-
+    
     protected function loadChildren(LeanElement $strucElement): void {}
-
+    
     public function load(): void {
         parent::loadChildren($this->strucElement);
     }
-
+    
     protected function loadNode(LeanElement $strucElement): void {
         assert(file_exists($this->filePath), '$this->filePath must exist');
-
+        
         $this->setContent(file_get_contents($this->filePath));
     }
-
+    
     public function extractContent($offset, $length): string {
         $ret = null;
         switch ($length) {
@@ -92,11 +92,11 @@ class FileContainer extends AbstractNode implements NodeEvaluatorInterface, Buil
         }
         return $ret;
     }
-
+    
     public function insertContent($offset, $length, $value): void {
         $this->content = substr_replace($this->content, $value, $offset, $length);
     }
-
+    
     public function insertContentBit($offset, $bit, $value): void {
         // echo "setting bit $bit at position $offset to " . ($value?'ON':'OFF') . PHP_EOL;
         $byte = $this->extractContent($offset, 1);
@@ -109,19 +109,19 @@ class FileContainer extends AbstractNode implements NodeEvaluatorInterface, Buil
         $byte = substr(pack('N', $byte), - 1);
         $this->insertContent($offset, 1, $byte);
     }
-
+    
     public function setContent($content): void {
         $this->content = $content;
     }
-
+    
     public function getContent(): string {
         return $this->content;
     }
-
+    
     public function getFileName(): string {
         return $this->fileName;
     }
-
+    
     public function getValueByName(string $name): AbstractValueContent {
         foreach ($this->valueList as $node) {
             if ($node->getName() === $name) {
@@ -129,7 +129,7 @@ class FileContainer extends AbstractNode implements NodeEvaluatorInterface, Buil
             }
         }
     }
-
+    
     public function getValueById(int $id): AbstractValueContent {
         foreach ($this->valueList as $node) {
             if ($node->getValueId() === $id) {
@@ -137,11 +137,11 @@ class FileContainer extends AbstractNode implements NodeEvaluatorInterface, Buil
             }
         }
     }
-
+    
     public function getValueList(): Vector {
         return $this->valueList;
     }
-
+    
     public function evaluate($expression) {
         if (is_int($expression)) {
             return $expression;
@@ -157,7 +157,7 @@ class FileContainer extends AbstractNode implements NodeEvaluatorInterface, Buil
         if (preg_match('/^0x(\w+)$/', $expression, $match)) {
             return hexdec($match[1]);
         }
-
+        
         if (! isset($this->evaluateCache[$expression])) {
             $matches = null;
             preg_match_all('/\$([A-Za-z0-9\-\.]+)/', $expression, $matches);
@@ -178,7 +178,7 @@ class FileContainer extends AbstractNode implements NodeEvaluatorInterface, Buil
         }
         return $this->evaluateCache[$expression];
     }
-
+    
     public function evaluateMath(string $code): int {
         static $evalList = [];
         if (! isset($evalList[$code])) {
@@ -187,12 +187,12 @@ class FileContainer extends AbstractNode implements NodeEvaluatorInterface, Buil
         }
         return $evalList[$code];
     }
-
+    
     public function registerValue(AbstractValueContent $node): int {
         $this->valueList[] = $node;
         return $this->ownerSavegame->nextValueId();
     }
-
+    
     public function registerImage(ImageValue $node): int {
         if ($this->imageList === null) {
             $this->imageList = new Vector();
@@ -201,28 +201,28 @@ class FileContainer extends AbstractNode implements NodeEvaluatorInterface, Buil
         $this->imageList[] = $node;
         return $id;
     }
-
+    
     public function getImageNodes(): iterable {
         return $this->imageList;
     }
-
+    
     public function getImageNodeById(int $id): ImageValue {
         return $this->imageList[$id] ?? null;
     }
-
+    
     public function getOwnerSavegame(): SavegameNode {
         return $this->ownerSavegame;
     }
-
+    
     private function getOwnerArchive(): ArchiveNode {
         $parent = $this->getParentNode();
         return $parent instanceof ArchiveNode ? $parent : $parent->getParentNode();
     }
-
+    
     public function toFile(): SplFileInfo {
         return FileInfoFactory::createFromPath($this->filePath);
     }
-
+    
     public function getBuildHash(): string {
         return $this->fileHash;
     }

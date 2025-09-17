@@ -6,7 +6,7 @@ use Slothsoft\Core\XML\LeanElement;
 use SplFileInfo;
 
 class ArchiveRepository {
-
+    
     public function __construct(SplFileInfo $sourceDirectory, LeanElement $infosetElement) {}
 }
 

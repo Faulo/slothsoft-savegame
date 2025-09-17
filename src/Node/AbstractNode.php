@@ -8,49 +8,49 @@ use Slothsoft\Savegame\Converter;
 use Slothsoft\Savegame\Build\BuildableInterface;
 
 abstract class AbstractNode {
-
+    
     abstract protected function loadNode(LeanElement $strucElement): void;
-
+    
     private ?AbstractNode $parentNode = null;
-
+    
     private ?Vector $childNodeList = null;
-
+    
     public function init(LeanElement $strucElement, ?AbstractNode $parentNode = null): void {
         $this->parentNode = $parentNode;
-
+        
         if ($this->parentNode and $this instanceof BuildableInterface) {
             $this->parentNode->appendBuildChild($this);
         }
-
+        
         $this->loadStruc($strucElement);
         $this->loadNode($strucElement);
         $this->loadChildren($strucElement);
     }
-
+    
     public function load(): void {}
-
+    
     protected function loadStruc(LeanElement $strucElement): void {}
-
+    
     protected function loadChildren(LeanElement $strucElement): void {
         foreach ($strucElement->getChildren() as $strucElement) {
             $this->loadChild($strucElement);
         }
     }
-
+    
     final protected function loadChild(LeanElement $strucElement): void {
         $this->getOwnerSavegame()->createNode($strucElement, $this);
     }
-
+    
     abstract public function getOwnerSavegame(): SavegameNode;
-
+    
     protected function getConverter(): Converter {
         return Converter::getInstance();
     }
-
+    
     public function getParentNode(): ?AbstractNode {
         return $this->parentNode;
     }
-
+    
     public function appendBuildChild(BuildableInterface $childNode): void {
         if ($this instanceof BuildableInterface) {
             if ($this->childNodeList === null) {
@@ -61,15 +61,15 @@ abstract class AbstractNode {
             $this->parentNode->appendBuildChild($childNode);
         }
     }
-
+    
     public function getBuildChildren(): ?iterable {
         return $this->childNodeList;
     }
-
+    
     public function getBuildHash(): string {
         return '';
     }
-
+    
     public function getBuildAncestors(): iterable {
         if ($this->parentNode) {
             yield from $this->parentNode->getBuildAncestors();

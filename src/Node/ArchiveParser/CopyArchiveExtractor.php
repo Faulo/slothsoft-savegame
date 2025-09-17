@@ -5,7 +5,7 @@ namespace Slothsoft\Savegame\Node\ArchiveParser;
 use SplFileInfo;
 
 class CopyArchiveExtractor implements ArchiveExtractorInterface {
-
+    
     public function extractArchive(SplFileInfo $archivePath, SplFileInfo $targetDirectory): bool {
         if (! $targetDirectory->isDir()) {
             mkdir((string) $targetDirectory, 0777, true);

@@ -5,7 +5,7 @@ namespace Slothsoft\Savegame\Node\ArchiveParser;
 use SplFileInfo;
 
 interface ArchiveExtractorInterface {
-
+    
     public function extractArchive(SplFileInfo $archivePath, SplFileInfo $targetDirectory): bool;
 }
 
