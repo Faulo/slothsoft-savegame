@@ -2,7 +2,7 @@
 <xsd:schema xmlns="http://schema.slothsoft.net/savegame/editor" targetNamespace="http://schema.slothsoft.net/savegame/editor" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ssv="http://schema.slothsoft.net/schema/versioning" xmlns:xml="http://www.w3.org/XML/1998/namespace"
     elementFormDefault="qualified" attributeFormDefault="unqualified">
 
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="http://www.w3.org/2001/xml.xsd" />
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="farah://slothsoft@farah/schema/xml/1.0" />
 
     <xsd:annotation>
         <xsd:appinfo>
