@@ -76,13 +76,20 @@ final class ArchiveNode extends AbstractNode implements BuildableInterface, File
     
     protected function loadChildren(LeanElement $strucElement): void {}
     
-    public function load(): void {
+    public function load(bool $loadFiles = false): void {
         if ($this->extractedFiles === null) {
             $this->extractedFiles = [];
             foreach ($this->getArchiveFiles() as $file) {
                 $this->extractedFiles[$file->getFilename()] = $file;
             }
             parent::loadChildren($this->strucElement);
+            
+            if ($loadFiles) {
+                /** @var $fileNode FileContainer */
+                foreach ($this->getBuildChildren() as $fileNode) {
+                    $fileNode->load();
+                }
+            }
         }
     }
     

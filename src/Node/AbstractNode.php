@@ -27,8 +27,6 @@ abstract class AbstractNode {
         $this->loadChildren($strucElement);
     }
     
-    public function load(): void {}
-    
     protected function loadStruc(LeanElement $strucElement): void {}
     
     protected function loadChildren(LeanElement $strucElement): void {

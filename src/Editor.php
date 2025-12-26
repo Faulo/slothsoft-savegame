@@ -25,16 +25,16 @@ class Editor {
         $this->config = $config;
     }
     
-    public function loadAllArchives(): void {
+    public function loadAllArchives(bool $includeFiles = false): void {
         $this->load();
         foreach ($this->getArchiveNodes() as $archiveNode) {
-            $archiveNode->load();
+            $archiveNode->load($includeFiles);
         }
     }
     
-    public function loadArchive(string $archiveId): void {
+    public function loadArchive(string $archiveId, bool $includeFiles = false): void {
         $this->load();
-        $this->getArchiveNode($archiveId)->load();
+        $this->getArchiveNode($archiveId)->load($includeFiles);
     }
     
     public function load(): void {
