@@ -51,9 +51,10 @@ final class EventStepInstruction extends AbstractInstructionContent {
             "event-unknown"
         ] as $ref) {
             if ($instructionList = $savegame->getGlobalElementsById($ref)) {
-                break;
+                return $instructionList;
             }
         }
-        return $instructionList;
+        
+        return [];
     }
 }
