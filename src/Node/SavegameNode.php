@@ -13,7 +13,7 @@ use Slothsoft\Savegame\Build\XmlBuilder;
 class SavegameNode extends AbstractNode implements BuildableInterface {
     
     public function getBuildTag(): string {
-        return 'savegame.editor';
+        return 'savegame';
     }
     
     public function getBuildHash(): string {

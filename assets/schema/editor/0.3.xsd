@@ -64,7 +64,7 @@ This namespace defines elements to describe the contents of game files in terms 
 	</xsd:attributeGroup>
 
 
-	<xsd:element name="savegame.editor">
+	<xsd:element name="savegame">
 		<xsd:complexType>
 			<xsd:complexContent>
 				<xsd:extension base="genericNode">
