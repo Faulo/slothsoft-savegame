@@ -82,6 +82,10 @@ class Editor {
         return $this->getSavegameNode()->getArchiveById($archiveName);
     }
     
+    /**
+     *
+     * @return ArchiveNode[]
+     */
     public function getArchiveNodes(): iterable {
         $this->load();
         return $this->getSavegameNode()->getArchiveNodes();

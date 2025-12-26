@@ -86,7 +86,7 @@ final class ArchiveNode extends AbstractNode implements BuildableInterface, File
             
             if ($loadFiles) {
                 /** @var $fileNode FileContainer */
-                foreach ($this->getBuildChildren() as $fileNode) {
+                foreach ($this->getFileNodes() as $fileNode) {
                     $fileNode->load();
                 }
             }
@@ -114,6 +114,10 @@ final class ArchiveNode extends AbstractNode implements BuildableInterface, File
         return $this->name;
     }
     
+    /**
+     *
+     * @return FileContainer[]
+     */
     public function getFileNodes(): iterable {
         return $this->getBuildChildren() ?? [];
     }

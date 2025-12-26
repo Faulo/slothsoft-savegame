@@ -93,6 +93,10 @@ class SavegameNode extends AbstractNode implements BuildableInterface {
         parent::appendBuildChild($node);
     }
     
+    /**
+     *
+     * @return ArchiveNode[]
+     */
     public function getArchiveNodes(): iterable {
         return $this->getBuildChildren() ?? [];
     }
