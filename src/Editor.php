@@ -25,18 +25,6 @@ class Editor {
         $this->config = $config;
     }
     
-    public function loadAllArchives(bool $includeFiles = false): void {
-        $this->load();
-        foreach ($this->getArchiveNodes() as $archiveNode) {
-            $archiveNode->load($includeFiles);
-        }
-    }
-    
-    public function loadArchive(string $archiveId, bool $includeFiles = false): void {
-        $this->load();
-        $this->getArchiveNode($archiveId)->load($includeFiles);
-    }
-    
     public function load(): void {
         if ($this->savegame === null) {
             $strucDoc = DOMHelper::loadDocument((string) $this->config->infosetFile);
@@ -73,22 +61,36 @@ class Editor {
         return $this->config->archiveBuilders[$type];
     }
     
+    public function loadSavegame(bool $loadArchives = false, bool $loadFiles = false): SavegameNode {
+        $savegameNode = $this->getSavegameNode();
+        if ($loadArchives) {
+            foreach ($savegameNode->getArchiveNodes() as $archiveNode) {
+                $archiveNode->load($loadFiles);
+            }
+        }
+        return $savegameNode;
+    }
+    
+    public function loadArchive(string $archiveId, bool $loadFiles = false): ArchiveNode {
+        $savegameNode = $this->loadSavegame();
+        $archiveNode = $savegameNode->getArchiveById($archiveId);
+        $archiveNode->load($loadFiles);
+        return $archiveNode;
+    }
+    
+    public function loadFile(string $archiveId, string $fileId): FileContainer {
+        $archiveNode = $this->loadArchive($archiveId);
+        $fileNode = $archiveNode->getFileNodeByName($fileId);
+        return $fileNode;
+    }
+    
     public function getSavegameNode(): SavegameNode {
+        $this->load();
         return $this->savegame;
     }
     
     public function getArchiveNode(string $archiveName): ArchiveNode {
-        $this->load();
         return $this->getSavegameNode()->getArchiveById($archiveName);
-    }
-    
-    /**
-     *
-     * @return ArchiveNode[]
-     */
-    public function getArchiveNodes(): iterable {
-        $this->load();
-        return $this->getSavegameNode()->getArchiveNodes();
     }
     
     public function getFileNode(string $archiveName, string $fileName): FileContainer {
