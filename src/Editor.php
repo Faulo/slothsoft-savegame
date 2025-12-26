@@ -142,10 +142,6 @@ class Editor {
         return $this->config->userDirectory;
     }
     
-    public function shouldLoadArchive($name): bool {
-        return $this->loadArchives === true or in_array($name, $this->loadArchives);
-    }
-    
     // public function toDocument(): DOMDocument
     // {
     // return $this->getSavegameNode()->toDocument();
