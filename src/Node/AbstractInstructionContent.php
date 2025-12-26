@@ -19,7 +19,8 @@ abstract class AbstractInstructionContent extends AbstractContentNode implements
     }
     
     public function getBuildAttributes(BuilderInterface $builder): array {
-        return parent::getBuildAttributes($builder) + [
+        return [
+            'name' => $this->name,
             'type' => $this->getInstructionType(),
             'dictionary-ref' => $this->dictionaryRef
         ];

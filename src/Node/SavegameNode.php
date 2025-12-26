@@ -22,7 +22,6 @@ class SavegameNode extends AbstractNode implements BuildableInterface {
     
     public function getBuildAttributes(BuilderInterface $builder): array {
         return [
-            'xmlns' => 'http://schema.slothsoft.net/savegame/editor',
             'version' => '0.3',
             'save-id' => $builder->escapeAttribute($this->saveId),
             'file-hash' => $this->fileHash

@@ -4,11 +4,10 @@ namespace Slothsoft\Savegame\Node;
 
 use Slothsoft\Core\XML\LeanElement;
 use Slothsoft\Savegame\Build\BuildableInterface;
-use Slothsoft\Savegame\Build\BuilderInterface;
 
 abstract class AbstractContentNode extends AbstractNode {
     
-    private string $name;
+    protected string $name;
     
     private int $position;
     
@@ -17,12 +16,6 @@ abstract class AbstractContentNode extends AbstractNode {
     protected int $contentOffset;
     
     abstract protected function loadContent(LeanElement $strucElement): void;
-    
-    public function getBuildAttributes(BuilderInterface $builder): array {
-        return [
-            'name' => $this->name
-        ];
-    }
     
     protected function loadStruc(LeanElement $strucElement): void {
         parent::loadStruc($strucElement);

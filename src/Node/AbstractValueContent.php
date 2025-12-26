@@ -19,7 +19,8 @@ abstract class AbstractValueContent extends AbstractContentNode implements Build
     protected $value;
     
     public function getBuildAttributes(BuilderInterface $builder): array {
-        return parent::getBuildAttributes($builder) + [
+        return [
+            'name' => $this->name,
             'position' => $this->getContentOffset(),
             'value-id' => $this->valueId,
             'size' => $this->size

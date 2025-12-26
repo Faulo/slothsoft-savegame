@@ -2,6 +2,7 @@
 declare(strict_types = 1);
 namespace Slothsoft\Savegame\Build;
 
+use Slothsoft\Core\DOMHelper;
 use Slothsoft\Core\IO\FileInfoFactory;
 use Slothsoft\Core\IO\Writable\Decorators\ChunkWriterFileCache;
 use Slothsoft\Core\IO\Writable\Delegates\ChunkWriterFromChunksDelegate;
@@ -95,8 +96,9 @@ class XmlBuilder implements BuilderInterface {
     
     private function chunkBuildableXml(BuildableInterface $node): Generator {
         $tag = $node->getBuildTag();
+        $ns = DOMHelper::NS_SAVEGAME_EDITOR;
         
-        yield "<$tag";
+        yield "<$tag xmlns=\"$ns\"";
         
         foreach ($node->getBuildAttributes($this) as $key => $val) {
             if ($val !== '' and ! isset($this->attributeBlacklist[$key])) {
