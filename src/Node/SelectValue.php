@@ -5,7 +5,7 @@ namespace Slothsoft\Savegame\Node;
 use Slothsoft\Core\XML\LeanElement;
 use Slothsoft\Savegame\Build\BuilderInterface;
 
-class SelectValue extends AbstractValueContent {
+final class SelectValue extends AbstractValueContent {
     
     protected string $dictionaryRef;
     

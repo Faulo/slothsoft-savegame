@@ -5,7 +5,7 @@ namespace Slothsoft\Savegame\Node;
 use Slothsoft\Core\XML\LeanElement;
 use RangeException;
 
-class EventDictionaryInstruction extends AbstractInstructionContent {
+final class EventDictionaryInstruction extends AbstractInstructionContent {
     
     protected function getInstructionType(): string {
         return NodeFactory::TAG_EVENT_DICTIONARY;

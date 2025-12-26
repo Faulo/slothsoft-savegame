@@ -5,7 +5,7 @@ namespace Slothsoft\Savegame\Node;
 use Slothsoft\Core\XML\LeanElement;
 use Slothsoft\Savegame\Build\BuilderInterface;
 
-class ImageMapInstruction extends AbstractInstructionContent {
+final class ImageMapInstruction extends AbstractInstructionContent {
     
     private int $width;
     

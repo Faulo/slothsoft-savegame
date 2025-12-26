@@ -5,7 +5,7 @@ namespace Slothsoft\Savegame\Node;
 use Slothsoft\Core\XML\LeanElement;
 use Slothsoft\Savegame\Build\BuilderInterface;
 
-class InstructionContainer extends AbstractContainerContent {
+final class InstructionContainer extends AbstractContainerContent {
     
     private string $type;
     

@@ -5,7 +5,7 @@ namespace Slothsoft\Savegame;
 use Slothsoft\Savegame\Script\Parser;
 use RangeException;
 
-class Converter {
+final class Converter {
     
     public static function getInstance(): Converter {
         static $instance;

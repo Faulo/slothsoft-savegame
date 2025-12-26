@@ -5,7 +5,7 @@ namespace Slothsoft\Savegame;
 use Slothsoft\Core\XML\LeanElement;
 use SplFileInfo;
 
-class ArchiveRepository {
+final class ArchiveRepository {
     
     public function __construct(SplFileInfo $sourceDirectory, LeanElement $infosetElement) {}
 }

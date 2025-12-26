@@ -5,7 +5,7 @@ namespace Slothsoft\Savegame\Node;
 use Slothsoft\Core\XML\LeanElement;
 use Slothsoft\Savegame\Build\BuilderInterface;
 
-class StringValue extends AbstractValueContent {
+final class StringValue extends AbstractValueContent {
     
     private string $encoding;
     

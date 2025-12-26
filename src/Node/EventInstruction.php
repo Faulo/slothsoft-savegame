@@ -4,7 +4,7 @@ namespace Slothsoft\Savegame\Node;
 
 use Slothsoft\Core\XML\LeanElement;
 
-class EventInstruction extends AbstractInstructionContent {
+final class EventInstruction extends AbstractInstructionContent {
     
     private $size;
     

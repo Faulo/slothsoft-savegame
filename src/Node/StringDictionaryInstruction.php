@@ -5,7 +5,7 @@ namespace Slothsoft\Savegame\Node;
 use Slothsoft\Core\XML\LeanElement;
 use DomainException;
 
-class StringDictionaryInstruction extends AbstractInstructionContent {
+final class StringDictionaryInstruction extends AbstractInstructionContent {
     
     const LIST_TYPE_NULL_DELIMITED = 'null-delimited';
     

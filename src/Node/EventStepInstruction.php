@@ -4,7 +4,7 @@ namespace Slothsoft\Savegame\Node;
 
 use Slothsoft\Core\XML\LeanElement;
 
-class EventStepInstruction extends AbstractInstructionContent {
+final class EventStepInstruction extends AbstractInstructionContent {
     
     /*
      * const EVENT_TYPE_IF = 13;

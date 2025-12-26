@@ -5,7 +5,7 @@ namespace Slothsoft\Savegame\Node;
 use Slothsoft\Core\XML\LeanElement;
 use Slothsoft\Savegame\Build\BuilderInterface;
 
-class EventScriptValue extends AbstractValueContent {
+final class EventScriptValue extends AbstractValueContent {
     
     public function getBuildTag(): string {
         return 'event-script';

@@ -4,7 +4,7 @@ namespace Slothsoft\Savegame\Node;
 
 use Slothsoft\Core\XML\LeanElement;
 
-class BitFieldInstruction extends AbstractInstructionContent {
+final class BitFieldInstruction extends AbstractInstructionContent {
     
     private int $size;
     

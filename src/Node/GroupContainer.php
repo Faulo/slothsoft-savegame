@@ -5,7 +5,7 @@ namespace Slothsoft\Savegame\Node;
 use Slothsoft\Core\XML\LeanElement;
 use Slothsoft\Savegame\Build\BuilderInterface;
 
-class GroupContainer extends AbstractContainerContent {
+final class GroupContainer extends AbstractContainerContent {
     
     private string $dictionaryRef;
     

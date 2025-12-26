@@ -2,11 +2,9 @@
 declare(strict_types = 1);
 namespace Slothsoft\Savegame;
 
-use Slothsoft\Savegame\Node\ArchiveParser\ArchiveBuilderInterface;
-use Slothsoft\Savegame\Node\ArchiveParser\ArchiveExtractorInterface;
 use SplFileInfo;
 
-class EditorConfig {
+final class EditorConfig {
     
     public SplFileInfo $sourceDirectory;
     
@@ -18,13 +16,13 @@ class EditorConfig {
     
     /**
      *
-     * @var ArchiveExtractorInterface[]
+     * @var \Slothsoft\Savegame\Node\ArchiveParser\ArchiveExtractorInterface[]
      */
     public array $archiveExtractors;
     
     /**
      *
-     * @var ArchiveBuilderInterface[]
+     * @var \Slothsoft\Savegame\Node\ArchiveParser\ArchiveBuilderInterface[]
      */
     public array $archiveBuilders;
     

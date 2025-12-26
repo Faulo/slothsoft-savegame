@@ -5,7 +5,7 @@ namespace Slothsoft\Savegame\Node;
 use Slothsoft\Core\XML\LeanElement;
 use Slothsoft\Savegame\Build\BuilderInterface;
 
-class IntegerValue extends AbstractValueContent {
+final class IntegerValue extends AbstractValueContent {
     
     const MAX_VALUES = [
         0,

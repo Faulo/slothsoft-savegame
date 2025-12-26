@@ -7,7 +7,7 @@ use Slothsoft\Core\XML\LeanElement;
 use Slothsoft\Savegame\Build\BuilderInterface;
 use SplFileInfo;
 
-class ImageValue extends AbstractValueContent implements FileWriterInterface {
+final class ImageValue extends AbstractValueContent implements FileWriterInterface {
     
     private int $width;
     

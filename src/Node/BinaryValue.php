@@ -4,7 +4,7 @@ namespace Slothsoft\Savegame\Node;
 
 use Slothsoft\Savegame\Build\BuilderInterface;
 
-class BinaryValue extends AbstractValueContent {
+final class BinaryValue extends AbstractValueContent {
     
     public function getBuildTag(): string {
         return 'binary';

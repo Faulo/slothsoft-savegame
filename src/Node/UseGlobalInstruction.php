@@ -4,7 +4,7 @@ namespace Slothsoft\Savegame\Node;
 
 use Slothsoft\Core\XML\LeanElement;
 
-class UseGlobalInstruction extends AbstractContentNode {
+final class UseGlobalInstruction extends AbstractContentNode {
     
     private string $globalRef;
     

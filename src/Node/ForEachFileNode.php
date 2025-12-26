@@ -4,7 +4,7 @@ namespace Slothsoft\Savegame\Node;
 
 use Slothsoft\Core\XML\LeanElement;
 
-class ForEachFileNode extends AbstractNode {
+final class ForEachFileNode extends AbstractNode {
     
     private string $fileRange;
     

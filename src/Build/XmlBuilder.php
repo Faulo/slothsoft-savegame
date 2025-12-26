@@ -10,7 +10,7 @@ use Generator;
 use RuntimeException;
 use SplFileInfo;
 
-class XmlBuilder implements BuilderInterface {
+final class XmlBuilder implements BuilderInterface {
     
     private array $tagCachelist = [];
     

@@ -4,7 +4,7 @@ namespace Slothsoft\Savegame\Node;
 
 use Slothsoft\Core\XML\LeanElement;
 
-class RepeatGroupInstruction extends AbstractInstructionContent {
+final class RepeatGroupInstruction extends AbstractInstructionContent {
     
     private int $groupSize;
     

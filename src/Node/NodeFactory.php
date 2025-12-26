@@ -6,9 +6,9 @@ use Slothsoft\Core\XML\LeanElement;
 use Slothsoft\Savegame\Editor;
 use DomainException;
 
-class NodeFactory {
+final class NodeFactory {
     
-    const TAG_SAVEGAME_EDITOR = 'savegame.editor';
+    const TAG_SAVEGAME_EDITOR = 'savegame';
     
     const TAG_GLOBALS = 'globals';
     

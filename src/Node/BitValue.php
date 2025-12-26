@@ -5,7 +5,7 @@ namespace Slothsoft\Savegame\Node;
 use Slothsoft\Core\XML\LeanElement;
 use Slothsoft\Savegame\Build\BuilderInterface;
 
-class BitValue extends AbstractValueContent {
+final class BitValue extends AbstractValueContent {
     
     private int $bit = 0;
     

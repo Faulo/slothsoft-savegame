@@ -17,7 +17,7 @@ use Slothsoft\Savegame\Node\ArchiveParser\ArchiveExtractorInterface;
 use DomainException;
 use SplFileInfo;
 
-class ArchiveNode extends AbstractNode implements BuildableInterface, FileWriterInterface, FileReaderInterface {
+final class ArchiveNode extends AbstractNode implements BuildableInterface, FileWriterInterface, FileReaderInterface {
     
     const NAMESPACE_SEPARATOR = '\\';
     
