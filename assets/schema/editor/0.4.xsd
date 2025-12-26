@@ -56,7 +56,7 @@ This namespace defines elements to describe the contents of game files in terms 
 	</xsd:annotation>
 
 	<xsd:attributeGroup name="schemaVersion">
-		<xsd:attribute name="version" type="xsd:token" use="optional" fixed="0.3">
+		<xsd:attribute name="version" type="xsd:token" use="optional" fixed="0.4">
 			<xsd:annotation>
 				<xsd:documentation>The schema version used by the instance document.
 				</xsd:documentation>
