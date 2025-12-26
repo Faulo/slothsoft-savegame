@@ -79,16 +79,24 @@ final class ArchiveNode extends AbstractNode implements BuildableInterface, File
     public function load(): void {
         if ($this->extractedFiles === null) {
             $this->extractedFiles = [];
-            $list = FileSystem::scanDir((string) $this->extractDirectory, FileSystem::SCANDIR_FILEINFO);
-            if (! count($list)) {
-                $this->extractArchive();
-                $list = FileSystem::scanDir((string) $this->extractDirectory, FileSystem::SCANDIR_FILEINFO);
-            }
-            foreach ($list as $file) {
+            foreach ($this->getArchiveFiles() as $file) {
                 $this->extractedFiles[$file->getFilename()] = $file;
             }
             parent::loadChildren($this->strucElement);
         }
+    }
+    
+    private function getArchiveFiles(): array {
+        $directory = (string) $this->extractDirectory;
+        if (is_dir($directory)) {
+            $list = FileSystem::scanDir($directory, FileSystem::SCANDIR_FILEINFO);
+            if (count($list)) {
+                return $list;
+            }
+        }
+        
+        $this->extractArchive();
+        return FileSystem::scanDir($directory, FileSystem::SCANDIR_FILEINFO);
     }
     
     private function extractArchive(): void {
