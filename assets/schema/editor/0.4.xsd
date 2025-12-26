@@ -8,8 +8,8 @@
 		<xsd:appinfo>
 			<ssv:info version="1.0">
 				<ssv:name>Savegame Editor Manifest</ssv:name>
-				<ssv:version>0.3</ssv:version>
-				<ssv:revision>R20251201</ssv:revision>
+				<ssv:version>0.4</ssv:version>
+				<ssv:revision>R20251226</ssv:revision>
 				<ssv:prefix>sse</ssv:prefix>
 				<ssv:namespace>http://schema.slothsoft.net/savegame/editor</ssv:namespace>
 				<ssv:author email="daniel.lio.schulz@gmail.com">Daniel Schulz</ssv:author>
@@ -17,6 +17,10 @@
 This namespace defines elements to describe the contents of game files in terms of which-byte-means-what, in a way that an editor can be automatically built by parsing a manifest file and corresponding game file(s).
 				]]></ssv:description>
 				<ssv:changelog><![CDATA[
+*** Version 0.4 ***
+    R20251226
+        - renamed <savegame.editor> to <savegame>
+
 *** Version 0.3 ***
     R20251201
         - <archive> may have version
@@ -61,7 +65,7 @@ This namespace defines elements to describe the contents of game files in terms 
 	</xsd:attributeGroup>
 
 
-	<xsd:element name="savegame.editor">
+	<xsd:element name="savegame">
 		<xsd:complexType>
 			<xsd:complexContent>
 				<xsd:extension base="genericNode">

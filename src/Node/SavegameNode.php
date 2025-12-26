@@ -22,7 +22,7 @@ class SavegameNode extends AbstractNode implements BuildableInterface {
     
     public function getBuildAttributes(BuilderInterface $builder): array {
         return [
-            'version' => '0.3',
+            'version' => '0.4',
             'save-id' => $builder->escapeAttribute($this->saveId),
             'file-hash' => $this->fileHash
         ];
