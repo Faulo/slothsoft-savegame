@@ -11,7 +11,7 @@ use PHPUnit\Framework\TestCase;
  *
  * @todo auto-generated
  */
-class BitValueTest extends TestCase {
+final class BitValueTest extends TestCase {
     
     public function testClassExists(): void {
         $this->assertTrue(class_exists(BitValue::class), "Failed to load class 'Slothsoft\Savegame\Node\BitValue'!");

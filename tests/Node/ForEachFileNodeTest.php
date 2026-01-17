@@ -11,7 +11,7 @@ use PHPUnit\Framework\TestCase;
  *
  * @todo auto-generated
  */
-class ForEachFileNodeTest extends TestCase {
+final class ForEachFileNodeTest extends TestCase {
     
     public function testClassExists(): void {
         $this->assertTrue(class_exists(ForEachFileNode::class), "Failed to load class 'Slothsoft\Savegame\Node\ForEachFileNode'!");

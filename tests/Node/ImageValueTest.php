@@ -11,7 +11,7 @@ use PHPUnit\Framework\TestCase;
  *
  * @todo auto-generated
  */
-class ImageValueTest extends TestCase {
+final class ImageValueTest extends TestCase {
     
     public function testClassExists(): void {
         $this->assertTrue(class_exists(ImageValue::class), "Failed to load class 'Slothsoft\Savegame\Node\ImageValue'!");

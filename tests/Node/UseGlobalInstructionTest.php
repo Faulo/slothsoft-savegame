@@ -11,7 +11,7 @@ use PHPUnit\Framework\TestCase;
  *
  * @todo auto-generated
  */
-class UseGlobalInstructionTest extends TestCase {
+final class UseGlobalInstructionTest extends TestCase {
     
     public function testClassExists(): void {
         $this->assertTrue(class_exists(UseGlobalInstruction::class), "Failed to load class 'Slothsoft\Savegame\Node\UseGlobalInstruction'!");

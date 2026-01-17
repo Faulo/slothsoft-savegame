@@ -11,7 +11,7 @@ use PHPUnit\Framework\TestCase;
  *
  * @todo auto-generated
  */
-class IntegerValueTest extends TestCase {
+final class IntegerValueTest extends TestCase {
     
     public function testClassExists(): void {
         $this->assertTrue(class_exists(IntegerValue::class), "Failed to load class 'Slothsoft\Savegame\Node\IntegerValue'!");

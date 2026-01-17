@@ -11,7 +11,7 @@ use PHPUnit\Framework\TestCase;
  *
  * @todo auto-generated
  */
-class XmlBuilderTest extends TestCase {
+final class XmlBuilderTest extends TestCase {
     
     public function testClassExists(): void {
         $this->assertTrue(class_exists(XmlBuilder::class), "Failed to load class 'Slothsoft\Savegame\Build\XmlBuilder'!");

@@ -11,7 +11,7 @@ use PHPUnit\Framework\TestCase;
  *
  * @todo auto-generated
  */
-class RepeatGroupInstructionTest extends TestCase {
+final class RepeatGroupInstructionTest extends TestCase {
     
     public function testClassExists(): void {
         $this->assertTrue(class_exists(RepeatGroupInstruction::class), "Failed to load class 'Slothsoft\Savegame\Node\RepeatGroupInstruction'!");

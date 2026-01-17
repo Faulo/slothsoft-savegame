@@ -11,7 +11,7 @@ use PHPUnit\Framework\TestCase;
  *
  * @todo auto-generated
  */
-class ScriptTest extends TestCase {
+final class ScriptTest extends TestCase {
     
     public function testClassExists(): void {
         $this->assertTrue(class_exists(Script::class), "Failed to load class 'Slothsoft\Savegame\Script\Script'!");

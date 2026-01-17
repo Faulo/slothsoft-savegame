@@ -11,7 +11,7 @@ use PHPUnit\Framework\TestCase;
  *
  * @todo auto-generated
  */
-class EventStepInstructionTest extends TestCase {
+final class EventStepInstructionTest extends TestCase {
     
     public function testClassExists(): void {
         $this->assertTrue(class_exists(EventStepInstruction::class), "Failed to load class 'Slothsoft\Savegame\Node\EventStepInstruction'!");

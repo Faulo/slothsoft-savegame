@@ -11,7 +11,7 @@ use PHPUnit\Framework\TestCase;
  *
  * @todo auto-generated
  */
-class NodeEvaluatorInterfaceTest extends TestCase {
+final class NodeEvaluatorInterfaceTest extends TestCase {
     
     public function testInterfaceExists(): void {
         $this->assertTrue(interface_exists(NodeEvaluatorInterface::class), "Failed to load interface 'Slothsoft\Savegame\NodeEvaluatorInterface'!");

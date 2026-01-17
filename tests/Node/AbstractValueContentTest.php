@@ -11,7 +11,7 @@ use PHPUnit\Framework\TestCase;
  *
  * @todo auto-generated
  */
-class AbstractValueContentTest extends TestCase {
+final class AbstractValueContentTest extends TestCase {
     
     public function testClassExists(): void {
         $this->assertTrue(class_exists(AbstractValueContent::class), "Failed to load class 'Slothsoft\Savegame\Node\AbstractValueContent'!");

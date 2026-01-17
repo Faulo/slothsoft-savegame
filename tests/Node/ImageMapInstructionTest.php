@@ -11,7 +11,7 @@ use PHPUnit\Framework\TestCase;
  *
  * @todo auto-generated
  */
-class ImageMapInstructionTest extends TestCase {
+final class ImageMapInstructionTest extends TestCase {
     
     public function testClassExists(): void {
         $this->assertTrue(class_exists(ImageMapInstruction::class), "Failed to load class 'Slothsoft\Savegame\Node\ImageMapInstruction'!");

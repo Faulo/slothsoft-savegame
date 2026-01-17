@@ -11,7 +11,7 @@ use PHPUnit\Framework\TestCase;
  *
  * @todo auto-generated
  */
-class StringDictionaryInstructionTest extends TestCase {
+final class StringDictionaryInstructionTest extends TestCase {
     
     public function testClassExists(): void {
         $this->assertTrue(class_exists(StringDictionaryInstruction::class), "Failed to load class 'Slothsoft\Savegame\Node\StringDictionaryInstruction'!");

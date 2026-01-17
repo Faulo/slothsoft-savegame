@@ -11,7 +11,7 @@ use PHPUnit\Framework\TestCase;
  *
  * @todo auto-generated
  */
-class ArchiveExtractorInterfaceTest extends TestCase {
+final class ArchiveExtractorInterfaceTest extends TestCase {
     
     public function testInterfaceExists(): void {
         $this->assertTrue(interface_exists(ArchiveExtractorInterface::class), "Failed to load interface 'Slothsoft\Savegame\Node\ArchiveParser\ArchiveExtractorInterface'!");
