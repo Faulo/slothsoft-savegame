@@ -4,10 +4,13 @@ namespace Slothsoft\Savegame\Node;
 
 use Slothsoft\Core\XML\LeanElement;
 use Slothsoft\Savegame\Build\BuilderInterface;
+use DomainException;
 
 final class StringValue extends AbstractValueContent {
     
     private string $encoding;
+    
+    private string $type;
     
     public function getBuildTag(): string {
         return 'string';
@@ -25,6 +28,18 @@ final class StringValue extends AbstractValueContent {
         
         $this->value = '';
         $this->encoding = (string) $strucElement->getAttribute('encoding');
+        $this->type = $strucElement->getAttribute('type', 'size-fixed');
+        
+        switch ($this->type) {
+            case 'null-delimited':
+                $text = $this->ownerFile->extractContent($this->contentOffset, 'auto');
+                $this->size = strlen($text);
+                break;
+            case 'size-fixed':
+                break;
+            default:
+                throw new DomainException("Unknown type '$this->type'");
+        }
     }
     
     protected function decodeValue(string $rawValue) {

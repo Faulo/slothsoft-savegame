@@ -22,6 +22,8 @@ This namespace defines elements to describe the contents of game files in terms 
         - added attribute "position-at-string"
         - added attribute "position-from"
         - allow negative hexadecimal values in attribute "position"
+        - allow more complex expressions in attribute "position"
+        - add attribute "type" to <string>.
         
     R20251226
         - renamed <savegame.editor> to <savegame>
@@ -219,6 +221,7 @@ This namespace defines elements to describe the contents of game files in terms 
             <xsd:complexContent>
                 <xsd:extension base="valueContentNode">
                     <xsd:attributeGroup ref="encoding" />
+                    <xsd:attribute name="type" type="stringSizing" use="optional" default="size-fixed" />
                 </xsd:extension>
             </xsd:complexContent>
         </xsd:complexType>
@@ -275,16 +278,7 @@ This namespace defines elements to describe the contents of game files in terms 
                     <xsd:attribute name="string-count" type="numberExpression" />
                     <xsd:attribute name="string-size" type="numberExpression" use="optional" />
                     <xsd:attributeGroup ref="encoding" />
-                    <xsd:attribute name="type" use="required">
-                        <xsd:simpleType>
-                            <xsd:restriction base="xsd:token">
-                                <xsd:enumeration value="null-delimited" />
-                                <xsd:enumeration value="size-interspersed" />
-                                <xsd:enumeration value="size-first" />
-                                <xsd:enumeration value="size-fixed" />
-                            </xsd:restriction>
-                        </xsd:simpleType>
-                    </xsd:attribute>
+                    <xsd:attribute name="type" type="stringSizing" use="required" />
                 </xsd:extension>
             </xsd:complexContent>
         </xsd:complexType>
@@ -493,6 +487,16 @@ This namespace defines elements to describe the contents of game files in terms 
             <xsd:enumeration value="parent" />
             <xsd:enumeration value="sibling" />
             <xsd:enumeration value="root" />
+        </xsd:restriction>
+    </xsd:simpleType>
+
+
+    <xsd:simpleType name="stringSizing">
+        <xsd:restriction base="xsd:token">
+            <xsd:enumeration value="null-delimited" />
+            <xsd:enumeration value="size-interspersed" />
+            <xsd:enumeration value="size-first" />
+            <xsd:enumeration value="size-fixed" />
         </xsd:restriction>
     </xsd:simpleType>
 

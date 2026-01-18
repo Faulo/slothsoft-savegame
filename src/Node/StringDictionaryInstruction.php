@@ -143,6 +143,8 @@ final class StringDictionaryInstruction extends AbstractInstructionContent {
                     $textPosition += $this->stringSize;
                 }
                 break;
+            default:
+                throw new DomainException("Unknown type '$this->type'");
         }
         
         foreach ($strucDataList as $strucData) {

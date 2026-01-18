@@ -194,4 +194,33 @@ EOT;
         $this->assertThat($value->getContentOffset(), new IsEqual($position));
         $this->assertThat($value->getValue(), new IsEqual($search));
     }
+    
+    /**
+     *
+     * @dataProvider positionAtStringProvider
+     */
+    public function test_positionFromSibling_null(string $file, string $search, int $position): void {
+        $size = strlen($search);
+        
+        $xml = <<<EOT
+<savegame version="0.4" xmlns="http://schema.slothsoft.net/savegame/editor">
+    <archive path="$file" type="COPY">
+        <for-each-file>
+            <string type="null-delimited" position-at-string="$search" />
+            <string name="search" position-from="sibling" position="-$size" size="$size" />
+        </for-each-file>
+    </archive>
+</savegame>
+EOT;
+        $savegame = $this->createSavegame($xml);
+        
+        $archive = $savegame->getArchiveById($file);
+        $archive->load(true);
+        
+        $file = $archive->getFileNodeByName('1');
+        
+        $value = $file->getValueByName("search");
+        $this->assertThat($value->getContentOffset(), new IsEqual($position));
+        $this->assertThat($value->getValue(), new IsEqual($search));
+    }
 }
