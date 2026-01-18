@@ -82,7 +82,7 @@ final class XmlBuilder implements BuilderInterface {
             $cacheFile = FileInfoFactory::createFromPath($cacheFile);
             
             $writer = new ChunkWriterFromChunksDelegate(function () use ($node): Generator {
-                yield from $this->chunkBuildableXml($node);
+                yield from $this->chunkBuildableXml($node, true);
             });
             $shouldRefreshCacheDelegate = function (SplFileInfo $cacheFile): bool {
                 return false;
@@ -90,15 +90,19 @@ final class XmlBuilder implements BuilderInterface {
             $writer = new ChunkWriterFileCache($writer, $cacheFile, $shouldRefreshCacheDelegate);
             yield from $writer->toChunks();
         } else {
-            yield from $this->chunkBuildableXml($this->root);
+            yield from $this->chunkBuildableXml($node, true);
         }
     }
     
-    private function chunkBuildableXml(BuildableInterface $node): Generator {
+    private function chunkBuildableXml(BuildableInterface $node, $isRoot = false): Generator {
         $tag = $node->getBuildTag();
-        $ns = DOMHelper::NS_SAVEGAME_EDITOR;
         
-        yield "<$tag xmlns=\"$ns\"";
+        if ($isRoot) {
+            $ns = DOMHelper::NS_SAVEGAME_EDITOR;
+            yield "<$tag xmlns=\"$ns\"";
+        } else {
+            yield "<$tag";
+        }
         
         foreach ($node->getBuildAttributes($this) as $key => $val) {
             if ($val !== '' and ! isset($this->attributeBlacklist[$key])) {
