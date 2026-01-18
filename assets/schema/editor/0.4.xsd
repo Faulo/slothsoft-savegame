@@ -19,7 +19,8 @@ This namespace defines elements to describe the contents of game files in terms 
                 <ssv:changelog><![CDATA[
 *** Version 0.4 ***
     R20260118
-        - added attribute position-at-string
+        - added attribute "position-at-string"
+        - allow negative hexadecimal values in attribute "position"
         
     R20251226
         - renamed <savegame.editor> to <savegame>
@@ -476,7 +477,7 @@ This namespace defines elements to describe the contents of game files in terms 
             </xsd:simpleType>
             <xsd:simpleType>
                 <xsd:restriction base="xsd:token">
-                    <xsd:pattern value="0x[0-9A-F]+" />
+                    <xsd:pattern value="-?0x[0-9A-F]+" />
                 </xsd:restriction>
             </xsd:simpleType>
             <xsd:simpleType>

@@ -155,12 +155,17 @@ final class FileContainer extends AbstractNode implements NodeEvaluatorInterface
         if ($expression === '') {
             return 0;
         }
+        $sign = 1;
+        while ($expression[0] === '-') {
+            $sign *= - 1;
+            $expression = substr($expression, 1);
+        }
         if (is_numeric($expression)) {
-            return (int) $expression;
+            return $sign * (int) $expression;
         }
         $match = null;
         if (preg_match('/^0x(\w+)$/', $expression, $match)) {
-            return hexdec($match[1]);
+            return $sign * hexdec($match[1]);
         }
         
         if (! isset($this->evaluateCache[$expression])) {
@@ -181,7 +186,7 @@ final class FileContainer extends AbstractNode implements NodeEvaluatorInterface
             $this->evaluateCache[$expression] = $this->evaluateMath($code);
             // echo $expression . PHP_EOL . $code . PHP_EOL . $this->evaluateCache[$expression] . PHP_EOL . PHP_EOL;
         }
-        return $this->evaluateCache[$expression];
+        return $sign * $this->evaluateCache[$expression];
     }
     
     public function evaluateMath(string $code): int {

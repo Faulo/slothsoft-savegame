@@ -93,6 +93,12 @@ EOT;
     <archive path="$file" type="COPY">
         <for-each-file>
             <string name="search" position-at-string="$search" size="$size" />
+            <group position-at-string="$search">
+                <group position="16">
+                    <string name="negative-1" position="-16" size="$size" />
+                    <string name="negative-2" position="-0x10" size="$size" />
+                </group>          
+            </group>
         </for-each-file>
     </archive>
 </savegame>
@@ -105,6 +111,14 @@ EOT;
         $file = $archive->getFileNodeByName('1');
         $value = $file->getValueByName('search');
         
+        $this->assertThat($value->getContentOffset(), new IsEqual($position));
+        $this->assertThat($value->getValue(), new IsEqual($search));
+        
+        $value = $file->getValueByName('negative-1');
+        $this->assertThat($value->getContentOffset(), new IsEqual($position));
+        $this->assertThat($value->getValue(), new IsEqual($search));
+        
+        $value = $file->getValueByName('negative-2');
         $this->assertThat($value->getContentOffset(), new IsEqual($position));
         $this->assertThat($value->getValue(), new IsEqual($search));
     }
