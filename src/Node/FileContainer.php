@@ -142,6 +142,11 @@ final class FileContainer extends AbstractNode implements NodeEvaluatorInterface
         return $this->valueList;
     }
     
+    public function findStringAtOrAfter(string $search, int $offset = 0): ?int {
+        $index = strpos($this->content, $search, $offset);
+        return $index === false ? null : $index;
+    }
+    
     public function evaluate($expression) {
         if (is_int($expression)) {
             return $expression;

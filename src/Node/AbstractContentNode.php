@@ -4,6 +4,7 @@ namespace Slothsoft\Savegame\Node;
 
 use Slothsoft\Core\XML\LeanElement;
 use Slothsoft\Savegame\Build\BuildableInterface;
+use RangeException;
 
 abstract class AbstractContentNode extends AbstractNode {
     
@@ -25,11 +26,22 @@ abstract class AbstractContentNode extends AbstractNode {
         $this->ownerFile = $parentNode instanceof FileContainer ? $parentNode : $parentNode->getOwnerFile();
         
         $this->name = (string) $strucElement->getAttribute('name');
+        
         $this->position = $strucElement->hasAttribute('position') ? (int) $this->ownerFile->evaluate($strucElement->getAttribute('position')) : 0;
         
         $this->contentOffset = $this->position;
         if ($parentNode instanceof AbstractContentNode) {
             $this->contentOffset += $parentNode->getContentOffset();
+        }
+        
+        if ($strucElement->hasAttribute('position-at-string')) {
+            $position = $this->ownerFile->findStringAtOrAfter($strucElement->getAttribute('position-at-string'), $this->contentOffset);
+            if ($position === null) {
+                $search = $strucElement->getAttribute('position-at-string');
+                throw new RangeException("Failed to find string '$search' at or after position $this->contentOffset in " . $this->ownerFile->getFileName());
+            }
+            $this->position = $position - $this->contentOffset;
+            $this->contentOffset = $position;
         }
     }
     
