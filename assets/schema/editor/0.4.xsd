@@ -474,7 +474,7 @@ This namespace defines elements to describe the contents of game files in terms 
         <xsd:union>
             <xsd:simpleType>
                 <xsd:restriction base="xsd:token">
-                    <xsd:pattern value="($[A-Za-z0-9\-\.]+|\s+|\d+|[/\*\+\-\(\)])+" />
+                    <xsd:pattern value="(\w+|\s+|\d+|\$|\-|\.|\*|\/|\+|\-|\(|\)|\'|\=|\?|\:)+" />
                 </xsd:restriction>
             </xsd:simpleType>
             <xsd:simpleType>
