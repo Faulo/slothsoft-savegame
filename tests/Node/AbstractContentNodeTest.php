@@ -136,4 +136,62 @@ EOT;
             0x4796
         ];
     }
+    
+    /**
+     *
+     * @dataProvider positionAtStringProvider
+     */
+    public function test_positionFromSibling_string(string $file, string $search, int $position): void {
+        $size = strlen($search);
+        
+        $xml = <<<EOT
+<savegame version="0.4" xmlns="http://schema.slothsoft.net/savegame/editor">
+    <archive path="$file" type="COPY">
+        <for-each-file>
+            <string position-at-string="$search" size="$size" />
+            <string name="search" position-from="sibling" position="-$size" size="$size" />
+        </for-each-file>
+    </archive>
+</savegame>
+EOT;
+        $savegame = $this->createSavegame($xml);
+        
+        $archive = $savegame->getArchiveById($file);
+        $archive->load(true);
+        
+        $file = $archive->getFileNodeByName('1');
+        
+        $value = $file->getValueByName("search");
+        $this->assertThat($value->getContentOffset(), new IsEqual($position));
+        $this->assertThat($value->getValue(), new IsEqual($search));
+    }
+    
+    /**
+     *
+     * @dataProvider positionAtStringProvider
+     */
+    public function test_positionFromSibling_dictionary(string $file, string $search, int $position): void {
+        $size = strlen($search);
+        
+        $xml = <<<EOT
+<savegame version="0.4" xmlns="http://schema.slothsoft.net/savegame/editor">
+    <archive path="$file" type="COPY">
+        <for-each-file>
+            <string-dictionary type="null-delimited" position-at-string="$search" string-count="1" />
+            <string name="search" position-from="sibling" position="-$size" size="$size" />
+        </for-each-file>
+    </archive>
+</savegame>
+EOT;
+        $savegame = $this->createSavegame($xml);
+        
+        $archive = $savegame->getArchiveById($file);
+        $archive->load(true);
+        
+        $file = $archive->getFileNodeByName('1');
+        
+        $value = $file->getValueByName("search");
+        $this->assertThat($value->getContentOffset(), new IsEqual($position));
+        $this->assertThat($value->getValue(), new IsEqual($search));
+    }
 }

@@ -20,6 +20,7 @@ This namespace defines elements to describe the contents of game files in terms 
 *** Version 0.4 ***
     R20260118
         - added attribute "position-at-string"
+        - added attribute "position-from"
         - allow negative hexadecimal values in attribute "position"
         
     R20251226
@@ -391,6 +392,7 @@ This namespace defines elements to describe the contents of game files in terms 
                 <xsd:attribute name="name" type="name" use="optional" />
                 <xsd:attribute name="position" type="numberExpression" use="optional" />
                 <xsd:attribute name="position-at-string" type="xsd:token" use="optional" />
+                <xsd:attribute name="position-from" type="positioningContext" use="optional" default="parent" />
             </xsd:extension>
         </xsd:complexContent>
     </xsd:complexType>
@@ -484,6 +486,14 @@ This namespace defines elements to describe the contents of game files in terms 
                 <xsd:restriction base="xsd:integer" />
             </xsd:simpleType>
         </xsd:union>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="positioningContext">
+        <xsd:restriction base="xsd:token">
+            <xsd:enumeration value="parent" />
+            <xsd:enumeration value="sibling" />
+            <xsd:enumeration value="root" />
+        </xsd:restriction>
     </xsd:simpleType>
 
     <xsd:simpleType name="imageDimension">

@@ -30,8 +30,31 @@ abstract class AbstractContentNode extends AbstractNode {
         $this->position = $strucElement->hasAttribute('position') ? (int) $this->ownerFile->evaluate($strucElement->getAttribute('position')) : 0;
         
         $this->contentOffset = $this->position;
-        if ($parentNode instanceof AbstractContentNode) {
-            $this->contentOffset += $parentNode->getContentOffset();
+        
+        switch ($strucElement->getAttribute('position-from', 'parent')) {
+            case 'root':
+                break;
+            case 'parent':
+                if ($parentNode instanceof AbstractContentNode) {
+                    $this->contentOffset += $parentNode->getContentOffset();
+                }
+                break;
+            case 'sibling':
+                /** @var AbstractValueContent $previousSibling */
+                $previousSibling = null;
+                foreach ($this->getOwnerFile()->getValueList() as $node) {
+                    if ($node === $this) {
+                        break;
+                    }
+                    if ($node instanceof AbstractValueContent) {
+                        $previousSibling = $node;
+                    }
+                }
+                
+                if ($previousSibling) {
+                    $this->contentOffset += $previousSibling->getContentOffset() + $previousSibling->getContentSize();
+                }
+                break;
         }
         
         if ($strucElement->hasAttribute('position-at-string')) {
