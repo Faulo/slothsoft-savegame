@@ -4,6 +4,7 @@ namespace Slothsoft\Savegame\Node;
 
 use Slothsoft\Core\XML\LeanElement;
 use Slothsoft\Savegame\Build\BuilderInterface;
+use InvalidArgumentException;
 
 final class BitValue extends AbstractValueContent {
     
@@ -40,6 +41,9 @@ final class BitValue extends AbstractValueContent {
     }
     
     protected function encodeValue($value): string {
-        return $this->getConverter()->encodeInteger($value, $this->size);
+        if (! is_numeric($value)) {
+            throw new InvalidArgumentException("IntegerValue must received integer, but got '$value'.");
+        }
+        return $this->getConverter()->encodeInteger((int) $value, $this->size);
     }
 }
