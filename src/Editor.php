@@ -110,14 +110,14 @@ class Editor {
         }
     }
     
-    public function findGameFile(string $name): SplFileInfo {
-        $defaultFile = $this->buildDefaultFile($name);
-        $userFile = $this->buildUserFile($name);
+    public function findGameFile(string $path): SplFileInfo {
+        $defaultFile = $this->buildDefaultFile($path);
+        $userFile = $this->buildUserFile($path);
         return $userFile->isFile() ? $userFile : $defaultFile;
     }
     
-    public function writeGameFile(string $name, StringWriterInterface $writer): SplFileInfo {
-        $userFile = $this->buildUserFile($name);
+    public function writeGameFile(string $path, StringWriterInterface $writer): SplFileInfo {
+        $userFile = $this->buildUserFile($path);
         $userPath = (string) $userFile;
         if (! is_dir(dirname($userPath))) {
             mkdir(dirname($userPath), 0777, true);
@@ -134,8 +134,8 @@ class Editor {
         return $this->config->sourceDirectory;
     }
     
-    private function buildUserFile(string $name): SplFileInfo {
-        return new SplFileInfo($this->getUserDirectory() . DIRECTORY_SEPARATOR . $name);
+    private function buildUserFile(string $path): SplFileInfo {
+        return new SplFileInfo($this->getUserDirectory() . DIRECTORY_SEPARATOR . $path);
     }
     
     private function getUserDirectory(): SplFileInfo {
