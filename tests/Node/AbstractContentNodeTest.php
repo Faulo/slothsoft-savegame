@@ -69,7 +69,7 @@ final class AbstractContentNodeTest extends TestCase {
 EOT;
         $savegame = $this->createSavegame($xml);
         
-        $archive = $savegame->getArchiveById($file);
+        $archive = $savegame->getArchiveByPath($file);
         $archive->load(true);
         
         $file = $archive->getFileNodeByName('1');
@@ -105,7 +105,7 @@ EOT;
 EOT;
         $savegame = $this->createSavegame($xml);
         
-        $archive = $savegame->getArchiveById($file);
+        $archive = $savegame->getArchiveByPath($file);
         $archive->load(true);
         
         $file = $archive->getFileNodeByName('1');
@@ -156,7 +156,7 @@ EOT;
 EOT;
         $savegame = $this->createSavegame($xml);
         
-        $archive = $savegame->getArchiveById($file);
+        $archive = $savegame->getArchiveByPath($file);
         $archive->load(true);
         
         $file = $archive->getFileNodeByName('1');
@@ -185,7 +185,7 @@ EOT;
 EOT;
         $savegame = $this->createSavegame($xml);
         
-        $archive = $savegame->getArchiveById($file);
+        $archive = $savegame->getArchiveByPath($file);
         $archive->load(true);
         
         $file = $archive->getFileNodeByName('1');
@@ -214,7 +214,7 @@ EOT;
 EOT;
         $savegame = $this->createSavegame($xml);
         
-        $archive = $savegame->getArchiveById($file);
+        $archive = $savegame->getArchiveByPath($file);
         $archive->load(true);
         
         $file = $archive->getFileNodeByName('1');

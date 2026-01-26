@@ -101,10 +101,11 @@ class SavegameNode extends AbstractNode implements BuildableInterface {
         return $this->getBuildChildren() ?? [];
     }
     
-    public function getArchiveById(string $id): ArchiveNode {
+    public function getArchiveByPath(string $path): ArchiveNode {
         if ($nodeList = $this->getBuildChildren()) {
+            /** @var ArchiveNode $node */
             foreach ($nodeList as $node) {
-                if ($node->getArchiveId() === $id) {
+                if ($node->getArchivePath() === $path) {
                     return $node;
                 }
             }

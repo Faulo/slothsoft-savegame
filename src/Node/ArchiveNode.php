@@ -111,7 +111,11 @@ final class ArchiveNode extends AbstractNode implements BuildableInterface, File
         $this->getArchiveExtractor()->extractArchive($this->file, $this->extractDirectory);
     }
     
-    public function getArchiveId(): string {
+    public function getArchivePath(): string {
+        return $this->path;
+    }
+    
+    public function getName(): string {
         return $this->name;
     }
     

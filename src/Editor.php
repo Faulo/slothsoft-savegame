@@ -71,15 +71,15 @@ class Editor {
         return $savegameNode;
     }
     
-    public function loadArchive(string $archiveId, bool $loadFiles = false): ArchiveNode {
+    public function loadArchive(string $archivePath, bool $loadFiles = false): ArchiveNode {
         $savegameNode = $this->loadSavegame();
-        $archiveNode = $savegameNode->getArchiveById($archiveId);
+        $archiveNode = $savegameNode->getArchiveByPath($archivePath);
         $archiveNode->load($loadFiles);
         return $archiveNode;
     }
     
-    public function loadFile(string $archiveId, string $fileId): FileContainer {
-        $archiveNode = $this->loadArchive($archiveId);
+    public function loadFile(string $archivePath, string $fileId): FileContainer {
+        $archiveNode = $this->loadArchive($archivePath);
         $fileNode = $archiveNode->getFileNodeByName($fileId);
         return $fileNode;
     }
@@ -89,8 +89,8 @@ class Editor {
         return $this->savegame;
     }
     
-    public function getArchiveNode(string $archiveName): ArchiveNode {
-        return $this->getSavegameNode()->getArchiveById($archiveName);
+    public function getArchiveNode(string $archivePath): ArchiveNode {
+        return $this->getSavegameNode()->getArchiveByPath($archivePath);
     }
     
     public function getFileNode(string $archiveName, string $fileName): FileContainer {
