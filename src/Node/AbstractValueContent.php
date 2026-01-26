@@ -49,11 +49,18 @@ abstract class AbstractValueContent extends AbstractContentNode implements Build
         return $this->valueId;
     }
     
-    public function setValue($value, bool $updateContent = false): void {
-        $this->value = $value;
-        if ($updateContent) {
-            $this->updateContent();
+    public function setValue($value, bool $updateContent = false): bool {
+        settype($value, gettype($this->value));
+        
+        if ($this->value !== $value) {
+            $this->value = $value;
+            if ($updateContent) {
+                $this->updateContent();
+            }
+            return true;
         }
+        
+        return false;
     }
     
     public function getValue() {

@@ -30,7 +30,7 @@ final class ArchiveNode extends AbstractNode implements BuildableInterface, File
     
     private string $timestamp;
     
-    private string $fileHash;
+    private ?string $fileHash = null;
     
     private int $size;
     
@@ -47,7 +47,20 @@ final class ArchiveNode extends AbstractNode implements BuildableInterface, File
     }
     
     public function getBuildHash(): string {
+        if ($this->fileHash === null) {
+            $hash = '';
+            /** @var FileContainer $node */
+            foreach ($this->getFileNodes() as $node) {
+                $hash .= $node->getBuildHash();
+            }
+            $this->fileHash = md5($hash);
+        }
         return $this->fileHash;
+    }
+    
+    public function setDirty(): void {
+        $this->fileHash = null;
+        $this->getOwnerSavegame()->setDirty();
     }
     
     public function getBuildAttributes(BuilderInterface $builder): array {
@@ -86,7 +99,7 @@ final class ArchiveNode extends AbstractNode implements BuildableInterface, File
             parent::loadChildren($this->strucElement);
             
             if ($loadFiles) {
-                /** @var $fileNode FileContainer */
+                /** @var FileContainer $fileNode */
                 foreach ($this->getFileNodes() as $fileNode) {
                     $fileNode->load();
                 }
@@ -143,6 +156,7 @@ final class ArchiveNode extends AbstractNode implements BuildableInterface, File
         $names = [];
         
         if ($nodeList = $this->getFileNodes()) {
+            /** @var FileContainer $node */
             foreach ($nodeList as $node) {
                 if ($node->getFileName() === $name) {
                     return $node;

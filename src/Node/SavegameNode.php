@@ -3,12 +3,10 @@ declare(strict_types = 1);
 namespace Slothsoft\Savegame\Node;
 
 use Ds\Vector;
-use Slothsoft\Core\IO\Writable\ChunkWriterInterface;
 use Slothsoft\Core\XML\LeanElement;
 use Slothsoft\Savegame\Editor;
 use Slothsoft\Savegame\Build\BuildableInterface;
 use Slothsoft\Savegame\Build\BuilderInterface;
-use Slothsoft\Savegame\Build\XmlBuilder;
 
 class SavegameNode extends AbstractNode implements BuildableInterface {
     
@@ -17,7 +15,19 @@ class SavegameNode extends AbstractNode implements BuildableInterface {
     }
     
     public function getBuildHash(): string {
-        return $this->fileHash;
+        if ($this->valueHash === null) {
+            $hash = '';
+            /** @var ArchiveNode $node */
+            foreach ($this->getArchiveNodes() as $node) {
+                $hash .= $node->getBuildHash();
+            }
+            $this->valueHash = md5($hash);
+        }
+        return $this->fileHash . '-' . $this->valueHash;
+    }
+    
+    public function setDirty(): void {
+        $this->valueHash = null;
     }
     
     public function getBuildAttributes(BuilderInterface $builder): array {
@@ -35,6 +45,8 @@ class SavegameNode extends AbstractNode implements BuildableInterface {
     private string $saveId;
     
     private string $fileHash;
+    
+    private ?string $valueHash = null;
     
     private array $globalElements;
     
@@ -123,10 +135,13 @@ class SavegameNode extends AbstractNode implements BuildableInterface {
     public function getValueMap(): array {
         $ret = [];
         if ($archiveList = $this->getBuildChildren()) {
+            /** @var ArchiveNode $archive */
             foreach ($archiveList as $archive) {
                 if ($fileList = $archive->getBuildChildren()) {
+                    /** @var FileContainer $file */
                     foreach ($fileList as $file) {
                         if ($valueList = $file->getValueList()) {
+                            /** @var AbstractValueContent $value */
                             foreach ($valueList as $value) {
                                 $ret[$value->getValueId()] = $value;
                             }
@@ -144,11 +159,5 @@ class SavegameNode extends AbstractNode implements BuildableInterface {
     
     public function getOwnerSavegame(): SavegameNode {
         return $this;
-    }
-    
-    public function getChunkWriter(): ChunkWriterInterface {
-        $builder = new XmlBuilder($this);
-        $builder->setCacheDirectory(sys_get_temp_dir());
-        return $builder;
     }
 }

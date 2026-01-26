@@ -5,6 +5,7 @@ namespace Slothsoft\Savegame;
 use Slothsoft\Core\DOMHelper;
 use Slothsoft\Core\IO\Writable\StringWriterInterface;
 use Slothsoft\Core\XML\LeanElement;
+use Slothsoft\Savegame\Node\AbstractValueContent;
 use Slothsoft\Savegame\Node\ArchiveNode;
 use Slothsoft\Savegame\Node\FileContainer;
 use Slothsoft\Savegame\Node\NodeFactory;
@@ -98,14 +99,18 @@ class Editor {
     }
     
     public function applyValues(array $data) {
-        $valueMap = $this->getSavegameNode()->getValueMap();
+        $savegame = $this->getSavegameNode();
+        
+        $valueMap = $savegame->getValueMap();
         foreach ($data as $id => $val) {
             if ($val === '_checkbox') {
                 $val = isset($data[$id . $val]);
             }
             if (isset($valueMap[$id])) {
+                /** @var AbstractValueContent $node */
+                $node = $valueMap[$id];
                 // printf('%s: %s => %s%s', $id, $node->getValue(), $val, PHP_EOL);
-                $valueMap[$id]->setValue($val, true);
+                $node->setValue($val, true);
             }
         }
     }

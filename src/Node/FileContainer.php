@@ -17,9 +17,9 @@ final class FileContainer extends AbstractNode implements NodeEvaluatorInterface
     
     private string $fileName;
     
-    private string $fileHash;
+    private ?string $fileHash = null;
     
-    private string $content;
+    private ?string $content = null;
     
     private Vector $valueList;
     
@@ -52,7 +52,6 @@ final class FileContainer extends AbstractNode implements NodeEvaluatorInterface
         
         $this->fileName = (string) $strucElement->getAttribute('file-name');
         $this->filePath = (string) $archive->getFileByName($this->fileName);
-        $this->fileHash = $this->fileName . DIRECTORY_SEPARATOR . md5_file($this->filePath);
         
         $this->valueList = new Vector();
         $this->imageList = null;
@@ -93,11 +92,11 @@ final class FileContainer extends AbstractNode implements NodeEvaluatorInterface
         return $ret;
     }
     
-    public function insertContent($offset, $length, $value): void {
-        $this->content = substr_replace($this->content, $value, $offset, $length);
+    public function insertContent(int $offset, int $length, string $value): void {
+        $this->setContent(substr_replace($this->content, $value, $offset, $length));
     }
     
-    public function insertContentBit($offset, $bit, $value): void {
+    public function insertContentBit(int $offset, int $bit, int $value): void {
         // echo "setting bit $bit at position $offset to " . ($value?'ON':'OFF') . PHP_EOL;
         $byte = $this->extractContent($offset, 1);
         $byte = hexdec(bin2hex($byte));
@@ -110,8 +109,11 @@ final class FileContainer extends AbstractNode implements NodeEvaluatorInterface
         $this->insertContent($offset, 1, $byte);
     }
     
-    public function setContent($content): void {
-        $this->content = $content;
+    public function setContent(string $content): void {
+        if ($this->content !== $content) {
+            $this->content = $content;
+            $this->setDirty();
+        }
     }
     
     public function getContent(): string {
@@ -123,6 +125,7 @@ final class FileContainer extends AbstractNode implements NodeEvaluatorInterface
     }
     
     public function getValueByName(string $name): AbstractValueContent {
+        /** @var AbstractValueContent $node */
         foreach ($this->valueList as $node) {
             if ($node->getName() === $name) {
                 return $node;
@@ -131,6 +134,7 @@ final class FileContainer extends AbstractNode implements NodeEvaluatorInterface
     }
     
     public function getValueById(int $id): AbstractValueContent {
+        /** @var AbstractValueContent $node */
         foreach ($this->valueList as $node) {
             if ($node->getValueId() === $id) {
                 return $node;
@@ -234,6 +238,12 @@ final class FileContainer extends AbstractNode implements NodeEvaluatorInterface
     }
     
     public function getBuildHash(): string {
+        $this->fileHash ??= $this->fileName . DIRECTORY_SEPARATOR . ($this->content === null ? md5_file($this->filePath) : md5($this->content));
         return $this->fileHash;
+    }
+    
+    public function setDirty(): void {
+        $this->fileHash = null;
+        $this->getOwnerArchive()->setDirty();
     }
 }
