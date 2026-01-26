@@ -3,7 +3,7 @@ declare(strict_types = 1);
 namespace Slothsoft\Savegame;
 
 use Slothsoft\Core\DOMHelper;
-use Slothsoft\Core\IO\Writable\FileWriterInterface;
+use Slothsoft\Core\IO\Writable\StringWriterInterface;
 use Slothsoft\Core\XML\LeanElement;
 use Slothsoft\Savegame\Node\ArchiveNode;
 use Slothsoft\Savegame\Node\FileContainer;
@@ -116,7 +116,7 @@ class Editor {
         return $userFile->isFile() ? $userFile : $defaultFile;
     }
     
-    public function writeGameFile(string $name, FileWriterInterface $writer): SplFileInfo {
+    public function writeGameFile(string $name, StringWriterInterface $writer): SplFileInfo {
         $userFile = $this->buildUserFile($name);
         $userPath = (string) $userFile;
         if (! is_dir(dirname($userPath))) {

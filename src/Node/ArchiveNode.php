@@ -8,6 +8,7 @@ use Slothsoft\Core\Calendar\DateTimeFormatter;
 use Slothsoft\Core\IO\FileInfoFactory;
 use Slothsoft\Core\IO\Readable\FileReaderInterface;
 use Slothsoft\Core\IO\Writable\FileWriterInterface;
+use Slothsoft\Core\IO\Writable\StringWriterInterface;
 use Slothsoft\Core\XML\LeanElement;
 use Slothsoft\Savegame\Editor;
 use Slothsoft\Savegame\Build\BuildableInterface;
@@ -17,7 +18,7 @@ use Slothsoft\Savegame\Node\ArchiveParser\ArchiveExtractorInterface;
 use DomainException;
 use SplFileInfo;
 
-final class ArchiveNode extends AbstractNode implements BuildableInterface, FileWriterInterface, FileReaderInterface {
+final class ArchiveNode extends AbstractNode implements BuildableInterface, FileWriterInterface, StringWriterInterface, FileReaderInterface {
     
     const NAMESPACE_SEPARATOR = '\\';
     

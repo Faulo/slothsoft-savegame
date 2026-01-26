@@ -3,11 +3,12 @@ declare(strict_types = 1);
 namespace Slothsoft\Savegame\Node;
 
 use Slothsoft\Core\IO\Writable\FileWriterInterface;
+use Slothsoft\Core\IO\Writable\StringWriterInterface;
 use Slothsoft\Core\XML\LeanElement;
 use Slothsoft\Savegame\Build\BuilderInterface;
 use SplFileInfo;
 
-final class ImageValue extends AbstractValueContent implements FileWriterInterface {
+final class ImageValue extends AbstractValueContent implements FileWriterInterface, StringWriterInterface {
     
     private int $width;
     
