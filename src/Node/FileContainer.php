@@ -96,7 +96,7 @@ final class FileContainer extends AbstractNode implements NodeEvaluatorInterface
         $this->setContent(substr_replace($this->content, $value, $offset, $length));
     }
     
-    public function insertContentBit(int $offset, int $bit, int $value): void {
+    public function insertContentBit(int $offset, int $bit, bool $value): void {
         // echo "setting bit $bit at position $offset to " . ($value?'ON':'OFF') . PHP_EOL;
         $byte = $this->extractContent($offset, 1);
         $byte = hexdec(bin2hex($byte));
