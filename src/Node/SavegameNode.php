@@ -66,6 +66,10 @@ class SavegameNode extends AbstractNode implements BuildableInterface {
         $this->globalElements = [];
     }
     
+    public function setSaveId(string $saveId): void {
+        $this->saveId = $saveId;
+    }
+    
     public function getOwnerEditor(): Editor {
         return $this->ownerEditor;
     }
