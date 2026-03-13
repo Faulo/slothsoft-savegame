@@ -11,12 +11,12 @@
 	"require" : {
 		"php" : ">=7.4",
 		"php-ds/php-ds" : "^1.2",
-		"slothsoft/core" : "^1.13.13",
-		"slothsoft/farah" : "^1.21.3"
+		"slothsoft/core" : "^1.14.19",
+		"slothsoft/farah" : "^1.27.1"
 	},
 	"require-dev" : {
 		"phpunit/phpunit" : "~9.6.23",
-		"slothsoft/farah-testing" : "^1.2.0"
+		"slothsoft/farah-testing" : "^1.3.1"
 	},
 	"suggest" : {
 		"ext-ds" : "*"
