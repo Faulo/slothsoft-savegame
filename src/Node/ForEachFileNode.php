@@ -2,6 +2,7 @@
 declare(strict_types = 1);
 namespace Slothsoft\Savegame\Node;
 
+use Ds\Set;
 use Slothsoft\Core\XML\LeanElement;
 
 final class ForEachFileNode extends AbstractNode {
@@ -40,7 +41,7 @@ final class ForEachFileNode extends AbstractNode {
         return $this->getParentNode();
     }
     
-    private function getFileNames(): iterable {
+    private function getFileNames(): Set {
         $names = $this->getOwnerArchive()->getFileNames();
         
         if (strlen($this->list)) {
