@@ -2,6 +2,8 @@
 declare(strict_types = 1);
 namespace Slothsoft\Savegame\Node;
 
+use Ds\Map;
+use Ds\Set;
 use Slothsoft\Core\FileSystem;
 use Slothsoft\Core\ServerEnvironment;
 use Slothsoft\Core\Calendar\DateTimeFormatter;
@@ -40,7 +42,7 @@ final class ArchiveNode extends AbstractNode implements BuildableInterface, File
     
     private SplFileInfo $extractDirectory;
     
-    private ?array $extractedFiles = null;
+    private ?Map $extractedFiles = null;
     
     public function getBuildTag(): string {
         return 'archive';
@@ -92,7 +94,7 @@ final class ArchiveNode extends AbstractNode implements BuildableInterface, File
     
     public function load(bool $loadFiles = false): void {
         if ($this->extractedFiles === null) {
-            $this->extractedFiles = [];
+            $this->extractedFiles = new Map();
             foreach ($this->getArchiveFiles() as $file) {
                 $this->extractedFiles[$file->getFilename()] = $file;
             }
@@ -140,13 +142,15 @@ final class ArchiveNode extends AbstractNode implements BuildableInterface, File
         return $this->getBuildChildren() ?? [];
     }
     
-    public function getFileNames(): iterable {
-        return array_keys($this->extractedFiles);
+    public function getFileNames(): Set {
+        return $this->extractedFiles->keys();
     }
     
     public function getFileByName(string $name): SplFileInfo {
         if (! isset($this->extractedFiles[$name])) {
-            throw new DomainException(sprintf('Unknown file "%s"! Currently available from archive "%s": [%s]', $name, $this->file, implode(', ', $this->getFileNames())));
+            throw new DomainException(sprintf('Unknown file "%s"! Currently available from archive "%s": [%s]', $name, $this->file, implode(', ', [
+                ...$this->getFileNames()
+            ])));
         }
         
         return $this->extractedFiles[$name];

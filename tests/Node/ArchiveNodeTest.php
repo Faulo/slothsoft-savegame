@@ -2,7 +2,9 @@
 declare(strict_types = 1);
 namespace Slothsoft\Savegame\Node;
 
+use Ds\Set;
 use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Constraint\IsEqual;
 use PHPUnit\Framework\MockObject\MockObject;
 use Slothsoft\Core\IO\FileInfo;
 use Slothsoft\Core\IO\FileInfoFactory;
@@ -37,8 +39,8 @@ class ArchiveNodeTest extends TestCase {
     
     private ArchiveNode $sut;
     
-    private function init() {
-        $this->archiveFile = FileInfoFactory::createFromString('');
+    private function init(string $contents = '') {
+        $this->archiveFile = FileInfoFactory::createFromString($contents);
         
         $this->extractor = $this->createMock(ArchiveExtractorInterface::class);
         $this->extractor->method('extractArchive')->willReturnCallback(function (SplFileInfo $archivePath, SplFileInfo $targetDirectory): bool {
@@ -77,9 +79,23 @@ class ArchiveNodeTest extends TestCase {
         
         $actual = $this->sut->getFileNames();
         
-        $this->assertEquals([
+        $this->assertThat($actual, new IsEqual(new Set([
             $this->extractedFileName
-        ], $actual);
+        ])));
+    }
+    
+    public function testGetFileNamesIntegers(): void {
+        $this->extractedFileName = '100';
+        
+        $this->init('integers');
+        
+        $this->sut->load();
+        
+        $actual = $this->sut->getFileNames();
+        
+        $this->assertThat($actual, new IsEqual(new Set([
+            $this->extractedFileName
+        ])));
     }
     
     public function testGetFileByNameMissing(): void {

@@ -45,21 +45,21 @@ final class ForEachFileNode extends AbstractNode {
         
         if (strlen($this->list)) {
             $range = preg_split('~\s+~', $this->list, 0, PREG_SPLIT_NO_EMPTY);
-            $names = array_filter($names, function ($name) use ($range) {
+            $names = $names->filter(function (string $name) use ($range): bool {
                 return in_array($name, $range);
             });
         }
         
         if (strlen($this->rangeStart)) {
             $range = $this->rangeStart;
-            $names = array_filter($names, function ($name) use ($range) {
+            $names = $names->filter(function (string $name) use ($range): bool {
                 return strcmp($name, $range) >= 0;
             });
         }
         
         if (strlen($this->rangeEnd)) {
             $range = $this->rangeEnd;
-            $names = array_filter($names, function ($name) use ($range) {
+            $names = $names->filter(function (string $name) use ($range): bool {
                 return strcmp($name, $range) <= 0;
             });
         }
