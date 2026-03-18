@@ -6,11 +6,17 @@ use Slothsoft\Core\XML\LeanElement;
 
 final class ForEachFileNode extends AbstractNode {
     
-    private string $fileRange;
+    private string $list;
+    
+    private string $rangeStart;
+    
+    private string $rangeEnd;
     
     protected function loadStruc(LeanElement $strucElement): void {
         parent::loadStruc($strucElement);
-        $this->fileRange = (string) $strucElement->getAttribute('file-range');
+        $this->list = (string) $strucElement->getAttribute('list');
+        $this->rangeStart = (string) $strucElement->getAttribute('range-start');
+        $this->rangeEnd = (string) $strucElement->getAttribute('range-end');
     }
     
     protected function loadNode(LeanElement $strucElement): void {}
@@ -36,12 +42,28 @@ final class ForEachFileNode extends AbstractNode {
     
     private function getFileNames(): iterable {
         $names = $this->getOwnerArchive()->getFileNames();
-        if (strlen($this->fileRange)) {
-            $range = preg_split('~\s+~', $this->fileRange, 0, PREG_SPLIT_NO_EMPTY);
+        
+        if (strlen($this->list)) {
+            $range = preg_split('~\s+~', $this->list, 0, PREG_SPLIT_NO_EMPTY);
             $names = array_filter($names, function ($name) use ($range) {
                 return in_array($name, $range);
             });
         }
+        
+        if (strlen($this->rangeStart)) {
+            $range = $this->rangeStart;
+            $names = array_filter($names, function ($name) use ($range) {
+                return strcmp($name, $range) >= 0;
+            });
+        }
+        
+        if (strlen($this->rangeEnd)) {
+            $range = $this->rangeEnd;
+            $names = array_filter($names, function ($name) use ($range) {
+                return strcmp($name, $range) <= 0;
+            });
+        }
+        
         return $names;
     }
 }
