@@ -1,48 +1,49 @@
 {
-	"name" : "slothsoft/savegame",
-	"description" : "A Farah module for editing arbitrary savegame files.",
-	"license" : "MIT",
-	"authors" : [{
-			"name" : "Daniel Schulz",
-			"email" : "info.slothsoft@gmail.com"
-		}
-	],
-	"type" : "library",
-	"require" : {
-		"php" : ">=8.2",
-		"php-ds/php-ds" : "^1.7.0",
-		"slothsoft/core" : "^1.14.19",
-		"slothsoft/farah" : "^1.28.2"
-	},
-	"require-dev" : {
-		"phpunit/phpunit" : "~9.6.34",
-		"slothsoft/farah-testing" : "^1.3.8"
-	},
-	"suggest" : {
-		"ext-ds" : "*"
-	},
-	"autoload" : {
-		"psr-4" : {
-			"Slothsoft\\Savegame\\" : "src"
-		},
-		"files" : [
-			"src/bootstrap.php"
-		]
-	},
-	"keywords" : [
-		"slothsoft",
-		"farah-module",
-		"docs"
-	],
-	"autoload-dev" : {
-		"psr-4" : {
-			"Slothsoft\\Savegame\\" : "tests"
-		}
-	},
-	"extra" : {
-		"branch-alias" : {
-			"dev-main" : "1.3.x-dev"
-		}
-	},
-	"homepage" : "http://farah.slothsoft.net/modules/savegame"
+    "name": "slothsoft/savegame",
+    "description": "A Farah module for editing arbitrary savegame files.",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Daniel Schulz",
+            "email": "info.slothsoft@gmail.com"
+        }
+    ],
+    "type": "library",
+    "require": {
+        "php": ">=8.2",
+        "php-ds/php-ds": "^1.7.0",
+        "slothsoft/core": "^1.14.19",
+        "slothsoft/farah": "^1.28.2"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~9.6.34",
+        "slothsoft/farah-testing": "^1.3.8"
+    },
+    "suggest": {
+        "ext-ds": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Slothsoft\\Savegame\\": "src"
+        },
+        "files": [
+            "src/bootstrap.php"
+        ]
+    },
+    "keywords": [
+        "slothsoft",
+        "farah-module",
+        "docs"
+    ],
+    "autoload-dev": {
+        "psr-4": {
+            "Slothsoft\\Savegame\\": "tests"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-main": "1.3.x-dev"
+        }
+    },
+    "homepage": "http://farah.slothsoft.net/modules/savegame"
 }
