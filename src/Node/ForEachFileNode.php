@@ -1,5 +1,6 @@
 <?php
 declare(strict_types = 1);
+
 namespace Slothsoft\Savegame\Node;
 
 use Ds\Set;
@@ -20,7 +21,8 @@ final class ForEachFileNode extends AbstractNode {
         $this->rangeEnd = (string) $strucElement->getAttribute('range-end');
     }
     
-    protected function loadNode(LeanElement $strucElement): void {}
+    protected function loadNode(LeanElement $strucElement): void {
+    }
     
     public function loadChildren(LeanElement $strucElement): void {
         foreach ($this->getFileNames() as $name) {

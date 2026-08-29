@@ -1,19 +1,20 @@
 <?php
 declare(strict_types = 1);
+
 namespace Slothsoft\Savegame\Node;
 
+use InvalidArgumentException;
 use Slothsoft\Core\XML\LeanElement;
 use Slothsoft\Savegame\Build\BuilderInterface;
-use InvalidArgumentException;
 
 final class SignedIntegerValue extends AbstractValueContent {
     
     const MIN_VALUES = [
         0,
-        - 127,
-        - 32767,
-        - 8388607,
-        - 2147483647
+        -127,
+        -32767,
+        -8388607,
+        -2147483647
     ];
     
     const MAX_VALUES = [
@@ -34,10 +35,10 @@ final class SignedIntegerValue extends AbstractValueContent {
     
     public function getBuildAttributes(BuilderInterface $builder): array {
         return parent::getBuildAttributes($builder) + [
-            'value' => $this->value,
-            'min' => $this->min,
-            'max' => $this->max
-        ];
+                'value' => $this->value,
+                'min' => $this->min,
+                'max' => $this->max
+            ];
     }
     
     protected function loadStruc(LeanElement $strucElement): void {

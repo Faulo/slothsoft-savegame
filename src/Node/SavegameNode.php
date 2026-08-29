@@ -1,13 +1,14 @@
 <?php
 declare(strict_types = 1);
+
 namespace Slothsoft\Savegame\Node;
 
 use Ds\Vector;
 use http\Exception\InvalidArgumentException;
 use Slothsoft\Core\XML\LeanElement;
-use Slothsoft\Savegame\Editor;
 use Slothsoft\Savegame\Build\BuildableInterface;
 use Slothsoft\Savegame\Build\BuilderInterface;
+use Slothsoft\Savegame\Editor;
 
 class SavegameNode extends AbstractNode implements BuildableInterface {
     
@@ -102,7 +103,8 @@ class SavegameNode extends AbstractNode implements BuildableInterface {
         }
     }
     
-    protected function loadNode(LeanElement $strucElement): void {}
+    protected function loadNode(LeanElement $strucElement): void {
+    }
     
     public function appendBuildChild(BuildableInterface $node): void {
         assert($node instanceof ArchiveNode);
@@ -135,7 +137,7 @@ class SavegameNode extends AbstractNode implements BuildableInterface {
     }
     
     public function nextValueId(): int {
-        return ++ $this->valueIdCounter;
+        return ++$this->valueIdCounter;
     }
     
     public function getValueMap(): array {

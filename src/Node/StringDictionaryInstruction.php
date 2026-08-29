@@ -1,9 +1,10 @@
 <?php
 declare(strict_types = 1);
+
 namespace Slothsoft\Savegame\Node;
 
-use Slothsoft\Core\XML\LeanElement;
 use DomainException;
+use Slothsoft\Core\XML\LeanElement;
 
 final class StringDictionaryInstruction extends AbstractInstructionContent {
     
@@ -65,7 +66,7 @@ final class StringDictionaryInstruction extends AbstractInstructionContent {
         switch ($this->type) {
             case self::LIST_TYPE_NULL_DELIMITED:
                 $textOffset = $this->contentOffset;
-                for ($i = 0; $i < $this->stringCount; $i ++) {
+                for ($i = 0; $i < $this->stringCount; $i++) {
                     $text = $this->ownerFile->extractContent($textOffset, 'auto');
                     $textLength = strlen($text);
                     
@@ -88,7 +89,7 @@ final class StringDictionaryInstruction extends AbstractInstructionContent {
                 $textLengthSize = 1;
                 
                 $textOffset = $this->contentOffset + $countSize;
-                for ($i = 0; $i < $this->stringCount; $i ++) {
+                for ($i = 0; $i < $this->stringCount; $i++) {
                     $textLength = $this->ownerFile->extractContent($textOffset, $textLengthSize);
                     $textLength = $this->getConverter()->decodeInteger($textLength, $textLengthSize);
                     
@@ -110,7 +111,7 @@ final class StringDictionaryInstruction extends AbstractInstructionContent {
                 
                 $textOffset = $this->contentOffset + $countOffset + $countSize;
                 $textLengthList = [];
-                for ($i = 0; $i < $this->stringCount; $i ++) {
+                for ($i = 0; $i < $this->stringCount; $i++) {
                     $textLength = $this->ownerFile->extractContent($textOffset, $textLengthSize);
                     $textLength = $this->getConverter()->decodeInteger($textLength, $textLengthSize);
                     
@@ -132,7 +133,7 @@ final class StringDictionaryInstruction extends AbstractInstructionContent {
                 break;
             case self::LIST_TYPE_SIZE_FIXED:
                 $textPosition = 0;
-                for ($i = 0; $i < $this->stringCount; $i ++) {
+                for ($i = 0; $i < $this->stringCount; $i++) {
                     $strucData = [];
                     $strucData['position'] = $textPosition;
                     $strucData['size'] = $this->stringSize;

@@ -1,10 +1,11 @@
 <?php
 declare(strict_types = 1);
+
 namespace Slothsoft\Savegame\Node;
 
+use DomainException;
 use Slothsoft\Core\XML\LeanElement;
 use Slothsoft\Savegame\Editor;
-use DomainException;
 
 final class NodeFactory {
     
@@ -66,9 +67,9 @@ final class NodeFactory {
     
     /**
      *
-     * @param \Slothsoft\Core\XML\LeanElement $strucElement
-     * @param \Slothsoft\Savegame\Node\AbstractNode $parentValue
-     * @return \Slothsoft\Savegame\Node\AbstractNode
+     * @param LeanElement $strucElement
+     * @param AbstractNode $parentValue
+     * @return AbstractNode
      */
     public function createNode(LeanElement $strucElement, ?AbstractNode $parentValue = null): AbstractNode {
         $value = $this->constructValue($strucElement->getTag());

@@ -1,10 +1,12 @@
 <?php
 declare(strict_types = 1);
+
 namespace Slothsoft\Savegame\Script;
 
 class Line extends AbstractElement {
     
-    protected function init() {}
+    protected function init() {
+    }
     
     public function fromBinary($binary) {
         $this->init();

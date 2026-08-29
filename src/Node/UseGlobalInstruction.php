@@ -1,5 +1,6 @@
 <?php
 declare(strict_types = 1);
+
 namespace Slothsoft\Savegame\Node;
 
 use Slothsoft\Core\XML\LeanElement;
@@ -14,7 +15,8 @@ final class UseGlobalInstruction extends AbstractContentNode {
         $this->globalRef = (string) $strucElement->getAttribute('ref');
     }
     
-    protected function loadContent(LeanElement $strucElement): void {}
+    protected function loadContent(LeanElement $strucElement): void {
+    }
     
     protected function loadChildren(LeanElement $strucElement): void {
         if ($instructionList = $this->getOwnerSavegame()->getGlobalElementsById($this->globalRef)) {

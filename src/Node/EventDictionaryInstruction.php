@@ -1,9 +1,10 @@
 <?php
 declare(strict_types = 1);
+
 namespace Slothsoft\Savegame\Node;
 
-use Slothsoft\Core\XML\LeanElement;
 use RangeException;
+use Slothsoft\Core\XML\LeanElement;
 
 final class EventDictionaryInstruction extends AbstractInstructionContent {
     
@@ -24,7 +25,7 @@ final class EventDictionaryInstruction extends AbstractInstructionContent {
         
         $eventSizeList = [];
         $lastEnd = 0;
-        for ($eventNo = 0; $eventNo < $eventCount; $eventNo ++) {
+        for ($eventNo = 0; $eventNo < $eventCount; $eventNo++) {
             $eventOffset = $this->contentOffset + 4 + $eventNo * $offsetWordSize;
             
             $eventEnd = $this->ownerFile->extractContent($eventOffset, $offsetWordSize);

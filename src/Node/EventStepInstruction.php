@@ -1,5 +1,6 @@
 <?php
 declare(strict_types = 1);
+
 namespace Slothsoft\Savegame\Node;
 
 use Slothsoft\Core\XML\LeanElement;
@@ -46,10 +47,10 @@ final class EventStepInstruction extends AbstractInstructionContent {
         $eventSubType = sprintf('%02d', $eventSubType);
         
         foreach ([
-            "event-$eventType.$eventSubType",
-            "event-$eventType",
-            "event-unknown"
-        ] as $ref) {
+                     "event-$eventType.$eventSubType",
+                     "event-$eventType",
+                     "event-unknown"
+                 ] as $ref) {
             if ($instructionList = $savegame->getGlobalElementsById($ref)) {
                 return $instructionList;
             }

@@ -1,13 +1,14 @@
 <?php
 declare(strict_types = 1);
+
 namespace Slothsoft\Savegame\Build;
 
+use Generator;
+use RuntimeException;
 use Slothsoft\Core\DOMHelper;
 use Slothsoft\Core\IO\FileInfoFactory;
 use Slothsoft\Core\IO\Writable\Decorators\ChunkWriterFileCache;
 use Slothsoft\Core\IO\Writable\Delegates\ChunkWriterFromChunksDelegate;
-use Generator;
-use RuntimeException;
 use SplFileInfo;
 
 final class XmlBuilder implements BuilderInterface {

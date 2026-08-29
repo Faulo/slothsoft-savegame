@@ -1,5 +1,6 @@
 <?php
 declare(strict_types = 1);
+
 namespace Slothsoft\Savegame\Node;
 
 use Slothsoft\Core\XML\LeanElement;
@@ -15,8 +16,8 @@ final class GroupContainer extends AbstractContainerContent {
     
     public function getBuildAttributes(BuilderInterface $builder): array {
         return parent::getBuildAttributes($builder) + [
-            'dictionary-ref' => $this->dictionaryRef
-        ];
+                'dictionary-ref' => $this->dictionaryRef
+            ];
     }
     
     protected function loadStruc(LeanElement $strucElement): void {

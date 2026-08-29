@@ -1,5 +1,6 @@
 <?php
 declare(strict_types = 1);
+
 namespace Slothsoft\Savegame\Node;
 
 use Slothsoft\Savegame\Build\BuilderInterface;
@@ -12,8 +13,8 @@ final class BinaryValue extends AbstractValueContent {
     
     public function getBuildAttributes(BuilderInterface $builder): array {
         return parent::getBuildAttributes($builder) + [
-            'value' => $builder->escapeAttribute($this->value)
-        ];
+                'value' => $builder->escapeAttribute($this->value)
+            ];
     }
     
     protected function decodeValue(string $rawValue) {

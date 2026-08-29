@@ -1,5 +1,6 @@
 <?php
 declare(strict_types = 1);
+
 namespace Slothsoft\Savegame\Node;
 
 use Slothsoft\Core\XML\LeanElement;
@@ -19,12 +20,12 @@ final class ImagePileInstruction extends AbstractInstructionContent {
     
     public function getBuildAttributes(BuilderInterface $builder): array {
         return parent::getBuildAttributes($builder) + [
-            'width' => $this->width,
-            'height' => $this->height,
-            'size' => $this->size,
-            'bitplanes' => $this->bitplanes,
-            'image-dimensions' => $this->imageDimensions
-        ];
+                'width' => $this->width,
+                'height' => $this->height,
+                'size' => $this->size,
+                'bitplanes' => $this->bitplanes,
+                'image-dimensions' => $this->imageDimensions
+            ];
     }
     
     protected function loadStruc(LeanElement $strucElement): void {

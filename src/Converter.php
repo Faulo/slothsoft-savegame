@@ -1,9 +1,10 @@
 <?php
 declare(strict_types = 1);
+
 namespace Slothsoft\Savegame;
 
-use Slothsoft\Savegame\Script\Parser;
 use RangeException;
+use Slothsoft\Savegame\Script\Parser;
 
 final class Converter {
     
@@ -17,7 +18,7 @@ final class Converter {
     
     public function encodeInteger(int $val, int $size = 1): string {
         $ret = pack('N', $val);
-        $ret = substr($ret, - $size);
+        $ret = substr($ret, -$size);
         return $ret;
     }
     
@@ -92,7 +93,7 @@ final class Converter {
     public function decodeString(string $val, int $size = 1, string $encoding = ''): string {
         $ret = '';
         $size = min($size, strlen($val));
-        for ($i = 0; $i < $size and $val[$i] !== "\0"; $i ++) {
+        for ($i = 0; $i < $size and $val[$i] !== "\0"; $i++) {
             $ret .= $val[$i];
         }
         return $encoding === '' ? $ret : mb_convert_encoding($ret, 'UTF-8', $encoding);

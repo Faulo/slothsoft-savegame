@@ -1,5 +1,6 @@
 <?php
 declare(strict_types = 1);
+
 namespace Slothsoft\Savegame\Node;
 
 use Slothsoft\Core\XML\LeanElement;
@@ -17,11 +18,11 @@ final class ImageMapInstruction extends AbstractInstructionContent {
     
     public function getBuildAttributes(BuilderInterface $builder): array {
         return parent::getBuildAttributes($builder) + [
-            'width' => $this->width,
-            'height' => $this->height,
-            'bitplanes' => $this->bitplanes,
-            'image-count' => $this->imageCount
-        ];
+                'width' => $this->width,
+                'height' => $this->height,
+                'bitplanes' => $this->bitplanes,
+                'image-count' => $this->imageCount
+            ];
     }
     
     protected function loadStruc(LeanElement $strucElement): void {
@@ -44,7 +45,7 @@ final class ImageMapInstruction extends AbstractInstructionContent {
         $strucData['size'] = $strucData['width'] * $strucData['height'] * 5 / 8;
         $strucData['bitplanes'] = $this->bitplanes;
         
-        for ($i = 0; $i < $this->imageCount; $i ++) {
+        for ($i = 0; $i < $this->imageCount; $i++) {
             $strucData['position'] = $i * $strucData['size'];
             yield LeanElement::createOneFromArray(NodeFactory::TAG_IMAGE, $strucData, $strucElement->getChildren());
         }

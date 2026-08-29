@@ -1,18 +1,19 @@
 <?php
 declare(strict_types = 1);
+
 namespace Slothsoft\Savegame;
 
+use DomainException;
 use Slothsoft\Core\DOMHelper;
 use Slothsoft\Core\IO\Writable\StringWriterInterface;
 use Slothsoft\Core\XML\LeanElement;
 use Slothsoft\Savegame\Node\AbstractValueContent;
 use Slothsoft\Savegame\Node\ArchiveNode;
+use Slothsoft\Savegame\Node\ArchiveParser\ArchiveBuilderInterface;
+use Slothsoft\Savegame\Node\ArchiveParser\ArchiveExtractorInterface;
 use Slothsoft\Savegame\Node\FileContainer;
 use Slothsoft\Savegame\Node\NodeFactory;
 use Slothsoft\Savegame\Node\SavegameNode;
-use Slothsoft\Savegame\Node\ArchiveParser\ArchiveBuilderInterface;
-use Slothsoft\Savegame\Node\ArchiveParser\ArchiveExtractorInterface;
-use DomainException;
 use SplFileInfo;
 use UnexpectedValueException;
 
@@ -34,7 +35,7 @@ class Editor {
                 throw new UnexpectedValueException("Structure document is empty.");
             }
             
-            if ($strucDoc->xinclude() === - 1) {
+            if ($strucDoc->xinclude() === -1) {
                 throw new UnexpectedValueException("XInclude processing in the structure document failed.");
             }
             

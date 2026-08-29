@@ -1,5 +1,6 @@
 <?php
 declare(strict_types = 1);
+
 namespace Slothsoft\Savegame\Node;
 
 use Slothsoft\Core\XML\LeanElement;
@@ -13,8 +14,8 @@ final class EventScriptValue extends AbstractValueContent {
     
     public function getBuildAttributes(BuilderInterface $builder): array {
         return parent::getBuildAttributes($builder) + [
-            'value' => $builder->escapeAttribute($this->value)
-        ];
+                'value' => $builder->escapeAttribute($this->value)
+            ];
     }
     
     protected function loadContent(LeanElement $strucElement): void {
@@ -28,7 +29,7 @@ final class EventScriptValue extends AbstractValueContent {
         
         $lastEnd = 0;
         $eventSizeOffset = $this->contentOffset + 4;
-        for ($eventNo = 0; $eventNo < $eventCount; $eventNo ++) {
+        for ($eventNo = 0; $eventNo < $eventCount; $eventNo++) {
             $eventEnd = $this->ownerFile->extractContent($eventSizeOffset, $offsetWordSize);
             $eventEnd = $this->getConverter()->decodeInteger($eventEnd, $offsetWordSize);
             $eventEnd *= $eventWordSize;

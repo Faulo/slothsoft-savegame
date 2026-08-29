@@ -1,5 +1,6 @@
 <?php
 declare(strict_types = 1);
+
 namespace Slothsoft\Savegame\Node;
 
 use Ds\Vector;
@@ -8,9 +9,9 @@ use LogicException;
 use Slothsoft\Core\IO\FileInfoFactory;
 use Slothsoft\Core\IO\Writable\FileWriterInterface;
 use Slothsoft\Core\XML\LeanElement;
-use Slothsoft\Savegame\NodeEvaluatorInterface;
 use Slothsoft\Savegame\Build\BuildableInterface;
 use Slothsoft\Savegame\Build\BuilderInterface;
+use Slothsoft\Savegame\NodeEvaluatorInterface;
 use SplFileInfo;
 
 final class FileContainer extends AbstractNode implements NodeEvaluatorInterface, BuildableInterface, FileWriterInterface {
@@ -60,7 +61,8 @@ final class FileContainer extends AbstractNode implements NodeEvaluatorInterface
         $this->evaluateCache = [];
     }
     
-    protected function loadChildren(LeanElement $strucElement): void {}
+    protected function loadChildren(LeanElement $strucElement): void {
+    }
     
     public function load(): void {
         parent::loadChildren($this->strucElement);
@@ -77,7 +79,7 @@ final class FileContainer extends AbstractNode implements NodeEvaluatorInterface
         switch ($length) {
             case 'auto':
                 $ret = '';
-                for ($i = $offset, $j = strlen($this->content); $i < $j; $i ++) {
+                for ($i = $offset, $j = strlen($this->content); $i < $j; $i++) {
                     $char = $this->content[$i];
                     if ($char === "\0") {
                         break;
@@ -105,9 +107,9 @@ final class FileContainer extends AbstractNode implements NodeEvaluatorInterface
         if ($value) {
             $byte |= $bit;
         } else {
-            $byte &= ~ $bit;
+            $byte &= ~$bit;
         }
-        $byte = substr(pack('N', $byte), - 1);
+        $byte = substr(pack('N', $byte), -1);
         $this->insertContent($offset, 1, $byte);
     }
     
@@ -165,7 +167,7 @@ final class FileContainer extends AbstractNode implements NodeEvaluatorInterface
         }
         $sign = 1;
         while ($expression[0] === '-') {
-            $sign *= - 1;
+            $sign *= -1;
             $expression = substr($expression, 1);
         }
         if (is_numeric($expression)) {
@@ -237,7 +239,7 @@ final class FileContainer extends AbstractNode implements NodeEvaluatorInterface
             if ($parent instanceof ArchiveNode) {
                 return $parent;
             }
-        }        
+        }
         throw new LogicException("Not inside an archive: $this->fileName");
     }
     

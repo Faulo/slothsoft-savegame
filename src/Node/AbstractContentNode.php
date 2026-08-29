@@ -1,10 +1,11 @@
 <?php
 declare(strict_types = 1);
+
 namespace Slothsoft\Savegame\Node;
 
+use RangeException;
 use Slothsoft\Core\XML\LeanElement;
 use Slothsoft\Savegame\Build\BuildableInterface;
-use RangeException;
 
 abstract class AbstractContentNode extends AbstractNode {
     

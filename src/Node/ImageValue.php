@@ -1,5 +1,6 @@
 <?php
 declare(strict_types = 1);
+
 namespace Slothsoft\Savegame\Node;
 
 use Slothsoft\Core\IO\Writable\FileWriterInterface;
@@ -24,12 +25,12 @@ final class ImageValue extends AbstractValueContent implements FileWriterInterfa
     
     public function getBuildAttributes(BuilderInterface $builder): array {
         return parent::getBuildAttributes($builder) + [
-            'value' => $builder->escapeAttribute($this->value),
-            'width' => $this->width,
-            'height' => $this->height,
-            'bitplanes' => $this->bitplanes,
-            'image-id' => $this->imageId
-        ];
+                'value' => $builder->escapeAttribute($this->value),
+                'width' => $this->width,
+                'height' => $this->height,
+                'bitplanes' => $this->bitplanes,
+                'image-id' => $this->imageId
+            ];
     }
     
     public function getWidth(): int {

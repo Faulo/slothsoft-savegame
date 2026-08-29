@@ -1,5 +1,6 @@
 <?php
 declare(strict_types = 1);
+
 namespace Slothsoft\Savegame\Node;
 
 use Slothsoft\Core\XML\LeanElement;
@@ -26,7 +27,7 @@ final class BitFieldInstruction extends AbstractInstructionContent {
     
     protected function loadInstruction(LeanElement $strucElement): iterable {
         $max = $this->size - 1;
-        for ($i = $this->firstBit; $i <= $this->lastBit; $i ++) {
+        for ($i = $this->firstBit; $i <= $this->lastBit; $i++) {
             $offset = (int) ($i / 8);
             $pos = $max - $offset;
             $bit = $i - 8 * $offset;

@@ -1,11 +1,12 @@
 <?php
 declare(strict_types = 1);
+
 namespace Slothsoft\Savegame\Node;
 
 use Ds\Vector;
 use Slothsoft\Core\XML\LeanElement;
-use Slothsoft\Savegame\Converter;
 use Slothsoft\Savegame\Build\BuildableInterface;
+use Slothsoft\Savegame\Converter;
 
 abstract class AbstractNode {
     
@@ -27,7 +28,8 @@ abstract class AbstractNode {
         $this->loadChildren($strucElement);
     }
     
-    protected function loadStruc(LeanElement $strucElement): void {}
+    protected function loadStruc(LeanElement $strucElement): void {
+    }
     
     protected function loadChildren(LeanElement $strucElement): void {
         foreach ($strucElement->getChildren() as $strucElement) {

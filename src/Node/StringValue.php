@@ -1,10 +1,11 @@
 <?php
 declare(strict_types = 1);
+
 namespace Slothsoft\Savegame\Node;
 
+use DomainException;
 use Slothsoft\Core\XML\LeanElement;
 use Slothsoft\Savegame\Build\BuilderInterface;
-use DomainException;
 
 final class StringValue extends AbstractValueContent {
     
@@ -18,9 +19,9 @@ final class StringValue extends AbstractValueContent {
     
     public function getBuildAttributes(BuilderInterface $builder): array {
         return parent::getBuildAttributes($builder) + [
-            'value' => $builder->escapeAttribute($this->value),
-            'encoding' => $this->encoding
-        ];
+                'value' => $builder->escapeAttribute($this->value),
+                'encoding' => $this->encoding
+            ];
     }
     
     protected function loadStruc(LeanElement $strucElement): void {

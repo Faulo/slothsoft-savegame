@@ -1,10 +1,11 @@
 <?php
 declare(strict_types = 1);
+
 namespace Slothsoft\Savegame\Node;
 
+use InvalidArgumentException;
 use Slothsoft\Core\XML\LeanElement;
 use Slothsoft\Savegame\Build\BuilderInterface;
-use InvalidArgumentException;
 
 final class SelectValue extends AbstractValueContent {
     
@@ -16,9 +17,9 @@ final class SelectValue extends AbstractValueContent {
     
     public function getBuildAttributes(BuilderInterface $builder): array {
         return parent::getBuildAttributes($builder) + [
-            'value' => $this->value,
-            'dictionary-ref' => $this->dictionaryRef
-        ];
+                'value' => $this->value,
+                'dictionary-ref' => $this->dictionaryRef
+            ];
     }
     
     protected function loadStruc(LeanElement $strucElement): void {

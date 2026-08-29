@@ -1,10 +1,11 @@
 <?php
 declare(strict_types = 1);
+
 namespace Slothsoft\Savegame\Node;
 
+use InvalidArgumentException;
 use Slothsoft\Core\XML\LeanElement;
 use Slothsoft\Savegame\Build\BuilderInterface;
-use InvalidArgumentException;
 
 final class BitValue extends AbstractValueContent {
     
@@ -16,9 +17,9 @@ final class BitValue extends AbstractValueContent {
     
     public function getBuildAttributes(BuilderInterface $builder): array {
         return parent::getBuildAttributes($builder) + [
-            'value' => $this->value ? '1' : '',
-            'bit' => $this->bit
-        ];
+                'value' => $this->value ? '1' : '',
+                'bit' => $this->bit
+            ];
     }
     
     protected function loadStruc(LeanElement $strucElement): void {
