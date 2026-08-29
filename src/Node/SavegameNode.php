@@ -3,6 +3,7 @@ declare(strict_types = 1);
 namespace Slothsoft\Savegame\Node;
 
 use Ds\Vector;
+use http\Exception\InvalidArgumentException;
 use Slothsoft\Core\XML\LeanElement;
 use Slothsoft\Savegame\Editor;
 use Slothsoft\Savegame\Build\BuildableInterface;
@@ -126,6 +127,7 @@ class SavegameNode extends AbstractNode implements BuildableInterface {
                 }
             }
         }
+        throw new InvalidArgumentException("Not an archive: $path");
     }
     
     public function getGlobalElementsById(string $id): ?Vector {

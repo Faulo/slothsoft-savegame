@@ -3,6 +3,8 @@ declare(strict_types = 1);
 namespace Slothsoft\Savegame\Node;
 
 use Ds\Vector;
+use http\Exception\InvalidArgumentException;
+use LogicException;
 use Slothsoft\Core\IO\FileInfoFactory;
 use Slothsoft\Core\IO\Writable\FileWriterInterface;
 use Slothsoft\Core\XML\LeanElement;
@@ -131,6 +133,7 @@ final class FileContainer extends AbstractNode implements NodeEvaluatorInterface
                 return $node;
             }
         }
+        throw new InvalidArgumentException("Not a value: $name");
     }
     
     public function getValueById(int $id): AbstractValueContent {
@@ -140,6 +143,7 @@ final class FileContainer extends AbstractNode implements NodeEvaluatorInterface
                 return $node;
             }
         }
+        throw new InvalidArgumentException("Not a value: $id");
     }
     
     public function getValueList(): Vector {
@@ -221,7 +225,7 @@ final class FileContainer extends AbstractNode implements NodeEvaluatorInterface
     }
     
     public function getImageNodeById(int $id): ImageValue {
-        return $this->imageList[$id] ?? null;
+        return $this->imageList[$id] ?? throw new InvalidArgumentException("Not an image: $id");
     }
     
     public function getOwnerSavegame(): SavegameNode {
@@ -229,8 +233,12 @@ final class FileContainer extends AbstractNode implements NodeEvaluatorInterface
     }
     
     private function getOwnerArchive(): ArchiveNode {
-        $parent = $this->getParentNode();
-        return $parent instanceof ArchiveNode ? $parent : $parent->getParentNode();
+        for ($parent = $this->getParentNode(); $parent; $parent = $parent->getParentNode()) {
+            if ($parent instanceof ArchiveNode) {
+                return $parent;
+            }
+        }        
+        throw new LogicException("Not inside an archive: $this->fileName");
     }
     
     public function toFile(): SplFileInfo {
