@@ -1,16 +1,17 @@
 <?php
 declare(strict_types = 1);
+
 namespace Slothsoft\Savegame\Node;
 
+use PHPUnit\Framework\Constraint\IsEqual;
 use PHPUnit\Framework\TestCase;
+use Slothsoft\Core\DOMHelper;
+use Slothsoft\Core\IO\FileInfoFactory;
+use Slothsoft\Core\ServerEnvironment;
 use Slothsoft\FarahTesting\TestUtils;
 use Slothsoft\Savegame\Editor;
-use Slothsoft\Core\DOMHelper;
 use Slothsoft\Savegame\EditorConfig;
-use Slothsoft\Core\ServerEnvironment;
-use Slothsoft\Core\IO\FileInfoFactory;
 use Slothsoft\Savegame\Node\ArchiveParser\TestArchiveExtractor;
-use PHPUnit\Framework\Constraint\IsEqual;
 
 /**
  * ForEachFileNodeTest

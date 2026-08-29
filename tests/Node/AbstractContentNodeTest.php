@@ -1,7 +1,9 @@
 <?php
 declare(strict_types = 1);
+
 namespace Slothsoft\Savegame\Node;
 
+use PHPUnit\Framework\Constraint\IsEqual;
 use PHPUnit\Framework\TestCase;
 use Slothsoft\Core\FileSystem;
 use Slothsoft\Core\IO\FileInfoFactory;
@@ -10,7 +12,6 @@ use Slothsoft\Savegame\Editor;
 use Slothsoft\Savegame\EditorConfig;
 use Slothsoft\Savegame\Node\ArchiveParser\CopyArchiveBuilder;
 use Slothsoft\Savegame\Node\ArchiveParser\CopyArchiveExtractor;
-use PHPUnit\Framework\Constraint\IsEqual;
 
 /**
  * AbstractContentNodeTest

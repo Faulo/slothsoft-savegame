@@ -1,5 +1,6 @@
 <?php
 declare(strict_types = 1);
+
 namespace Slothsoft\Savegame\Build;
 
 use PHPUnit\Framework\TestCase;

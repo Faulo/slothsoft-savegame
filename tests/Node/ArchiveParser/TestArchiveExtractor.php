@@ -1,5 +1,6 @@
 <?php
 declare(strict_types = 1);
+
 namespace Slothsoft\Savegame\Node\ArchiveParser;
 
 use Slothsoft\Core\FileSystem;

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectResources">
+    <resource url="http://schema.slothsoft.net/savegame/editor" location="$PROJECT_DIR$/assets/schema/editor/0.4.xsd" />
+  </component>
+</project>

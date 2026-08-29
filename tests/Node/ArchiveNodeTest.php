@@ -1,17 +1,18 @@
 <?php
 declare(strict_types = 1);
+
 namespace Slothsoft\Savegame\Node;
 
+use DomainException;
 use Ds\Set;
-use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Constraint\IsEqual;
 use PHPUnit\Framework\MockObject\MockObject;
+use PHPUnit\Framework\TestCase;
 use Slothsoft\Core\IO\FileInfo;
 use Slothsoft\Core\IO\FileInfoFactory;
 use Slothsoft\Core\XML\LeanElement;
 use Slothsoft\Savegame\Editor;
 use Slothsoft\Savegame\Node\ArchiveParser\ArchiveExtractorInterface;
-use DomainException;
 use SplFileInfo;
 
 /**
