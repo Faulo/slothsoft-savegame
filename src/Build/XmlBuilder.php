@@ -13,10 +13,6 @@ use SplFileInfo;
 
 final class XmlBuilder implements BuilderInterface {
     
-    private array $tagCachelist = [];
-    
-    private array $tagBlacklist = [];
-    
     private array $attributeBlacklist = [];
     
     private BuildableInterface $root;
@@ -31,24 +27,28 @@ final class XmlBuilder implements BuilderInterface {
         $this->cacheDirectory = $cacheDirectory;
     }
     
+    /**
+     * @deprecated This method has no effect. Caching depends on the root node's build hash.
+     */
     public function registerTagCachelist(iterable $list): void {
-        foreach ($list as $key) {
-            $this->tagCachelist[$key] = true;
-        }
     }
     
+    /**
+     * @deprecated This method has no effect. Caching depends on the root node's build hash.
+     */
     public function clearTagCachelist(): void {
-        $this->tagCachelist = [];
     }
     
+    /**
+     * @deprecated This method has no effect. Tag filtering is not supported.
+     */
     public function registerTagBlacklist(iterable $list): void {
-        foreach ($list as $key) {
-            $this->tagBlacklist[$key] = true;
-        }
     }
     
+    /**
+     * @deprecated This method has no effect. Tag filtering is not supported.
+     */
     public function clearTagBlacklist(): void {
-        $this->tagBlacklist = [];
     }
     
     public function registerAttributeBlacklist(iterable $list): void {
