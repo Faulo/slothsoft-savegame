@@ -24,6 +24,51 @@ final class AbstractContentNodeTest extends TestCase {
         $this->assertTrue(class_exists(AbstractContentNode::class), "Failed to load class 'Slothsoft\Savegame\Node\AbstractContentNode'!");
     }
     
+    /**
+     * @runInSeparateProcess
+     */
+    public function testImageFileName(): void {
+        $xml = <<<EOT
+<savegame version="0.4" xmlns="http://schema.slothsoft.net/savegame/editor">
+    <archive path="DATA-101" type="COPY">
+        <for-each-file>
+            <image name="image" width="8" height="1" bitplanes="1" size="1" />
+        </for-each-file>
+    </archive>
+</savegame>
+EOT;
+        $savegame = $this->createSavegame($xml);
+        $archive = $savegame->getArchiveByPath('DATA-101');
+        $archive->load(true);
+        $file = $archive->getFileNodeByName('1');
+        $image = $file->getImageNodeById(0);
+        
+        $this->assertSame('1', $image->toFileName());
+        $this->assertSame($file->getContent(), $image->toString());
+    }
+    
+    /**
+     * @runInSeparateProcess
+     */
+    public function testEvaluateValueReference(): void {
+        $xml = <<<EOT
+<savegame version="0.4" xmlns="http://schema.slothsoft.net/savegame/editor">
+    <archive path="DATA-101" type="COPY">
+        <for-each-file>
+            <integer name="counter" size="1" />
+        </for-each-file>
+    </archive>
+</savegame>
+EOT;
+        $savegame = $this->createSavegame($xml);
+        $archive = $savegame->getArchiveByPath('DATA-101');
+        $archive->load(true);
+        $file = $archive->getFileNodeByName('1');
+        $file->getValueByName('counter')->setValue(42);
+        
+        $this->assertSame(43, $file->evaluate('$counter + 1'));
+    }
+    
     protected function setUp(): void {
         parent::setUp();
         TestUtils::changeWorkingDirectoryToComposerRoot();

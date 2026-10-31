@@ -31,7 +31,7 @@ class Editor {
         if ($this->savegame === null) {
             $strucDoc = DOMHelper::loadDocument((string) $this->config->infosetFile);
             
-            if (! ($strucDoc and $strucDoc->documentElement)) {
+            if (! $strucDoc->documentElement) {
                 throw new UnexpectedValueException("Structure document is empty.");
             }
             
@@ -45,7 +45,9 @@ class Editor {
             
             $rootElement = LeanElement::createTreeFromDOMElement($rootNode);
             $factory = new NodeFactory($this);
-            $this->savegame = $factory->createNode($rootElement, null);
+            $savegame = $factory->createNode($rootElement, null);
+            assert($savegame instanceof SavegameNode);
+            $this->savegame = $savegame;
         }
     }
     

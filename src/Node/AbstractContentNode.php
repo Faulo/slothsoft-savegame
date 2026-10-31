@@ -23,6 +23,7 @@ abstract class AbstractContentNode extends AbstractNode {
         parent::loadStruc($strucElement);
         
         $parentNode = $this->getParentNode();
+        assert($parentNode instanceof FileContainer || $parentNode instanceof AbstractContentNode);
         
         $this->ownerFile = $parentNode instanceof FileContainer ? $parentNode : $parentNode->getOwnerFile();
         
@@ -41,7 +42,7 @@ abstract class AbstractContentNode extends AbstractNode {
                 }
                 break;
             case 'sibling':
-                /** @var AbstractValueContent $previousSibling */
+                /** @var AbstractValueContent|null $previousSibling */
                 $previousSibling = null;
                 foreach ($this->getOwnerFile()->getValueList() as $node) {
                     if ($node === $this) {

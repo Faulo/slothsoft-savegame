@@ -36,7 +36,7 @@ abstract class AbstractValueContent extends AbstractContentNode implements Build
     }
     
     protected function loadContent(LeanElement $strucElement): void {
-        if ($this->size and $this->ownerFile) {
+        if ($this->size) {
             $this->setRawValue($this->ownerFile->extractContent($this->contentOffset, $this->size));
         }
         // echo $this->getName() . ': ' . $this->getValue() . PHP_EOL;

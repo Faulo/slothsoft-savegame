@@ -36,6 +36,7 @@ final class StringDictionaryInstruction extends AbstractInstructionContent {
     }
     
     protected function loadInstruction(LeanElement $strucElement): iterable {
+        $countOffset = 0;
         // string-count
         switch ($this->type) {
             case self::LIST_TYPE_NULL_DELIMITED:
@@ -44,7 +45,7 @@ final class StringDictionaryInstruction extends AbstractInstructionContent {
             case self::LIST_TYPE_SIZE_INTERSPERSED:
             case self::LIST_TYPE_SIZE_FIRST:
                 $countSize = 2;
-                for ($countOffset = 0; $countOffset < 10; $countOffset += $countSize) {
+                for (; $countOffset < 10; $countOffset += $countSize) {
                     $count = $this->ownerFile->extractContent($this->contentOffset + $countOffset, $countSize);
                     $count = $this->getConverter()->decodeInteger($count, $countSize);
                     if ($count > 0) {
@@ -69,10 +70,6 @@ final class StringDictionaryInstruction extends AbstractInstructionContent {
                 for ($i = 0; $i < $this->stringCount; $i++) {
                     $text = $this->ownerFile->extractContent($textOffset, 'auto');
                     $textLength = strlen($text);
-                    
-                    if (! $textLength) {
-                        // break;
-                    }
                     
                     $strucData = [];
                     $strucData['position'] = $textOffset - $this->contentOffset;

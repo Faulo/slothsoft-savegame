@@ -183,12 +183,7 @@ final class FileContainer extends AbstractNode implements NodeEvaluatorInterface
             preg_match_all('/\$([A-Za-z0-9\-\.]+)/', $expression, $matches);
             $translate = [];
             foreach ($matches[0] as $i => $key) {
-                if ($node = $this->getValueByName($matches[1][$i])) {
-                    $val = $node->getValue();
-                } else {
-                    $val = 0;
-                }
-                $translate[$key] = $val;
+                $translate[$key] = $this->getValueByName($matches[1][$i])->getValue();
             }
             $code = strtr($expression, $translate);
             $code = trim($code);

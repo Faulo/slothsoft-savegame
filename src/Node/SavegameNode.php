@@ -148,11 +148,10 @@ class SavegameNode extends AbstractNode implements BuildableInterface {
                 if ($fileList = $archive->getBuildChildren()) {
                     /** @var FileContainer $file */
                     foreach ($fileList as $file) {
-                        if ($valueList = $file->getValueList()) {
-                            /** @var AbstractValueContent $value */
-                            foreach ($valueList as $value) {
-                                $ret[$value->getValueId()] = $value;
-                            }
+                        $valueList = $file->getValueList();
+                        /** @var AbstractValueContent $value */
+                        foreach ($valueList as $value) {
+                            $ret[$value->getValueId()] = $value;
                         }
                     }
                 }

@@ -73,10 +73,10 @@ final class ImageValue extends AbstractValueContent implements FileWriterInterfa
     }
     
     public function toFileName(): string {
-        return $this->getOwnerFile()->toFileName();
+        return $this->getOwnerFile()->getFileName();
     }
     
     public function toString(): string {
-        return $this->getOwnerFile()->toString();
+        return $this->getOwnerFile()->getContent();
     }
 }

@@ -40,7 +40,9 @@ final class ForEachFileNode extends AbstractNode {
     }
     
     private function getOwnerArchive(): ArchiveNode {
-        return $this->getParentNode();
+        $parentNode = $this->getParentNode();
+        assert($parentNode instanceof ArchiveNode);
+        return $parentNode;
     }
     
     private function getFileNames(): Set {

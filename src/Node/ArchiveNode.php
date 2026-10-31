@@ -192,7 +192,9 @@ final class ArchiveNode extends AbstractNode implements BuildableInterface, File
     }
     
     public function getOwnerSavegame(): SavegameNode {
-        return $this->getParentNode();
+        $parentNode = $this->getParentNode();
+        assert($parentNode instanceof SavegameNode);
+        return $parentNode;
     }
     
     private function getOwnerEditor(): Editor {
