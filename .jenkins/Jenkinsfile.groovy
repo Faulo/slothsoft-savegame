@@ -76,7 +76,7 @@ pipeline {
 								def variant = a
 
 								def name = "${platform} php-${version} ${variant}"
-								def label = "${platform} && docker"
+								def label = "${platform} && docker && server"
 								def workspace = "php-${version}-${variant}"
 
 								branches[name] = {

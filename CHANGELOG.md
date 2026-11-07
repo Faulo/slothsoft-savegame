@@ -13,6 +13,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Public `FileContainer::getOwnerArchive()` access to the containing archive.
 
+### Changed
+
+- Run Jenkins integration tests on server agents and require `symfony/polyfill-php83` ^1.31 for development to avoid dependency deprecations on PHP 8.4 and later.
+
 ## [1.3.13] - 2026-10-31
 
 ### Added
