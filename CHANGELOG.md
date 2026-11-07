@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.4.0] - 2026-11-07
+
+### Added
+
+- Public `FileContainer::getOwnerArchive()` access to the containing archive.
+
 ## [1.3.13] - 2026-10-31
 
 ### Added
@@ -386,7 +392,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Binary conversion helpers and event-script parsing.
 - Composer packaging for PHP 7.2 and later PHP 7.x releases.
 
-[Unreleased]: https://github.com/Faulo/slothsoft-savegame/compare/1.3.13...HEAD
+[Unreleased]: https://github.com/Faulo/slothsoft-savegame/compare/1.4.0...HEAD
+[1.4.0]: https://github.com/Faulo/slothsoft-savegame/compare/1.3.13...1.4.0
 [1.3.13]: https://github.com/Faulo/slothsoft-savegame/compare/1.3.12...1.3.13
 [1.3.12]: https://github.com/Faulo/slothsoft-savegame/compare/1.3.11...1.3.12
 [1.3.11]: https://github.com/Faulo/slothsoft-savegame/compare/1.3.10...1.3.11

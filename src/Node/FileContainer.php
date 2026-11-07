@@ -229,7 +229,7 @@ final class FileContainer extends AbstractNode implements NodeEvaluatorInterface
         return $this->ownerSavegame;
     }
     
-    private function getOwnerArchive(): ArchiveNode {
+    public function getOwnerArchive(): ArchiveNode {
         for ($parent = $this->getParentNode(); $parent; $parent = $parent->getParentNode()) {
             if ($parent instanceof ArchiveNode) {
                 return $parent;
