@@ -9,6 +9,8 @@ use Slothsoft\Savegame\Build\BuilderInterface;
 
 final class SignedIntegerValue extends AbstractValueContent {
     
+    private string $byteOrder = 'big';
+    
     const MIN_VALUES = [
         0,
         -127,
@@ -34,7 +36,8 @@ final class SignedIntegerValue extends AbstractValueContent {
     }
     
     public function getBuildAttributes(BuilderInterface $builder): array {
-        return parent::getBuildAttributes($builder) + [
+        $attributes = $this->byteOrder === 'big' ? [] : ['byte-order' => $this->byteOrder];
+        return parent::getBuildAttributes($builder) + $attributes + [
                 'value' => $this->value,
                 'min' => $this->min,
                 'max' => $this->max
@@ -43,20 +46,22 @@ final class SignedIntegerValue extends AbstractValueContent {
     
     protected function loadStruc(LeanElement $strucElement): void {
         parent::loadStruc($strucElement);
+        $this->byteOrder = (string) $strucElement->getAttribute('byte-order', 'big');
+        $this->getConverter()->decodeInteger("\0", 1, $this->byteOrder);
         
         $this->value = 0;
         $this->min = (int) $strucElement->getAttribute('min', self::MIN_VALUES[$this->size]);
         $this->max = (int) $strucElement->getAttribute('max', self::MAX_VALUES[$this->size]);
     }
     
-    protected function decodeValue(string $rawValue) {
-        return $this->getConverter()->decodeSignedInteger($rawValue, $this->size);
+    protected function decodeValue(string $rawValue): int {
+        return $this->getConverter()->decodeSignedInteger($rawValue, $this->size, $this->byteOrder);
     }
     
     protected function encodeValue($value): string {
         if (! is_numeric($value)) {
             throw new InvalidArgumentException("SignedIntegerValue must received integer, but got '$value'.");
         }
-        return $this->getConverter()->encodeSignedInteger((int) $value, $this->size);
+        return $this->getConverter()->encodeSignedInteger((int) $value, $this->size, $this->byteOrder);
     }
 }

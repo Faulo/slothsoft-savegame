@@ -8,6 +8,7 @@ use Slothsoft\Core\XML\LeanElement;
 use Slothsoft\Savegame\Build\BuilderInterface;
 
 final class IntegerValue extends AbstractValueContent {
+    use IntegerFormatTrait;
     
     const MAX_VALUES = [
         0,
@@ -26,7 +27,7 @@ final class IntegerValue extends AbstractValueContent {
     }
     
     public function getBuildAttributes(BuilderInterface $builder): array {
-        return parent::getBuildAttributes($builder) + [
+        return parent::getBuildAttributes($builder) + $this->getIntegerFormatAttributes() + [
                 'value' => $this->value,
                 'min' => $this->min,
                 'max' => $this->max
@@ -35,20 +36,21 @@ final class IntegerValue extends AbstractValueContent {
     
     protected function loadStruc(LeanElement $strucElement): void {
         parent::loadStruc($strucElement);
+        $this->loadIntegerFormat($strucElement);
         
         $this->value = 0;
         $this->min = (int) $strucElement->getAttribute('min');
         $this->max = (int) $strucElement->getAttribute('max', self::MAX_VALUES[$this->size]);
     }
     
-    protected function decodeValue(string $rawValue) {
-        return $this->getConverter()->decodeInteger($rawValue, $this->size);
+    protected function decodeValue(string $rawValue): int {
+        return $this->decodeUnsignedInteger($rawValue);
     }
     
     protected function encodeValue($value): string {
         if (! is_numeric($value)) {
             throw new InvalidArgumentException("IntegerValue must received integer, but got '$value'.");
         }
-        return $this->getConverter()->encodeInteger((int) $value, $this->size);
+        return $this->encodeUnsignedInteger((int) $value);
     }
 }

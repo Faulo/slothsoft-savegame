@@ -8,6 +8,7 @@ use Slothsoft\Core\XML\LeanElement;
 use Slothsoft\Savegame\Build\BuilderInterface;
 
 final class SelectValue extends AbstractValueContent {
+    use IntegerFormatTrait;
     
     protected string $dictionaryRef;
     
@@ -16,7 +17,7 @@ final class SelectValue extends AbstractValueContent {
     }
     
     public function getBuildAttributes(BuilderInterface $builder): array {
-        return parent::getBuildAttributes($builder) + [
+        return parent::getBuildAttributes($builder) + $this->getIntegerFormatAttributes() + [
                 'value' => $this->value,
                 'dictionary-ref' => $this->dictionaryRef
             ];
@@ -24,20 +25,21 @@ final class SelectValue extends AbstractValueContent {
     
     protected function loadStruc(LeanElement $strucElement): void {
         parent::loadStruc($strucElement);
+        $this->loadIntegerFormat($strucElement);
         
         $this->value = 0;
         $this->dictionaryRef = (string) $strucElement->getAttribute('dictionary-ref');
     }
     
-    protected function decodeValue(string $rawValue) {
-        return $this->getConverter()->decodeInteger($rawValue, $this->size);
+    protected function decodeValue(string $rawValue): int {
+        return $this->decodeUnsignedInteger($rawValue);
     }
     
     protected function encodeValue($value): string {
         if (! is_numeric($value)) {
             throw new InvalidArgumentException("SelectValue must received integer, but got '$value'.");
         }
-        return $this->getConverter()->encodeInteger((int) $value, $this->size);
+        return $this->encodeUnsignedInteger((int) $value);
     }
 }
 

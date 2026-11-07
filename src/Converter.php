@@ -16,14 +16,15 @@ final class Converter {
         return $instance;
     }
     
-    public function encodeInteger(int $val, int $size = 1): string {
+    public function encodeInteger(int $val, int $size = 1, string $byteOrder = 'big'): string {
+        $this->validateByteOrder($byteOrder);
         $ret = pack('N', $val);
         $ret = substr($ret, -$size);
-        return $ret;
+        return $byteOrder === 'little' ? strrev($ret) : $ret;
     }
     
-    public function encodeSignedInteger(int $val, int $size = 1): string {
-        return $this->encodeInteger($val, $size);
+    public function encodeSignedInteger(int $val, int $size = 1, string $byteOrder = 'big'): string {
+        return $this->encodeInteger($val, $size, $byteOrder);
     }
     
     public function encodeString(string $val, int $size = 1, string $encoding = ''): string {
@@ -45,7 +46,11 @@ final class Converter {
         return $parser->code2binary($val);
     }
     
-    public function decodeInteger(string $val, int $size = 1): int {
+    public function decodeInteger(string $val, int $size = 1, string $byteOrder = 'big'): int {
+        $this->validateByteOrder($byteOrder);
+        if ($byteOrder === 'little') {
+            $val = strrev($val);
+        }
         static $unpackList = [
             [],
             [],
@@ -82,12 +87,18 @@ final class Converter {
         return $unpackList[$size][$key];
     }
     
-    public function decodeSignedInteger(string $val, int $size = 1): int {
-        $ret = $this->decodeInteger($val, $size);
-        if ($ret > $this->pow256($size) / 2) {
+    public function decodeSignedInteger(string $val, int $size = 1, string $byteOrder = 'big'): int {
+        $ret = $this->decodeInteger($val, $size, $byteOrder);
+        if ($ret >= $this->pow256($size) / 2) {
             $ret -= $this->pow256($size);
         }
         return $ret;
+    }
+    
+    private function validateByteOrder(string $byteOrder): void {
+        if ($byteOrder !== 'big' && $byteOrder !== 'little') {
+            throw new RangeException('Unknown byte order: ' . $byteOrder);
+        }
     }
     
     public function decodeString(string $val, int $size = 1, string $encoding = ''): string {
