@@ -20,7 +20,7 @@ final class BitFieldInstruction extends AbstractInstructionContent {
     protected function loadStruc(LeanElement $strucElement): void {
         parent::loadStruc($strucElement);
         
-        $this->size = $strucElement->hasAttribute('size') ? (int) $this->ownerFile->evaluate($strucElement->getAttribute('size')) : 1;
+        $this->size = $strucElement->hasAttribute('size') ? (int) $this->evaluateExpression($strucElement->getAttribute('size')) : 1;
         $this->firstBit = (int) $strucElement->getAttribute('first-bit', 0);
         $this->lastBit = (int) $strucElement->getAttribute('last-bit', $this->size * 8 - 1);
     }

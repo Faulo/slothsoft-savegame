@@ -18,8 +18,8 @@ final class RepeatGroupInstruction extends AbstractInstructionContent {
     protected function loadStruc(LeanElement $strucElement): void {
         parent::loadStruc($strucElement);
         
-        $this->groupSize = $strucElement->hasAttribute('group-size') ? (int) $this->ownerFile->evaluate($strucElement->getAttribute('group-size')) : 0;
-        $this->groupCount = $strucElement->hasAttribute('group-count') ? (int) $this->ownerFile->evaluate($strucElement->getAttribute('group-count')) : 0;
+        $this->groupSize = $strucElement->hasAttribute('group-size') ? (int) $this->evaluateExpression($strucElement->getAttribute('group-size')) : 0;
+        $this->groupCount = $strucElement->hasAttribute('group-count') ? (int) $this->evaluateExpression($strucElement->getAttribute('group-count')) : 0;
     }
     
     protected function loadInstruction(LeanElement $strucElement): iterable {

@@ -158,6 +158,49 @@ final class FileContainer extends AbstractNode implements NodeEvaluatorInterface
     }
     
     public function evaluate($expression) {
+        return $this->evaluateInContext($expression, null);
+    }
+    
+    /**
+     * Resolve initialized values in the nearest enclosing subtree, up to this file.
+     * Variable-dependent results are not cached: both context and values can change.
+     */
+    public function evaluateScoped($expression, AbstractContentNode $context) {
+        $file = $context->getParentNode();
+        while ($file instanceof AbstractContentNode) {
+            $file = $file->getParentNode();
+        }
+        if ($file !== $this) {
+            throw new \InvalidArgumentException('The expression context must belong to this file.');
+        }
+        return $this->evaluateInContext($expression, $context);
+    }
+    
+    private function getScopedValueByName(string $name, AbstractContentNode $context): AbstractValueContent {
+        for ($scope = $context; $scope !== null; $scope = $scope->getParentNode()) {
+            /** @var AbstractValueContent $value */
+            foreach ($this->valueList as $value) {
+                if ($value->getName() !== $name || $value->getValue() === null) {
+                    continue;
+                }
+                // Search descendants, not the scope node itself; registration order is document order.
+                for ($ancestor = $value->getParentNode(); $ancestor !== null; $ancestor = $ancestor->getParentNode()) {
+                    if ($ancestor === $scope) {
+                        return $value;
+                    }
+                    if ($ancestor === $this) {
+                        break;
+                    }
+                }
+            }
+            if ($scope === $this) {
+                break;
+            }
+        }
+        throw new \InvalidArgumentException("Not a value in scope: $name");
+    }
+    
+    private function evaluateInContext($expression, ?AbstractContentNode $context) {
         if (is_int($expression)) {
             return $expression;
         }
@@ -178,18 +221,22 @@ final class FileContainer extends AbstractNode implements NodeEvaluatorInterface
             return $sign * hexdec($match[1]);
         }
         
-        if (! isset($this->evaluateCache[$expression])) {
+        if ($context !== null || ! isset($this->evaluateCache[$expression])) {
             $matches = null;
             preg_match_all('/\$([A-Za-z0-9\-\.]+)/', $expression, $matches);
             $translate = [];
             foreach ($matches[0] as $i => $key) {
-                $translate[$key] = $this->getValueByName($matches[1][$i])->getValue();
+                $translate[$key] = ($context === null
+                    ? $this->getValueByName($matches[1][$i])
+                    : $this->getScopedValueByName($matches[1][$i], $context))->getValue();
             }
             $code = strtr($expression, $translate);
             $code = trim($code);
-            // echo $code . PHP_EOL;
-            $this->evaluateCache[$expression] = $this->evaluateMath($code);
-            // echo $expression . PHP_EOL . $code . PHP_EOL . $this->evaluateCache[$expression] . PHP_EOL . PHP_EOL;
+            $result = $this->evaluateMath($code);
+            if ($context !== null) {
+                return $sign * $result;
+            }
+            $this->evaluateCache[$expression] = $result;
         }
         return $sign * $this->evaluateCache[$expression];
     }

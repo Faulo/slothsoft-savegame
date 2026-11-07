@@ -3,6 +3,7 @@ declare(strict_types = 1);
 
 namespace Slothsoft\Savegame\Node;
 
+use InvalidArgumentException;
 use RangeException;
 use Slothsoft\Core\XML\LeanElement;
 use Slothsoft\Savegame\Build\BuildableInterface;
@@ -17,6 +18,8 @@ abstract class AbstractContentNode extends AbstractNode {
     
     protected int $contentOffset;
     
+    private string $variableResolution = 'global';
+    
     abstract protected function loadContent(LeanElement $strucElement): void;
     
     protected function loadStruc(LeanElement $strucElement): void {
@@ -29,7 +32,12 @@ abstract class AbstractContentNode extends AbstractNode {
         
         $this->name = (string) $strucElement->getAttribute('name');
         
-        $this->position = $strucElement->hasAttribute('position') ? (int) $this->ownerFile->evaluate($strucElement->getAttribute('position')) : 0;
+        $this->variableResolution = (string) $strucElement->getAttribute('variable-resolution', 'global');
+        if (! in_array($this->variableResolution, ['global', 'scoped'], true)) {
+            throw new InvalidArgumentException('Unknown variable resolution: ' . $this->variableResolution);
+        }
+        
+        $this->position = $strucElement->hasAttribute('position') ? (int) $this->evaluateExpression($strucElement->getAttribute('position')) : 0;
         
         $this->contentOffset = $this->position;
         
@@ -72,6 +80,13 @@ abstract class AbstractContentNode extends AbstractNode {
     
     protected function getOwnerFile(): FileContainer {
         return $this->ownerFile;
+    }
+    
+    /** Evaluate this node's attributes; resolution settings are not inherited. */
+    protected function evaluateExpression($expression) {
+        return $this->variableResolution === 'scoped'
+            ? $this->ownerFile->evaluateScoped($expression, $this)
+            : $this->ownerFile->evaluate($expression);
     }
     
     public function getOwnerSavegame(): SavegameNode {

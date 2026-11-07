@@ -424,6 +424,17 @@ This namespace defines elements to describe the contents of game files in terms 
                 <xsd:attribute name="position" type="numberExpression" use="optional" />
                 <xsd:attribute name="position-at-string" type="xsd:token" use="optional" />
                 <xsd:attribute name="position-from" type="positioningContext" use="optional" default="parent" />
+                <xsd:attribute name="variable-resolution" use="optional" default="global">
+                    <xsd:annotation>
+                        <xsd:documentation>Applies only to expressions on this node, not its children. Global resolves the first named value in the file. Scoped searches initialized descendant values from the current node outward through its ancestors, stopping at the file; the first match in the nearest subtree wins.</xsd:documentation>
+                    </xsd:annotation>
+                    <xsd:simpleType>
+                        <xsd:restriction base="xsd:token">
+                            <xsd:enumeration value="global" />
+                            <xsd:enumeration value="scoped" />
+                        </xsd:restriction>
+                    </xsd:simpleType>
+                </xsd:attribute>
             </xsd:extension>
         </xsd:complexContent>
     </xsd:complexType>

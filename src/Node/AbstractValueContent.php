@@ -31,7 +31,7 @@ abstract class AbstractValueContent extends AbstractContentNode implements Build
     protected function loadStruc(LeanElement $strucElement): void {
         parent::loadStruc($strucElement);
         
-        $this->size = $strucElement->hasAttribute('size') ? (int) $this->ownerFile->evaluate($strucElement->getAttribute('size')) : 1;
+        $this->size = $strucElement->hasAttribute('size') ? (int) $this->evaluateExpression($strucElement->getAttribute('size')) : 1;
         $this->valueId = $this->ownerFile->registerValue($this);
     }
     

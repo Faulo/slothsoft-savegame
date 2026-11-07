@@ -22,7 +22,7 @@ trait IntegerFormatTrait {
         // Validate even when the node has no content yet.
         $this->getConverter()->decodeInteger("\0", 1, $this->byteOrder);
         if ($strucElement->hasAttribute('bit-mask')) {
-            $this->bitMask = (int) $this->ownerFile->evaluate($strucElement->getAttribute('bit-mask'));
+            $this->bitMask = (int) $this->evaluateExpression($strucElement->getAttribute('bit-mask'));
             if ($this->size < 1 || $this->size > 4 || $this->bitMask < 1 || $this->bitMask >= 256 ** $this->size) {
                 throw new InvalidArgumentException('The bit mask must fit the numeric field and contain at least one bit.');
             }

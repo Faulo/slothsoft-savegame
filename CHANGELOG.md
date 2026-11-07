@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.6.0] - 2026-11-07
+
+### Added
+
+- Per-node `variable-resolution="scoped"` on expression-evaluating content nodes. Named values resolve from the nearest enclosing subtree outward to the file, supporting pointers and sizes in repeated records.
+- Explicit `variable-resolution="global"` retains the existing default file-wide lookup. The setting is local to each node and is not inherited.
+- Scoped expression evaluation avoids reusing variable bindings between contexts; editor schema 0.4 and expression regression coverage include the new mode.
+
 ## [1.5.0] - 2026-11-07
 
 ### Added
@@ -408,7 +416,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Binary conversion helpers and event-script parsing.
 - Composer packaging for PHP 7.2 and later PHP 7.x releases.
 
-[Unreleased]: https://github.com/Faulo/slothsoft-savegame/compare/1.5.0...HEAD
+[Unreleased]: https://github.com/Faulo/slothsoft-savegame/compare/1.6.0...HEAD
+[1.6.0]: https://github.com/Faulo/slothsoft-savegame/compare/1.5.0...1.6.0
 [1.5.0]: https://github.com/Faulo/slothsoft-savegame/compare/1.4.0...1.5.0
 [1.4.0]: https://github.com/Faulo/slothsoft-savegame/compare/1.3.13...1.4.0
 [1.3.13]: https://github.com/Faulo/slothsoft-savegame/compare/1.3.12...1.3.13
