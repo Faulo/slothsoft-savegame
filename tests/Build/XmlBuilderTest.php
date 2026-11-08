@@ -26,6 +26,9 @@ final class XmlBuilderTest extends TestCase {
         $this->assertSame(1, substr_count($xml, 'xmlns='));
     }
     
+    /**
+     * @return iterable<string, array{string}>
+     */
     public function rootTags(): iterable {
         yield 'savegame export' => ['savegame'];
         yield 'archive export' => ['archive'];
@@ -37,6 +40,7 @@ final class XmlBuilderTest extends TestCase {
         $root = new TestBuildableNode('string', ['value' => $value]);
         
         $document = DOMHelper::parseDocument($this->serialize($this->createBuilder($root)));
+        $this->assertNotNull($document->documentElement);
         $this->assertSame($value, $document->documentElement->getAttribute('value'));
     }
     
@@ -116,6 +120,9 @@ final class XmlBuilderTest extends TestCase {
         );
     }
     
+    /**
+     * @return iterable<string, array{string, string}>
+     */
     public function changedHashes(): iterable {
         yield 'root changed' => ['file-2', 'archive-1'];
         yield 'ancestor changed' => ['file-1', 'archive-2'];

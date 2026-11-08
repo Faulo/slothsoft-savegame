@@ -5,8 +5,12 @@ namespace Slothsoft\Savegame\Script;
 
 class Event extends AbstractElement {
     
+    /** @var list<Line> */
     protected $lineList;
     
+    /**
+     * @return void
+     */
     protected function init() {
         $this->lineList = [];
     }

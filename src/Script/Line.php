@@ -5,6 +5,9 @@ namespace Slothsoft\Savegame\Script;
 
 class Line extends AbstractElement {
     
+    /**
+     * @return void
+     */
     protected function init() {
     }
     

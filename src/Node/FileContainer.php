@@ -24,10 +24,13 @@ final class FileContainer extends AbstractNode implements NodeEvaluatorInterface
     
     private ?string $content = null;
     
+    /** @var Vector<AbstractValueContent> */
     private Vector $valueList;
     
+    /** @var Vector<ImageValue>|null */
     private ?Vector $imageList = null;
     
+    /** @var array<string, int> */
     private array $evaluateCache;
     
     private SavegameNode $ownerSavegame;
@@ -71,16 +74,24 @@ final class FileContainer extends AbstractNode implements NodeEvaluatorInterface
     protected function loadNode(LeanElement $strucElement): void {
         assert(file_exists($this->filePath), '$this->filePath must exist');
         
-        $this->setContent(file_get_contents($this->filePath));
+        $content = file_get_contents($this->filePath);
+        if ($content === false) {
+            throw new \RuntimeException("Cannot read file: $this->filePath");
+        }
+        $this->setContent($content);
     }
     
+    /**
+     * @param int $offset
+     * @param int|'auto' $length
+     */
     public function extractContent($offset, $length): string {
         $ret = null;
         switch ($length) {
             case 'auto':
                 $ret = '';
-                for ($i = $offset, $j = strlen($this->content); $i < $j; $i++) {
-                    $char = $this->content[$i];
+                for ($i = $offset, $j = strlen($this->getContent()); $i < $j; $i++) {
+                    $char = $this->getContent()[$i];
                     if ($char === "\0") {
                         break;
                     } else {
@@ -89,7 +100,10 @@ final class FileContainer extends AbstractNode implements NodeEvaluatorInterface
                 }
                 break;
             default:
-                $ret = (string) substr($this->content, $offset, $length);
+                if (! is_int($length)) {
+                    throw new \InvalidArgumentException('Content length must be an integer or auto.');
+                }
+                $ret = (string) substr($this->getContent(), $offset, $length);
                 $ret = str_pad($ret, $length, "\0");
                 break;
         }
@@ -97,7 +111,7 @@ final class FileContainer extends AbstractNode implements NodeEvaluatorInterface
     }
     
     public function insertContent(int $offset, int $length, string $value): void {
-        $this->setContent(substr_replace($this->content, $value, $offset, $length));
+        $this->setContent(substr_replace($this->getContent(), $value, $offset, $length));
     }
     
     public function insertContentBit(int $offset, int $bit, bool $value): void {
@@ -121,7 +135,7 @@ final class FileContainer extends AbstractNode implements NodeEvaluatorInterface
     }
     
     public function getContent(): string {
-        return $this->content;
+        return $this->content ?? throw new LogicException('File content has not been loaded.');
     }
     
     public function getFileName(): string {
@@ -148,12 +162,15 @@ final class FileContainer extends AbstractNode implements NodeEvaluatorInterface
         throw new InvalidArgumentException("Not a value: $id");
     }
     
+    /**
+     * @return Vector<AbstractValueContent>
+     */
     public function getValueList(): Vector {
         return $this->valueList;
     }
     
     public function findStringAtOrAfter(string $search, int $offset = 0): ?int {
-        $index = strpos($this->content, $search, $offset);
+        $index = strpos($this->getContent(), $search, $offset);
         return $index === false ? null : $index;
     }
     
@@ -164,6 +181,8 @@ final class FileContainer extends AbstractNode implements NodeEvaluatorInterface
     /**
      * Resolve initialized values in the nearest enclosing subtree, up to this file.
      * Variable-dependent results are not cached: both context and values can change.
+     * @param string|int|null $expression
+     * @return int|float
      */
     public function evaluateScoped($expression, AbstractContentNode $context) {
         $file = $context->getParentNode();
@@ -200,6 +219,10 @@ final class FileContainer extends AbstractNode implements NodeEvaluatorInterface
         throw new \InvalidArgumentException("Not a value in scope: $name");
     }
     
+    /**
+     * @param string|int|null $expression
+     * @return int|float
+     */
     private function evaluateInContext($expression, ?AbstractContentNode $context) {
         if (is_int($expression)) {
             return $expression;
@@ -264,8 +287,11 @@ final class FileContainer extends AbstractNode implements NodeEvaluatorInterface
         return $id;
     }
     
+    /**
+     * @return iterable<ImageValue>
+     */
     public function getImageNodes(): iterable {
-        return $this->imageList;
+        return $this->imageList ?? [];
     }
     
     public function getImageNodeById(int $id): ImageValue {

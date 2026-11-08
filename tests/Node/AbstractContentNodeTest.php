@@ -169,6 +169,9 @@ EOT;
         $this->assertThat($value->getValue(), new IsEqual($search));
     }
     
+    /**
+     * @return iterable<string, array{string, string, int}>
+     */
     public function positionAtStringProvider(): iterable {
         yield 'AM2 Server 105' => [
             'DATA-105',

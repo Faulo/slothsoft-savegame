@@ -28,7 +28,7 @@ final class NumericFormatTest extends TestCase {
             . '<file file-name="1">' . $fields . '</file></archive></savegame>'
         );
         $schema = Module::resolveToDOMWriter(FarahUrl::createFromReference('farah://slothsoft@savegame/schema/editor/0.4'))->toDocument();
-        $this->assertTrue($document->schemaValidateSource($schema->saveXML()));
+        $this->assertTrue($document->schemaValidateSource($schema->saveXML() ?: throw new \RuntimeException('Cannot serialize schema.')));
         $config = new EditorConfig(
             FileInfoFactory::createFromPath($source->getPath()),
             FileInfoFactory::createFromPath(temp_dir(__CLASS__, 'user-')),
@@ -63,6 +63,9 @@ final class NumericFormatTest extends TestCase {
         $equipment->setValue(128, true);
     }
     
+    /**
+     * @return iterable<string, array{string}>
+     */
     public function unsignedNodeTypes(): iterable {
         yield 'integer' => ['integer'];
         yield 'select' => ['select'];
@@ -107,6 +110,9 @@ final class NumericFormatTest extends TestCase {
         $this->loadFile("\x91", '<integer name="value" bit-mask="' . $mask . '"/>');
     }
     
+    /**
+     * @return iterable<string, array{string}>
+     */
     public function invalidMasks(): iterable {
         yield 'empty' => ['0'];
         yield 'negative' => ['-1'];

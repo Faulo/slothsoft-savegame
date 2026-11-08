@@ -9,14 +9,21 @@ use Slothsoft\Savegame\Build\BuilderInterface;
 
 abstract class AbstractValueContent extends AbstractContentNode implements BuildableInterface {
     
+    /**
+     * @return mixed
+     */
     abstract protected function decodeValue(string $rawValue);
     
+    /**
+     * @param mixed $value
+     */
     abstract protected function encodeValue($value): string;
     
     private int $valueId;
     
     protected int $size;
     
+    /** @var mixed Decoded data; its type depends on the concrete value node. */
     protected $value;
     
     public function getBuildAttributes(BuilderInterface $builder): array {
@@ -50,6 +57,9 @@ abstract class AbstractValueContent extends AbstractContentNode implements Build
         return $this->valueId;
     }
     
+    /**
+     * @param mixed $value
+     */
     public function setValue($value, bool $updateContent = false): bool {
         settype($value, gettype($this->value));
         
@@ -64,6 +74,9 @@ abstract class AbstractValueContent extends AbstractContentNode implements Build
         return false;
     }
     
+    /**
+     * @return mixed
+     */
     public function getValue() {
         return $this->value;
     }

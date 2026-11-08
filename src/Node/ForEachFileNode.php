@@ -45,11 +45,17 @@ final class ForEachFileNode extends AbstractNode {
         return $parentNode;
     }
     
+    /**
+     * @return Set<string>
+     */
     private function getFileNames(): Set {
         $names = $this->getOwnerArchive()->getFileNames();
         
         if (strlen($this->list)) {
             $range = preg_split('~\s+~', $this->list, 0, PREG_SPLIT_NO_EMPTY);
+            if ($range === false) {
+                throw new \RuntimeException('Cannot split file list.');
+            }
             $names = $names->filter(function (string $name) use ($range): bool {
                 return in_array($name, $range);
             });

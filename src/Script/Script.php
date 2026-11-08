@@ -5,8 +5,12 @@ namespace Slothsoft\Savegame\Script;
 
 class Script extends AbstractElement {
     
+    /** @var list<Event> */
     protected $eventList;
     
+    /**
+     * @return void
+     */
     protected function init() {
         $this->eventList = [];
     }

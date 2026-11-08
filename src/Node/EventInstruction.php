@@ -7,9 +7,9 @@ use Slothsoft\Core\XML\LeanElement;
 
 final class EventInstruction extends AbstractInstructionContent {
     
-    private $size;
+    private int $size;
     
-    private $stepSize;
+    private int $stepSize;
     
     protected function getInstructionType(): string {
         return NodeFactory::TAG_EVENT;

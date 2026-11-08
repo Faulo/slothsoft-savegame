@@ -56,9 +56,7 @@ abstract class AbstractContentNode extends AbstractNode {
                     if ($node === $this) {
                         break;
                     }
-                    if ($node instanceof AbstractValueContent) {
-                        $previousSibling = $node;
-                    }
+                    $previousSibling = $node;
                 }
                 
                 if ($previousSibling) {
@@ -82,7 +80,12 @@ abstract class AbstractContentNode extends AbstractNode {
         return $this->ownerFile;
     }
     
-    /** Evaluate this node's attributes; resolution settings are not inherited. */
+    /**
+     * Evaluate this node's attributes; resolution settings are not inherited.
+     *
+     * @param string|int|null $expression
+     * @return int|float
+     */
     protected function evaluateExpression($expression) {
         return $this->variableResolution === 'scoped'
             ? $this->ownerFile->evaluateScoped($expression, $this)

@@ -44,6 +44,7 @@ final class ArchiveNode extends AbstractNode implements BuildableInterface, File
     
     private SplFileInfo $extractDirectory;
     
+    /** @var Map<string, SplFileInfo>|null */
     private ?Map $extractedFiles = null;
     
     public function getBuildTag(): string {
@@ -98,10 +99,7 @@ final class ArchiveNode extends AbstractNode implements BuildableInterface, File
     
     public function load(bool $loadFiles = false): void {
         if ($this->extractedFiles === null) {
-            $this->extractedFiles = new Map();
-            foreach ($this->getArchiveFiles() as $file) {
-                $this->extractedFiles[$file->getFilename()] = $file;
-            }
+            $this->extractedFiles = new Map($this->indexArchiveFiles());
             parent::loadChildren($this->strucElement);
             
             if ($loadFiles) {
@@ -113,6 +111,16 @@ final class ArchiveNode extends AbstractNode implements BuildableInterface, File
         }
     }
     
+    /** @return iterable<string, SplFileInfo> */
+    private function indexArchiveFiles(): iterable {
+        foreach ($this->getArchiveFiles() as $file) {
+            yield $file->getFilename() => $file;
+        }
+    }
+    
+    /**
+     * @return SplFileInfo[]
+     */
     private function getArchiveFiles(): array {
         $directory = (string) $this->extractDirectory;
         if (is_dir($directory)) {
@@ -143,10 +151,21 @@ final class ArchiveNode extends AbstractNode implements BuildableInterface, File
      * @return FileContainer[]
      */
     public function getFileNodes(): iterable {
-        return $this->getBuildChildren() ?? [];
+        foreach ($this->getBuildChildren() ?? [] as $node) {
+            if (! $node instanceof FileContainer) {
+                throw new \LogicException('Unexpected child node type.');
+            }
+            yield $node;
+        }
     }
     
+    /**
+     * @return Set<string>
+     */
     public function getFileNames(): Set {
+        if ($this->extractedFiles === null) {
+            throw new \LogicException('Archive has not been loaded.');
+        }
         return $this->extractedFiles->keys();
     }
     
@@ -211,7 +230,7 @@ final class ArchiveNode extends AbstractNode implements BuildableInterface, File
     
     public function toString(): string {
         if ($childList = $this->getBuildChildren()) {
-            return $this->getArchiveBuilder()->buildArchive($childList);
+            return $this->getArchiveBuilder()->buildArchive($this->getFileNodes());
         } else {
             return '';
         }

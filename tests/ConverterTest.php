@@ -37,6 +37,9 @@ final class ConverterTest extends TestCase {
         $this->assertSame($value, $converter->decodeInteger($bigEndian, $size));
     }
     
+    /**
+     * @return iterable<string, array{int, string}>
+     */
     public function integerFormats(): iterable {
         yield 'one byte' => [0x7f, "\x7f"];
         yield 'two bytes' => [0x1234, "\x12\x34"];
@@ -62,5 +65,30 @@ final class ConverterTest extends TestCase {
     public function testRejectsUnknownByteOrder(): void {
         $this->expectException(RangeException::class);
         (new Converter())->decodeInteger("\0", 1, 'native');
+    }
+    
+    public function testHexadecimalWhitespaceAndEmptyInput(): void {
+        $converter = new Converter();
+        $this->assertSame("\xAB\x01", $converter->encodeBinary(" AB\n01\t"));
+        $this->assertSame('', $converter->encodeBinary(''));
+    }
+    
+    /**
+     * @dataProvider invalidHexadecimal
+     */
+    public function testRejectsInvalidHexadecimal(string $hex): void {
+        $this->expectException(RangeException::class);
+        (new Converter())->encodeBinary($hex);
+    }
+    
+    /** @return iterable<string, array{string}> */
+    public function invalidHexadecimal(): iterable {
+        yield 'odd length' => ['ABC'];
+        yield 'invalid digits' => ['GG'];
+    }
+    
+    public function testRejectsTruncatedInteger(): void {
+        $this->expectException(RangeException::class);
+        (new Converter())->decodeInteger("\x01", 2);
     }
 }

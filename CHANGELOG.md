@@ -7,13 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [1.6.0] - 2026-11-07
+## [1.6.0] - 2026-11-08
 
 ### Added
 
 - Per-node `variable-resolution="scoped"` on expression-evaluating content nodes. Named values resolve from the nearest enclosing subtree outward to the file, supporting pointers and sizes in repeated records.
 - Explicit `variable-resolution="global"` retains the existing default file-wide lookup. The setting is local to each node and is not inherited.
 - Scoped expression evaluation avoids reusing variable bindings between contexts; editor schema 0.4 and expression regression coverage include the new mode.
+
+### Fixed
+
+- Complete collection and method type documentation for PHPStan level 8 without changing public method signatures.
+- Report invalid binary conversions and unloaded or unreadable content explicitly; image enumeration returns an empty list when no images are registered.
 
 ## [1.5.0] - 2026-11-07
 

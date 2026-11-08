@@ -29,6 +29,9 @@ trait IntegerFormatTrait {
         }
     }
     
+    /**
+     * @return array<string, int|string>
+     */
     private function getIntegerFormatAttributes(): array {
         $attributes = [];
         if ($this->byteOrder !== 'big') {

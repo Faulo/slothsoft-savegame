@@ -40,6 +40,9 @@ class ArchiveNodeTest extends TestCase {
     
     private ArchiveNode $sut;
     
+    /**
+     * @return void
+     */
     private function init(string $contents = '') {
         $this->archiveFile = FileInfoFactory::createFromString($contents);
         

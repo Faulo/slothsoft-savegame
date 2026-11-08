@@ -9,6 +9,9 @@ use Slothsoft\Savegame\Build\BuilderInterface;
 
 abstract class AbstractInstructionContent extends AbstractContentNode implements BuildableInterface {
     
+    /**
+     * @return iterable<LeanElement>
+     */
     abstract protected function loadInstruction(LeanElement $strucElement): iterable;
     
     abstract protected function getInstructionType(): string;

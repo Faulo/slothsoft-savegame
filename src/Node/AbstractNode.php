@@ -14,6 +14,7 @@ abstract class AbstractNode {
     
     private ?AbstractNode $parentNode = null;
     
+    /** @var Vector<BuildableInterface>|null */
     private ?Vector $childNodeList = null;
     
     public function init(LeanElement $strucElement, ?AbstractNode $parentNode = null): void {
@@ -58,10 +59,16 @@ abstract class AbstractNode {
             }
             $this->childNodeList[] = $childNode;
         } else {
+            if ($this->parentNode === null) {
+                throw new \LogicException('A non-buildable node must have a parent.');
+            }
             $this->parentNode->appendBuildChild($childNode);
         }
     }
     
+    /**
+     * @return iterable<BuildableInterface>|null
+     */
     public function getBuildChildren(): ?iterable {
         return $this->childNodeList;
     }
@@ -70,6 +77,9 @@ abstract class AbstractNode {
         return '';
     }
     
+    /**
+     * @return iterable<AbstractNode>
+     */
     public function getBuildAncestors(): iterable {
         if ($this->parentNode) {
             yield from $this->parentNode->getBuildAncestors();

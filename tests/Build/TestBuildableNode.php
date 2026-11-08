@@ -9,6 +9,11 @@ final class TestBuildableNode implements BuildableInterface {
     
     public int $childrenReads = 0;
     
+    /**
+     * @param array<string, scalar> $attributes
+     * @param list<BuildableInterface>|null $children
+     * @param list<BuildableInterface> $ancestors
+     */
     public function __construct(
         private string $tag,
         public array $attributes = [],

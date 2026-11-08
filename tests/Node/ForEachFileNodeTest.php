@@ -41,6 +41,9 @@ final class ForEachFileNodeTest extends TestCase {
         return new Editor($config);
     }
     
+    /**
+     * @return void
+     */
     public function testList() {
         $xml = <<<EOT
 <savegame xmlns="http://schema.slothsoft.net/savegame/editor" version="0.4">
@@ -65,6 +68,9 @@ EOT;
         ]));
     }
     
+    /**
+     * @return void
+     */
     public function testRangeStart() {
         $xml = <<<EOT
 <savegame xmlns="http://schema.slothsoft.net/savegame/editor" version="0.4">
@@ -92,6 +98,9 @@ EOT;
         ]));
     }
     
+    /**
+     * @return void
+     */
     public function testRangeEnd() {
         $xml = <<<EOT
 <savegame xmlns="http://schema.slothsoft.net/savegame/editor" version="0.4">
@@ -115,6 +124,9 @@ EOT;
         ]));
     }
     
+    /**
+     * @return void
+     */
     public function testRange() {
         $xml = <<<EOT
 <savegame xmlns="http://schema.slothsoft.net/savegame/editor" version="0.4">

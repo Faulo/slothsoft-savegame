@@ -22,7 +22,7 @@ final class FileContainerTest extends TestCase {
     public function testClassExists(): void {
         $this->assertTrue(class_exists(FileContainer::class), "Failed to load class 'Slothsoft\Savegame\Node\FileContainer'!");
     }
-
+    
     /**
      * @dataProvider ownerArchiveProvider
      * @runInSeparateProcess
@@ -42,7 +42,7 @@ final class FileContainerTest extends TestCase {
             []
         );
         $archive = (new Editor($config))->loadArchive('archive.txt', true);
-
+        
         $files = [];
         /** @var FileContainer $file */
         foreach ($archive->getFileNodes() as $file) {
@@ -51,7 +51,10 @@ final class FileContainerTest extends TestCase {
         }
         $this->assertSame(['001'], $files);
     }
-
+    
+    /**
+     * @return array<string, array{string}>
+     */
     public function ownerArchiveProvider(): array {
         return [
             'direct file' => ['<file file-name="001"/>'],

@@ -36,7 +36,8 @@ final class ImagePileInstruction extends AbstractInstructionContent {
         $this->size = 0;
         $this->bitplanes = (int) $strucElement->getAttribute('bitplanes');
         $this->imageDimensions = (string) $strucElement->getAttribute('image-dimensions');
-        $this->imageDimensions = preg_replace('~\s+~', ' ', trim($this->imageDimensions));
+        $this->imageDimensions = preg_replace('~\s+~', ' ', trim($this->imageDimensions))
+            ?? throw new \RuntimeException('Cannot normalize image dimensions.');
     }
     
     protected function getInstructionType(): string {

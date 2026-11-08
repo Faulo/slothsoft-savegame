@@ -29,6 +29,10 @@ final class EditorConfig {
      */
     public array $archiveBuilders;
     
+    /**
+     * @param array<string, ArchiveExtractorInterface> $archiveExtractors
+     * @param array<string, ArchiveBuilderInterface> $archiveBuilders
+     */
     public function __construct(SplFileInfo $sourceDirectory, SplFileInfo $userDirectory, SplFileInfo $cacheDirectory, SplFileInfo $infosetFile, array $archiveExtractors, array $archiveBuilders) {
         $this->sourceDirectory = $sourceDirectory;
         $this->userDirectory = $userDirectory;

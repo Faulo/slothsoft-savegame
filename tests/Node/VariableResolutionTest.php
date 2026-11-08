@@ -17,7 +17,10 @@ use Slothsoft\Savegame\Node\ArchiveParser\CopyArchiveExtractor;
 
 /** @runTestsInSeparateProcesses */
 final class VariableResolutionTest extends TestCase {
-    /** @dataProvider resolutionModes */
+    /**
+     * @dataProvider resolutionModes
+     * @param list<string> $expected
+     */
     public function testRepeatedPointersUseTheSelectedResolution(string $attribute, array $expected): void {
         $file = $this->loadFile("\x04\x06\0\0A\0B\0", '
             <repeat-group group-count="2" group-size="1">
@@ -30,6 +33,9 @@ final class VariableResolutionTest extends TestCase {
         self::assertSame(4, $file->evaluate('$pointer'));
     }
     
+    /**
+     * @return iterable<string, array{string, list<string>}>
+     */
     public function resolutionModes(): iterable {
         yield 'default remains global' => ['', ['A', 'A']];
         yield 'explicit global' => ['variable-resolution="global"', ['A', 'A']];
@@ -151,13 +157,16 @@ final class VariableResolutionTest extends TestCase {
         $document = $this->document('unused', '<integer variable-resolution="unknown" />');
         $previous = libxml_use_internal_errors(true);
         try {
-            self::assertFalse($document->schemaValidateSource($this->schema()->saveXML()));
+            self::assertFalse($document->schemaValidateSource($this->schema()->saveXML() ?: throw new \RuntimeException('Cannot serialize schema.')));
         } finally {
             libxml_clear_errors();
             libxml_use_internal_errors($previous);
         }
     }
     
+    /**
+     * @return list<mixed>
+     */
     private function namedValues(FileContainer $file, string $name): array {
         $values = [];
         foreach ($file->getValueList() as $value) {
@@ -184,7 +193,7 @@ final class VariableResolutionTest extends TestCase {
         $source = FileInfoFactory::createFromString($content);
         $document = $this->document($source->getFilename(), $fields);
         if ($validate) {
-            self::assertTrue($document->schemaValidateSource($this->schema()->saveXML()));
+            self::assertTrue($document->schemaValidateSource($this->schema()->saveXML() ?: throw new \RuntimeException('Cannot serialize schema.')));
         }
         $config = new EditorConfig(
             FileInfoFactory::createFromPath($source->getPath()),

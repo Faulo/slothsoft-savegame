@@ -59,7 +59,7 @@ final class NodeFactory {
     
     const TAG_IMAGE_PILE = 'image-pile';
     
-    private $editor;
+    private Editor $editor;
     
     public function __construct(Editor $editor) {
         $this->editor = $editor;

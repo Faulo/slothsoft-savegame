@@ -40,7 +40,11 @@ class Editor {
             }
             
             $rootNode = $strucDoc->documentElement;
-            $rootNode->setAttribute('file-hash', md5($strucDoc->saveXML()));
+            $xml = $strucDoc->saveXML();
+            if ($xml === false) {
+                throw new UnexpectedValueException('Cannot serialize structure document.');
+            }
+            $rootNode->setAttribute('file-hash', md5($xml));
             $rootNode->setAttribute('save-id', basename((string) $this->getUserDirectory()));
             
             $rootElement = LeanElement::createTreeFromDOMElement($rootNode);
@@ -90,7 +94,7 @@ class Editor {
     
     public function getSavegameNode(): SavegameNode {
         $this->load();
-        return $this->savegame;
+        return $this->savegame ?? throw new UnexpectedValueException('Savegame was not loaded.');
     }
     
     public function getArchiveNode(string $archivePath): ArchiveNode {
@@ -101,6 +105,10 @@ class Editor {
         return $this->getArchiveNode($archiveName)->getFileNodeByName($fileName);
     }
     
+    /**
+     * @param array<int|string, mixed> $data
+     * @return void
+     */
     public function applyValues(array $data) {
         $savegame = $this->getSavegameNode();
         

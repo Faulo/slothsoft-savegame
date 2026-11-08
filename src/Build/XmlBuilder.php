@@ -13,6 +13,7 @@ use SplFileInfo;
 
 final class XmlBuilder implements BuilderInterface {
     
+    /** @var array<string, true> */
     private array $attributeBlacklist = [];
     
     private BuildableInterface $root;
@@ -29,6 +30,7 @@ final class XmlBuilder implements BuilderInterface {
     
     /**
      * @deprecated This method has no effect. Caching depends on the root node's build hash.
+     * @param iterable<string> $list
      */
     public function registerTagCachelist(iterable $list): void {
     }
@@ -40,6 +42,7 @@ final class XmlBuilder implements BuilderInterface {
     }
     
     /**
+     * @param iterable<string> $list
      * @deprecated This method has no effect. Tag filtering is not supported.
      */
     public function registerTagBlacklist(iterable $list): void {
@@ -51,6 +54,9 @@ final class XmlBuilder implements BuilderInterface {
     public function clearTagBlacklist(): void {
     }
     
+    /**
+     * @param iterable<string> $list
+     */
     public function registerAttributeBlacklist(iterable $list): void {
         foreach ($list as $key) {
             $this->attributeBlacklist[$key] = true;
@@ -95,7 +101,7 @@ final class XmlBuilder implements BuilderInterface {
         }
     }
     
-    private function chunkBuildableXml(BuildableInterface $node, $isRoot = false): Generator {
+    private function chunkBuildableXml(BuildableInterface $node, bool $isRoot = false): Generator {
         $tag = $node->getBuildTag();
         
         if ($isRoot) {

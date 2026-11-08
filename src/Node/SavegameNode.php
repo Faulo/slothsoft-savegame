@@ -50,6 +50,7 @@ class SavegameNode extends AbstractNode implements BuildableInterface {
     
     private ?string $valueHash = null;
     
+    /** @var array<string, Vector<LeanElement>> */
     private array $globalElements;
     
     private int $valueIdCounter = 0;
@@ -95,7 +96,7 @@ class SavegameNode extends AbstractNode implements BuildableInterface {
         }
         
         foreach ($globalList as $element) {
-            $this->globalElements[$element->getAttribute('global-id')] = $element->getChildren();
+            $this->globalElements[$element->getAttribute('global-id')] = new Vector($element->getChildren());
         }
         
         foreach ($archiveList as $element) {
@@ -117,7 +118,12 @@ class SavegameNode extends AbstractNode implements BuildableInterface {
      * @return ArchiveNode[]
      */
     public function getArchiveNodes(): iterable {
-        return $this->getBuildChildren() ?? [];
+        foreach ($this->getBuildChildren() ?? [] as $node) {
+            if (! $node instanceof ArchiveNode) {
+                throw new \LogicException('Unexpected child node type.');
+            }
+            yield $node;
+        }
     }
     
     public function getArchiveByPath(string $path): ArchiveNode {
@@ -132,6 +138,9 @@ class SavegameNode extends AbstractNode implements BuildableInterface {
         throw new InvalidArgumentException("Not an archive: $path");
     }
     
+    /**
+     * @return Vector<LeanElement>|null
+     */
     public function getGlobalElementsById(string $id): ?Vector {
         return $this->globalElements[$id] ?? null;
     }
@@ -140,6 +149,9 @@ class SavegameNode extends AbstractNode implements BuildableInterface {
         return ++$this->valueIdCounter;
     }
     
+    /**
+     * @return array<int, AbstractValueContent>
+     */
     public function getValueMap(): array {
         $ret = [];
         if ($archiveList = $this->getBuildChildren()) {

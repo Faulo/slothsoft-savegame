@@ -38,7 +38,15 @@ final class Converter {
     }
     
     public function encodeBinary(string $val): string {
-        return hex2bin(preg_replace('~\s+~', '', $val));
+        $hex = preg_replace('~\s+~', '', $val);
+        if ($hex === null || strlen($hex) % 2 !== 0 || ($hex !== '' && ! ctype_xdigit($hex))) {
+            throw new RangeException('Invalid hexadecimal data.');
+        }
+        $binary = hex2bin($hex);
+        if ($binary === false) {
+            throw new RangeException('Cannot decode hexadecimal data.');
+        }
+        return $binary;
     }
     
     public function encodeScript(string $val): string {
@@ -81,7 +89,14 @@ final class Converter {
                 default:
                     throw new RangeException('unknown integer size: ' . $size);
             }
-            $unpackList[$size][$key] = unpack($format, $val)[1];
+            if (strlen($val) < ($size === 3 ? 4 : $size)) {
+                throw new RangeException('Insufficient data for integer size: ' . $size);
+            }
+            $unpacked = unpack($format, $val);
+            if ($unpacked === false) {
+                throw new RangeException('Insufficient data for integer size: ' . $size);
+            }
+            $unpackList[$size][$key] = $unpacked[1];
         }
         
         return $unpackList[$size][$key];
@@ -107,7 +122,11 @@ final class Converter {
         for ($i = 0; $i < $size and $val[$i] !== "\0"; $i++) {
             $ret .= $val[$i];
         }
-        return $encoding === '' ? $ret : mb_convert_encoding($ret, 'UTF-8', $encoding);
+        $decoded = $encoding === '' ? $ret : mb_convert_encoding($ret, 'UTF-8', $encoding);
+        if ($decoded === false) {
+            throw new RangeException('Cannot decode string using encoding: ' . $encoding);
+        }
+        return $decoded;
     }
     
     public function decodeBinary(string $val): string {
