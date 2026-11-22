@@ -65,12 +65,6 @@ final class NodeFactory {
         $this->editor = $editor;
     }
     
-    /**
-     *
-     * @param LeanElement $strucElement
-     * @param AbstractNode $parentValue
-     * @return AbstractNode
-     */
     public function createNode(LeanElement $strucElement, ?AbstractNode $parentValue = null): AbstractNode {
         $value = $this->constructValue($strucElement->getTag());
         $value->init($strucElement, $parentValue);

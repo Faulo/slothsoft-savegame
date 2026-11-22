@@ -47,7 +47,7 @@ final class IntegerValue extends AbstractValueContent {
         return $this->decodeUnsignedInteger($rawValue);
     }
     
-    protected function encodeValue($value): string {
+    protected function encodeValue(mixed $value): string {
         if (! is_numeric($value)) {
             throw new InvalidArgumentException("IntegerValue must received integer, but got '$value'.");
         }

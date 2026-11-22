@@ -82,11 +82,9 @@ final class FileContainer extends AbstractNode implements NodeEvaluatorInterface
     }
     
     /**
-     * @param int $offset
-     * @param int|'auto' $length
+     * Read a fixed number of bytes, or pass 'auto' as the length to read up to a null byte.
      */
-    public function extractContent($offset, $length): string {
-        $ret = null;
+    public function extractContent(int $offset, int|string $length): string {
         switch ($length) {
             case 'auto':
                 $ret = '';
@@ -103,7 +101,7 @@ final class FileContainer extends AbstractNode implements NodeEvaluatorInterface
                 if (! is_int($length)) {
                     throw new \InvalidArgumentException('Content length must be an integer or auto.');
                 }
-                $ret = (string) substr($this->getContent(), $offset, $length);
+                $ret = substr($this->getContent(), $offset, $length);
                 $ret = str_pad($ret, $length, "\0");
                 break;
         }
@@ -143,7 +141,6 @@ final class FileContainer extends AbstractNode implements NodeEvaluatorInterface
     }
     
     public function getValueByName(string $name): AbstractValueContent {
-        /** @var AbstractValueContent $node */
         foreach ($this->valueList as $node) {
             if ($node->getName() === $name) {
                 return $node;
@@ -153,7 +150,6 @@ final class FileContainer extends AbstractNode implements NodeEvaluatorInterface
     }
     
     public function getValueById(int $id): AbstractValueContent {
-        /** @var AbstractValueContent $node */
         foreach ($this->valueList as $node) {
             if ($node->getValueId() === $id) {
                 return $node;
@@ -174,7 +170,7 @@ final class FileContainer extends AbstractNode implements NodeEvaluatorInterface
         return $index === false ? null : $index;
     }
     
-    public function evaluate($expression) {
+    public function evaluate($expression): int|float {
         return $this->evaluateInContext($expression, null);
     }
     
@@ -182,9 +178,8 @@ final class FileContainer extends AbstractNode implements NodeEvaluatorInterface
      * Resolve initialized values in the nearest enclosing subtree, up to this file.
      * Variable-dependent results are not cached: both context and values can change.
      * @param string|int|null $expression
-     * @return int|float
      */
-    public function evaluateScoped($expression, AbstractContentNode $context) {
+    public function evaluateScoped($expression, AbstractContentNode $context): int|float {
         $file = $context->getParentNode();
         while ($file instanceof AbstractContentNode) {
             $file = $file->getParentNode();
@@ -197,7 +192,6 @@ final class FileContainer extends AbstractNode implements NodeEvaluatorInterface
     
     private function getScopedValueByName(string $name, AbstractContentNode $context): AbstractValueContent {
         for ($scope = $context; $scope !== null; $scope = $scope->getParentNode()) {
-            /** @var AbstractValueContent $value */
             foreach ($this->valueList as $value) {
                 if ($value->getName() !== $name || $value->getValue() === null) {
                     continue;
@@ -219,11 +213,7 @@ final class FileContainer extends AbstractNode implements NodeEvaluatorInterface
         throw new \InvalidArgumentException("Not a value in scope: $name");
     }
     
-    /**
-     * @param string|int|null $expression
-     * @return int|float
-     */
-    private function evaluateInContext($expression, ?AbstractContentNode $context) {
+    private function evaluateInContext(mixed $expression, ?AbstractContentNode $context): int|float {
         if (is_int($expression)) {
             return $expression;
         }

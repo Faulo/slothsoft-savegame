@@ -37,11 +37,11 @@ final class BitValue extends AbstractValueContent {
         $this->ownerFile->insertContentBit($this->contentOffset, $this->getBitValue(), $this->value);
     }
     
-    protected function decodeValue(string $rawValue) {
+    protected function decodeValue(string $rawValue): bool {
         return (bool) ($this->getConverter()->decodeInteger($rawValue, $this->size) & $this->getBitValue());
     }
     
-    protected function encodeValue($value): string {
+    protected function encodeValue(mixed $value): string {
         if (! is_numeric($value)) {
             throw new InvalidArgumentException("IntegerValue must received integer, but got '$value'.");
         }

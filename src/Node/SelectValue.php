@@ -35,7 +35,7 @@ final class SelectValue extends AbstractValueContent {
         return $this->decodeUnsignedInteger($rawValue);
     }
     
-    protected function encodeValue($value): string {
+    protected function encodeValue(mixed $value): string {
         if (! is_numeric($value)) {
             throw new InvalidArgumentException("SelectValue must received integer, but got '$value'.");
         }

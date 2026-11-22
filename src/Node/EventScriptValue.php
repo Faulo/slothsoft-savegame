@@ -45,11 +45,11 @@ final class EventScriptValue extends AbstractValueContent {
         $this->setRawValue($value);
     }
     
-    protected function decodeValue(string $rawValue) {
+    protected function decodeValue(string $rawValue): string {
         return $this->getConverter()->decodeScript($rawValue);
     }
     
-    protected function encodeValue($value): string {
+    protected function encodeValue(mixed $value): string {
         return $this->getConverter()->encodeScript($value);
     }
 }

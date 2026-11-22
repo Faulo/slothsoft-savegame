@@ -6,6 +6,8 @@ namespace Slothsoft\Savegame\Node;
 use DomainException;
 use Ds\Map;
 use Ds\Set;
+use Generator;
+use LogicException;
 use RuntimeException;
 use Slothsoft\Core\Calendar\DateTimeFormatter;
 use Slothsoft\Core\FileSystem;
@@ -54,7 +56,6 @@ final class ArchiveNode extends AbstractNode implements BuildableInterface, File
     public function getBuildHash(): string {
         if ($this->fileHash === null) {
             $hash = '';
-            /** @var FileContainer $node */
             foreach ($this->getFileNodes() as $node) {
                 $hash .= $node->getBuildHash();
             }
@@ -103,7 +104,6 @@ final class ArchiveNode extends AbstractNode implements BuildableInterface, File
             parent::loadChildren($this->strucElement);
             
             if ($loadFiles) {
-                /** @var FileContainer $fileNode */
                 foreach ($this->getFileNodes() as $fileNode) {
                     $fileNode->load();
                 }
@@ -111,27 +111,20 @@ final class ArchiveNode extends AbstractNode implements BuildableInterface, File
         }
     }
     
-    /** @return iterable<string, SplFileInfo> */
-    private function indexArchiveFiles(): iterable {
-        foreach ($this->getArchiveFiles() as $file) {
+    /** @return Generator<string, SplFileInfo> */
+    private function indexArchiveFiles(): Generator {
+        $directory = (string) $this->extractDirectory;
+        $files = is_dir($directory) ? FileSystem::scanDir($directory, FileSystem::SCANDIR_FILEINFO) : [];
+        if ($files === []) {
+            $this->extractArchive();
+            $files = FileSystem::scanDir($directory, FileSystem::SCANDIR_FILEINFO);
+        }
+        foreach ($files as $file) {
+            if (! $file instanceof SplFileInfo) {
+                throw new LogicException('Expected archive scan to return file information.');
+            }
             yield $file->getFilename() => $file;
         }
-    }
-    
-    /**
-     * @return SplFileInfo[]
-     */
-    private function getArchiveFiles(): array {
-        $directory = (string) $this->extractDirectory;
-        if (is_dir($directory)) {
-            $list = FileSystem::scanDir($directory, FileSystem::SCANDIR_FILEINFO);
-            if (count($list)) {
-                return $list;
-            }
-        }
-        
-        $this->extractArchive();
-        return FileSystem::scanDir($directory, FileSystem::SCANDIR_FILEINFO);
     }
     
     private function extractArchive(): void {
@@ -153,7 +146,7 @@ final class ArchiveNode extends AbstractNode implements BuildableInterface, File
     public function getFileNodes(): iterable {
         foreach ($this->getBuildChildren() ?? [] as $node) {
             if (! $node instanceof FileContainer) {
-                throw new \LogicException('Unexpected child node type.');
+                throw new LogicException('Unexpected child node type.');
             }
             yield $node;
         }
@@ -164,7 +157,7 @@ final class ArchiveNode extends AbstractNode implements BuildableInterface, File
      */
     public function getFileNames(): Set {
         if ($this->extractedFiles === null) {
-            throw new \LogicException('Archive has not been loaded.');
+            throw new LogicException('Archive has not been loaded.');
         }
         return $this->extractedFiles->keys();
     }
@@ -183,7 +176,6 @@ final class ArchiveNode extends AbstractNode implements BuildableInterface, File
         $names = [];
         
         if ($nodeList = $this->getFileNodes()) {
-            /** @var FileContainer $node */
             foreach ($nodeList as $node) {
                 if ($node->getFileName() === $name) {
                     return $node;

@@ -58,7 +58,7 @@ final class SignedIntegerValue extends AbstractValueContent {
         return $this->getConverter()->decodeSignedInteger($rawValue, $this->size, $this->byteOrder);
     }
     
-    protected function encodeValue($value): string {
+    protected function encodeValue(mixed $value): string {
         if (! is_numeric($value)) {
             throw new InvalidArgumentException("SignedIntegerValue must received integer, but got '$value'.");
         }

@@ -7,7 +7,6 @@ use DomainException;
 use Slothsoft\Core\DOMHelper;
 use Slothsoft\Core\IO\Writable\StringWriterInterface;
 use Slothsoft\Core\XML\LeanElement;
-use Slothsoft\Savegame\Node\AbstractValueContent;
 use Slothsoft\Savegame\Node\ArchiveNode;
 use Slothsoft\Savegame\Node\ArchiveParser\ArchiveBuilderInterface;
 use Slothsoft\Savegame\Node\ArchiveParser\ArchiveExtractorInterface;
@@ -118,7 +117,6 @@ class Editor {
                 $val = isset($data[$id . $val]);
             }
             if (isset($valueMap[$id])) {
-                /** @var AbstractValueContent $node */
                 $node = $valueMap[$id];
                 // printf('%s: %s => %s%s', $id, $node->getValue(), $val, PHP_EOL);
                 $node->setValue($val, true);
@@ -157,38 +155,4 @@ class Editor {
     private function getUserDirectory(): SplFileInfo {
         return $this->config->userDirectory;
     }
-    
-    // public function toDocument(): DOMDocument
-    // {
-    // return $this->getSavegameNode()->toDocument();
-    // }
-    // public function toElement(DOMDocument $targetDoc): DOMElement
-    // {
-    // return $this->getSavegameNode()->toElement($targetDoc);
-    // }
-    
-    // public function toFile(): SplFileInfo
-    // {
-    // return $this->getSavegameNode()->toFile();
-    // }
-    // public function toFileName(): string
-    // {
-    // return $this->getSavegameNode()->toFileName();
-    // }
-    // public function toString(): string
-    // {
-    // return $this->getSavegameNode()->toString();
-    // }
-    
-    // private $config = [
-    // 'defaultDir' => '',
-    // 'userDir' => '',
-    // 'id' => '',
-    // 'mode' => '',
-    // 'loadAllArchives' => false,
-    // 'selectedArchives' => [],
-    // 'uploadedArchives' => [],
-    // 'archiveExtractors' => [],
-    // 'archiveBuilders' => []
-    // ];
 }

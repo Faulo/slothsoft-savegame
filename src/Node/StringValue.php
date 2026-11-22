@@ -43,11 +43,11 @@ final class StringValue extends AbstractValueContent {
         }
     }
     
-    protected function decodeValue(string $rawValue) {
+    protected function decodeValue(string $rawValue): string {
         return $this->getConverter()->decodeString($rawValue, $this->size, $this->encoding);
     }
     
-    protected function encodeValue($value): string {
+    protected function encodeValue(mixed $value): string {
         return $this->getConverter()->encodeString($value, $this->size, $this->encoding);
     }
 }

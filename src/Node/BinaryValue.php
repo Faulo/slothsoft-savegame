@@ -17,11 +17,11 @@ final class BinaryValue extends AbstractValueContent {
             ];
     }
     
-    protected function decodeValue(string $rawValue) {
+    protected function decodeValue(string $rawValue): string {
         return $this->getConverter()->decodeBinary($rawValue);
     }
     
-    protected function encodeValue($value): string {
+    protected function encodeValue(mixed $value): string {
         return $this->getConverter()->encodeBinary($value);
     }
 }

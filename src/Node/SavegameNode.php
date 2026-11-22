@@ -19,7 +19,6 @@ class SavegameNode extends AbstractNode implements BuildableInterface {
     public function getBuildHash(): string {
         if ($this->valueHash === null) {
             $hash = '';
-            /** @var ArchiveNode $node */
             foreach ($this->getArchiveNodes() as $node) {
                 $hash .= $node->getBuildHash();
             }
@@ -161,7 +160,6 @@ class SavegameNode extends AbstractNode implements BuildableInterface {
                     /** @var FileContainer $file */
                     foreach ($fileList as $file) {
                         $valueList = $file->getValueList();
-                        /** @var AbstractValueContent $value */
                         foreach ($valueList as $value) {
                             $ret[$value->getValueId()] = $value;
                         }

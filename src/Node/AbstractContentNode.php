@@ -50,7 +50,6 @@ abstract class AbstractContentNode extends AbstractNode {
                 }
                 break;
             case 'sibling':
-                /** @var AbstractValueContent|null $previousSibling */
                 $previousSibling = null;
                 foreach ($this->getOwnerFile()->getValueList() as $node) {
                     if ($node === $this) {

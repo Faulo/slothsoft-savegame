@@ -9,15 +9,9 @@ use Slothsoft\Savegame\Build\BuilderInterface;
 
 abstract class AbstractValueContent extends AbstractContentNode implements BuildableInterface {
     
-    /**
-     * @return mixed
-     */
-    abstract protected function decodeValue(string $rawValue);
+    abstract protected function decodeValue(string $rawValue) : mixed;
     
-    /**
-     * @param mixed $value
-     */
-    abstract protected function encodeValue($value): string;
+    abstract protected function encodeValue(mixed $value): string;
     
     private int $valueId;
     
@@ -57,10 +51,7 @@ abstract class AbstractValueContent extends AbstractContentNode implements Build
         return $this->valueId;
     }
     
-    /**
-     * @param mixed $value
-     */
-    public function setValue($value, bool $updateContent = false): bool {
+    public function setValue(mixed $value, bool $updateContent = false): bool {
         settype($value, gettype($this->value));
         
         if ($this->value !== $value) {
