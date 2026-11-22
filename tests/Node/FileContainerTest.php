@@ -3,6 +3,7 @@ declare(strict_types = 1);
 
 namespace Slothsoft\Savegame\Node;
 
+use OverflowException;
 use PHPUnit\Framework\TestCase;
 use Slothsoft\Core\DOMHelper;
 use Slothsoft\Core\IO\FileInfoFactory;
@@ -23,6 +24,31 @@ final class FileContainerTest extends TestCase {
         $this->assertTrue(class_exists(FileContainer::class), "Failed to load class 'Slothsoft\Savegame\Node\FileContainer'!");
     }
     
+    public function testEvaluateHexadecimalIntegerLimits(): void {
+        $file = new FileContainer();
+        self::assertSame(PHP_INT_MAX, $file->evaluate('0x' . dechex(PHP_INT_MAX)));
+        self::assertSame(PHP_INT_MIN, $file->evaluate('-0x00' . strtoupper(dechex(PHP_INT_MIN))));
+    }
+
+    /**
+     * @dataProvider overflowingExpressionProvider
+     * @runInSeparateProcess
+     */
+    public function testEvaluateRejectsOverflow(string $expression): void {
+        $file = new FileContainer();
+        $this->expectException(OverflowException::class);
+        $file->evaluate($expression);
+    }
+
+    /**
+     * @return iterable<string, array{string}>
+     */
+    public function overflowingExpressionProvider(): iterable {
+        yield 'positive hex outside the range' => ['0x' . dechex(PHP_INT_MIN)];
+        yield 'negative hex outside the range' => ['-0x' . dechex(PHP_INT_MIN | 1)];
+        yield 'negated minimum integer' => ['-(PHP_INT_MIN)'];
+    }
+
     /**
      * @dataProvider ownerArchiveProvider
      * @runInSeparateProcess

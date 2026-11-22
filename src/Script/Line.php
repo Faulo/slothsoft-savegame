@@ -5,30 +5,27 @@ namespace Slothsoft\Savegame\Script;
 
 class Line extends AbstractElement {
     
-    /**
-     * @return void
-     */
-    protected function init() {
+    protected function init(): void {
     }
     
     /**
      * Initialize the line as a placeholder for binary parsing.
      */
-    public function fromBinary($binary) {
+    public function fromBinary(string $binary): void {
         $this->init();
     }
     
     /**
      * Initialize the line as a placeholder for text parsing.
      */
-    public function fromCode($code) {
+    public function fromCode(string $code): void {
         $this->init();
     }
     
     /**
      * Return an empty string as the placeholder binary representation.
      */
-    public function toBinary() {
+    public function toBinary(): string {
         $ret = '';
         return $ret;
     }
@@ -36,7 +33,7 @@ class Line extends AbstractElement {
     /**
      * Return an empty string as the placeholder text representation.
      */
-    public function toCode() {
+    public function toCode(): string {
         $ret = '';
         return $ret;
     }

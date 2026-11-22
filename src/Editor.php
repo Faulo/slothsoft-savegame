@@ -138,9 +138,8 @@ class Editor {
      * Apply submitted values to matching loaded value nodes by ID and update their file bytes.
      *
      * @param array<int|string, mixed> $data
-     * @return void
      */
-    public function applyValues(array $data) {
+    public function applyValues(array $data): void {
         $savegame = $this->getSavegameNode();
         
         $valueMap = $savegame->getValueMap();

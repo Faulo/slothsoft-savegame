@@ -37,7 +37,7 @@ abstract class AbstractContentNode extends AbstractNode {
             throw new InvalidArgumentException('Unknown variable resolution: ' . $this->variableResolution);
         }
         
-        $this->position = $strucElement->hasAttribute('position') ? (int) $this->evaluateExpression($strucElement->getAttribute('position')) : 0;
+        $this->position = $strucElement->hasAttribute('position') ? $this->evaluateExpression($strucElement->getAttribute('position')) : 0;
         
         $this->contentOffset = $this->position;
         
@@ -81,11 +81,8 @@ abstract class AbstractContentNode extends AbstractNode {
     
     /**
      * Evaluate this node's attributes; resolution settings are not inherited.
-     *
-     * @param string|int|null $expression
-     * @return int|float
      */
-    protected function evaluateExpression($expression) {
+    protected function evaluateExpression(string|int $expression): int {
         return $this->variableResolution === 'scoped'
             ? $this->ownerFile->evaluateScoped($expression, $this)
             : $this->ownerFile->evaluate($expression);

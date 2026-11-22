@@ -7,6 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.6.1] - 2026-11-22
+
+### Changed
+
+- Enforce documented method and property types with native PHP declarations. Existing overrides must declare compatible return types, and redeclared properties must match the new types.
+- Accept only strings and integers as savegame expressions and return integers from global and scoped evaluation. Passing `null` raises `TypeError`.
+- Document every public method with a one-line PHPDoc summary.
+
+### Fixed
+
+- Throw `OverflowException` for out-of-range standalone hexadecimal literals and overflow when applying a leading minus sign. The minimum signed integer remains supported.
+- Initialize script and event lists to empty arrays so newly constructed elements serialize without warnings.
+
 ## [1.6.0] - 2026-11-08
 
 ### Added
@@ -421,7 +434,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Binary conversion helpers and event-script parsing.
 - Composer packaging for PHP 7.2 and later PHP 7.x releases.
 
-[Unreleased]: https://github.com/Faulo/slothsoft-savegame/compare/1.6.0...HEAD
+[Unreleased]: https://github.com/Faulo/slothsoft-savegame/compare/1.6.1...HEAD
+[1.6.1]: https://github.com/Faulo/slothsoft-savegame/compare/1.6.0...1.6.1
 [1.6.0]: https://github.com/Faulo/slothsoft-savegame/compare/1.5.0...1.6.0
 [1.5.0]: https://github.com/Faulo/slothsoft-savegame/compare/1.4.0...1.5.0
 [1.4.0]: https://github.com/Faulo/slothsoft-savegame/compare/1.3.13...1.4.0

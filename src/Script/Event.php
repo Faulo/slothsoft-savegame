@@ -6,33 +6,30 @@ namespace Slothsoft\Savegame\Script;
 class Event extends AbstractElement {
     
     /** @var list<Line> */
-    protected $lineList;
+    protected array $lineList = [];
     
-    /**
-     * @return void
-     */
-    protected function init() {
+    protected function init(): void {
         $this->lineList = [];
     }
     
     /**
      * Reset the line list while binary event parsing is unimplemented.
      */
-    public function fromBinary($binary) {
+    public function fromBinary(string $binary): void {
         $this->init();
     }
     
     /**
      * Reset the line list while text event parsing is unimplemented.
      */
-    public function fromCode($code) {
+    public function fromCode(string $code): void {
         $this->init();
     }
     
     /**
      * Concatenate the binary representations of the event's lines in order.
      */
-    public function toBinary() {
+    public function toBinary(): string {
         $ret = '';
         foreach ($this->lineList as $line) {
             $ret .= $line->toBinary();
@@ -43,7 +40,7 @@ class Event extends AbstractElement {
     /**
      * Concatenate the text representations of the event's lines in order.
      */
-    public function toCode() {
+    public function toCode(): string {
         $ret = '';
         foreach ($this->lineList as $line) {
             $ret .= $line->toCode();

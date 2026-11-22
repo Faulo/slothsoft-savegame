@@ -17,8 +17,8 @@ abstract class AbstractValueContent extends AbstractContentNode implements Build
     
     protected int $size;
     
-    /** @var mixed Decoded data; its type depends on the concrete value node. */
-    protected $value;
+    /** Decoded data whose type depends on the concrete value node. */
+    protected mixed $value = null;
     
     /**
      * Return the field name, file offset, value ID, and byte size as XML attributes.
@@ -35,7 +35,7 @@ abstract class AbstractValueContent extends AbstractContentNode implements Build
     protected function loadStruc(LeanElement $strucElement): void {
         parent::loadStruc($strucElement);
         
-        $this->size = $strucElement->hasAttribute('size') ? (int) $this->evaluateExpression($strucElement->getAttribute('size')) : 1;
+        $this->size = $strucElement->hasAttribute('size') ? $this->evaluateExpression($strucElement->getAttribute('size')) : 1;
         $this->valueId = $this->ownerFile->registerValue($this);
     }
     
@@ -79,10 +79,8 @@ abstract class AbstractValueContent extends AbstractContentNode implements Build
     
     /**
      * Return the decoded field value in the concrete node's native representation.
-     *
-     * @return mixed
      */
-    public function getValue() {
+    public function getValue(): mixed {
         return $this->value;
     }
     

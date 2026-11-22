@@ -6,6 +6,7 @@ namespace Slothsoft\Savegame\Node;
 use Ds\Vector;
 use http\Exception\InvalidArgumentException;
 use LogicException;
+use OverflowException;
 use Slothsoft\Core\IO\FileInfoFactory;
 use Slothsoft\Core\IO\Writable\FileWriterInterface;
 use Slothsoft\Core\XML\LeanElement;
@@ -207,17 +208,20 @@ final class FileContainer extends AbstractNode implements NodeEvaluatorInterface
     
     /**
      * Evaluate an expression using the first registered value with each matching name in the file.
+     *
+     * @throws OverflowException If a hexadecimal value or sign adjustment exceeds the integer range.
      */
-    public function evaluate($expression): int|float {
+    public function evaluate(string|int $expression): int {
         return $this->evaluateInContext($expression, null);
     }
     
     /**
      * Resolve initialized values in the nearest enclosing subtree, up to this file.
      * Variable-dependent results are not cached: both context and values can change.
-     * @param string|int|null $expression
+     *
+     * @throws OverflowException If a hexadecimal value or sign adjustment exceeds the integer range.
      */
-    public function evaluateScoped($expression, AbstractContentNode $context): int|float {
+    public function evaluateScoped(string|int $expression, AbstractContentNode $context): int {
         $file = $context->getParentNode();
         while ($file instanceof AbstractContentNode) {
             $file = $file->getParentNode();
@@ -251,45 +255,59 @@ final class FileContainer extends AbstractNode implements NodeEvaluatorInterface
         throw new \InvalidArgumentException("Not a value in scope: $name");
     }
     
-    private function evaluateInContext(mixed $expression, ?AbstractContentNode $context): int|float {
+    private function evaluateInContext(string|int $expression, ?AbstractContentNode $context): int {
         if (is_int($expression)) {
             return $expression;
         }
-        $expression = trim((string) $expression);
+        $expression = trim($expression);
         if ($expression === '') {
             return 0;
         }
-        $sign = 1;
+        $negative = false;
         while ($expression[0] === '-') {
-            $sign *= -1;
+            $negative = ! $negative;
             $expression = substr($expression, 1);
         }
         if (is_numeric($expression)) {
-            return $sign * (int) $expression;
+            return $this->applyExpressionSign((int) $expression, $negative);
         }
         $match = null;
         if (preg_match('/^0x(\w+)$/', $expression, $match)) {
-            return $sign * hexdec($match[1]);
+            $value = hexdec($match[1]);
+            if (is_int($value)) {
+                return $negative ? -$value : $value;
+            }
+            if ($negative && strcasecmp(ltrim($match[1], '0'), dechex(PHP_INT_MIN)) === 0) {
+                return PHP_INT_MIN;
+            }
+            throw new OverflowException('Hexadecimal expression exceeds the integer range.');
         }
-        
-        if ($context !== null || ! isset($this->evaluateCache[$expression])) {
-            $matches = null;
-            preg_match_all('/\$([A-Za-z0-9\-\.]+)/', $expression, $matches);
-            $translate = [];
-            foreach ($matches[0] as $i => $key) {
-                $translate[$key] = ($context === null
-                    ? $this->getValueByName($matches[1][$i])
-                    : $this->getScopedValueByName($matches[1][$i], $context))->getValue();
-            }
-            $code = strtr($expression, $translate);
-            $code = trim($code);
-            $result = $this->evaluateMath($code);
-            if ($context !== null) {
-                return $sign * $result;
-            }
+
+        if ($context === null && isset($this->evaluateCache[$expression])) {
+            return $this->applyExpressionSign($this->evaluateCache[$expression], $negative);
+        }
+        $matches = null;
+        preg_match_all('/\$([A-Za-z0-9\-\.]+)/', $expression, $matches);
+        $translate = [];
+        foreach ($matches[0] as $i => $key) {
+            $translate[$key] = ($context === null
+                ? $this->getValueByName($matches[1][$i])
+                : $this->getScopedValueByName($matches[1][$i], $context))->getValue();
+        }
+        $code = strtr($expression, $translate);
+        $code = trim($code);
+        $result = $this->evaluateMath($code);
+        if ($context === null) {
             $this->evaluateCache[$expression] = $result;
         }
-        return $sign * $this->evaluateCache[$expression];
+        return $this->applyExpressionSign($result, $negative);
+    }
+
+    private function applyExpressionSign(int $value, bool $negative): int {
+        if ($negative && $value === PHP_INT_MIN) {
+            throw new OverflowException('Expression result exceeds the integer range.');
+        }
+        return $negative ? -$value : $value;
     }
     
     /**

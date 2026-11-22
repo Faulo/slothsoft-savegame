@@ -9,39 +9,27 @@ abstract class AbstractElement {
     
     /**
      * Load the script element from its binary representation.
-     *
-     * @param string $binary
-     * @return void
      */
-    abstract public function fromBinary($binary);
+    abstract public function fromBinary(string $binary): void;
     
     /**
      * Load the script element from its text representation.
-     *
-     * @param string $code
-     * @return void
      */
-    abstract public function fromCode($code);
+    abstract public function fromCode(string $code): void;
     
     /**
      * Return the script element's binary representation.
-     *
-     * @return string
      */
-    abstract public function toBinary();
+    abstract public function toBinary(): string;
     
     /**
      * Return the script element's text representation.
-     *
-     * @return string
      */
-    abstract public function toCode();
+    abstract public function toCode(): string;
     
-    /** @var Parser */
-    protected $ownerParser;
+    protected Parser $ownerParser;
     
-    /** @var Converter */
-    protected $converter;
+    protected Converter $converter;
     
     /**
      * Associate the script element with a parser and the shared converter.
