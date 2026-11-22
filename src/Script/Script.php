@@ -15,6 +15,9 @@ class Script extends AbstractElement {
         $this->eventList = [];
     }
     
+    /**
+     * Reset the event list while binary script parsing is unimplemented.
+     */
     public function fromBinary($binary) {
         $this->init();
         /*
@@ -54,10 +57,16 @@ class Script extends AbstractElement {
          */
     }
     
+    /**
+     * Reset the event list while text script parsing is unimplemented.
+     */
     public function fromCode($code) {
         $this->init();
     }
     
+    /**
+     * Concatenate the binary representations of the script's events in order.
+     */
     public function toBinary() {
         $ret = '';
         foreach ($this->eventList as $event) {
@@ -66,6 +75,9 @@ class Script extends AbstractElement {
         return $ret;
     }
     
+    /**
+     * Concatenate the text representations of the script's events in order.
+     */
     public function toCode() {
         $ret = '';
         foreach ($this->eventList as $event) {

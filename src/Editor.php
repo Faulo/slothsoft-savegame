@@ -22,10 +22,16 @@ class Editor {
     
     private ?SavegameNode $savegame = null;
     
+    /**
+     * Create an editor with the supplied savegame paths and archive handlers.
+     */
     public function __construct(EditorConfig $config) {
         $this->config = $config;
     }
     
+    /**
+     * Read the XML structure, resolve XIncludes, and initialize the savegame tree on first use.
+     */
     public function load(): void {
         if ($this->savegame === null) {
             $strucDoc = DOMHelper::loadDocument((string) $this->config->infosetFile);
@@ -54,6 +60,9 @@ class Editor {
         }
     }
     
+    /**
+     * Return the configured extractor for the archive type or throw if the type is unknown.
+     */
     public function getArchiveExtractor(string $type): ArchiveExtractorInterface {
         if (! isset($this->config->archiveExtractors[$type])) {
             throw new DomainException(sprintf('unknown archiveExtractor type "%s"! currently available: %s', $type, implode(', ', array_keys($this->config->archiveExtractors))));
@@ -61,6 +70,9 @@ class Editor {
         return $this->config->archiveExtractors[$type];
     }
     
+    /**
+     * Return the configured builder for the archive type or throw if the type is unknown.
+     */
     public function getArchiveBuilder(string $type): ArchiveBuilderInterface {
         if (! isset($this->config->archiveBuilders[$type])) {
             throw new DomainException(sprintf('unknown archiveBuilder type "%s"! currently available: %s', $type, implode(', ', array_keys($this->config->archiveExtractors))));
@@ -68,6 +80,9 @@ class Editor {
         return $this->config->archiveBuilders[$type];
     }
     
+    /**
+     * Return the savegame tree and optionally load its archives and file contents.
+     */
     public function loadSavegame(bool $loadArchives = false, bool $loadFiles = false): SavegameNode {
         $savegameNode = $this->getSavegameNode();
         if ($loadArchives) {
@@ -78,6 +93,9 @@ class Editor {
         return $savegameNode;
     }
     
+    /**
+     * Load the archive at the given path and optionally load its file contents.
+     */
     public function loadArchive(string $archivePath, bool $loadFiles = false): ArchiveNode {
         $savegameNode = $this->loadSavegame();
         $archiveNode = $savegameNode->getArchiveByPath($archivePath);
@@ -85,26 +103,40 @@ class Editor {
         return $archiveNode;
     }
     
+    /**
+     * Load the named archive and return the file node matching the supplied file ID.
+     */
     public function loadFile(string $archivePath, string $fileId): FileContainer {
         $archiveNode = $this->loadArchive($archivePath);
         $fileNode = $archiveNode->getFileNodeByName($fileId);
         return $fileNode;
     }
     
+    /**
+     * Return the savegame root, loading its structure on first use.
+     */
     public function getSavegameNode(): SavegameNode {
         $this->load();
         return $this->savegame ?? throw new UnexpectedValueException('Savegame was not loaded.');
     }
     
+    /**
+     * Find an archive node by its configured path.
+     */
     public function getArchiveNode(string $archivePath): ArchiveNode {
         return $this->getSavegameNode()->getArchiveByPath($archivePath);
     }
     
+    /**
+     * Find a file node by name within the archive at the supplied path.
+     */
     public function getFileNode(string $archiveName, string $fileName): FileContainer {
         return $this->getArchiveNode($archiveName)->getFileNodeByName($fileName);
     }
     
     /**
+     * Apply submitted values to matching loaded value nodes by ID and update their file bytes.
+     *
      * @param array<int|string, mixed> $data
      * @return void
      */
@@ -124,12 +156,18 @@ class Editor {
         }
     }
     
+    /**
+     * Resolve a relative game file path to an existing user file or fall back to the source directory.
+     */
     public function findGameFile(string $path): SplFileInfo {
         $defaultFile = $this->buildDefaultFile($path);
         $userFile = $this->buildUserFile($path);
         return $userFile->isFile() ? $userFile : $defaultFile;
     }
     
+    /**
+     * Write the supplied content under the user directory, creating parent directories as needed.
+     */
     public function writeGameFile(string $path, StringWriterInterface $writer): SplFileInfo {
         $userFile = $this->buildUserFile($path);
         $userPath = (string) $userFile;

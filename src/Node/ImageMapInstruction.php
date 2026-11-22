@@ -16,6 +16,9 @@ final class ImageMapInstruction extends AbstractInstructionContent {
     
     private int $imageCount;
     
+    /**
+     * Include the image dimensions, bitplane count, and image count in the instruction's XML attributes.
+     */
     public function getBuildAttributes(BuilderInterface $builder): array {
         return parent::getBuildAttributes($builder) + [
                 'width' => $this->width,

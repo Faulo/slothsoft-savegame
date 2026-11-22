@@ -91,6 +91,9 @@ abstract class AbstractContentNode extends AbstractNode {
             : $this->ownerFile->evaluate($expression);
     }
     
+    /**
+     * Return the savegame root through the file that contains this node.
+     */
     public function getOwnerSavegame(): SavegameNode {
         return $this->ownerFile->getOwnerSavegame();
     }
@@ -99,14 +102,23 @@ abstract class AbstractContentNode extends AbstractNode {
         $this->loadContent($strucElement);
     }
     
+    /**
+     * Return the byte offset resolved from the node's position settings.
+     */
     public function getContentOffset(): int {
         return $this->contentOffset;
     }
     
+    /**
+     * Return the name assigned to this content node in the structure.
+     */
     public function getName(): string {
         return $this->name;
     }
     
+    /**
+     * Append a buildable content node as a child.
+     */
     public function appendBuildChild(BuildableInterface $childNode): void {
         assert($childNode instanceof AbstractContentNode);
         

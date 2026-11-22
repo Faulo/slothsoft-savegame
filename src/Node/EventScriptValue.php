@@ -8,10 +8,16 @@ use Slothsoft\Savegame\Build\BuilderInterface;
 
 final class EventScriptValue extends AbstractValueContent {
     
+    /**
+     * Return the XML tag name for an event script field.
+     */
     public function getBuildTag(): string {
         return 'event-script';
     }
     
+    /**
+     * Include the escaped script text in the field's XML attributes.
+     */
     public function getBuildAttributes(BuilderInterface $builder): array {
         return parent::getBuildAttributes($builder) + [
                 'value' => $builder->escapeAttribute($this->value)

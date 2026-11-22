@@ -30,6 +30,8 @@ final class EditorConfig {
     public array $archiveBuilders;
     
     /**
+     * Set the source, user, cache, and structure paths and register the archive handlers by type.
+     *
      * @param array<string, ArchiveExtractorInterface> $archiveExtractors
      * @param array<string, ArchiveBuilderInterface> $archiveBuilders
      */

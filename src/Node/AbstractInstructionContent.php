@@ -18,10 +18,16 @@ abstract class AbstractInstructionContent extends AbstractContentNode implements
     
     protected string $dictionaryRef;
     
+    /**
+     * Return the XML tag name for an instruction.
+     */
     public function getBuildTag(): string {
         return 'instruction';
     }
     
+    /**
+     * Return the instruction name, type, and dictionary reference as XML attributes.
+     */
     public function getBuildAttributes(BuilderInterface $builder): array {
         return [
             'name' => $this->name,

@@ -24,6 +24,9 @@ final class ForEachFileNode extends AbstractNode {
     protected function loadNode(LeanElement $strucElement): void {
     }
     
+    /**
+     * Create a file node from the supplied structure for each selected archive entry.
+     */
     public function loadChildren(LeanElement $strucElement): void {
         foreach ($this->getFileNames() as $name) {
             $strucData = [];
@@ -35,6 +38,9 @@ final class ForEachFileNode extends AbstractNode {
         }
     }
     
+    /**
+     * Return the savegame root that owns the containing archive.
+     */
     public function getOwnerSavegame(): SavegameNode {
         return $this->getOwnerArchive()->getOwnerSavegame();
     }

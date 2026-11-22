@@ -12,10 +12,16 @@ final class SelectValue extends AbstractValueContent {
     
     protected string $dictionaryRef;
     
+    /**
+     * Return the XML tag name for a selection field.
+     */
     public function getBuildTag(): string {
         return 'select';
     }
     
+    /**
+     * Include the selected value, dictionary reference, and numeric format in the XML attributes.
+     */
     public function getBuildAttributes(BuilderInterface $builder): array {
         return parent::getBuildAttributes($builder) + $this->getIntegerFormatAttributes() + [
                 'value' => $this->value,

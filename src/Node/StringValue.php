@@ -13,10 +13,16 @@ final class StringValue extends AbstractValueContent {
     
     private string $type;
     
+    /**
+     * Return the XML tag name for a string field.
+     */
     public function getBuildTag(): string {
         return 'string';
     }
     
+    /**
+     * Include the escaped text value and its encoding in the XML attributes.
+     */
     public function getBuildAttributes(BuilderInterface $builder): array {
         return parent::getBuildAttributes($builder) + [
                 'value' => $builder->escapeAttribute($this->value),

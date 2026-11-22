@@ -11,11 +11,16 @@ namespace Slothsoft\Savegame;
 interface NodeEvaluatorInterface {
     
     /**
+     * Resolve a savegame expression to a numeric value.
+     *
      * @param string|int|null $expression
      * @return int|float
      */
     public function evaluate($expression);
     
+    /**
+     * Compute the integer result of a math expression.
+     */
     public function evaluateMath(string $expression): int;
 }
 

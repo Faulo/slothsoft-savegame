@@ -17,6 +17,9 @@ abstract class AbstractNode {
     /** @var Vector<BuildableInterface>|null */
     private ?Vector $childNodeList = null;
     
+    /**
+     * Attach the node to its parent when applicable and load its structure, content, and children.
+     */
     public function init(LeanElement $strucElement, ?AbstractNode $parentNode = null): void {
         $this->parentNode = $parentNode;
         
@@ -42,16 +45,25 @@ abstract class AbstractNode {
         $this->getOwnerSavegame()->createNode($strucElement, $this);
     }
     
+    /**
+     * Return the savegame root that owns this node.
+     */
     abstract public function getOwnerSavegame(): SavegameNode;
     
     protected function getConverter(): Converter {
         return Converter::getInstance();
     }
     
+    /**
+     * Return the immediate parent, or null for a root node.
+     */
     public function getParentNode(): ?AbstractNode {
         return $this->parentNode;
     }
     
+    /**
+     * Append a buildable child here or forward it to the parent if this node is omitted from the build.
+     */
     public function appendBuildChild(BuildableInterface $childNode): void {
         if ($this instanceof BuildableInterface) {
             if ($this->childNodeList === null) {
@@ -67,17 +79,24 @@ abstract class AbstractNode {
     }
     
     /**
+     * Return the ordered buildable children, or null when none have been appended.
+     *
      * @return iterable<BuildableInterface>|null
      */
     public function getBuildChildren(): ?iterable {
         return $this->childNodeList;
     }
     
+    /**
+     * Return an empty cache key component by default.
+     */
     public function getBuildHash(): string {
         return '';
     }
     
     /**
+     * Yield the ancestors in order from the root to the immediate parent.
+     *
      * @return iterable<AbstractNode>
      */
     public function getBuildAncestors(): iterable {

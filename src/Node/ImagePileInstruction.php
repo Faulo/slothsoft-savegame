@@ -18,6 +18,9 @@ final class ImagePileInstruction extends AbstractInstructionContent {
     
     private string $imageDimensions;
     
+    /**
+     * Include the dimensions, byte size, and bitplane count in the image pile's XML attributes.
+     */
     public function getBuildAttributes(BuilderInterface $builder): array {
         return parent::getBuildAttributes($builder) + [
                 'width' => $this->width,

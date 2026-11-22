@@ -8,6 +8,9 @@ use Slothsoft\Savegame\Script\Parser;
 
 final class Converter {
     
+    /**
+     * Return the shared binary and text converter.
+     */
     public static function getInstance(): Converter {
         static $instance;
         if (! $instance) {
@@ -16,6 +19,9 @@ final class Converter {
         return $instance;
     }
     
+    /**
+     * Encode an integer in the requested byte width and byte order.
+     */
     public function encodeInteger(int $val, int $size = 1, string $byteOrder = 'big'): string {
         $this->validateByteOrder($byteOrder);
         $ret = pack('N', $val);
@@ -23,10 +29,16 @@ final class Converter {
         return $byteOrder === 'little' ? strrev($ret) : $ret;
     }
     
+    /**
+     * Encode a signed integer in two's complement using the requested width and byte order.
+     */
     public function encodeSignedInteger(int $val, int $size = 1, string $byteOrder = 'big'): string {
         return $this->encodeInteger($val, $size, $byteOrder);
     }
     
+    /**
+     * Trim text, optionally convert its encoding, and fit it to the requested byte width with null padding.
+     */
     public function encodeString(string $val, int $size = 1, string $encoding = ''): string {
         $val = trim($val);
         if ($encoding) {
@@ -37,6 +49,9 @@ final class Converter {
         return $ret;
     }
     
+    /**
+     * Convert hexadecimal text to bytes, ignoring whitespace between digits.
+     */
     public function encodeBinary(string $val): string {
         $hex = preg_replace('~\s+~', '', $val);
         if ($hex === null || strlen($hex) % 2 !== 0 || ($hex !== '' && ! ctype_xdigit($hex))) {
@@ -49,11 +64,17 @@ final class Converter {
         return $binary;
     }
     
+    /**
+     * Convert event script text to bytes through the script parser.
+     */
     public function encodeScript(string $val): string {
         $parser = new Parser();
         return $parser->code2binary($val);
     }
     
+    /**
+     * Read an unsigned integer from one to four bytes using the requested byte order.
+     */
     public function decodeInteger(string $val, int $size = 1, string $byteOrder = 'big'): int {
         $this->validateByteOrder($byteOrder);
         if ($byteOrder === 'little') {
@@ -102,6 +123,9 @@ final class Converter {
         return $unpackList[$size][$key];
     }
     
+    /**
+     * Read a signed two's complement integer using the requested width and byte order.
+     */
     public function decodeSignedInteger(string $val, int $size = 1, string $byteOrder = 'big'): int {
         $ret = $this->decodeInteger($val, $size, $byteOrder);
         if ($ret >= $this->pow256($size) / 2) {
@@ -116,6 +140,9 @@ final class Converter {
         }
     }
     
+    /**
+     * Read text up to the byte limit or first null byte and convert to UTF-8 when an encoding is supplied.
+     */
     public function decodeString(string $val, int $size = 1, string $encoding = ''): string {
         $ret = '';
         $size = min($size, strlen($val));
@@ -129,15 +156,24 @@ final class Converter {
         return $decoded;
     }
     
+    /**
+     * Format bytes as space-separated hexadecimal pairs.
+     */
     public function decodeBinary(string $val): string {
         return chunk_split(bin2hex($val), 2, ' ');
     }
     
+    /**
+     * Convert event script bytes to text through the script parser.
+     */
     public function decodeScript(string $val): string {
         $parser = new Parser();
         return $parser->binary2code($val);
     }
     
+    /**
+     * Return two raised to the given exponent.
+     */
     public function pow2(int $size): int {
         static $powList = [];
         if (! isset($powList[$size])) {
@@ -146,6 +182,9 @@ final class Converter {
         return $powList[$size];
     }
     
+    /**
+     * Return 256 raised to the given exponent to count the values representable in that many bytes.
+     */
     public function pow256(int $size): int {
         static $powList = [];
         if (! isset($powList[$size])) {

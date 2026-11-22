@@ -6,6 +6,8 @@ namespace Slothsoft\Savegame\Script;
 class Parser {
     
     /**
+     * Load a script from bytes and return its text representation.
+     *
      * @param string $binary
      * @return string
      */
@@ -16,6 +18,8 @@ class Parser {
     }
     
     /**
+     * Load a script from text and return its binary representation.
+     *
      * @param string $code
      * @return string
      */

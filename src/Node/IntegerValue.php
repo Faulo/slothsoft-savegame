@@ -22,10 +22,16 @@ final class IntegerValue extends AbstractValueContent {
     
     private int $max;
     
+    /**
+     * Return the XML tag name for an unsigned integer field.
+     */
     public function getBuildTag(): string {
         return 'integer';
     }
     
+    /**
+     * Include the unsigned value, bounds, and configured byte order or bit mask in the XML attributes.
+     */
     public function getBuildAttributes(BuilderInterface $builder): array {
         return parent::getBuildAttributes($builder) + $this->getIntegerFormatAttributes() + [
                 'value' => $this->value,

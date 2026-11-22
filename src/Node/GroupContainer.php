@@ -10,10 +10,16 @@ final class GroupContainer extends AbstractContainerContent {
     
     private string $dictionaryRef;
     
+    /**
+     * Return the XML tag name for a group.
+     */
     public function getBuildTag(): string {
         return 'group';
     }
     
+    /**
+     * Include the group's dictionary reference in its XML attributes.
+     */
     public function getBuildAttributes(BuilderInterface $builder): array {
         return parent::getBuildAttributes($builder) + [
                 'dictionary-ref' => $this->dictionaryRef

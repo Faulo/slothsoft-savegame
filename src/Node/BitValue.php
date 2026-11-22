@@ -11,10 +11,16 @@ final class BitValue extends AbstractValueContent {
     
     private int $bit = 0;
     
+    /**
+     * Return the XML tag name for a bit field.
+     */
     public function getBuildTag(): string {
         return 'bit';
     }
     
+    /**
+     * Include the bit index and its current state in the XML attributes.
+     */
     public function getBuildAttributes(BuilderInterface $builder): array {
         return parent::getBuildAttributes($builder) + [
                 'value' => $this->value ? '1' : '',
@@ -33,6 +39,9 @@ final class BitValue extends AbstractValueContent {
         return $this->getConverter()->pow2($this->bit);
     }
     
+    /**
+     * Update the selected bit in the file while preserving the other bits in the byte.
+     */
     public function updateContent(): void {
         $this->ownerFile->insertContentBit($this->contentOffset, $this->getBitValue(), $this->value);
     }

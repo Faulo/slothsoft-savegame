@@ -7,10 +7,16 @@ use Slothsoft\Savegame\Build\BuilderInterface;
 
 final class BinaryValue extends AbstractValueContent {
     
+    /**
+     * Return the XML tag name for a binary field.
+     */
     public function getBuildTag(): string {
         return 'binary';
     }
     
+    /**
+     * Include the field's hexadecimal value in its XML attributes.
+     */
     public function getBuildAttributes(BuilderInterface $builder): array {
         return parent::getBuildAttributes($builder) + [
                 'value' => $builder->escapeAttribute($this->value)

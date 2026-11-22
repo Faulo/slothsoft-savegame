@@ -12,6 +12,9 @@ abstract class AbstractContainerContent extends AbstractContentNode implements B
     protected function loadContent(LeanElement $strucElement): void {
     }
     
+    /**
+     * Return the container name as an XML attribute.
+     */
     public function getBuildAttributes(BuilderInterface $builder): array {
         return [
             'name' => $this->name

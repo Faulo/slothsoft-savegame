@@ -28,6 +28,9 @@ final class StringDictionaryInstruction extends AbstractInstructionContent {
         return NodeFactory::TAG_STRING_DICTIONARY;
     }
     
+    /**
+     * Load the string dictionary's structure, including its encoding and storage type.
+     */
     public function loadStruc(LeanElement $strucElement): void {
         parent::loadStruc($strucElement);
         

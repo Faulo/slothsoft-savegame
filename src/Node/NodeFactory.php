@@ -61,10 +61,16 @@ final class NodeFactory {
     
     private Editor $editor;
     
+    /**
+     * Bind the factory to the editor that will own the savegame root.
+     */
     public function __construct(Editor $editor) {
         $this->editor = $editor;
     }
     
+    /**
+     * Create the node type named by the structure element and initialize it with the optional parent.
+     */
     public function createNode(LeanElement $strucElement, ?AbstractNode $parentValue = null): AbstractNode {
         $value = $this->constructValue($strucElement->getTag());
         $value->init($strucElement, $parentValue);

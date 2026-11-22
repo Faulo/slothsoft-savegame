@@ -20,15 +20,23 @@ final class XmlBuilder implements BuilderInterface {
     
     private ?string $cacheDirectory = null;
     
+    /**
+     * Create an XML builder for the supplied root node.
+     */
     public function __construct(BuildableInterface $root) {
         $this->root = $root;
     }
     
+    /**
+     * Set the directory for serialized XML cache files.
+     */
     public function setCacheDirectory(string $cacheDirectory): void {
         $this->cacheDirectory = $cacheDirectory;
     }
     
     /**
+     * Provide a no-op for legacy cacheable tag registration.
+     *
      * @deprecated This method has no effect. Caching depends on the root node's build hash.
      * @param iterable<string> $list
      */
@@ -36,12 +44,16 @@ final class XmlBuilder implements BuilderInterface {
     }
     
     /**
+     * Provide a no-op for legacy cacheable tag removal.
+     *
      * @deprecated This method has no effect. Caching depends on the root node's build hash.
      */
     public function clearTagCachelist(): void {
     }
     
     /**
+     * Provide a no-op for legacy tag filter registration.
+     *
      * @param iterable<string> $list
      * @deprecated This method has no effect. Tag filtering is not supported.
      */
@@ -49,12 +61,16 @@ final class XmlBuilder implements BuilderInterface {
     }
     
     /**
+     * Provide a no-op for legacy tag filter removal.
+     *
      * @deprecated This method has no effect. Tag filtering is not supported.
      */
     public function clearTagBlacklist(): void {
     }
     
     /**
+     * Add the supplied names to the set of attributes omitted from the XML.
+     *
      * @param iterable<string> $list
      */
     public function registerAttributeBlacklist(iterable $list): void {
@@ -63,14 +79,23 @@ final class XmlBuilder implements BuilderInterface {
         }
     }
     
+    /**
+     * Remove all attribute exclusions from the XML builder.
+     */
     public function clearAttributeBlacklist(): void {
         $this->attributeBlacklist = [];
     }
     
+    /**
+     * Escape UTF-8 text for a double-quoted XML attribute.
+     */
     public function escapeAttribute(string $data): string {
         return htmlspecialchars($data, ENT_COMPAT | ENT_XML1, 'UTF-8');
     }
     
+    /**
+     * Yield XML for the root and its descendants, using cached output when a build hash is available.
+     */
     public function toChunks(): Generator {
         if (! $this->cacheDirectory) {
             throw new RuntimeException('cacheDirectory must be set');

@@ -12,10 +12,16 @@ use Slothsoft\Savegame\Editor;
 
 class SavegameNode extends AbstractNode implements BuildableInterface {
     
+    /**
+     * Return the XML tag name for a savegame.
+     */
     public function getBuildTag(): string {
         return 'savegame';
     }
     
+    /**
+     * Combine the structure hash with a hash of the archive build keys.
+     */
     public function getBuildHash(): string {
         if ($this->valueHash === null) {
             $hash = '';
@@ -27,10 +33,16 @@ class SavegameNode extends AbstractNode implements BuildableInterface {
         return $this->fileHash . '-' . $this->valueHash;
     }
     
+    /**
+     * Invalidate the cached hash derived from the savegame's archives.
+     */
     public function setDirty(): void {
         $this->valueHash = null;
     }
     
+    /**
+     * Return the schema version, save ID, and structure hash as XML attributes.
+     */
     public function getBuildAttributes(BuilderInterface $builder): array {
         return [
             'version' => '0.4',
@@ -54,6 +66,9 @@ class SavegameNode extends AbstractNode implements BuildableInterface {
     
     private int $valueIdCounter = 0;
     
+    /**
+     * Associate the savegame root with its editor and node factory.
+     */
     public function __construct(Editor $ownerEditor, NodeFactory $factory) {
         $this->ownerEditor = $ownerEditor;
         $this->factory = $factory;
@@ -68,10 +83,16 @@ class SavegameNode extends AbstractNode implements BuildableInterface {
         $this->globalElements = [];
     }
     
+    /**
+     * Set the identifier emitted in the savegame XML.
+     */
     public function setSaveId(string $saveId): void {
         $this->saveId = $saveId;
     }
     
+    /**
+     * Return the editor that owns the savegame tree.
+     */
     public function getOwnerEditor(): Editor {
         return $this->ownerEditor;
     }
@@ -106,6 +127,9 @@ class SavegameNode extends AbstractNode implements BuildableInterface {
     protected function loadNode(LeanElement $strucElement): void {
     }
     
+    /**
+     * Append an archive node to the savegame's build children.
+     */
     public function appendBuildChild(BuildableInterface $node): void {
         assert($node instanceof ArchiveNode);
         
@@ -113,6 +137,7 @@ class SavegameNode extends AbstractNode implements BuildableInterface {
     }
     
     /**
+     * Yield the savegame's archive nodes in build order.
      *
      * @return ArchiveNode[]
      */
@@ -125,6 +150,9 @@ class SavegameNode extends AbstractNode implements BuildableInterface {
         }
     }
     
+    /**
+     * Find an archive by its relative path in the savegame structure.
+     */
     public function getArchiveByPath(string $path): ArchiveNode {
         if ($nodeList = $this->getBuildChildren()) {
             /** @var ArchiveNode $node */
@@ -138,17 +166,24 @@ class SavegameNode extends AbstractNode implements BuildableInterface {
     }
     
     /**
+     * Return the reusable structure elements registered under the given global ID, or null if absent.
+     *
      * @return Vector<LeanElement>|null
      */
     public function getGlobalElementsById(string $id): ?Vector {
         return $this->globalElements[$id] ?? null;
     }
     
+    /**
+     * Allocate the next sequential value ID for this savegame.
+     */
     public function nextValueId(): int {
         return ++$this->valueIdCounter;
     }
     
     /**
+     * Index the loaded file values across all archives by savegame value ID.
+     *
      * @return array<int, AbstractValueContent>
      */
     public function getValueMap(): array {
@@ -170,10 +205,16 @@ class SavegameNode extends AbstractNode implements BuildableInterface {
         return $ret;
     }
     
+    /**
+     * Create and initialize a node under the supplied parent using this savegame's factory.
+     */
     public function createNode(LeanElement $strucElement, AbstractNode $parentValue): AbstractNode {
         return $this->factory->createNode($strucElement, $parentValue);
     }
     
+    /**
+     * Return this root node as the owning savegame.
+     */
     public function getOwnerSavegame(): SavegameNode {
         return $this;
     }

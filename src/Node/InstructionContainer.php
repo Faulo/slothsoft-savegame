@@ -12,10 +12,16 @@ final class InstructionContainer extends AbstractContainerContent {
     
     private string $dictionaryRef;
     
+    /**
+     * Return the XML tag name for an instruction container.
+     */
     public function getBuildTag(): string {
         return 'instruction';
     }
     
+    /**
+     * Include the instruction type and dictionary reference in the container's XML attributes.
+     */
     public function getBuildAttributes(BuilderInterface $builder): array {
         return parent::getBuildAttributes($builder) + [
                 'type' => $this->type,

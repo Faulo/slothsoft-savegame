@@ -19,10 +19,16 @@ final class ImageValue extends AbstractValueContent implements FileWriterInterfa
     
     private int $imageId;
     
+    /**
+     * Return the XML tag name for an image field.
+     */
     public function getBuildTag(): string {
         return 'image';
     }
     
+    /**
+     * Include the image value, dimensions, bitplane count, and file-local ID in the XML attributes.
+     */
     public function getBuildAttributes(BuilderInterface $builder): array {
         return parent::getBuildAttributes($builder) + [
                 'value' => $builder->escapeAttribute($this->value),
@@ -33,18 +39,30 @@ final class ImageValue extends AbstractValueContent implements FileWriterInterfa
             ];
     }
     
+    /**
+     * Return the image width in pixels.
+     */
     public function getWidth(): int {
         return $this->width;
     }
     
+    /**
+     * Return the image height in pixels.
+     */
     public function getHeight(): int {
         return $this->height;
     }
     
+    /**
+     * Return the number of bitplanes used by the image.
+     */
     public function getBitplanes(): int {
         return $this->bitplanes;
     }
     
+    /**
+     * Return the image's zero-based registration ID within its file.
+     */
     public function getImageId(): int {
         return $this->imageId;
     }
@@ -68,14 +86,23 @@ final class ImageValue extends AbstractValueContent implements FileWriterInterfa
         return $this->getConverter()->encodeBinary($value);
     }
     
+    /**
+     * Return the backing file that contains the image.
+     */
     public function toFile(): SplFileInfo {
         return $this->getOwnerFile()->toFile();
     }
     
+    /**
+     * Return the name of the file that contains the image.
+     */
     public function toFileName(): string {
         return $this->getOwnerFile()->getFileName();
     }
     
+    /**
+     * Return the full in-memory contents of the file that contains the image.
+     */
     public function toString(): string {
         return $this->getOwnerFile()->getContent();
     }

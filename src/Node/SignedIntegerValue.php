@@ -31,10 +31,16 @@ final class SignedIntegerValue extends AbstractValueContent {
     
     private int $max;
     
+    /**
+     * Return the XML tag name for a signed integer field.
+     */
     public function getBuildTag(): string {
         return 'signed-integer';
     }
     
+    /**
+     * Include the signed value, bounds, and any non-default byte order in the XML attributes.
+     */
     public function getBuildAttributes(BuilderInterface $builder): array {
         $attributes = $this->byteOrder === 'big' ? [] : ['byte-order' => $this->byteOrder];
         return parent::getBuildAttributes($builder) + $attributes + [

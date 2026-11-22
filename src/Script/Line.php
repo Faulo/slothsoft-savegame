@@ -11,19 +11,31 @@ class Line extends AbstractElement {
     protected function init() {
     }
     
+    /**
+     * Initialize the line as a placeholder for binary parsing.
+     */
     public function fromBinary($binary) {
         $this->init();
     }
     
+    /**
+     * Initialize the line as a placeholder for text parsing.
+     */
     public function fromCode($code) {
         $this->init();
     }
     
+    /**
+     * Return an empty string as the placeholder binary representation.
+     */
     public function toBinary() {
         $ret = '';
         return $ret;
     }
     
+    /**
+     * Return an empty string as the placeholder text representation.
+     */
     public function toCode() {
         $ret = '';
         return $ret;

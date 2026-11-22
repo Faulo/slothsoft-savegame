@@ -7,6 +7,9 @@ use SplFileInfo;
 
 interface ArchiveExtractorInterface {
     
+    /**
+     * Extract the archive into the target directory and report whether extraction succeeded.
+     */
     public function extractArchive(SplFileInfo $archivePath, SplFileInfo $targetDirectory): bool;
 }
 

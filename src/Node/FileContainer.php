@@ -37,10 +37,16 @@ final class FileContainer extends AbstractNode implements NodeEvaluatorInterface
     
     private LeanElement $strucElement;
     
+    /**
+     * Return the XML tag name for a file.
+     */
     public function getBuildTag(): string {
         return 'file';
     }
     
+    /**
+     * Return the archive entry name as an XML attribute.
+     */
     public function getBuildAttributes(BuilderInterface $builder): array {
         return [
             'file-name' => $this->fileName
@@ -67,6 +73,9 @@ final class FileContainer extends AbstractNode implements NodeEvaluatorInterface
     protected function loadChildren(LeanElement $strucElement): void {
     }
     
+    /**
+     * Load the file's child nodes from its saved structure.
+     */
     public function load(): void {
         parent::loadChildren($this->strucElement);
     }
@@ -108,10 +117,16 @@ final class FileContainer extends AbstractNode implements NodeEvaluatorInterface
         return $ret;
     }
     
+    /**
+     * Replace a byte range in the file with the supplied bytes.
+     */
     public function insertContent(int $offset, int $length, string $value): void {
         $this->setContent(substr_replace($this->getContent(), $value, $offset, $length));
     }
     
+    /**
+     * Set or clear the specified bit mask in the byte at the given offset.
+     */
     public function insertContentBit(int $offset, int $bit, bool $value): void {
         // echo "setting bit $bit at position $offset to " . ($value?'ON':'OFF') . PHP_EOL;
         $byte = $this->extractContent($offset, 1);
@@ -125,6 +140,9 @@ final class FileContainer extends AbstractNode implements NodeEvaluatorInterface
         $this->insertContent($offset, 1, $byte);
     }
     
+    /**
+     * Replace the in-memory file contents and invalidate build hashes if the bytes changed.
+     */
     public function setContent(string $content): void {
         if ($this->content !== $content) {
             $this->content = $content;
@@ -132,14 +150,23 @@ final class FileContainer extends AbstractNode implements NodeEvaluatorInterface
         }
     }
     
+    /**
+     * Return the in-memory file bytes or throw if they have yet to be loaded.
+     */
     public function getContent(): string {
         return $this->content ?? throw new LogicException('File content has not been loaded.');
     }
     
+    /**
+     * Return the file's name within its archive.
+     */
     public function getFileName(): string {
         return $this->fileName;
     }
     
+    /**
+     * Return the first registered value with the given name.
+     */
     public function getValueByName(string $name): AbstractValueContent {
         foreach ($this->valueList as $node) {
             if ($node->getName() === $name) {
@@ -149,6 +176,9 @@ final class FileContainer extends AbstractNode implements NodeEvaluatorInterface
         throw new InvalidArgumentException("Not a value: $name");
     }
     
+    /**
+     * Return the registered value with the given savegame value ID.
+     */
     public function getValueById(int $id): AbstractValueContent {
         foreach ($this->valueList as $node) {
             if ($node->getValueId() === $id) {
@@ -159,17 +189,25 @@ final class FileContainer extends AbstractNode implements NodeEvaluatorInterface
     }
     
     /**
+     * Return the registered values in the order they were added.
+     *
      * @return Vector<AbstractValueContent>
      */
     public function getValueList(): Vector {
         return $this->valueList;
     }
     
+    /**
+     * Find the first byte offset of a string at or after the starting offset, or return null.
+     */
     public function findStringAtOrAfter(string $search, int $offset = 0): ?int {
         $index = strpos($this->getContent(), $search, $offset);
         return $index === false ? null : $index;
     }
     
+    /**
+     * Evaluate an expression using the first registered value with each matching name in the file.
+     */
     public function evaluate($expression): int|float {
         return $this->evaluateInContext($expression, null);
     }
@@ -254,6 +292,9 @@ final class FileContainer extends AbstractNode implements NodeEvaluatorInterface
         return $sign * $this->evaluateCache[$expression];
     }
     
+    /**
+     * Evaluate a math expression and return its result as an integer.
+     */
     public function evaluateMath(string $code): int {
         static $evalList = [];
         if (! isset($evalList[$code])) {
@@ -263,11 +304,17 @@ final class FileContainer extends AbstractNode implements NodeEvaluatorInterface
         return $evalList[$code];
     }
     
+    /**
+     * Register a value node and return the next savegame-wide value ID.
+     */
     public function registerValue(AbstractValueContent $node): int {
         $this->valueList[] = $node;
         return $this->ownerSavegame->nextValueId();
     }
     
+    /**
+     * Register an image node and return its zero-based ID within the file.
+     */
     public function registerImage(ImageValue $node): int {
         if ($this->imageList === null) {
             $this->imageList = new Vector();
@@ -278,20 +325,31 @@ final class FileContainer extends AbstractNode implements NodeEvaluatorInterface
     }
     
     /**
+     * Return the registered image nodes, or an empty iterable when there are none.
+     *
      * @return iterable<ImageValue>
      */
     public function getImageNodes(): iterable {
         return $this->imageList ?? [];
     }
     
+    /**
+     * Return the image node with the given file-local ID.
+     */
     public function getImageNodeById(int $id): ImageValue {
         return $this->imageList[$id] ?? throw new InvalidArgumentException("Not an image: $id");
     }
     
+    /**
+     * Return the root of the savegame that contains this file.
+     */
     public function getOwnerSavegame(): SavegameNode {
         return $this->ownerSavegame;
     }
     
+    /**
+     * Find the archive that contains this file.
+     */
     public function getOwnerArchive(): ArchiveNode {
         for ($parent = $this->getParentNode(); $parent; $parent = $parent->getParentNode()) {
             if ($parent instanceof ArchiveNode) {
@@ -301,15 +359,24 @@ final class FileContainer extends AbstractNode implements NodeEvaluatorInterface
         throw new LogicException("Not inside an archive: $this->fileName");
     }
     
+    /**
+     * Return the extracted backing file on disk.
+     */
     public function toFile(): SplFileInfo {
         return FileInfoFactory::createFromPath($this->filePath);
     }
     
+    /**
+     * Return a cache key based on the file name and current content hash.
+     */
     public function getBuildHash(): string {
         $this->fileHash ??= $this->fileName . DIRECTORY_SEPARATOR . ($this->content === null ? md5_file($this->filePath) : md5($this->content));
         return $this->fileHash;
     }
     
+    /**
+     * Invalidate the file's cached build hash and propagate the invalidation to its archive.
+     */
     public function setDirty(): void {
         $this->fileHash = null;
         $this->getOwnerArchive()->setDirty();

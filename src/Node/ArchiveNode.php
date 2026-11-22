@@ -49,10 +49,16 @@ final class ArchiveNode extends AbstractNode implements BuildableInterface, File
     /** @var Map<string, SplFileInfo>|null */
     private ?Map $extractedFiles = null;
     
+    /**
+     * Return the XML tag name for an archive.
+     */
     public function getBuildTag(): string {
         return 'archive';
     }
     
+    /**
+     * Return the archive cache key, rebuilding it from the file nodes when invalidated.
+     */
     public function getBuildHash(): string {
         if ($this->fileHash === null) {
             $hash = '';
@@ -64,11 +70,17 @@ final class ArchiveNode extends AbstractNode implements BuildableInterface, File
         return $this->fileHash;
     }
     
+    /**
+     * Invalidate this archive's cached build hash and the savegame hash that depends on it.
+     */
     public function setDirty(): void {
         $this->fileHash = null;
         $this->getOwnerSavegame()->setDirty();
     }
     
+    /**
+     * Return the archive name, type, path, byte size, and timestamp as XML attributes.
+     */
     public function getBuildAttributes(BuilderInterface $builder): array {
         return [
             'name' => $this->name,
@@ -98,6 +110,9 @@ final class ArchiveNode extends AbstractNode implements BuildableInterface, File
     protected function loadChildren(LeanElement $strucElement): void {
     }
     
+    /**
+     * Index extracted files and create their nodes on first load, optionally loading their contents.
+     */
     public function load(bool $loadFiles = false): void {
         if ($this->extractedFiles === null) {
             $this->extractedFiles = new Map($this->indexArchiveFiles());
@@ -131,15 +146,22 @@ final class ArchiveNode extends AbstractNode implements BuildableInterface, File
         $this->getArchiveExtractor()->extractArchive($this->file, $this->extractDirectory);
     }
     
+    /**
+     * Return the relative archive path from the savegame structure.
+     */
     public function getArchivePath(): string {
         return $this->path;
     }
     
+    /**
+     * Return the configured archive name, which defaults to the path's basename.
+     */
     public function getName(): string {
         return $this->name;
     }
     
     /**
+     * Yield the file nodes defined for this archive in build order.
      *
      * @return FileContainer[]
      */
@@ -153,6 +175,8 @@ final class ArchiveNode extends AbstractNode implements BuildableInterface, File
     }
     
     /**
+     * Return the names indexed from the extracted archive after it has been loaded.
+     *
      * @return Set<string>
      */
     public function getFileNames(): Set {
@@ -162,6 +186,9 @@ final class ArchiveNode extends AbstractNode implements BuildableInterface, File
         return $this->extractedFiles->keys();
     }
     
+    /**
+     * Look up the extracted file on disk by its exact name.
+     */
     public function getFileByName(string $name): SplFileInfo {
         if (! isset($this->extractedFiles[$name])) {
             throw new DomainException(sprintf('Unknown file "%s"! Currently available from archive "%s": [%s]', $name, $this->file, implode(', ', [
@@ -172,6 +199,9 @@ final class ArchiveNode extends AbstractNode implements BuildableInterface, File
         return $this->extractedFiles[$name];
     }
     
+    /**
+     * Look up a file node in this archive by its exact name.
+     */
     public function getFileNodeByName(string $name): FileContainer {
         $names = [];
         
@@ -188,6 +218,9 @@ final class ArchiveNode extends AbstractNode implements BuildableInterface, File
         throw new DomainException(sprintf('Unknown file node "%s"! Currently available from archive "%s": [%s]', $name, $this->file, implode(', ', $names)));
     }
     
+    /**
+     * Append a file node to this archive's build children.
+     */
     public function appendBuildChild(BuildableInterface $childNode): void {
         assert($childNode instanceof FileContainer);
         
@@ -202,6 +235,9 @@ final class ArchiveNode extends AbstractNode implements BuildableInterface, File
         return $this->getOwnerEditor()->getArchiveExtractor($this->type);
     }
     
+    /**
+     * Return the savegame root that contains this archive.
+     */
     public function getOwnerSavegame(): SavegameNode {
         $parentNode = $this->getParentNode();
         assert($parentNode instanceof SavegameNode);
@@ -212,14 +248,23 @@ final class ArchiveNode extends AbstractNode implements BuildableInterface, File
         return $this->getOwnerSavegame()->getOwnerEditor();
     }
     
+    /**
+     * Return the archive's current source file on disk.
+     */
     public function toFile(): SplFileInfo {
         return $this->file;
     }
     
+    /**
+     * Return the configured archive name for use as a filename.
+     */
     public function toFileName(): string {
         return $this->name;
     }
     
+    /**
+     * Build archive bytes from the file nodes, or return an empty string when there are none.
+     */
     public function toString(): string {
         if ($childList = $this->getBuildChildren()) {
             return $this->getArchiveBuilder()->buildArchive($this->getFileNodes());
@@ -228,11 +273,17 @@ final class ArchiveNode extends AbstractNode implements BuildableInterface, File
         }
     }
     
+    /**
+     * Write the supplied bytes to the archive's current source file and refresh its metadata.
+     */
     public function fromString(string $sourceString): void {
         file_put_contents((string) $this->file, $sourceString);
         $this->fromFile($this->file);
     }
     
+    /**
+     * Set the archive source file, refresh its metadata, and invalidate the extracted file index.
+     */
     public function fromFile(SplFileInfo $sourceFile): void {
         $this->file = $sourceFile;
         

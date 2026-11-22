@@ -15,14 +15,23 @@ class Event extends AbstractElement {
         $this->lineList = [];
     }
     
+    /**
+     * Reset the line list while binary event parsing is unimplemented.
+     */
     public function fromBinary($binary) {
         $this->init();
     }
     
+    /**
+     * Reset the line list while text event parsing is unimplemented.
+     */
     public function fromCode($code) {
         $this->init();
     }
     
+    /**
+     * Concatenate the binary representations of the event's lines in order.
+     */
     public function toBinary() {
         $ret = '';
         foreach ($this->lineList as $line) {
@@ -31,6 +40,9 @@ class Event extends AbstractElement {
         return $ret;
     }
     
+    /**
+     * Concatenate the text representations of the event's lines in order.
+     */
     public function toCode() {
         $ret = '';
         foreach ($this->lineList as $line) {
